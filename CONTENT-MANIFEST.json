@@ -23455,6 +23455,806 @@
       "path": "资料/01_问答与展示图片/解压内容/小D用户展示图片/AG-IMG-008.png",
       "bytes": 2369636,
       "sha256": "45cc2d94ed3e4529cbbb574c7c9334fcd5e46da70de51f401c1234e337356f59"
+    },
+    {
+      "path": "tools/note-photo-stage.py",
+      "bytes": 1513,
+      "sha256": "6265a992a91ef07bdbfedb26dc0981aa8574f01381b5f1596838992feb1a2f68"
+    },
+    {
+      "path": "tools/build-handoff.py",
+      "bytes": 5648,
+      "sha256": "305aa341fa95de51db372cf4b4176bbdace1509ccccc9cd4450cd7239607c4c1"
+    },
+    {
+      "path": "tools/note-photo-framing.py",
+      "bytes": 1579,
+      "sha256": "ab236aca4b8ae386ce8f1be9560c03e1d1a42b7c4762522d411947d48e29f103"
+    },
+    {
+      "path": "tools/verify-photo-framing.mjs",
+      "bytes": 979,
+      "sha256": "1a9d6499b8a91c92c4f217cdb2eddb01b771de2750db3e326fa8b0bbabc4b8a9"
+    },
+    {
+      "path": "tools/verify-sentence-audio.mjs",
+      "bytes": 1910,
+      "sha256": "3ca48bbeb84ded7236d987573a3f2ade1636093830c7fbbb5da5e61660ffa2b1"
+    },
+    {
+      "path": "tools/verify-welcome-live.mjs",
+      "bytes": 1913,
+      "sha256": "2e1fed444965f6f62f1f9487ee776214942213d90a28589a65dc69468be95d57"
+    },
+    {
+      "path": "tools/note-foreground.py",
+      "bytes": 630,
+      "sha256": "c78453a0b6c9b9b2a62a8421103da47b8e0a0831d312780459e8f05a0e5c359b"
+    },
+    {
+      "path": "tools/verify-motion.mjs",
+      "bytes": 1352,
+      "sha256": "64173978c270ac60bf569df6b5b3691e34776e5e141756e8c6e8d02bb7458115"
+    },
+    {
+      "path": "tools/verify-video-companion.mjs",
+      "bytes": 3362,
+      "sha256": "5b4d05ebf62e0d8347c6717ad885195bc28275dfda7603e8ba71f24ba55f3582"
+    },
+    {
+      "path": "tools/verify-qa-v2.mjs",
+      "bytes": 7061,
+      "sha256": "0fc7943b0daf8bcfc3f713c20063d39220e1ec27223599adecbdb17832466d68"
+    },
+    {
+      "path": "tools/check-server.mjs",
+      "bytes": 479,
+      "sha256": "f1906cc1af861af88769ba30378632106230fdb82bd5c7054688b0ee4a160660"
+    },
+    {
+      "path": "tools/verify-handoff-live.mjs",
+      "bytes": 3280,
+      "sha256": "e500bff64d7890daa3ab76a983bf09829d2db720cbea1517055fe7bcf20f7417"
+    },
+    {
+      "path": "tools/note-smoothing.py",
+      "bytes": 1896,
+      "sha256": "d1072e766ad71931dddbd7d43cb74d2291f770520ed0325bd1bfb0cc7ec3178a"
+    },
+    {
+      "path": "tools/note-material-finish.py",
+      "bytes": 1134,
+      "sha256": "933bf2409ab4feba0164c04cb0945921ef3fa75ead8677f8a58c79e38e1ce6dc"
+    },
+    {
+      "path": "tools/verify-lab-knowledge.mjs",
+      "bytes": 2403,
+      "sha256": "034dca3217b977e91379c405df3b14f0e04a624452dcd99fa45c328c1680afda"
+    },
+    {
+      "path": "tools/verify-short-captions.mjs",
+      "bytes": 2273,
+      "sha256": "e3ddac29c4c6a36d47d2823a49b74a09b29447d682443e6e71f634c69d4774e0"
+    },
+    {
+      "path": "tools/verify-scene-choices.mjs",
+      "bytes": 2042,
+      "sha256": "9eeebccca0955beedae0be9624ad71f63ea27c4dc7d11cce85f871553983786f"
+    },
+    {
+      "path": "tools/verify-conversation-routing.mjs",
+      "bytes": 2718,
+      "sha256": "736f711d4941bd6d372b6710fce988ec376c26d7e50dd54d36d37d427d5a21b8"
+    },
+    {
+      "path": "tools/finalize.py",
+      "bytes": 858,
+      "sha256": "2d6c729129ea5ae90667e9365345dbfb8ea75338c1ab7e10039c90d51d20adb4"
+    },
+    {
+      "path": "tools/launch.mjs",
+      "bytes": 1290,
+      "sha256": "5f9ded5e60e982462e4414fdb5e1858ba7deafbdf6ac0fba3e7b78d915e989f4"
+    },
+    {
+      "path": "tools/verify-holding-pose.mjs",
+      "bytes": 3123,
+      "sha256": "c72616805ac43e55a7f9e15d59a5ebc4e2e8b738f6699c0455ed9ea0910d95e1"
+    },
+    {
+      "path": "tools/verify-hand-visuals.mjs",
+      "bytes": 2884,
+      "sha256": "824f4364f66c5a73897e24c4a965cba8ca3c00d2b8f40a5e7a5d4e7f3b905c51"
+    },
+    {
+      "path": "tools/verify-lab-tools.mjs",
+      "bytes": 1726,
+      "sha256": "70701326f939522658b331e698b513d755dc2f3fddcaa900fdff6c844844787f"
+    },
+    {
+      "path": "tools/fetch-mac-runtime.py",
+      "bytes": 1797,
+      "sha256": "8a83c02880321150bfc6839a8c04b93ee9f1fd5568614abeff249ec7fe1b28af"
+    },
+    {
+      "path": "tools/verify.mjs",
+      "bytes": 2131,
+      "sha256": "241f7e818bdc6c7179f7cbefaf7fab3f0af7d188fdae47ad2003bb916d1631b8"
+    },
+    {
+      "path": "tools/verify-tour-flow.mjs",
+      "bytes": 3658,
+      "sha256": "68119797b164ce927325068d5aa937dda51a57966cc9f80d8f11c9a0a04a67c6"
+    },
+    {
+      "path": "tools/verify-followup-rounds-live.mjs",
+      "bytes": 3789,
+      "sha256": "750754121c967040239c1de1d460f668e487cdef32b3959afd3de9017a2ff225"
+    },
+    {
+      "path": "tools/verify-package.mjs",
+      "bytes": 622,
+      "sha256": "4875f80f4369721cd1ca3b44081f293b78dd33454c85102653637588a676767f"
+    },
+    {
+      "path": "tools/verify-expression.mjs",
+      "bytes": 1917,
+      "sha256": "07887317dcde1fb64298e6604315abf6df871d5dd69e610019cc1d9e686f3085"
+    },
+    {
+      "path": "tools/verify-semantic-visuals-live.mjs",
+      "bytes": 3511,
+      "sha256": "6a043492bd6cff3078f26633499c0df0c5e4907e4a534a6eb97510590bb945a3"
+    },
+    {
+      "path": "tools/verify-lab-live.mjs",
+      "bytes": 2470,
+      "sha256": "d314398d3d237005b4b55160ff3335b40546661dbbffd96810e57b6213ed9c97"
+    },
+    {
+      "path": "tools/install.py",
+      "bytes": 770,
+      "sha256": "13a1ffd4f5032de10f54eec59d91978b1c18fc5e1d5cfb37ca615dce6bd4f48d"
+    },
+    {
+      "path": "tools/import-lab-knowledge.py",
+      "bytes": 2991,
+      "sha256": "dc72faba83cf347db0361571ab66f0813b8d23794522479908129fb6869b4524"
+    },
+    {
+      "path": "tools/write-portable-launchers.py",
+      "bytes": 859,
+      "sha256": "b5e82438e2dedd979de550c06c74192c79357a083c98ba855f75d88bf79c4d98"
+    },
+    {
+      "path": "tools/trim-vendor.py",
+      "bytes": 1230,
+      "sha256": "950ef27fe66b4b16e9c47cb7708af2904a8cc456fd9af77c9351c61b5f845764"
+    },
+    {
+      "path": "tools/migrate.py",
+      "bytes": 4557,
+      "sha256": "c895137b2e9decea966ba0ed9ac829a6d7dbe8c6b965247a03b704c66b9aa1d9"
+    },
+    {
+      "path": "tools/finish-handoff-notes.py",
+      "bytes": 3004,
+      "sha256": "789d809a4c9ee236d82a3b12870cfffd45d6e82bfbb0b7c26dddd42237948579"
+    },
+    {
+      "path": "tools/verify-scene-qa.mjs",
+      "bytes": 3046,
+      "sha256": "a20b7e8d415d668e5133d722bc0889658a346ba0d4f437f31bd4c645767396bb"
+    },
+    {
+      "path": "tools/update-notes.py",
+      "bytes": 2395,
+      "sha256": "c08efa241bb66099e5af4490ffb9788efb144a577f12fa313f35d2aa0fe829d8"
+    },
+    {
+      "path": "scripts/restore-assets.mjs",
+      "bytes": 1602,
+      "sha256": "a048964ebac2c1f41c25fd04d2bc1fc8e45a168d43950930f1c6808491a37753"
+    },
+    {
+      "path": "scripts/check-package.mjs",
+      "bytes": 1187,
+      "sha256": "d94657295d3ceacb8b4958abc67b5c004557421936f95e42c566af70597aaeb8"
+    },
+    {
+      "path": "platforms/android/.gitignore",
+      "bytes": 264,
+      "sha256": "e299e345472271057fe1b1310a3730dc0e7b5332f15bec492952dcc07c25aeb7"
+    },
+    {
+      "path": "platforms/android/build.gradle",
+      "bytes": 69,
+      "sha256": "8ebf0602839be8fd4c06f07a93e45da6b4a04444fa1b38df8b9def9c1b5c8032"
+    },
+    {
+      "path": "platforms/android/大屏APK打包规范.md",
+      "bytes": 11419,
+      "sha256": "60fc7917d631e47c3c9b2e32e5f91d31caa9b8d132539cc39e002a8393be2b9c"
+    },
+    {
+      "path": "platforms/android/source-snapshot.json",
+      "bytes": 54853,
+      "sha256": "5e19aced07062b8f8a01277850bfdd6cc113bd1eb700e82a60e5a4f1ade6cca7"
+    },
+    {
+      "path": "platforms/android/gradle.properties",
+      "bytes": 76,
+      "sha256": "67eefa02d084d8fd6e2698683ca4d007a344395ca89eed9012a79bac373ba359"
+    },
+    {
+      "path": "platforms/android/AGENTS.md",
+      "bytes": 1524,
+      "sha256": "aae9253180533d3f4d1b194010b91117acebe1979f82245c2a3da273437c7803"
+    },
+    {
+      "path": "platforms/android/settings.gradle",
+      "bytes": 273,
+      "sha256": "87c561cc81b524131afaf2a5f5147719eec4790f6082cbf7ce5b9df185246f04"
+    },
+    {
+      "path": "platforms/android/release-profile.json",
+      "bytes": 4283,
+      "sha256": "c47c2682d14baf6695c3af6d3ffdd345abfdcfd2cc67f3e49b92b721a290c2ef"
+    },
+    {
+      "path": "platforms/android/app/build.gradle",
+      "bytes": 1027,
+      "sha256": "3bfe4be22f273c1469c77c46503f91becbe1a44e93514280a1c69f2c72186730"
+    },
+    {
+      "path": "platforms/android/release-baseline/desktop-to-android.patch",
+      "bytes": 66710,
+      "sha256": "fdb13b077849762958a1c024ab7a921a3c32d653a3ca982c52d439f3cd7b78db"
+    },
+    {
+      "path": "platforms/android/app/src/main/AndroidManifest.xml",
+      "bytes": 1032,
+      "sha256": "4b9ad909e530ad33809a35d3c38ca1b9d43130a1f0a7479aa2855cc9d607757d"
+    },
+    {
+      "path": "platforms/android/app/src/androidTest/java/com/futurelab/littled/LaunchTest.java",
+      "bytes": 8061,
+      "sha256": "0a663292d194f4ec649d5793bc9e69dbc0609a6119f6c252c7ede1983de94fec"
+    },
+    {
+      "path": "platforms/android/app/src/main/res/drawable/app_icon.xml",
+      "bytes": 457,
+      "sha256": "3d5c4f9cb2e9e970210cba4e4eabcabb89fe8dbf20f5cccd9a5b2c65eaf27b8d"
+    },
+    {
+      "path": "platforms/android/app/src/main/java/com/futurelab/littled/MainActivity.java",
+      "bytes": 13046,
+      "sha256": "3e09ffd1dbc6dd2ba347990fcc201523a0f1585883d9f605cb09850961896a90"
+    },
+    {
+      "path": "platforms/android/app/src/main/java/com/futurelab/littled/NativeAudio.java",
+      "bytes": 5620,
+      "sha256": "5bde7b36a74f2ba8c8439be7ce8d1a9ad112041f301d8e5332c44c6c9eb92c8d"
+    },
+    {
+      "path": "platforms/android/release-baseline/desktop/index.html",
+      "bytes": 3719,
+      "sha256": "b51345e5660db0325fdb3159c2ea9f7b8b61af0cbeacbf7b37925cef3a82b208"
+    },
+    {
+      "path": "platforms/android/release-baseline/desktop/photo-stage.js",
+      "bytes": 9414,
+      "sha256": "ae6c09f419b4c2d6e60eb00d8daafdf56b53f46c74fc4ad5a333ac8c46d4798c"
+    },
+    {
+      "path": "platforms/android/release-baseline/desktop/style.css",
+      "bytes": 6669,
+      "sha256": "2b8fa2e1a33fe6885db288b350c6ea7ef9df69abdcdc7f41fcf5ec72efc1a941"
+    },
+    {
+      "path": "platforms/android/release-baseline/desktop/voice.js",
+      "bytes": 22989,
+      "sha256": "e6424263a15c08fc1ad73764305702875602d24597aa9b6320a946430ea9f63e"
+    },
+    {
+      "path": "platforms/android/release-baseline/desktop/app.js",
+      "bytes": 20643,
+      "sha256": "e6c0afdbeb8d5009a75eb77c394c035502d4d30a6f373056635b9f6bb7686552"
+    },
+    {
+      "path": "platforms/android/release-baseline/android/index.html",
+      "bytes": 3683,
+      "sha256": "c5e96724c40144f55552b087be709ecd0ce86c1290d868c3c8e7a48f76a3c1d1"
+    },
+    {
+      "path": "platforms/android/release-baseline/android/photo-stage.js",
+      "bytes": 9333,
+      "sha256": "e5b89bb1e384541f0d8f882efb91b01bf8bd802c7e3aaced8f72630256ce2805"
+    },
+    {
+      "path": "platforms/android/release-baseline/android/style.css",
+      "bytes": 9110,
+      "sha256": "11332969d56a640910c7cffe7dfd10857d292e56e08fc1883bba6e17b2dcc9f5"
+    },
+    {
+      "path": "platforms/android/release-baseline/android/voice.js",
+      "bytes": 27869,
+      "sha256": "50c1054795c6c6a90a3dcf01e52e3159b69c8e89b679cc23547c6dc87bc2601c"
+    },
+    {
+      "path": "platforms/android/release-baseline/android/android-bootstrap.js",
+      "bytes": 638,
+      "sha256": "ad733f5c888c10a5b1e2b3084783e6f7415449583afffde0301a8759237c927d"
+    },
+    {
+      "path": "platforms/android/release-baseline/android/app.js",
+      "bytes": 21690,
+      "sha256": "9bcb721cecca2c00bd68861bddf10c986500195b2ba321a2fd5ad2fa27bcc5e0"
+    },
+    {
+      "path": "handoff/current-browser-config.json",
+      "bytes": 816,
+      "sha256": "4f3283cf9a1f8e578c5569d77dd495e9e4f9e954667316887b9586eb8e020942"
+    },
+    {
+      "path": "handoff/自适应字幕宽度实测.json",
+      "bytes": 341,
+      "sha256": "3bf4f5f3255f350c366090f10d5f9bc241610c7562b1aae1f6960040ab4000fb"
+    },
+    {
+      "path": "handoff/followup-rounds-live-20261112.json",
+      "bytes": 1223,
+      "sha256": "720507c1663b90211d0b9de2f250042af78d8beab43382594bf4127e380dca1f"
+    },
+    {
+      "path": "handoff/机器人继续下移预览.jpg",
+      "bytes": 105721,
+      "sha256": "aa2466fd3fe0ba2dc28c840ed246d453823210b5b425050a78694a643086f326"
+    },
+    {
+      "path": "handoff/自然问答短句实测.json",
+      "bytes": 318,
+      "sha256": "a45ae2fc3f8cd8bf674d1af95fdf80264bb2a2b99b7d9834161218e8fd675e40"
+    },
+    {
+      "path": "handoff/参观流程浏览器验证.json",
+      "bytes": 1999,
+      "sha256": "291ded12d4292671af3305e4d4638dd365d81276f4139720b4aa7aff35e54ff8"
+    },
+    {
+      "path": "handoff/字幕稍上移预览.jpg",
+      "bytes": 101364,
+      "sha256": "8a1aaaff847ab9ad21eeafd4908f695c5d36ba267a92f9cec74721c1070211e9"
+    },
+    {
+      "path": "handoff/机器人与唤醒提示留白.jpg",
+      "bytes": 104023,
+      "sha256": "04c04755c3c63d72dc3f00ca854ea8710b4e6690d72778ae5297a7d802c27a40"
+    },
+    {
+      "path": "handoff/陪看与逐句字幕更新说明.md",
+      "bytes": 1207,
+      "sha256": "4504d4b66e77e6d0c8afac167d7ae58497cb368bc2311478ba079e046f45a06c"
+    },
+    {
+      "path": "handoff/runtime-provenance.json",
+      "bytes": 548,
+      "sha256": "a9872b94528fd370361013299dd01593540e5f4e33fea31e2df0d28b28283c7a"
+    },
+    {
+      "path": "handoff/镜头拉远预览.jpg",
+      "bytes": 112078,
+      "sha256": "4638d7573c8ac8100a264ae59911da175e8675b6e37173320d9cd79fe36d3ffd"
+    },
+    {
+      "path": "handoff/轻量字幕实测-1.jpg",
+      "bytes": 107803,
+      "sha256": "72fd258fcade6c32de7f860dcf4f82c67c7574ac2d293af6fd346e10cfa218a9"
+    },
+    {
+      "path": "handoff/机器人站位微调.jpg",
+      "bytes": 104608,
+      "sha256": "8d2b4e7df8487ffff2accd156c8ebaa8225c9273e6ce860aab296a1f4d6519d9"
+    },
+    {
+      "path": "handoff/preview-readable-holding.png",
+      "bytes": 41561,
+      "sha256": "07e26d9d608444f5b27515c0f2ddaa879d9720bbcddfd281da53e5def49328ce"
+    },
+    {
+      "path": "handoff/轻量字幕实测-3.jpg",
+      "bytes": 108274,
+      "sha256": "cd44ec54a60b2cadde3cabeeb95d52877758c24893417c32f82eb8205836e4aa"
+    },
+    {
+      "path": "handoff/逐句字幕实测记录.json",
+      "bytes": 2098,
+      "sha256": "006f82db096223dd8dc48c632a963789d4b848f80bf287b2ffef5bdab9674c69"
+    },
+    {
+      "path": "handoff/轻量字幕实测-2.jpg",
+      "bytes": 108191,
+      "sha256": "d6c136d660eea1abf4347e30b445dabf852dd74a0f97feb310fda1a610708ed5"
+    },
+    {
+      "path": "handoff/source-default-config.json",
+      "bytes": 826,
+      "sha256": "2bdd7fc23067e9b77cf3e606705e725cba2ebe182ef92c389d4ba841ee9cb617"
+    },
+    {
+      "path": "handoff/semantic-visuals-live-20261112.json",
+      "bytes": 1505,
+      "sha256": "04d17c7e6d1dd9e5598d2c0be738f0d07ad5828ce7175145b494bbd05d4d570f"
+    },
+    {
+      "path": "handoff/机器人与字幕留白-2.jpg",
+      "bytes": 106790,
+      "sha256": "816f115c7ab88cc6b3847c699b9126a9dedee72f211e7192de24257f0d3b9e77"
+    },
+    {
+      "path": "handoff/自适应科技字幕-2.jpg",
+      "bytes": 106220,
+      "sha256": "020beac70aabf9e971717b2e29f18e522621424e90e7a8cb8890946d956ca77f"
+    },
+    {
+      "path": "handoff/机器人略放大下移预览.jpg",
+      "bytes": 105222,
+      "sha256": "4d906ec8fb80f2343058402f2edfb90706208d5b0ecd41057756573e860d9b09"
+    },
+    {
+      "path": "handoff/自适应科技字幕-3.jpg",
+      "bytes": 108428,
+      "sha256": "25906e09a31639cef9fab1830290a20d4f0a6d44346edd3e58d6c67707a691cb"
+    },
+    {
+      "path": "handoff/参观引导流程-已确认.md",
+      "bytes": 11210,
+      "sha256": "a069d3ab623456463e96896dbb30568af28ecb921bd030982b9ee2982ff2393e"
+    },
+    {
+      "path": "handoff/机器人与字幕留白-3.jpg",
+      "bytes": 107067,
+      "sha256": "01e563f5848d5ddb3ad72142fec4e9cb9bf07e4f51a679c8eb4a21bb88ec2967"
+    },
+    {
+      "path": "handoff/机器人与字幕留白-1.jpg",
+      "bytes": 106494,
+      "sha256": "293a5d19380c83ca04846a41dfc779952ddfac8b44ce0127ac4667e781565671"
+    },
+    {
+      "path": "handoff/参观流程完成预览.png",
+      "bytes": 999609,
+      "sha256": "9d6ab9a90bf3e2380cea3ac26b65357a151b99f9c7c65424dccf6e629ef1d89f"
+    },
+    {
+      "path": "handoff/自适应科技字幕-1.jpg",
+      "bytes": 104205,
+      "sha256": "01c4656f54814b4c23f8336911aff7841e1a723282f184b6a89f0a3ae00d5c09"
+    },
+    {
+      "path": "handoff/全屏视频无控件预览.png",
+      "bytes": 887252,
+      "sha256": "f2fb80a8cb5bf60886e3c7dc5e05e8a165b7fd36c5c2fd72b6c7ed5b62936dcd"
+    },
+    {
+      "path": "handoff/正常连续对话验证.png",
+      "bytes": 969528,
+      "sha256": "a2f574ca7ccea47bbce1358007f0a1a805ca4861a2603384dae5f6baf57de942"
+    },
+    {
+      "path": "handoff/browser-form-draft.json",
+      "bytes": 760,
+      "sha256": "050a023686c65e72a377512142d0530d0c09a460abe14da13e3eb4fe78673d00"
+    },
+    {
+      "path": "handoff/字幕框再压矮预览.jpg",
+      "bytes": 106902,
+      "sha256": "735017f435812269189517714b63bb51c6422ca46c6f7368d013688243ad6919"
+    },
+    {
+      "path": "handoff/六大场景问答接入-20261112.md",
+      "bytes": 1352,
+      "sha256": "10bd64c020c985d61bd60b4092f46b0dc738b3c0821b14450e33a697b8d4fc4f"
+    },
+    {
+      "path": "handoff/机器人与字幕间距更新.md",
+      "bytes": 716,
+      "sha256": "d882dde6a081ef5aa96ed7d26198d50a8a3cb41d42a95582a31d77e28a04ffca"
+    },
+    {
+      "path": "handoff/问答与配图优化-20261112-v2.md",
+      "bytes": 2207,
+      "sha256": "003a718cdadea2c5687c4d9c05e19c77bc8d3d8afa8f5e54a9b2cb3e61a58eca"
+    },
+    {
+      "path": "handoff/右下角陪看验证.jpg",
+      "bytes": 85976,
+      "sha256": "825fd492029fdff22891cc288e779e178bc6f25350351bb9b318a60efe51ef02"
+    },
+    {
+      "path": "handoff/小D再缩小预览.jpg",
+      "bytes": 102840,
+      "sha256": "b66e7295c72d71a6b0f6352e837943d3319f515bad85f4750e26c94c9a190ba2"
+    },
+    {
+      "path": "handoff/问答收尾与连续配图-20261112-v3.md",
+      "bytes": 1143,
+      "sha256": "dabd304591fbd0337f2eb53c7c229b7635a8d6728a59bff57d0a66978bf2287b"
+    },
+    {
+      "path": "handoff/陪看与逐句字幕验证.json",
+      "bytes": 1320,
+      "sha256": "f5e14c9a03ab438433ad42410a774864f5682dc2d0ce01867a1d40b8f12c9bf1"
+    },
+    {
+      "path": "handoff/verification-report.json",
+      "bytes": 659,
+      "sha256": "08017813e10fd0f8c6f2655b6aff8c8aaddceb60ff79ebda8a5640707c19995e"
+    },
+    {
+      "path": "handoff/current-page-transcript.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "handoff/机器人再次下移预览.jpg",
+      "bytes": 105613,
+      "sha256": "8ed1649fd4c7eb45c44ca8d045e48abb1a62c178ff8a4f28f58aebfb56c9e8b9"
+    },
+    {
+      "path": "handoff/唤醒提示预览.jpg",
+      "bytes": 105392,
+      "sha256": "406cfe50b05519f38b52554d0ff4274374138a23df448ada66422af5067d0d9b"
+    },
+    {
+      "path": "handoff/科技字幕与完整短句更新.md",
+      "bytes": 1162,
+      "sha256": "efb467dca500f20f49fe29170ffac9260fd3696cbfabffc3ff0528a52487d144"
+    },
+    {
+      "path": "handoff/轻量字幕与唤醒提示更新.md",
+      "bytes": 949,
+      "sha256": "71b749d71e584ec787cc5e8394d75fadd4e1f5045eaa784f97af9ee6d0b8b9a6"
+    },
+    {
+      "path": "handoff/科技字幕框实测.jpg",
+      "bytes": 102785,
+      "sha256": "795dce30ae9f07d2dcb5ed135a3f3503b7a6ad0d9798765d1f21e48eb6500a3e"
+    },
+    {
+      "path": "handoff/机器人大小站位微调-2.jpg",
+      "bytes": 105738,
+      "sha256": "3f65bc2ecd04f2874155fe0b8da5266232d3c08acd6c0e3b894981602a058138"
+    },
+    {
+      "path": "handoff/extra-source-dependencies.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "handoff/知识与双手图片升级说明.md",
+      "bytes": 3933,
+      "sha256": "ff34e1681ced3b0ce426db28576e93addfb1ddbc51c6262a7fd05f0d6837b8e5"
+    },
+    {
+      "path": "handoff/qa-v2-backup-20261112/hand-visuals.js",
+      "bytes": 7344,
+      "sha256": "8e8a51ff477dc35da4ba07b053b91a7a0dec22c9e0e847d63184645e83ad616f"
+    },
+    {
+      "path": "handoff/qa-v2-backup-20261112/holding-pose.js",
+      "bytes": 2579,
+      "sha256": "18b3652a7301d0506753381415a9ac508711face25bd5b0647adab5408850ba3"
+    },
+    {
+      "path": "handoff/qa-v2-backup-20261112/style.css",
+      "bytes": 19483,
+      "sha256": "7218d3faa7db0604affe66914e4404ccbc561bc4ab41c5bbede5c92a9f7bf67f"
+    },
+    {
+      "path": "handoff/qa-v2-backup-20261112/voice.js",
+      "bytes": 33450,
+      "sha256": "be6f47678b17091c2d44e2071eba19f431f032225da67746673aea244548ae8d"
+    },
+    {
+      "path": "handoff/qa-v2-backup-20261112/tour-flow.js",
+      "bytes": 12377,
+      "sha256": "d6c11129b969155d89761093573c50a065285b08c9ee161545c30a9048318026"
+    },
+    {
+      "path": "handoff/qa-v2-backup-20261112/scene-qa.js",
+      "bytes": 4345,
+      "sha256": "bb5fb3426f291d6114b5547a48f08f4749487c3e8cb82d4567d1b4842019e78b"
+    },
+    {
+      "path": "handoff/qa-backup-20261112/hand-visuals.js",
+      "bytes": 6900,
+      "sha256": "280c9710f6d2c515cca6cf408976bfe4eae69833cdcf98d85154b1b9b9c1f98f"
+    },
+    {
+      "path": "handoff/qa-backup-20261112/photo-stage.js",
+      "bytes": 9380,
+      "sha256": "eb80dcf451dc8550cad0d8ccf68b03e792700f4f0c0fb534e07e2dbd22c25005"
+    },
+    {
+      "path": "handoff/qa-backup-20261112/scene-choices.js",
+      "bytes": 5401,
+      "sha256": "fd0f586a07e39091c86d1fd04c663f17ad98179258860a101ce05590adb3eb24"
+    },
+    {
+      "path": "handoff/qa-backup-20261112/tour-scope.js",
+      "bytes": 865,
+      "sha256": "a6fa93a9af6c4396a6162d0cb855117e2553715aeac584b62c87a4ddb689fc92"
+    },
+    {
+      "path": "handoff/qa-backup-20261112/holding-pose.js",
+      "bytes": 2557,
+      "sha256": "9ff12a83f25e53d8dfa0901c7017ab2e3f0e3664537cb7113a4e918299974dd9"
+    },
+    {
+      "path": "handoff/qa-backup-20261112/style.css",
+      "bytes": 18573,
+      "sha256": "ae68da9582ec4183652f521024d9ea6deb2d1fe67fb55453a02e4b198070689b"
+    },
+    {
+      "path": "handoff/qa-backup-20261112/voice.js",
+      "bytes": 32025,
+      "sha256": "115504185e5195d567f5d873037f1b2fb79472f18a0140faea1b68439f429f1e"
+    },
+    {
+      "path": "handoff/qa-backup-20261112/app.js",
+      "bytes": 21609,
+      "sha256": "38c103d9430dca19a149a776afe5f46ff2a96a73521ca18d7339678c036f5e7f"
+    },
+    {
+      "path": "handoff/qa-v3-backup-20261112/visual-cues.js",
+      "bytes": 2215,
+      "sha256": "dff848f7aab5a13aac275013976fecf5a8f98205d8666923bca2d6689120d931"
+    },
+    {
+      "path": "handoff/qa-v3-backup-20261112/voice.js",
+      "bytes": 36820,
+      "sha256": "6da535af425fc6da6eed9a89ff8a4a6f8786d1cc5df3325d185aeb08522e5658"
+    },
+    {
+      "path": "handoff/qa-v3-backup-20261112/scene-qa.js",
+      "bytes": 4847,
+      "sha256": "092cb11c55ce6a1e4b867046f1381b1e54c4a319247c1872a2896db0dedfbb7b"
+    },
+    {
+      "path": "handoff/qa-v3-backup-20261112/scene-overviews.js",
+      "bytes": 2673,
+      "sha256": "cf8453898f24e973024d35941bf69178a11c92e3fe92703863470e9efe4da831"
+    },
+    {
+      "path": "handoff/visual-backup-20261112/photo-stage.js",
+      "bytes": 9380,
+      "sha256": "c443cfc5800c33fff1477c6ab4482372f307c61918289b15f2f4dfeee0b75096"
+    },
+    {
+      "path": "handoff/visual-backup-20261112/scene-choices.js",
+      "bytes": 4622,
+      "sha256": "0d18187ea63b6b7244389e11a0dbee181340ab75be0c3bfdf9192d7190695fb7"
+    },
+    {
+      "path": "handoff/visual-backup-20261112/style.css",
+      "bytes": 18178,
+      "sha256": "643ab182dbc21645c9bcd5c1f204fff162b2832eaadb48c403438d53bd700805"
+    },
+    {
+      "path": "handoff/backups/20261110-companion/style.css",
+      "bytes": 9445,
+      "sha256": "429b6ec2a1295d3477d2f414d7a4ab6a1b94242ba612efdcbd74b34ddf21c3e8"
+    },
+    {
+      "path": "handoff/backups/20261110-companion/voice.js",
+      "bytes": 28362,
+      "sha256": "6be58a3dd6d254a8d231fedab69676324068d2e6cbd1b55658bdb19ade75d70a"
+    },
+    {
+      "path": "handoff/backups/20261110-companion/tour-flow.js",
+      "bytes": 13603,
+      "sha256": "b6aa85d4052c8a4a1ceb61fdbfeb9fea4a3f30d243c7b432ab8f2f3026a29f4c"
+    },
+    {
+      "path": "handoff/backups/20261110-companion/app.js",
+      "bytes": 21069,
+      "sha256": "481059bb7966cf552d8814dd65f0ea469ed4c5016f71fe7abb45da643cc08610"
+    },
+    {
+      "path": "handoff/backups/20261111-subtitle-hud/index.html",
+      "bytes": 3600,
+      "sha256": "ce0eda61ea2c9d89120089c5a4045d86fd754e5a1468d683ad467895ce58f6be"
+    },
+    {
+      "path": "handoff/backups/20261111-subtitle-hud/style.css",
+      "bytes": 9922,
+      "sha256": "5a7db453fe8b5de23d6ee933c11d225ca614ef3a41c717cd0a7fa7214381b601"
+    },
+    {
+      "path": "handoff/backups/20261111-subtitle-hud/voice.js",
+      "bytes": 30465,
+      "sha256": "ef1deeb02431d9e801dfff28c388ad85b7b07b3d41e2c3236336aa4118abfa69"
+    },
+    {
+      "path": "handoff/backups/20261111-subtitle-hud/tour-flow.js",
+      "bytes": 11932,
+      "sha256": "d286a77920992f59541227365e33578adb2e695df2dc5a74f74aa4d53c6de14f"
+    },
+    {
+      "path": "handoff/backups/20261111-wake-hint/index.html",
+      "bytes": 5024,
+      "sha256": "ac8999a38eb1c68e364f71356422b2eabae00bfb18b8b0fb7c3d6988565e1055"
+    },
+    {
+      "path": "handoff/backups/20261111-wake-hint/style.css",
+      "bytes": 11944,
+      "sha256": "a5088222c4f47141c952a243b6d906d5e23e7d400aa77501a9cad42d57b68528"
+    },
+    {
+      "path": "handoff/backups/20261111-wake-hint/voice.js",
+      "bytes": 30927,
+      "sha256": "642f319d26a8cf362924c0c1a8a6e44b13165249afd099d192891702569a1a04"
+    },
+    {
+      "path": "handoff/backups/20261111-caption-gap/photo-stage.js",
+      "bytes": 9378,
+      "sha256": "a06f13cbfb6da87a4e2b6a518d6f2e3e3a180e617bf7085540b02751df070160"
+    },
+    {
+      "path": "handoff/backups/20261111-caption-gap/app.js",
+      "bytes": 21579,
+      "sha256": "2cc84b20e8d36fc0906d089a8a6c94f5f96efde9058e9daea333547aeec1769f"
+    },
+    {
+      "path": "handoff/backups/20261111-scene-choices/index.html",
+      "bytes": 5604,
+      "sha256": "bdf2b46003f0b5d3bb2170e013a874a67efe1f56e91774283b087ddf89b4145a"
+    },
+    {
+      "path": "handoff/backups/20261111-scene-choices/style.css",
+      "bytes": 13765,
+      "sha256": "c023ea3dc005bc4dd88c6df4fcc33dc1200e96c02fe58af2dc1cd1fbe4e597b0"
+    },
+    {
+      "path": "handoff/backups/20261111-scene-choices/voice.js",
+      "bytes": 31735,
+      "sha256": "559511c6e484f704591efd20172ebee3813024e041fb71b7afb973f4ba3c470c"
+    },
+    {
+      "path": "handoff/backups/20261111-scene-choices/tour-flow.js",
+      "bytes": 12280,
+      "sha256": "2f8389576f4ad708f57e323b20ff6a14a3bd75583c502aa178e70230db02d291"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 6348,
+      "sha256": "95d700e3afa13f37c62b71c3adc4835f962e08e67fe3554bc0d812611db6a312"
+    },
+    {
+      "path": "web-search.mjs",
+      "bytes": 1772,
+      "sha256": "606421bbe24818b1a1d834115d79aacc07edda3bfe724709c5d7e0e74f26b217"
+    },
+    {
+      "path": "package.json",
+      "bytes": 470,
+      "sha256": "1d15fd132ef3c6a1607adc22a18a2e381682ca0579fbe483c2e8b440f03aa85f"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 1251,
+      "sha256": "a9f436e3ce8cf9f95144da3a31017274991e618c09127073be2c66012a61c2eb"
+    },
+    {
+      "path": "启动小D-Mac.command",
+      "bytes": 372,
+      "sha256": "45d966d3bf0e8ef4b7da88a57bf42598b464d9d6a6a32c27a58c1772af47d677"
+    },
+    {
+      "path": "启动机器人.cmd",
+      "bytes": 221,
+      "sha256": "79a1fd9e6601fd360534a0c5c4992f95ab34ad8b71717ec78790a4ab30d4a552"
     }
   ]
 }
