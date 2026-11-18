@@ -3,3 +3,7 @@
 .signing/
 local.properties
 app/src/androidTest/assets/private-config.json
+
+# The vendored Three.js build directory is runtime source, not Gradle output.
+!app/src/main/assets/web/vendor/three/build/
+!app/src/main/assets/web/vendor/three/build/**
