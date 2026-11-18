@@ -1,0 +1,10 @@
+plugins { id 'com.android.application' }
+android { namespace 'com.futurelab.littled'; compileSdk 35
+ defaultConfig { applicationId 'com.futurelab.littled'; minSdk 26; targetSdk 35; versionCode 20261108; versionName '2026.11.09.1' }
+ signingConfigs { localDisplay { storeFile rootProject.file('.signing/littled.keystore'); storePassword System.getenv('LITTLED_STORE_PASSWORD') ?: ''; keyAlias 'androiddebugkey'; keyPassword System.getenv('LITTLED_KEY_PASSWORD') ?: '' } }
+ buildTypes { release { minifyEnabled false; signingConfig signingConfigs.localDisplay } }
+ compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+dependencies { implementation 'org.nanohttpd:nanohttpd-websocket:2.3.1'; implementation 'com.squareup.okhttp3:okhttp:3.14.9' }
+android { defaultConfig { testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' } }
+dependencies { androidTestImplementation 'androidx.test:runner:1.6.2'; androidTestImplementation 'androidx.test.ext:junit:1.2.1' }

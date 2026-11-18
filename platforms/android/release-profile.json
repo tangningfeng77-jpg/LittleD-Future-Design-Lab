@@ -1,0 +1,120 @@
+{
+  "purpose": "成功版本的固定发布规范；供打包者读取，不会自动覆盖Gradle或前端配置",
+  "baseline": {
+    "versionName": "2026.11.04.4",
+    "versionCode": 20261107,
+    "userConfirmed": true,
+    "apkSHA256": "69f6e7857b2058a6548dc8a8c01f879563fabf027122f7cf8c4dac67d2c207d2"
+  },
+  "device": {
+    "os": "Android 13",
+    "displayPixels": [
+      3840,
+      2160
+    ],
+    "ramGB": 8,
+    "orientation": "landscape",
+    "reportedModel": "BOE LZHY98TBD",
+    "modelNote": "以用户提供的Android系统信息和成功安装反馈为准，不用营销型号推断系统"
+  },
+  "android": {
+    "applicationId": "com.futurelab.littled",
+    "minSdk": 26,
+    "targetSdk": 35,
+    "compileSdk": 35,
+    "java": 17,
+    "gradle": "8.9",
+    "androidGradlePlugin": "8.7.3",
+    "dependencies": {
+      "nanohttpd-websocket": "2.3.1",
+      "okhttp": "3.14.9"
+    },
+    "keystore": ".signing/littled.keystore",
+    "signerCertificateSHA256": "cd8059cd1ec043b061b008fb241d023c96fd00951aa342ae9d18fe8909d072e8",
+    "signingNote": "沿用已安装版本的签名，不重新生成；密钥不随交付包分发",
+    "updateRule": "versionCode必须大于设备已安装版本及所有后续发布版本"
+  },
+  "runtime": {
+    "origin": "http://127.0.0.1:4173",
+    "serverReadTimeoutMs": 0,
+    "textZoomPercent": 100,
+    "pageZoom": false,
+    "hardwareAccelerated": true,
+    "keepScreenOn": true,
+    "privateConfig": "JSON一次导入，AndroidKeyStore AES/GCM保存，APK不含API密钥"
+  },
+  "layout": {
+    "sceneWidthPercent": 76,
+    "conversationWidthPercent": 24,
+    "viewportBounded": true,
+    "camera": "参考镜头位置，不向机器人前移",
+    "touchCameraZoom": false
+  },
+  "graphics": {
+    "antialias": false,
+    "pixelRatio": "min(devicePixelRatio || 1, 1920 / innerWidth)",
+    "fallbackWidthCaps": [
+      1440,
+      1280
+    ],
+    "ambientOcclusion": false,
+    "shadowMapPixels": 1024,
+    "reflectionMaxPixels": 256,
+    "reflectionIntervalMs": 200
+  },
+  "audio": {
+    "implementation": "NativeAudio.java / AudioRecord，LittleDAudio JS桥",
+    "startStop": "单击开始交流自动连接并持续收音；再点结束交流释放麦克风",
+    "inputSources": [
+      "MIC",
+      "VOICE_RECOGNITION",
+      "DEFAULT"
+    ],
+    "inputRatesHz": [
+      16000,
+      48000,
+      44100
+    ],
+    "inputChannels": [
+      1,
+      2
+    ],
+    "wireFormat": {
+      "rateHz": 16000,
+      "channels": 1,
+      "encoding": "PCM16 little endian",
+      "chunkMs": 100,
+      "chunkBytes": 3200
+    },
+    "outputRateHz": 24000,
+    "vad": {
+      "type": "semantic_vad",
+      "threshold": 0.5,
+      "prefix_padding_ms": 500,
+      "silence_duration_ms": 800
+    },
+    "echoGuard": "回复处理中、待播放音频及播放结束后650ms不发送麦克风帧",
+    "diagnostics": "输入选择、测试麦克风、输入电平",
+    "onBackground": "停止录音，不自动在后台收音"
+  },
+  "mergeRequiredFiles": [
+    "android-bootstrap.js",
+    "app.js",
+    "index.html",
+    "photo-stage.js",
+    "style.css",
+    "voice.js"
+  ],
+  "baselineFileSHA256": {
+    "app/build.gradle": "39c494da096eadf2d95671695682a2720a0ba6ae733b88e0db726a9092ec18bd",
+    "app/src/main/AndroidManifest.xml": "4b9ad909e530ad33809a35d3c38ca1b9d43130a1f0a7479aa2855cc9d607757d",
+    "app/src/main/java/com/futurelab/littled/MainActivity.java": "3e09ffd1dbc6dd2ba347990fcc201523a0f1585883d9f605cb09850961896a90",
+    "app/src/main/java/com/futurelab/littled/NativeAudio.java": "5bde7b36a74f2ba8c8439be7ce8d1a9ad112041f301d8e5332c44c6c9eb92c8d",
+    "app/src/main/assets/web/android-bootstrap.js": "048e85b1c9f63fe98ea8e5bee4690b8d80cbfdb7b61c53c02068a3fe9d013839",
+    "app/src/main/assets/web/app.js": "2ea47e052f3c26ab850042e786e93557196990dd06b2223ef96b5c5947ca635c",
+    "app/src/main/assets/web/index.html": "c5e96724c40144f55552b087be709ecd0ce86c1290d868c3c8e7a48f76a3c1d1",
+    "app/src/main/assets/web/photo-stage.js": "e5b89bb1e384541f0d8f882efb91b01bf8bd802c7e3aaced8f72630256ce2805",
+    "app/src/main/assets/web/style.css": "92abffcab73cddd5a9191ead1c5b3f1e5105b250e7df7b6db12c6accb50c3bee",
+    "app/src/main/assets/web/voice.js": "066fd4ee9b2bd308d398766e7c559ecd9b5c978c495017e8d4704228fbe2ce48"
+  }
+}

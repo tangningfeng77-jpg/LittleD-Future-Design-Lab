@@ -1,0 +1,1191 @@
+{
+  "project": "LittleD complete standalone HTML project",
+  "created_date": "2026-10-30",
+  "target": "macOS Apple Silicon",
+  "file_count": 233,
+  "uncompressed_bytes": 257222819,
+  "private_files": [
+    ".env.local"
+  ],
+  "browser_config": "handoff/current-browser-config.json",
+  "model_animations": 36,
+  "runtime": {
+    "version": "v24.22.2",
+    "platform": "darwin-arm64",
+    "download_url": "https://nodejs.org/dist/v24.22.2/node-v24.22.2-darwin-arm64.tar.gz",
+    "archive_sha256": "aa9549349e47dffaa42dcf95d6e06ade8c4bdafc980979883b88767670df385a",
+    "binary_sha256": "b6fb419f0f43bb2fbca273700294dd2f3b685a64b60e8417c295f47646a70e4a",
+    "windows_backup": {
+      "version": "v24.19.0",
+      "source": "Existing Codex Node runtime on the source Windows machine",
+      "binary_sha256": "3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237"
+    }
+  },
+  "files": [
+    {
+      "path": ".env.example",
+      "size": 66,
+      "sha256": "bf2f92f9217ae48f41753af305a847c5529ac7a1678d4b4e390e207dedb8bcaf"
+    },
+    {
+      "path": ".env.local",
+      "size": 181,
+      "sha256": "afd64552d06bd9c11b6a3785275539349709ad5b991b29013743ffe4061f34b5"
+    },
+    {
+      "path": ".gitignore",
+      "size": 32,
+      "sha256": "12540a97b482da8b9a509c4b406d3c6d62eca361992fd6b1cb6290313c90e540"
+    },
+    {
+      "path": "handoff/browser-form-draft.json",
+      "size": 760,
+      "sha256": "050a023686c65e72a377512142d0530d0c09a460abe14da13e3eb4fe78673d00"
+    },
+    {
+      "path": "handoff/current-browser-config.json",
+      "size": 816,
+      "sha256": "4f3283cf9a1f8e578c5569d77dd495e9e4f9e954667316887b9586eb8e020942"
+    },
+    {
+      "path": "handoff/current-page-transcript.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "handoff/extra-source-dependencies.json",
+      "size": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "handoff/runtime-provenance.json",
+      "size": 548,
+      "sha256": "a9872b94528fd370361013299dd01593540e5f4e33fea31e2df0d28b28283c7a"
+    },
+    {
+      "path": "handoff/source-default-config.json",
+      "size": 826,
+      "sha256": "2bdd7fc23067e9b77cf3e606705e725cba2ebe182ef92c389d4ba841ee9cb617"
+    },
+    {
+      "path": "handoff/verification-report.json",
+      "size": 659,
+      "sha256": "08017813e10fd0f8c6f2655b6aff8c8aaddceb60ff79ebda8a5640707c19995e"
+    },
+    {
+      "path": "migration-manifest.json",
+      "size": 761,
+      "sha256": "555dbf61b60c5741d357ffd3dd2dac53a947038dcece2ff4ded4a40111b613b9"
+    },
+    {
+      "path": "node_modules/three/index.js",
+      "size": 66,
+      "sha256": "a2bd85f6ca47a750b011e2e2dc49f8146a37473730993836d25451313de09d5c"
+    },
+    {
+      "path": "node_modules/three/package.json",
+      "size": 37,
+      "sha256": "ad21ef6bd4fc4ce799253e0acce3bc9aa66be346e464ccdffc93121258ee553d"
+    },
+    {
+      "path": "node_modules/ws/browser.js",
+      "size": 176,
+      "sha256": "010da44addea1d88b2b732540c3f1fd0cbcb28926b96623d4c64222e0ead2d0e"
+    },
+    {
+      "path": "node_modules/ws/index.js",
+      "size": 376,
+      "sha256": "70a117e957f85622a6fe2be39afb9597489965fe3fe6ebefd84adb8f0d9d114a"
+    },
+    {
+      "path": "node_modules/ws/lib/buffer-util.js",
+      "size": 3056,
+      "sha256": "8b0a45739132f82e25ea13163780abf547ccfe989267f3eb7abb475beec92da3"
+    },
+    {
+      "path": "node_modules/ws/lib/constants.js",
+      "size": 479,
+      "sha256": "7efe5c0b888e4fde8bd9076c65b81bfd0df0963810b977d890df126929bb9190"
+    },
+    {
+      "path": "node_modules/ws/lib/event-target.js",
+      "size": 7321,
+      "sha256": "c45d3c6e12d170c860c0c3f1a050aa0f864d9806632b609a1e607d675aba128c"
+    },
+    {
+      "path": "node_modules/ws/lib/extension.js",
+      "size": 6183,
+      "sha256": "852564f0f6b460287043803eae732666fb5610f676874354fc89f06aa4e986ed"
+    },
+    {
+      "path": "node_modules/ws/lib/limiter.js",
+      "size": 1034,
+      "sha256": "e0469d4b83f6ba764b15f80e1766b75c136fbff68f048f4c050f0b1c7f065f69"
+    },
+    {
+      "path": "node_modules/ws/lib/permessage-deflate.js",
+      "size": 14510,
+      "sha256": "adcedcb3069b7c6db3fd6cec93699ef70bd4061126b987dd9a8f7cb16d2b7530"
+    },
+    {
+      "path": "node_modules/ws/lib/receiver.js",
+      "size": 16460,
+      "sha256": "7b9f6afc1fffb5c98d768d7d3d6fc1b709f28b45c6ae2682ff255075394323d9"
+    },
+    {
+      "path": "node_modules/ws/lib/sender.js",
+      "size": 16711,
+      "sha256": "a80e8688dde53d46d836a58c9d15121ee12e978b7b0f656ed818c63d20df5f94"
+    },
+    {
+      "path": "node_modules/ws/lib/stream.js",
+      "size": 4204,
+      "sha256": "a56fcb6e2b152097ee820b6f5410b1f71e59819b45d08d9f8bda588fe39070ec"
+    },
+    {
+      "path": "node_modules/ws/lib/subprotocol.js",
+      "size": 1498,
+      "sha256": "be3f6323d6f549568577dcba9004c1479d95c65a7abb0fe0c582875b9fac0b7c"
+    },
+    {
+      "path": "node_modules/ws/lib/validation.js",
+      "size": 3903,
+      "sha256": "41ce8e83d0d434132e1704895fedb91f6703a701b42d91c80954ab29b2845593"
+    },
+    {
+      "path": "node_modules/ws/lib/websocket-server.js",
+      "size": 16393,
+      "sha256": "fe8a410e89325608dc94d09778a2650bf041b9b7f5dff61d5005ea111e09a508"
+    },
+    {
+      "path": "node_modules/ws/lib/websocket.js",
+      "size": 36463,
+      "sha256": "ea50fd045185975e0e572637cd96fa065a7e988a1d1c890d18002c75a8a253b9"
+    },
+    {
+      "path": "node_modules/ws/LICENSE",
+      "size": 1183,
+      "sha256": "2b29dcfe0d6471f7e8c92c5fb38c9f93edee10330937055440192f1832b1ecef"
+    },
+    {
+      "path": "node_modules/ws/package.json",
+      "size": 1723,
+      "sha256": "aaedef2a72b60db8fb36d9b46c48d44986051785a2b6450c62994603c85dd959"
+    },
+    {
+      "path": "node_modules/ws/README.md",
+      "size": 15306,
+      "sha256": "bb979132f3cbff08ce47f36d041e18071f8f534d01f591c0b129ba7abf1e480e"
+    },
+    {
+      "path": "node_modules/ws/wrapper.mjs",
+      "size": 341,
+      "sha256": "e37bddaf6d40a3b2ee107906f792cc5117e543cba776fa25f7aeeb3908637f7c"
+    },
+    {
+      "path": "package.json",
+      "size": 246,
+      "sha256": "ba739f5e595149699b5a9d7dfe33666b9b7bef7a32b5ceca657a0d0908b1b29c"
+    },
+    {
+      "path": "preview-ai-connected.png",
+      "size": 40143,
+      "sha256": "c43387a0b6de70e6e6a1a235c029c77c4b8dff7e9293f321d3bebe303741f986"
+    },
+    {
+      "path": "preview-background-fixed.png",
+      "size": 77702,
+      "sha256": "1f1709c7fcfc6fc3d0f1939b14f24c8be4e0c37e9e3f21929b299989502420db"
+    },
+    {
+      "path": "preview-background-wide-fixed.png",
+      "size": 128458,
+      "sha256": "8ce9552d0c5a1e068112c7a03f38b068d33c2030f3aabd527adcfe611476dce9"
+    },
+    {
+      "path": "preview-clean-chest.png",
+      "size": 42825,
+      "sha256": "f76e9e2ea2ed030a9b875aa1647b9f5ea902cea0471c59ce6b8d0ea0b15cbf25"
+    },
+    {
+      "path": "preview-foreground-separation.png",
+      "size": 76151,
+      "sha256": "03e150190094ce8dc787578589671e5f18a5798b49d676ce1a44eba35a372ac1"
+    },
+    {
+      "path": "preview-material-finish.png",
+      "size": 72970,
+      "sha256": "5204902694f41b134745e96abb7268638cad8d023a7ebaa5ce287548fefa3d78"
+    },
+    {
+      "path": "preview-photo-room.png",
+      "size": 77043,
+      "sha256": "753628e50ac1faeaf3c49fc0057c6d08d4e85f99903bfd597969d4cba470c560"
+    },
+    {
+      "path": "preview-refined.png",
+      "size": 45359,
+      "sha256": "f21672f878c34dc17cb256928d86838d9d136c39fa955fa70d8fb1cd14fd78b6"
+    },
+    {
+      "path": "preview-seam-fixed.png",
+      "size": 76289,
+      "sha256": "174a5e202d93bb8194df2d941ec8c387226349052bf7400ee5aa21b6c7b16b74"
+    },
+    {
+      "path": "preview-smooth.png",
+      "size": 42722,
+      "sha256": "d0c78ee2adfa785947d6fb32963da0e494e310308aa27aee13a4bb9ee6f9a4a5"
+    },
+    {
+      "path": "preview.png",
+      "size": 55189,
+      "sha256": "2fb9c91de1a5cfab13b3910cd2040a571fd315a3d76d7647703f38aadf5aee50"
+    },
+    {
+      "path": "public/app.js",
+      "size": 19968,
+      "sha256": "249dfd4c0b0fdb983ea18fbaed13e18dc47b370f820209d9922bda349ffaae31"
+    },
+    {
+      "path": "public/assets/accessories.json",
+      "size": 10134,
+      "sha256": "edba3dc13db4a22275fab01d50b8f382f67155d7dedae41a5c3aa126723f0458"
+    },
+    {
+      "path": "public/assets/animations.json",
+      "size": 5259,
+      "sha256": "0de1f96a54f7dd282cee03d74d245453c213bddf4494dcb794aa8805084667b8"
+    },
+    {
+      "path": "public/assets/Curves.png",
+      "size": 1814172,
+      "sha256": "607d033718f10e27f4619265559dcce4ccef861bf2b4fb578b05ae1d5c033c44"
+    },
+    {
+      "path": "public/assets/Emotions4.png",
+      "size": 375392,
+      "sha256": "6afaf28ea1f3f80fafdd2cfb0b4b669229e50f6f8c3969fa0cf8364ffc79939e"
+    },
+    {
+      "path": "public/assets/knowledge.json",
+      "size": 83571,
+      "sha256": "edf39eef756bd510bd48901ae2fb782819a377ebbfbbccbf7371fcaf70dc24e7"
+    },
+    {
+      "path": "public/assets/lab-background.png",
+      "size": 2533986,
+      "sha256": "dc9fb2c6480e77c7ac3d5801d8ce1cda00a75cde8f886de5dcc2252b397c2ba9"
+    },
+    {
+      "path": "public/assets/materials.json",
+      "size": 5098,
+      "sha256": "05d2ecf1c64f4ce13787c2c81b712b320ce12de2969b13e51d667d85e5854426"
+    },
+    {
+      "path": "public/assets/Rob13.fbx",
+      "size": 6371740,
+      "sha256": "d463284d258466d5cc2309db7d9e4eec58435ab8197406a409a9683db79f35d4"
+    },
+    {
+      "path": "public/assets/Rob13_LP_Rob13_AlbedoTransparency.png",
+      "size": 3765106,
+      "sha256": "d41a1edc520aa27161732f174c780729d50b65ec4f50960b8ede993a2f46d2f0"
+    },
+    {
+      "path": "public/assets/Rob13_LP_Rob13_Emission.png",
+      "size": 62005,
+      "sha256": "d0d148ee5b7ee1f368ac02982f4ba6f487c9cd9a76a394927fa4dfceb85e49c8"
+    },
+    {
+      "path": "public/assets/Rob13_LP_Rob13_MetallicSmoothness.png",
+      "size": 1264701,
+      "sha256": "31334f30807407b72869aa83eb7fedfdc6c5b4a73f93900bd335e8c80c546750"
+    },
+    {
+      "path": "public/assets/Rob13_LP_Rob13_Normal.png",
+      "size": 3407320,
+      "sha256": "41ce1b30965016ae4f89ab210d9e18daa45dde0bad350c89022d00290ea47dd4"
+    },
+    {
+      "path": "public/assets/robot-config.json",
+      "size": 826,
+      "sha256": "2bdd7fc23067e9b77cf3e606705e725cba2ebe182ef92c389d4ba841ee9cb617"
+    },
+    {
+      "path": "public/capture-worklet.js",
+      "size": 574,
+      "sha256": "20dd023b66b1dbc4fba4f3574ff4188e2e84b413ef551f52ca361a65fb8db43b"
+    },
+    {
+      "path": "public/expression.js",
+      "size": 2615,
+      "sha256": "8cdb09463d0e73fb0369e06ad7ee0bd0c2a9c028577d279cc7ef6ae0ea4e7ec4"
+    },
+    {
+      "path": "public/index.html",
+      "size": 3807,
+      "sha256": "aefd2c25cf9243d70bbb8496730e9293f4d97101b0a22dfcae80c4ebd0dc1eeb"
+    },
+    {
+      "path": "public/material-finish.js",
+      "size": 3113,
+      "sha256": "e2e65a5a147d011ce062c96e19836001228b88fcd11236da8f9437a7ad1ef172"
+    },
+    {
+      "path": "public/motion.js",
+      "size": 1856,
+      "sha256": "d1f870060a90172cd525ea8536a5d136a550e77f98bcc5ebab81cd735caab94f"
+    },
+    {
+      "path": "public/mouth.js",
+      "size": 811,
+      "sha256": "a8fde1016e631ddb37667a6b26a818cbd710c9ddf62049df5bdfdf2a57bd7c44"
+    },
+    {
+      "path": "public/photo-stage.js",
+      "size": 9414,
+      "sha256": "ae6c09f419b4c2d6e60eb00d8daafdf56b53f46c74fc4ad5a333ac8c46d4798c"
+    },
+    {
+      "path": "public/style.css",
+      "size": 5493,
+      "sha256": "da8c57d7a01daacced0578f12e272a7281b62add6f0f584ef9c6d5a9155ae4c1"
+    },
+    {
+      "path": "public/vendor/three/build/three.core.js",
+      "size": 1403455,
+      "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20"
+    },
+    {
+      "path": "public/vendor/three/build/three.module.js",
+      "size": 603113,
+      "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/controls/OrbitControls.js",
+      "size": 38703,
+      "sha256": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/curves/NURBSCurve.js",
+      "size": 3888,
+      "sha256": "bef2607618a7778455e71a1f0bd206951c382d313e2e245808cc7d3533d60fb6"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/curves/NURBSUtils.js",
+      "size": 10802,
+      "sha256": "c6bd7c4137d585098923f189687898ea3e8762ea3ecbe255d749a56353894379"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/libs/fflate.module.js",
+      "size": 89384,
+      "sha256": "209a4412eb48ce609edb4391992a792ffcc3983d30ee7e2b0b89a8c470f3cd8a"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/loaders/FBXLoader.js",
+      "size": 104876,
+      "sha256": "d97724a6bea228003e02c64651d969a9a62003a00be314ef6995c390116f547d"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/math/SimplexNoise.js",
+      "size": 15154,
+      "sha256": "dd1f3c42c1bc9fa1b76c1c0796d352521accf0a3a95cc7d0caf479abc5a444a2"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/postprocessing/EffectComposer.js",
+      "size": 8477,
+      "sha256": "4b8c855f28eed2570bed898adc0ab89c585a8a281ecb6d905c09d00697f9f50a"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/postprocessing/GTAOPass.js",
+      "size": 19890,
+      "sha256": "855fd7953e81c1050a4abea8af4bfeb5ad9b6d879f793a9c650e3768aaec62a3"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/postprocessing/MaskPass.js",
+      "size": 4694,
+      "sha256": "7cd08eee9d5d6f5578beaddbdcbe9c384f6873810af27f22ab7db3ceeb127aa3"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/postprocessing/OutputPass.js",
+      "size": 4029,
+      "sha256": "f5b81c96e76b6b28b4b3ba8c41c4aeb982b1e03f3d82883242d951b2ab082fa2"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/postprocessing/Pass.js",
+      "size": 4218,
+      "sha256": "444b409c235ead986893c472e720da1b779a56985c7d10b279c7944b52bd61c5"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/postprocessing/RenderPass.js",
+      "size": 4112,
+      "sha256": "fd91229aacc5830e3984b0f2bdefcf566163ea028f4c1f1ab233fa6665a133ac"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/postprocessing/ShaderPass.js",
+      "size": 3228,
+      "sha256": "e2500a5913b26bbf5148ceaae644c6edcff06a18b01494ee37bf856353d2ab9d"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/shaders/CopyShader.js",
+      "size": 729,
+      "sha256": "a33057d5ac91c43304c186ac0e8816e62bb2ed471d3a00ff3018dfd5c0389718"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/shaders/GTAOShader.js",
+      "size": 11910,
+      "sha256": "d4b06ed5bbb7a177be6b0030986916f6f085721e2745e4632ab1773d02ca743c"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/shaders/OutputShader.js",
+      "size": 1876,
+      "sha256": "353479f77a8d7e2629d49ccac9fc2f5dbfdda5442e0adf867b00377a2fcb0cb2"
+    },
+    {
+      "path": "public/vendor/three/examples/jsm/shaders/PoissonDenoiseShader.js",
+      "size": 6945,
+      "sha256": "e01b574599d31ae3b9f08c6112da72c06bbd536ccbde094fd46e4bebe579e473"
+    },
+    {
+      "path": "public/vendor/three/package.json",
+      "size": 93,
+      "sha256": "bde6b2481cb0760eec93aa25457f095a1f292eba7c4d058a6c7f9e3f156e9106"
+    },
+    {
+      "path": "public/voice.js",
+      "size": 14019,
+      "sha256": "a2696405f546c16b4ce43b39fcdbbceb966de38ad3a5794c683fff42feec7eae"
+    },
+    {
+      "path": "README.md",
+      "size": 11944,
+      "sha256": "8b5667ee57d5a2853d21da0771d376aa200673c1ae6ff0e67885d3acfd6d5c64"
+    },
+    {
+      "path": "runtime/darwin-arm64/bin/node",
+      "size": 122564432,
+      "sha256": "b6fb419f0f43bb2fbca273700294dd2f3b685a64b60e8417c295f47646a70e4a"
+    },
+    {
+      "path": "runtime/darwin-arm64/CHANGELOG.md",
+      "size": 817053,
+      "sha256": "421fe30c432a92b9951fc92007d57be7c791e0cda3b2493924b45d0d76f5cbb1"
+    },
+    {
+      "path": "runtime/darwin-arm64/LICENSE",
+      "size": 157609,
+      "sha256": "5888dbb9a1d2b18f2c3e6c5f6af1b39de658372b402a0577b002777f14c62ace"
+    },
+    {
+      "path": "runtime/darwin-arm64/README.md",
+      "size": 41882,
+      "sha256": "66a4abdc81f9fc48e196aad4af434cc30aac77cb9a3bf74304f8da3fe80344da"
+    },
+    {
+      "path": "runtime/win32-x64/LICENSE",
+      "size": 157609,
+      "sha256": "5888dbb9a1d2b18f2c3e6c5f6af1b39de658372b402a0577b002777f14c62ace"
+    },
+    {
+      "path": "runtime/win32-x64/node.exe",
+      "size": 92825416,
+      "sha256": "3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237"
+    },
+    {
+      "path": "server.mjs",
+      "size": 3623,
+      "sha256": "e468e72154550e2bbe977aa85c1da169d2116f11d4b1a4a1764e464e0d73f764"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Copper.mat",
+      "size": 2200,
+      "sha256": "94a4f64e6cb8df0e594c59d2dc2abfb52c86b69ef301235bd4fa4e87b051dbe6"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Copper.mat.meta",
+      "size": 188,
+      "sha256": "30b440f797a5337dfe1541df5701f5ed8642042195291154afde0d64ca5aeac1"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_D_Monogram.asset",
+      "size": 7030,
+      "sha256": "d4fb21367df05f58cb2c5b7e9f248b218d21a9191a6ec5856b36c5cf61a8ec2b"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_D_Monogram.asset.meta",
+      "size": 188,
+      "sha256": "5435e1fed75155269d1cb22835380b6adb6da387d7713cd369ea1c41be5299c8"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Eyes.mat",
+      "size": 3383,
+      "sha256": "0114d9f6fa85319b018f1774dd38dc1e1211547c9785ce648bd0833bacc88f78"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Eyes.mat.meta",
+      "size": 188,
+      "sha256": "3b60a1288e463f250264a648370338f707eb785030c72f7c9b6d246d294302e4"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Graphite.mat",
+      "size": 2206,
+      "sha256": "bd50cb3631f2093c4f6a833fd20a3a9a20b86f34613e51d9398959ea195ac7ca"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Graphite.mat.meta",
+      "size": 188,
+      "sha256": "16d7ce5c7fe93c56d44a647b9976cd8ddbec24bdb3b8e1ef5e82b92dea94b755"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_JadeLight.mat",
+      "size": 2219,
+      "sha256": "cb8677aed9572b16cfcdf426c9568428febea5c72f283643ca334bf1af2d8a70"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_JadeLight.mat.meta",
+      "size": 188,
+      "sha256": "b8da9df51db52ed1b788f0b4ee0f0071089dbef88d67f637e8a618440b82b626"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_MouthEmo.mat",
+      "size": 3387,
+      "sha256": "bdf175d4b53ddc695d82b829e5d67455523100b350a78b4b38437b5cbbd7b976"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_MouthEmo.mat.meta",
+      "size": 188,
+      "sha256": "0a2fd8bfd3099c26c4502e8a1b77e8086ba4e57d46a0bf6e6a5b87fdc037866d"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_MouthSpeach.mat",
+      "size": 3020,
+      "sha256": "4b159cba065fbafc1789880db54c02cd2899ab1cf9487194902b75c1de1e9210"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_MouthSpeach.mat.meta",
+      "size": 188,
+      "sha256": "fa1bd7459ba49fd86f997e03eefdbd6b6f756da6b6313a90e2be820130d34616"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Porcelain.mat",
+      "size": 2203,
+      "sha256": "85622f928238360215cdac01933b7a92a88cd4ce3cebb323d5510afd1daac4e3"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Porcelain.mat.meta",
+      "size": 188,
+      "sha256": "8554635bf7061d519c0eb7c6028ef8e402522763cafff8edd1822a3a077d13e8"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Shell.mat",
+      "size": 3583,
+      "sha256": "f7f3baa70a372eece09a30ce837c0c069cacb0a1bcd4a73522281e48612c4859"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Shell.mat.meta",
+      "size": 188,
+      "sha256": "115255a6ee138f11135320bcf2c1782cc1966d2d8ba46508b57e703608681d16"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Teal.mat",
+      "size": 2198,
+      "sha256": "b70fa6aa9b81e71a0176e4dd3ed31dd8c0916eadb73c3db6136b2f0c67a342e5"
+    },
+    {
+      "path": "source-unity/LittleD/LittleD_Teal.mat.meta",
+      "size": 188,
+      "sha256": "9e644dd602d9e23b2856cc05cfff81dc1dfaa2d4f9ce4257d11892b8ff915bf4"
+    },
+    {
+      "path": "source-unity/LittleD/LittleDWhiteShell.shader",
+      "size": 1757,
+      "sha256": "720531d7caf5a9ded91aa6605e708348595110283a230d06c5826ceaa7bd1c1d"
+    },
+    {
+      "path": "source-unity/LittleD/LittleDWhiteShell.shader.meta",
+      "size": 204,
+      "sha256": "8cda9f085b4daff17a3bc46be7079d8b20e74419a7ad9892da1e46807b06625e"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Animations/Rob13.controller",
+      "size": 76391,
+      "sha256": "6445bdc4323ac035aa90361e1d79e4c652c077579e77f6170372c24279154478"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Animations/Rob13.controller.meta",
+      "size": 188,
+      "sha256": "e73ceae915ac9b307946e9da49510350982f712c891c0fdfa8518ab16d9d42c8"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13/Rob13Body.mat",
+      "size": 3911,
+      "sha256": "6f33d01f869e2f5bd9edebfa0ff198b7544db7afc93d5395173eb1ba5ad02c98"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13/Rob13Body.mat.meta",
+      "size": 188,
+      "sha256": "8fc18bb8d1866c75230814b435b35618285987a824fc8ecef607fd791583a4aa"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13/Rob13Emo_eyes.mat",
+      "size": 3380,
+      "sha256": "9c2d62f413fdf0412561719a1ce2a7eb1e43713d75c941e48f0fd2591b694ae1"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13/Rob13Emo_eyes.mat.meta",
+      "size": 188,
+      "sha256": "0dab65af43b2bfeec8eb4e878f01158bb108b67cc02689d31ff14ec046ed7782"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13/Rob13Emo_mouth.mat",
+      "size": 2991,
+      "sha256": "ef52d335fb5053e426e199075328b1db7c8a1b7ed221e519c7f5ae2831a56e6a"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13/Rob13Emo_mouth.mat.meta",
+      "size": 188,
+      "sha256": "ad8a75f15024c77fb3cbc73470713df6652ce1444610f975cd55745297e4fe69"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13/Rob13Emo_speak.mat",
+      "size": 3004,
+      "sha256": "bbdf3f8703ba3b366aa4acc5ab467742c5a031acd0561b78ab0b170596dfa29e"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13/Rob13Emo_speak.mat.meta",
+      "size": 188,
+      "sha256": "bc9b7a0d2fb2cc51212163730515f08b5bab45424e42f2e61f29e891c94cc053"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13/Rob13Glass.mat",
+      "size": 2449,
+      "sha256": "570fc2d425b6f8c0589c5b51a057046dcb2981d3bc8e3a218ec8dfa99f4107e0"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13/Rob13Glass.mat.meta",
+      "size": 188,
+      "sha256": "c03c1b66e17fe841581c159d255f41146cf4dd99a15dadd9aea76665ca83cc23"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Materials/Robots/Rob13.meta",
+      "size": 172,
+      "sha256": "280bbde305775701bae21da0b373a31580f5c213e1561fca56acb344632040fd"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Meshes/Robots/Rob13Emo04/Rob13.fbx",
+      "size": 6371740,
+      "sha256": "d463284d258466d5cc2309db7d9e4eec58435ab8197406a409a9683db79f35d4"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Meshes/Robots/Rob13Emo04/Rob13.fbx.meta",
+      "size": 34303,
+      "sha256": "103c559d71cab1cdfad8a2d636ac4a831f8001ab0722c83d9a81ec56a6213daa"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Meshes/Robots/Rob13Emo04.meta",
+      "size": 172,
+      "sha256": "ca5c977da78d200d967a562c2ed4a4e8c4ce7b04074394f5e396d229a6a30b16"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Curves.png",
+      "size": 1814172,
+      "sha256": "607d033718f10e27f4619265559dcce4ccef861bf2b4fb578b05ae1d5c033c44"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Curves.png.meta",
+      "size": 3672,
+      "sha256": "d0c26b4957036e22a997ad8b61a90f6939f83b4f7c75c1e57282be8993ed95db"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Emotions4.png",
+      "size": 375392,
+      "sha256": "6afaf28ea1f3f80fafdd2cfb0b4b669229e50f6f8c3969fa0cf8364ffc79939e"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Emotions4.png.meta",
+      "size": 3672,
+      "sha256": "fae66e2b7ff2e1d735d5a212a7c24773f52fcaf43e40613c09b3ab2c21e5a50f"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Robots/Rob13/Rob13_LP_Rob13_AlbedoTransparency.png",
+      "size": 3765106,
+      "sha256": "d41a1edc520aa27161732f174c780729d50b65ec4f50960b8ede993a2f46d2f0"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Robots/Rob13/Rob13_LP_Rob13_AlbedoTransparency.png.meta",
+      "size": 3672,
+      "sha256": "1849c92871637d05ebbfc5384c3945973b974d7d0c9ee5b3f555a9744de52d52"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Robots/Rob13/Rob13_LP_Rob13_Emission.png",
+      "size": 62005,
+      "sha256": "d0d148ee5b7ee1f368ac02982f4ba6f487c9cd9a76a394927fa4dfceb85e49c8"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Robots/Rob13/Rob13_LP_Rob13_Emission.png.meta",
+      "size": 3672,
+      "sha256": "8ae3b55e80a46cf1f43ff030a742db3b9c55d44581ca993f59023e755fdada9e"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Robots/Rob13/Rob13_LP_Rob13_MetallicSmoothness.png",
+      "size": 1264701,
+      "sha256": "31334f30807407b72869aa83eb7fedfdc6c5b4a73f93900bd335e8c80c546750"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Robots/Rob13/Rob13_LP_Rob13_MetallicSmoothness.png.meta",
+      "size": 3672,
+      "sha256": "115cde583d053b1464a82d450d3232281a7801d6bf0e81da781d52fd1076b759"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Robots/Rob13/Rob13_LP_Rob13_Normal.png",
+      "size": 3407320,
+      "sha256": "41ce1b30965016ae4f89ab210d9e18daa45dde0bad350c89022d00290ea47dd4"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Robots/Rob13/Rob13_LP_Rob13_Normal.png.meta",
+      "size": 3672,
+      "sha256": "6a1e8f365d5a9b3b53e632a59465d98077177dfecc38e5b16c073954e9459650"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Art/Textures/Robots/Rob13.meta",
+      "size": 172,
+      "sha256": "a722121406de99da552c1b25c9f8f27f0a94cc61c752087ba10750000671852f"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Prefabs/Robots/Rob13.prefab",
+      "size": 48995,
+      "sha256": "4c18b88d7edce4aa14d68efbcc90e5b5cf8ebe92501d2a393f94c2f63bcc52b0"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Prefabs/Robots/Rob13.prefab.meta",
+      "size": 154,
+      "sha256": "973ce66002bc01ffbc6ea9daf1d3022d233430ed3522a92a1225359f13360eb8"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/CamHolder.cs",
+      "size": 2215,
+      "sha256": "43f761d61ad7186e56e5469b0014b35a43d67e0996947e13a133b913c3bffa45"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/CamHolder.cs.meta",
+      "size": 243,
+      "sha256": "ba07f406e4cc557fa8f7285d8a3da02d8d6287d18c3e2c9d44d53796960059dc"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/EmotionChanger.cs",
+      "size": 1627,
+      "sha256": "389367a4e082de6ff55d8744a255e53d69f0def0e793852a3f5f5f10c313a444"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/EmotionChanger.cs.meta",
+      "size": 243,
+      "sha256": "1ec5e2bd793c6f428e43ea6f5837d7842d51c5da2a8d12eaf6455a09912ad5fc"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/PushDetection.cs",
+      "size": 558,
+      "sha256": "2592537ff68f30e7882ffe13ccccd6e8ffb75e6b101b0854d7f4e6e7e327be63"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/PushDetection.cs.meta",
+      "size": 243,
+      "sha256": "e4799a825011a9a9d8edcec58a7c9fe43cab4058e8f09c938fa49ea90ead74ad"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/PushObjects.cs",
+      "size": 487,
+      "sha256": "cd8461422ff387dde0878a5934c5ec005ce4acc645430068c628fdc6ee9734de"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/PushObjects.cs.meta",
+      "size": 243,
+      "sha256": "da3bd5dc33e41f797a95b316052b4b77c6c7e7e51ad4e2a423aeaf3dbadb8ca4"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/Rob13ColorManager.cs",
+      "size": 3269,
+      "sha256": "834d43cc7edd5ec884a7f9d7be563d09208094eb4ff805231992699b3e700869"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/Rob13ColorManager.cs.meta",
+      "size": 243,
+      "sha256": "5124012fff0b9e0ef656db02f8f911517ba3c8e319c234f7fd31048b5bed4857"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/Rob13Ctrl.cs",
+      "size": 7575,
+      "sha256": "f8fd62874055d33b4e02ec2db1f5b18e1282ec86d36f4b6ac25de19dc52ac2f0"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/Rob13Ctrl.cs.meta",
+      "size": 243,
+      "sha256": "d4c9ae5e36f39cfdb9fa4b1f10f107791f9abf8e67e524b8051dc3275dbbcc35"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/RobotLift.cs",
+      "size": 1599,
+      "sha256": "8eb9a62b55fe1f9eaad44900aa6e69e47a11f1d3007b4513b0725ce402c31cde"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/RobotLift.cs.meta",
+      "size": 243,
+      "sha256": "18bf817e16c8b3687e36ed85f96baba6b0a3d93982059c4ce88b574e3ea08614"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/TextureScroller.cs",
+      "size": 953,
+      "sha256": "00b17c2428c21f7e7002d06e145d48c84868c61c8c7b4ff9eeed4c123dc5c02f"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts/TextureScroller.cs.meta",
+      "size": 243,
+      "sha256": "eb1bf81bb8411c10e2798250338514ffd7390b972bab9d938ed88bd122e74c65"
+    },
+    {
+      "path": "source-unity/original-robot-assets/Scripts.meta",
+      "size": 172,
+      "sha256": "c54f977787f618e226f489286388c2a46a4178f251f7013d963546d2ba002e33"
+    },
+    {
+      "path": "source-unity/Rob13/Rob13Body.mat",
+      "size": 3911,
+      "sha256": "6f33d01f869e2f5bd9edebfa0ff198b7544db7afc93d5395173eb1ba5ad02c98"
+    },
+    {
+      "path": "source-unity/Rob13/Rob13Body.mat.meta",
+      "size": 188,
+      "sha256": "8fc18bb8d1866c75230814b435b35618285987a824fc8ecef607fd791583a4aa"
+    },
+    {
+      "path": "source-unity/Rob13/Rob13Emo_eyes.mat",
+      "size": 3380,
+      "sha256": "9c2d62f413fdf0412561719a1ce2a7eb1e43713d75c941e48f0fd2591b694ae1"
+    },
+    {
+      "path": "source-unity/Rob13/Rob13Emo_eyes.mat.meta",
+      "size": 188,
+      "sha256": "0dab65af43b2bfeec8eb4e878f01158bb108b67cc02689d31ff14ec046ed7782"
+    },
+    {
+      "path": "source-unity/Rob13/Rob13Emo_mouth.mat",
+      "size": 2991,
+      "sha256": "ef52d335fb5053e426e199075328b1db7c8a1b7ed221e519c7f5ae2831a56e6a"
+    },
+    {
+      "path": "source-unity/Rob13/Rob13Emo_mouth.mat.meta",
+      "size": 188,
+      "sha256": "ad8a75f15024c77fb3cbc73470713df6652ce1444610f975cd55745297e4fe69"
+    },
+    {
+      "path": "source-unity/Rob13/Rob13Emo_speak.mat",
+      "size": 3004,
+      "sha256": "bbdf3f8703ba3b366aa4acc5ab467742c5a031acd0561b78ab0b170596dfa29e"
+    },
+    {
+      "path": "source-unity/Rob13/Rob13Emo_speak.mat.meta",
+      "size": 188,
+      "sha256": "bc9b7a0d2fb2cc51212163730515f08b5bab45424e42f2e61f29e891c94cc053"
+    },
+    {
+      "path": "source-unity/Rob13/Rob13Glass.mat",
+      "size": 2449,
+      "sha256": "570fc2d425b6f8c0589c5b51a057046dcb2981d3bc8e3a218ec8dfa99f4107e0"
+    },
+    {
+      "path": "source-unity/Rob13/Rob13Glass.mat.meta",
+      "size": 188,
+      "sha256": "c03c1b66e17fe841581c159d255f41146cf4dd99a15dadd9aea76665ca83cc23"
+    },
+    {
+      "path": "source-unity/Rob13.controller",
+      "size": 76391,
+      "sha256": "6445bdc4323ac035aa90361e1d79e4c652c077579e77f6170372c24279154478"
+    },
+    {
+      "path": "source-unity/Rob13.prefab",
+      "size": 48995,
+      "sha256": "4c18b88d7edce4aa14d68efbcc90e5b5cf8ebe92501d2a393f94c2f63bcc52b0"
+    },
+    {
+      "path": "source-unity/RobotAutomaticWalker.cs",
+      "size": 6582,
+      "sha256": "747cee4562ac12c55b8b541a7c6f5fba039763b909b8739a1eb3444f2343a5c7"
+    },
+    {
+      "path": "source-unity/RobotEchoFilter.cs",
+      "size": 3741,
+      "sha256": "a25f3343cd4659c14bf40f98867498279a9b24105d17728e4a016231b611e896"
+    },
+    {
+      "path": "source-unity/RobotExhibitionMedia.cs",
+      "size": 679,
+      "sha256": "b03f158382f83c8bd59132af84f80b02d859d7c0e2e5e8980f57f28302ba61ef"
+    },
+    {
+      "path": "source-unity/RobotExhibitionVideo.cs",
+      "size": 8092,
+      "sha256": "32d6395ede7616ee74ee92492a6342a2a6a2cd184d5729f14b3a0674459ce428"
+    },
+    {
+      "path": "source-unity/RobotInteractionPanel.cs",
+      "size": 3990,
+      "sha256": "80bee3581227cacf501386d33b6fdf6ed05324aacfae326b82c889dd244bb31d"
+    },
+    {
+      "path": "source-unity/RobotLabKnowledge.cs",
+      "size": 4083,
+      "sha256": "5746cad8dec49412752747b52b39853b6f5d2cd09f743351f3adbc50d49f5bb7"
+    },
+    {
+      "path": "source-unity/RobotOriginalFilmDecoder.cs",
+      "size": 6190,
+      "sha256": "40bb1a43aa690b2880b4fee833dfd6f2d86f8f31b68236ab405338a79dc914e5"
+    },
+    {
+      "path": "source-unity/RobotRealtimeVision.cs",
+      "size": 3674,
+      "sha256": "0184f3e7ac702aa04103706f3db51eb621149d557c779c2bb9c53d73401e29eb"
+    },
+    {
+      "path": "source-unity/RobotRealtimeVoice.cs",
+      "size": 37551,
+      "sha256": "9c2dd80a0c6490651f5865928e872615d7a8d4f7f95fd4b52d4c01129a335744"
+    },
+    {
+      "path": "source-unity/RobotSpaceMemoryStore.cs",
+      "size": 4204,
+      "sha256": "3b72e4e1c4ad1bdbb98d0611b30b72d45a406682c4df6943e2c10f4968d9002a"
+    },
+    {
+      "path": "source-unity/RobotSpatialGuide.cs",
+      "size": 41799,
+      "sha256": "38993cefb1fa8fc5d399b180ae64362b6ff44d31981538492b2d6142b2eadced"
+    },
+    {
+      "path": "source-unity/RobotVisitPoints.cs",
+      "size": 4528,
+      "sha256": "f4a69db619ad0755268b1d5ebac9c1fa283dc861f95d862b3c0c9235577d96e6"
+    },
+    {
+      "path": "source-unity/Scripts/CamHolder.cs",
+      "size": 2215,
+      "sha256": "43f761d61ad7186e56e5469b0014b35a43d67e0996947e13a133b913c3bffa45"
+    },
+    {
+      "path": "source-unity/Scripts/CamHolder.cs.meta",
+      "size": 243,
+      "sha256": "ba07f406e4cc557fa8f7285d8a3da02d8d6287d18c3e2c9d44d53796960059dc"
+    },
+    {
+      "path": "source-unity/Scripts/EmotionChanger.cs",
+      "size": 1627,
+      "sha256": "389367a4e082de6ff55d8744a255e53d69f0def0e793852a3f5f5f10c313a444"
+    },
+    {
+      "path": "source-unity/Scripts/EmotionChanger.cs.meta",
+      "size": 243,
+      "sha256": "1ec5e2bd793c6f428e43ea6f5837d7842d51c5da2a8d12eaf6455a09912ad5fc"
+    },
+    {
+      "path": "source-unity/Scripts/PushDetection.cs",
+      "size": 558,
+      "sha256": "2592537ff68f30e7882ffe13ccccd6e8ffb75e6b101b0854d7f4e6e7e327be63"
+    },
+    {
+      "path": "source-unity/Scripts/PushDetection.cs.meta",
+      "size": 243,
+      "sha256": "e4799a825011a9a9d8edcec58a7c9fe43cab4058e8f09c938fa49ea90ead74ad"
+    },
+    {
+      "path": "source-unity/Scripts/PushObjects.cs",
+      "size": 487,
+      "sha256": "cd8461422ff387dde0878a5934c5ec005ce4acc645430068c628fdc6ee9734de"
+    },
+    {
+      "path": "source-unity/Scripts/PushObjects.cs.meta",
+      "size": 243,
+      "sha256": "da3bd5dc33e41f797a95b316052b4b77c6c7e7e51ad4e2a423aeaf3dbadb8ca4"
+    },
+    {
+      "path": "source-unity/Scripts/Rob13ColorManager.cs",
+      "size": 3269,
+      "sha256": "834d43cc7edd5ec884a7f9d7be563d09208094eb4ff805231992699b3e700869"
+    },
+    {
+      "path": "source-unity/Scripts/Rob13ColorManager.cs.meta",
+      "size": 243,
+      "sha256": "5124012fff0b9e0ef656db02f8f911517ba3c8e319c234f7fd31048b5bed4857"
+    },
+    {
+      "path": "source-unity/Scripts/Rob13Ctrl.cs",
+      "size": 7575,
+      "sha256": "f8fd62874055d33b4e02ec2db1f5b18e1282ec86d36f4b6ac25de19dc52ac2f0"
+    },
+    {
+      "path": "source-unity/Scripts/Rob13Ctrl.cs.meta",
+      "size": 243,
+      "sha256": "d4c9ae5e36f39cfdb9fa4b1f10f107791f9abf8e67e524b8051dc3275dbbcc35"
+    },
+    {
+      "path": "source-unity/Scripts/RobotLift.cs",
+      "size": 1599,
+      "sha256": "8eb9a62b55fe1f9eaad44900aa6e69e47a11f1d3007b4513b0725ce402c31cde"
+    },
+    {
+      "path": "source-unity/Scripts/RobotLift.cs.meta",
+      "size": 243,
+      "sha256": "18bf817e16c8b3687e36ed85f96baba6b0a3d93982059c4ce88b574e3ea08614"
+    },
+    {
+      "path": "source-unity/Scripts/TextureScroller.cs",
+      "size": 953,
+      "sha256": "00b17c2428c21f7e7002d06e145d48c84868c61c8c7b4ff9eeed4c123dc5c02f"
+    },
+    {
+      "path": "source-unity/Scripts/TextureScroller.cs.meta",
+      "size": 243,
+      "sha256": "eb1bf81bb8411c10e2798250338514ffd7390b972bab9d938ed88bd122e74c65"
+    },
+    {
+      "path": "source-unity/spatial-memory/draft.json",
+      "size": 3859,
+      "sha256": "e040f0c28965d29cb2344a2765e7c2ef9bdc8efb71fefc080a0165d55920983a"
+    },
+    {
+      "path": "source-unity/spatial-memory/展厅.json",
+      "size": 3859,
+      "sha256": "e040f0c28965d29cb2344a2765e7c2ef9bdc8efb71fefc080a0165d55920983a"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.txt",
+      "size": 1338,
+      "sha256": "d3767b14f054db1a458c8803fd45aaaff5c866aa660ca2a0dd4deadacf22311b"
+    },
+    {
+      "path": "tools/build-handoff.py",
+      "size": 5648,
+      "sha256": "305aa341fa95de51db372cf4b4176bbdace1509ccccc9cd4450cd7239607c4c1"
+    },
+    {
+      "path": "tools/check-server.mjs",
+      "size": 479,
+      "sha256": "f1906cc1af861af88769ba30378632106230fdb82bd5c7054688b0ee4a160660"
+    },
+    {
+      "path": "tools/fetch-mac-runtime.py",
+      "size": 1797,
+      "sha256": "8a83c02880321150bfc6839a8c04b93ee9f1fd5568614abeff249ec7fe1b28af"
+    },
+    {
+      "path": "tools/finalize.py",
+      "size": 858,
+      "sha256": "2d6c729129ea5ae90667e9365345dbfb8ea75338c1ab7e10039c90d51d20adb4"
+    },
+    {
+      "path": "tools/finish-handoff-notes.py",
+      "size": 3004,
+      "sha256": "789d809a4c9ee236d82a3b12870cfffd45d6e82bfbb0b7c26dddd42237948579"
+    },
+    {
+      "path": "tools/install.py",
+      "size": 770,
+      "sha256": "13a1ffd4f5032de10f54eec59d91978b1c18fc5e1d5cfb37ca615dce6bd4f48d"
+    },
+    {
+      "path": "tools/launch.mjs",
+      "size": 1290,
+      "sha256": "5f9ded5e60e982462e4414fdb5e1858ba7deafbdf6ac0fba3e7b78d915e989f4"
+    },
+    {
+      "path": "tools/migrate.py",
+      "size": 4557,
+      "sha256": "c895137b2e9decea966ba0ed9ac829a6d7dbe8c6b965247a03b704c66b9aa1d9"
+    },
+    {
+      "path": "tools/note-foreground.py",
+      "size": 630,
+      "sha256": "c78453a0b6c9b9b2a62a8421103da47b8e0a0831d312780459e8f05a0e5c359b"
+    },
+    {
+      "path": "tools/note-material-finish.py",
+      "size": 1134,
+      "sha256": "933bf2409ab4feba0164c04cb0945921ef3fa75ead8677f8a58c79e38e1ce6dc"
+    },
+    {
+      "path": "tools/note-photo-framing.py",
+      "size": 1579,
+      "sha256": "ab236aca4b8ae386ce8f1be9560c03e1d1a42b7c4762522d411947d48e29f103"
+    },
+    {
+      "path": "tools/note-photo-stage.py",
+      "size": 1513,
+      "sha256": "6265a992a91ef07bdbfedb26dc0981aa8574f01381b5f1596838992feb1a2f68"
+    },
+    {
+      "path": "tools/note-smoothing.py",
+      "size": 1896,
+      "sha256": "d1072e766ad71931dddbd7d43cb74d2291f770520ed0325bd1bfb0cc7ec3178a"
+    },
+    {
+      "path": "tools/trim-vendor.py",
+      "size": 1230,
+      "sha256": "950ef27fe66b4b16e9c47cb7708af2904a8cc456fd9af77c9351c61b5f845764"
+    },
+    {
+      "path": "tools/update-notes.py",
+      "size": 2395,
+      "sha256": "c08efa241bb66099e5af4490ffb9788efb144a577f12fa313f35d2aa0fe829d8"
+    },
+    {
+      "path": "tools/verify-expression.mjs",
+      "size": 1917,
+      "sha256": "07887317dcde1fb64298e6604315abf6df871d5dd69e610019cc1d9e686f3085"
+    },
+    {
+      "path": "tools/verify-handoff-live.mjs",
+      "size": 3280,
+      "sha256": "e500bff64d7890daa3ab76a983bf09829d2db720cbea1517055fe7bcf20f7417"
+    },
+    {
+      "path": "tools/verify-motion.mjs",
+      "size": 1352,
+      "sha256": "64173978c270ac60bf569df6b5b3691e34776e5e141756e8c6e8d02bb7458115"
+    },
+    {
+      "path": "tools/verify-package.mjs",
+      "size": 622,
+      "sha256": "4875f80f4369721cd1ca3b44081f293b78dd33454c85102653637588a676767f"
+    },
+    {
+      "path": "tools/verify-photo-framing.mjs",
+      "size": 979,
+      "sha256": "1a9d6499b8a91c92c4f217cdb2eddb01b771de2750db3e326fa8b0bbabc4b8a9"
+    },
+    {
+      "path": "tools/verify.mjs",
+      "size": 2131,
+      "sha256": "241f7e818bdc6c7179f7cbefaf7fab3f0af7d188fdae47ad2003bb916d1631b8"
+    },
+    {
+      "path": "tools/write-portable-launchers.py",
+      "size": 859,
+      "sha256": "b5e82438e2dedd979de550c06c74192c79357a083c98ba855f75d88bf79c4d98"
+    },
+    {
+      "path": "从这里开始-Mac.md",
+      "size": 3144,
+      "sha256": "5db3cfd3b93bdfc559dbfa359226f5dc6d844c08589bb0122ee556946c6fcc35"
+    },
+    {
+      "path": "启动小D-Mac.command",
+      "size": 317,
+      "sha256": "2f06f4904331f40b7ea53530ca4db13ee459c5e7ec7835f62550273c020d5f56"
+    },
+    {
+      "path": "启动机器人.cmd",
+      "size": 327,
+      "sha256": "ff408e0d7fd6fb8df98a00933142f1b8a01ba6e7146c941cfed531f0d60552cd"
+    }
+  ]
+}

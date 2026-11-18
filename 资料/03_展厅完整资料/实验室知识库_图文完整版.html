@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>浙江大学未来设计实验室资料库</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:16px/1.9 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:#1e2b38;background:#f4f6f9}a{color:#086783;overflow-wrap:anywhere}header{background:#112f43;color:white;padding:25px 36px}header h1{font-size:26px;margin:0}header p{margin:6px 0;color:#c6dce8}header a{color:#9ce2f3}.wrap{display:grid;grid-template-columns:280px minmax(0,1000px);max-width:1400px;margin:auto}aside{padding:24px 18px;position:sticky;top:0;height:100vh;overflow:auto;font-size:13px}aside a{display:block;text-decoration:none;margin-bottom:7px;color:#445a6c}aside a.l1{font-weight:bold;font-size:14px;color:#153a50;margin-top:20px}aside a.l3{padding-left:12px}article{background:white;padding:44px 54px;min-width:0}article>h1{font-size:29px;border-top:1px solid #dbe4ec;margin:42px 0 20px;padding-top:28px}article>h1:first-child{margin-top:0;border:0;padding:0}h2{font-size:24px;color:#183e54;margin:34px 0 15px}h3{font-size:19px;margin:28px 0 12px}table{border-collapse:collapse;display:block;overflow-x:auto;width:100%;font-size:14px;margin:20px 0}th,td{border:1px solid #d7e0e7;padding:10px 12px;min-width:100px;vertical-align:top}th{background:#e9f1f5;text-align:left}tr:nth-child(even){background:#f8fafc}p{margin:13px 0}li{margin:7px 0}blockquote{border-left:3px solid #a5c8d6;margin-left:0;padding-left:18px;color:#4c6474}code{font-size:14px;background:#f0f4f7;padding:2px 4px}strong{color:#173b50}@media(max-width:900px){.wrap{display:block}aside{position:static;height:280px}article{padding:28px 18px}header{padding:20px}header h1{font-size:22px}}@media print{header,aside{display:none}.wrap{display:block}article{padding:0;font-size:10pt;line-height:1.6}table{display:table;font-size:9pt}thead{display:table-header-group}tr{break-inside:avoid}h1,h2,h3{break-after:avoid}a{color:inherit}}</style><style id="inline-editor-style">
+.editorbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #ccdbe3;padding:12px 24px;box-shadow:0 3px 12px #102d4310;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px}.editorbar button,.editorbar select{font:inherit;padding:7px 12px;border:1px solid #bacbd6;border-radius:6px;background:#fff;color:#153c51;cursor:pointer}.editorbar button.primary{background:#146781;color:white;border-color:#146781}.editorbar .status{flex-basis:100%;color:#567080;font-size:12px}.editorbar button:focus-visible{outline:3px solid #70b9d2}article[contenteditable=true]{outline:none;caret-color:#087b9e}article[contenteditable=true]:focus{box-shadow:inset 3px 0 #64abc2}aside{top:110px;height:calc(100vh - 110px)}.edit-hint{font-size:13px;color:#376378;margin-right:auto}@media print{.editorbar{display:none}article[contenteditable=true]:focus{box-shadow:none}}@media(max-width:900px){aside{position:static;height:230px}.editorbar{padding:10px 14px}}
+</style><style>.knowledge-gallery{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;margin:24px 0 38px}.knowledge-gallery figure{margin:0;padding:12px;border:1px solid #dae4eb;border-radius:8px;background:white;break-inside:avoid}.knowledge-gallery img{display:block;width:100%;height:auto;max-height:1050px;object-fit:contain;background:#fff}.knowledge-gallery figcaption{font-size:12px;color:#607787;margin-top:8px}.bibliography{font-size:13px;border-top:1px solid #dce4ec;padding-top:16px}article h1,article h2,article h3{scroll-margin-top:120px}@media print{.knowledge-gallery img{max-height:220mm}.knowledge-gallery figure{break-inside:avoid}details.bibliography{display:none}}</style><style>#image-zoom{width:96vw;height:94vh;max-width:none;max-height:none;padding:12px;border:0;border-radius:10px}#image-zoom::backdrop{background:#092131cc}#close-zoom{position:sticky;top:0;z-index:1;background:#153e52;color:white;border:0;border-radius:5px;padding:10px 20px;font:inherit;cursor:pointer}.zoom-scroll{overflow:auto;max-height:calc(94vh - 70px)}#zoom-image{display:block;max-width:none;max-height:none;margin:auto}.knowledge-gallery img{cursor:zoom-in}</style></head><body><header><h1>浙江大学未来设计实验室知识库</h1><p>机构与团队 · 技术与产品 · 六大行业场景 · 图文一体</p></header><div class="editorbar" id="editorbar" role="toolbar" aria-label="正文编辑工具">
+<span class="edit-hint" id="edit-hint">直接点击正文即可修改，表格也可以编辑</span>
+<button type="button" data-command="bold" title="加粗（⌘B）"><b>加粗</b></button>
+<button type="button" data-command="italic">斜体</button>
+<select id="block-format" aria-label="段落格式"><option value="">段落格式</option><option value="p">正文</option><option value="h1">一级标题</option><option value="h2">二级标题</option><option value="h3">三级标题</option></select>
+<button type="button" data-command="insertUnorderedList">项目列表</button>
+<button type="button" data-command="undo">撤销</button><button type="button" data-command="redo">重做</button>
+<button type="button" id="edit-toggle">切换阅读</button>
+<button type="button" id="save-html" class="primary">保存文件</button>
+<button type="button" id="download-html">下载副本</button>
+<span class="status" id="save-status" role="status" aria-live="polite">正文可直接编辑；草稿自动保存在此浏览器。</span>
+</div><div class="wrap"><aside><a href="#section0" class="l1">浙江大学未来设计实验室资料库</a><a href="#section1" class="l1">一、实验室概况与智能设计技术体系</a><a href="#section2" class="l2">1.0 实验室概况 团队 合作与成果</a><a href="#section3" class="l3">1.0.1 组织归属与依托平台</a><a href="#section4" class="l3">1.0.2 核心老师与实验室管理团队</a><a href="#section5" class="l3">1.0.3 团队规模与统计版本</a><a href="#section6" class="l3">1.0.4 合作机构和企业名单</a><a href="#section11" class="l3">1.0.5 荣誉 资质与人才成果</a><a href="#section12" class="l3">1.0.6 人才培养 学术交流与社会服务</a><a href="#section13" class="l3">1.0.7 标志产品 装备资源与转化方式</a><a href="#section14" class="l3">1.0.8 联系信息</a><a href="#section15" class="l2">1.1 智能设计的技术定位</a><a href="#section16" class="l2">1.2 四阶段技术链条与成果形态</a><a href="#section17" class="l2">1.3 核心技术与产品体系</a><a href="#section18" class="l2">1.4 四类模型能力</a><a href="#section19" class="l2">1.5 数据集群与数据智能设计引擎</a><a href="#section20" class="l1">二、六大应用场景：智能设计 × 行业</a><a href="#section21" class="l2">场景1／智能设计 × 智慧农业</a><a href="#section22" class="l3">2.1.1 项目身份与状态</a><a href="#section23" class="l3">2.1.2 水土与气候条件</a><a href="#section24" class="l3">2.1.3 淡化工程及水土治理</a><a href="#section25" class="l3">2.1.4 种植结构和试验田</a><a href="#section26" class="l3">2.1.5 有机种植体系的逐项资料</a><a href="#section27" class="l3">2.1.6 智慧农业装备与智能设计的关系</a><a href="#section28" class="l3">2.1.7 投资、运营与现金流</a><a href="#section29" class="l3">2.1.8 农业项目简介</a><a href="#section30" class="l2">场景2／智能设计 × 公安政务</a><a href="#section31" class="l3">2.2.1 案例范围与合作依据</a><a href="#section32" class="l3">2.2.2 多模态感知系统架构逐层解释</a><a href="#section33" class="l3">2.2.3 交通、社区与气象执法的具体任务</a><a href="#section34" class="l3">2.2.4 现有性能口径</a><a href="#section35" class="l3">2.2.5 警务办公与知识服务的逐功能资料</a><a href="#section36" class="l3">2.2.6 政工、交管、预测与预警</a><a href="#section37" class="l3">2.2.7 公安政务技术链路</a><a href="#section38" class="l2">场景3／智能设计 × 时尚产业</a><a href="#section39" class="l3">2.3.1 产品身份与应用范围</a><a href="#section40" class="l3">2.3.2 行业问题与数据基础</a><a href="#section41" class="l3">2.3.3 从设计到营销的完整能力清单</a><a href="#section42" class="l3">2.3.4 服装生成与材质融合</a><a href="#section43" class="l3">2.3.5 非标钮扣的测量与入库</a><a href="#section44" class="l3">2.3.6 生成技术与评价方法</a><a href="#section45" class="l3">2.3.7 时尚系统简介</a><a href="#section46" class="l2">场景4／智能设计 × 智慧物流</a><a href="#section47" class="l3">2.4.1 项目身份与研究范围</a><a href="#section48" class="l3">2.4.2 访谈和问卷的具体范围</a><a href="#section49" class="l3">2.4.3 已发现的业务痛点</a><a href="#section50" class="l3">2.4.4 物流业务与服务蓝图</a><a href="#section51" class="l3">2.4.5 联运业务流程</a><a href="#section52" class="l3">2.4.6 系统规划中的具体内容</a><a href="#section53" class="l3">2.4.7 企业数字化成果内容</a><a href="#section54" class="l3">2.4.8 物流平台项目简介</a><a href="#section55" class="l2">场景5／智能设计 × 数字商业运营</a><a href="#section56" class="l3">2.5.1 智慧商圈与数字门店</a><a href="#section57" class="l3">2.5.2 数字门店感知对象与硬件</a><a href="#section58" class="l3">2.5.3 从线下行为到运营指标</a><a href="#section59" class="l3">2.5.4 研发成果与核心组件</a><a href="#section60" class="l3">2.5.5 系统架构与运营分析</a><a href="#section61" class="l3">2.5.6 已有的量化记录</a><a href="#section62" class="l3">2.5.7 关联案例：数据驱动选品与产品创新</a><a href="#section63" class="l3">2.5.8 数字门店系统简介</a><a href="#section64" class="l2">场景6／智能设计 × 未来教育</a><a href="#section65" class="l3">2.6.1 项目关系与资料分类</a><a href="#section66" class="l3">2.6.2 AI汉服换装与文化体验</a><a href="#section67" class="l3">2.6.3 乐处空间的公司、流程与覆盖资料</a><a href="#section68" class="l3">2.6.4 《生机·误入荷塘》</a><a href="#section69" class="l3">2.6.5 《停云听雨》</a><a href="#section70" class="l3">2.6.6 《丛林秘境》</a><a href="#section71" class="l3">2.6.7 《跳舞的刺玫瑰》</a><a href="#section72" class="l3">2.6.8 《繁花》</a><a href="#section73" class="l3">2.6.9 《阿布找朋友》</a><a href="#section74" class="l3">2.6.10 《梦境》</a><a href="#section75" class="l3">2.6.11 《流浪的树》</a><a href="#section76" class="l3">2.6.12 装置之外的活动与传播资料</a><a href="#section77" class="l3">2.6.13 教育研究与非正式学习资料</a><a href="#section78" class="l1">三、跨行业技术方法与关联产品</a><a href="#section79" class="l2">3.1 统一主线：行业知识的计算化与智能应用</a><a href="#section80" class="l2">3.2 四项可复用能力及真实案例支撑</a><a href="#section81" class="l2">3.3 企业AI三层能力模型</a><a href="#section82" class="l2">3.4 关联产品与企业服务案例</a><a href="#section83" class="l3">中国电信全球舆情</a><a href="#section84" class="l3">包装智能生成</a><a href="#section85" class="l3">梦天AI家居／为关联样例</a><a href="#section86" class="l3">海尔、钱江与工业产品</a><a href="#section87" class="l3">通用智能体与企业岗位助手</a><a href="#section88" class="l1">四、技术架构与业务体系</a><a href="#section89" class="l2">4.1 智能设计总体架构</a><a href="#section90" class="l2">4.2 跨行业业务对象</a><a href="#section91" class="l2">4.3 业务反馈与版本管理</a><a href="#section92" class="l2">4.4 项目成果与技术原理</a><a href="#section93" class="l1">五、实验室与场景介绍</a><a href="#section94" class="l2">5.1 实验室整体介绍</a><a href="#section95" class="l2">5.2 六大场景简介</a><a href="#section96" class="l2">5.3 共性技术底座</a><a href="#section97" class="l2">5.4 成果记录与状态标签</a><a href="#section98" class="l1">附：数据口径与记录版本</a></aside><article contenteditable="true"><h1 id="section0">浙江大学未来设计实验室资料库</h1><p>机构与团队 · 合作与成果 · 技术体系 · 六大行业场景 · 逐页图文档案</p><p>资料版本：2026年10月27日；公开资料检索日期：2026年10月26日</p><h1 id="section1">一、实验室概况与智能设计技术体系</h1><h2 id="section2">1.0 实验室概况 团队 合作与成果</h2><h3 id="section3">1.0.1 组织归属与依托平台</h3><p>未来设计实验室是浙江大学长三角智慧绿洲创新中心的未来实验室之一。智慧绿洲由浙江大学与嘉兴市、嘉善县共同建设，承担科技研究、产业协同和成果转化。</p><p>浙江大学提供学科与人才支撑，智慧绿洲承担校地协同创新，未来设计实验室围绕数据智能与产品创新、绿色设计与智能装备、数字文旅创新技术开展研究和产业服务。</p><h3 id="section4">1.0.2 核心老师与实验室管理团队</h3><p>管理团队包括孙守迁、柴春雷、黄琦、徐雯洁、邹宁和邵家伟，分别承担学术领导、实验室管理、研究及工程研发等工作。</p><p>潘云鹤为领域科学家，研究领域包括智能CAD、人工智能和计算机图形学，1997年当选中国工程院院士，曾任浙江大学校长、中国工程院常务副院长。</p><table><thead><tr><th>姓名</th>
+<th>实验室角色</th>
+<th>学术与研究背景</th>
+<th>项目关联及来源</th>
+</tr>
+</thead>
+<tbody><tr><td>孙守迁</td>
+<td>实验室主任，教授</td>
+<td>创新设计、机器人、数字创意、信息与交互设计；研究涉及现代工业设计及设计学科建设</td>
+<td>实验室总体学术与方向介绍的重要人物。主任身份见；研究方向</td>
+</tr>
+<tr><td>柴春雷</td>
+<td>执行主任，教授、博士生导师</td>
+<td>设计认知、文化创新设计、商业与服务设计、设计大数据分析及智能设计；承担国家社科基金、自然科学基金及相关咨询、科技支撑课题</td>
+<td>研究领域覆盖设计认知、用户理解与产业设计。</td>
+</tr>
+<tr><td>黄琦</td>
+<td>副主任；职称存在版本差异</td>
+<td>生态设计、服务设计、互动设计、咸水淡化及荒漠盐碱地治理。</td>
+<td>农业方向关联教师；2026年智慧绿洲任职版本为教授，早期职称版本为副教授。</td>
+</tr>
+<tr><td>徐雯洁</td>
+<td>主任助理，副教授</td>
+<td>数字文旅、智能化产品设计、智能健康生活；教师页另列智能、医疗、家居文创产品设计</td>
+<td>关联设计教育、数字文旅、产品创新和教学成果。</td>
+</tr>
+<tr><td>邹宁</td>
+<td>主任助理，副教授、博士生导师</td>
+<td>产品创新与智能设计、数字创意、虚拟现实与具身交互；认知建模</td>
+<td>教育／少年宫场景联系人。教育交互研究与少年宫场景分别设立记录。</td>
+</tr>
+<tr><td>邵家伟</td>
+<td>主任助理，高级工程师；副高级职称</td>
+<td>博士背景，负责实验室研发管理，主要涉及视觉感知、大模型应用及AI4Science；有科研及企业算法研发经历</td>
+<td>承担研发管理及算法工程工作。</td>
+</tr>
+</tbody></table>
+<div class="knowledge-gallery" data-topic="1.0.2"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0012.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1800" height="1017"><figcaption>核心老师与实验室管理团队</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0013.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1107" height="738"><figcaption>核心老师与实验室管理团队</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0014.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1800" height="943"><figcaption>核心老师与实验室管理团队 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0015.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1026" height="734"><figcaption>核心老师与实验室管理团队</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0016.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1129" height="635"><figcaption>核心老师与实验室管理团队</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0017.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="435" height="265"><figcaption>核心老师与实验室管理团队 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0018.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1716" height="1012"><figcaption>核心老师与实验室管理团队 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0019.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1800" height="916"><figcaption>核心老师与实验室管理团队</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0020.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1012" height="1800"><figcaption>核心老师与实验室管理团队 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0021.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="742" height="449"><figcaption>核心老师与实验室管理团队 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0022.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="126" height="65"><figcaption>核心老师与实验室管理团队 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0023.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1479" height="936"><figcaption>核心老师与实验室管理团队 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0024.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1800" height="486"><figcaption>核心老师与实验室管理团队</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0401.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="746" height="559"><figcaption>核心老师与实验室管理团队</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0402.jpg" loading="lazy" decoding="async" alt="1.0.2 核心老师与实验室管理团队" title="点击放大查看细节" width="1565" height="543"><figcaption>核心老师与实验室管理团队</figcaption></figure></div><h3 id="section5">1.0.3 团队规模与统计版本</h3><p>团队由教授及双聘学者、研究人员、博士后、工程技术人员和研究生构成，形成从研究到工程开发和产品应用的协作体系。</p><p>人才结构统计为历史版本：双聘教授13人、研究员1人、研究生20人；工程经验分组为10年以上2人、5年以上6人、3年以上4人。分组互斥关系未明确，因此不合计为人员总数。博士后人数已有变化，历史零值不作为现状人数。</p><h3 id="section6">1.0.4 合作机构和企业名单</h3><p>蓝图伙伴的合作品牌覆盖苏泊尔、海尔、方太、公牛、小熊、钱江电动科技、上海糖酒、星巴克、得力、玉棠、利仁、造物云、奥格创新、瑞德设计、太火鸟、京东科技和众言科技。其“10年+”“100+品牌”“GMV10亿+”属于蓝图伙伴业务范围，非实验室营收指标。</p><p>联合机构包括力通无限联合实验室、芯驰数字联合实验室与LOCATION联合研究中心。合作品牌包括OPPO、海康威视、海尔、华为、网易、Alibaba.com、大丰、腾讯、美团、蘑菇街、邻汇吧、纬景储能、CityDO、F&amp;C天富钮扣、BOE、大华等。品牌名称与法定合同主体分别管理。</p><p>合作网络包括联合研究机构、企业研发项目、产品应用合作与产业伙伴，覆盖制造、消费、科技服务和行业治理。</p><div class="knowledge-gallery" data-topic="1.0.4"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0033.jpg" loading="lazy" decoding="async" alt="1.0.4 合作机构和企业名单" title="点击放大查看细节" width="594" height="409"><figcaption>合作机构和企业名单</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0034.jpg" loading="lazy" decoding="async" alt="1.0.4 合作机构和企业名单" title="点击放大查看细节" width="1152" height="408"><figcaption>合作机构和企业名单</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0035.jpg" loading="lazy" decoding="async" alt="1.0.4 合作机构和企业名单" title="点击放大查看细节" width="301" height="148"><figcaption>合作机构和企业名单</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0036.jpg" loading="lazy" decoding="async" alt="1.0.4 合作机构和企业名单" title="点击放大查看细节" width="327" height="48"><figcaption>合作机构和企业名单</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0037.jpg" loading="lazy" decoding="async" alt="1.0.4 合作机构和企业名单" title="点击放大查看细节" width="640" height="640"><figcaption>合作机构和企业名单 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0038.jpg" loading="lazy" decoding="async" alt="1.0.4 合作机构和企业名单" title="点击放大查看细节" width="1175" height="775"><figcaption>合作机构和企业名单</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0039.jpg" loading="lazy" decoding="async" alt="1.0.4 合作机构和企业名单" title="点击放大查看细节" width="1800" height="1012"><figcaption>合作机构和企业名单</figcaption></figure></div><h4 id="section7">联合研究机构</h4><table><thead><tr><th>合作方／机构</th>
+<th>合作内容与关系</th>
+</tr>
+</thead>
+<tbody><tr><td>力通／浙江大学长三角智慧绿洲—力通无限联合实验室</td>
+<td>公开机构关系可核验；公安政务多模态感知、交通与社区治理、知识服务等具体内容分别对应案例页。、</td>
+</tr>
+<tr><td>芯驰数字／浙江大学长三角智慧绿洲—芯驰数字联合实验室</td>
+<td>记录类型：本地企业联合研发。</td>
+</tr>
+<tr><td>LOCATION／邻汇吧</td>
+<td>联合研究机构关系与智慧商圈、快闪商业及点位数据服务方向可交叉说明。、</td>
+</tr>
+</tbody></table>
+<p>合作机构包括：Hangzhou Linhui Network Technology Co., Ltd、Yuyao Haiji Construction and Development Co., Ltd、Yangzhou Hengjing Municipal Landscape Engineering Co., Ltd、Jiashan Antai Crafts Manufacturing Co., Ltd、Jiashan Litong Information Technology Co., LTD、Jiashan Xinchi Digital Technology Co., LTD。其中邻汇、力通、芯驰具有联合机构合作关系，其余按英文名称保留。</p><h4 id="section8">项目与案例合作对象</h4><table><thead><tr><th>企业／单位</th>
+<th>已能说明的内容</th>
+</tr>
+</thead>
+<tbody><tr><td>一米八农业科技集团、第三师45团相关方</td>
+<td>投资运营、土地配套及技术支持的农业建设方案；项目阶段：可行性研究</td>
+</tr>
+<tr><td>凯鸿</td>
+<td>访谈问卷、业务问题、服务蓝图、系统架构初稿与模块规划</td>
+</tr>
+<tr><td>梦天</td>
+<td>AI家居生成、素材与工作流、客户端及管理端；功能状态见案例</td>
+</tr>
+<tr><td>天惠钮扣</td>
+<td>非标辅料采图、光学测量、检索与入库，升级巡检另标为规划</td>
+</tr>
+<tr><td>海尔、钱江摩托</td>
+<td>家电、摩托车等产品造型与智能设计样例；</td>
+</tr>
+<tr><td>中国电信</td>
+<td>舆情分析与平台应用；功能演示</td>
+</tr>
+<tr><td>利仁、公牛、星巴克、苏泊尔等消费品牌</td>
+<td>用户洞察、消费数据、产品创新与营销；合作方案例</td>
+</tr>
+<tr><td>云衣相关服装企业</td>
+<td>服装数据、生成、换装、检索与商业影像；部分客户实名未公开</td>
+</tr>
+<tr><td>公安相关地区与业务部门</td>
+<td>嘉善、舟山、桐乡状态不同，业务试验、模拟界面与正式应用分别说明</td>
+</tr>
+<tr><td>乐处空间</td>
+<td>互动艺术与商业空间作品集；与实验室的组织、合同及成果权属尚无完整记录。</td>
+</tr>
+</tbody></table>
+<h4 id="section9">合作标识目录</h4><p>合作品牌包括：OPPO、海康威视、海尔、华为、网易、Alibaba.com、大丰、腾讯、美团、蘑菇街、邻汇吧、纬景储能、CityDO、F&amp;C天富钮扣、BOE、大华。此外包括力通信息与钱江摩托。</p><p>标识按品牌或图示名称建档。F&amp;C天富钮扣与案例中的天惠钮扣分别保留原名；品牌合作范围未细分。</p><h4 id="section10">蓝图伙伴资料</h4><p>顶部“10年+”“100+头部／创新品牌”“GMV10亿+”属于蓝图伙伴页的自述口径。该页的企业分组包括：智能制造中的苏泊尔、海尔、方太、公牛、小熊、钱江电动科技；消费生活中的上海糖酒、星巴克、得力、玉棠、利仁；科技服务中的造物云、奥格创新、瑞德设计、太火鸟、京东科技、众言科技，以及一枚带CONSULTING字样、名称来源未统一的标识。前端共创部分为浙江大学和智慧绿洲标识。</p><p>合作方资料覆盖研究、制造、消费和科技服务。品牌、数量与GMV的所属主体为蓝图伙伴。</p><p>2024年平台发布报道另有服装企业合作记录，补充了联合机构之外的产品应用关系。</p><h3 id="section11">1.0.5 荣誉 资质与人才成果</h3><table><thead><tr><th>类别</th>
+<th>成果内容</th>
+<th>成果归属</th>
+</tr>
+</thead>
+<tbody><tr><td>平台认定</td>
+<td>全省数字创意智能系统与装备重点实验室获认定</td>
+<td>依托单位为浙江大学，共建单位为智慧绿洲，主任为孙守迁。</td>
+</tr>
+<tr><td>国家级教学成果</td>
+<td>《以创新能力提升为导向的科技设计人才培养模式与生态建设》，2022年本科国家级教学成果二等奖</td>
+<td>高校共同完成的教学成果。官方名单含孙守迁、柴春雷、徐雯洁等。</td>
+</tr>
+<tr><td>个人行业荣誉</td>
+<td>孙守迁获2012年光华龙腾奖中国设计贡献奖金质奖章</td>
+<td>孙守迁个人荣誉；年份2012年</td>
+</tr>
+<tr><td>国际设计成果</td>
+<td>徐雯洁官方红点、iF、米兰设计周等设计奖经历</td>
+<td>个人／参与作品履历；作品名称、年份及证书的逐件目录未载</td>
+</tr>
+<tr><td>国际设计成果</td>
+<td>徐健鸣红点、iF及IDEA设计银奖</td>
+<td>个人履历。获奖作品与数字门店设备的对应尚无完整记录</td>
+</tr>
+<tr><td>指导学生成果</td>
+<td>邹宁2025省国际大学生创新大赛金奖、Red Dot 2023、A’Design Award 2022、UXDA 2021等</td>
+<td>成果归属：指导学生获奖</td>
+</tr>
+<tr><td>成员竞赛成果</td>
+<td>龚卿任项目负责人的2025中国国际大学生创新大赛省赛金奖、第四届中国研究生移动端应用设计创新大赛全国一等奖；另有中国高校移动应用创新大赛全国三等奖</td>
+<td>分别保留赛名、层级和负责人关系。</td>
+</tr>
+<tr><td>成员竞赛成果</td>
+<td>殷敏2024年新华社AIGC青年大学生就业创业大赛二等奖</td>
+<td>成员公开荣誉履历，获奖项目与共同完成人尚无完整记录</td>
+</tr>
+<tr><td>人才／科研支持</td>
+<td>殷敏列2025年教育部海外博士后引才专项；于卓玉列2024年度中国科协科技智库青年人才计划</td>
+<td>属人才支持或计划入选。</td>
+</tr>
+<tr><td>课程建设</td>
+<td>《用户体验与产品创新设计》线下课程、虚拟仿真实验教学课程的国家级一流本科课程相关记录</td>
+<td>徐雯洁为主要团队成员；课程认定和科研项目获奖分别呈现</td>
+</tr>
+<tr><td>创业活动</td>
+<td>李培泉第九届“梦想中国·智汇嘉善”创新创业大赛入围，身份为核心成员</td>
+<td>记录属性：入围。</td>
+</tr>
+</tbody></table>
+<p>荣誉与成果按平台认定、国家级教学成果、教师个人奖项、学生指导成果、人才计划和课程建设分类；所属主体与完成关系分别标注。</p><div class="knowledge-gallery" data-topic="1.0.5"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0026.jpg" loading="lazy" decoding="async" alt="1.0.5 荣誉 资质与人才成果" title="点击放大查看细节" width="1080" height="609"><figcaption>荣誉 资质与人才成果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0027.jpg" loading="lazy" decoding="async" alt="1.0.5 荣誉 资质与人才成果" title="点击放大查看细节" width="1080" height="472"><figcaption>荣誉 资质与人才成果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0029.jpg" loading="lazy" decoding="async" alt="1.0.5 荣誉 资质与人才成果" title="点击放大查看细节" width="1268" height="845"><figcaption>荣誉 资质与人才成果</figcaption></figure></div><h3 id="section12">1.0.6 人才培养 学术交流与社会服务</h3><p>人才培养与社会服务覆盖本科及研究生教育、联合博士后培养、课程建设、学生创新竞赛、学校科技服务和行业科普。科研、课程、产业项目和真实应用场景共同支持人才发展。</p><ul><li><strong>本科及研究生设计教育：</strong>相关教师参与国家级教学成果与《用户体验与产品创新设计》课程建设，成果明细见1.0.6。 </li>
+<li><strong>博士后培养：</strong>与浙江大学计算机科学与技术学院开展联合博士后培养。 </li>
+<li><strong>青少年与特殊学习需求研究：</strong>邹宁、龚卿公开研究涉及儿童读写障碍、音乐干预及文化情境交互，是教育方向的研究积累；与少年宫项目的课程、软硬件和实施效果分开。 </li>
+<li><strong>学校科技服务：</strong>吉姝蕾公开页列嘉善县丁栅中心学校科技辅导员身份，可补充校地教育交流线索；并未说明该身份就是少年宫项目岗位。 </li>
+<li>行业交流与科普：2024中国创新设计活动周先导活动包含设计评审与科普报告。实验室参与者、组织单位、活动时间和成果分别记录。</li>
+</ul>
+<h3 id="section13">1.0.7 标志产品 装备资源与转化方式</h3><p>标志产品包括智能设计引擎、云衣时尚系统、智慧城市视觉感知系统、离子精筛膜产线及淡化设备、柔性水果采摘与分选设备、智慧无人配送车和沉浸式数字文旅体验装备。</p><p>研发资源覆盖光学采图与尺寸测量、门店摄像头、边缘计算、视频与传感接入、生成式设计工作流、业务知识库、数据平台，以及互动装置的机械、感应、灯光和结构组件。</p><p>成果转化方式包括联合机构共建、业务调研与系统研发、算法软件和专用设备开发、样机制作、现场试点与反馈迭代。</p><table><thead><tr><th>产品或装备</th>
+<th>产品形态与用途</th>
+<th>可归入的能力</th>
+</tr>
+</thead>
+<tbody><tr><td>智能设计引擎</td>
+<td>摩托车、汽车内饰、家电旋钮及后续产品创新案例</td>
+<td>跨品类设计生成、产品洞察与设计决策支持</td>
+</tr>
+<tr><td>云衣时尚系统</td>
+<td>服装生成、解析、检索、童装、旅拍与商业人像界面</td>
+<td>服装多模态数据与生成设计，</td>
+</tr>
+<tr><td>智慧城市视觉感知系统</td>
+<td>事件视频、运行看板、智能调度、边缘与中心服务</td>
+<td>多模态感知、行业推理、系统集成，</td>
+</tr>
+<tr><td>离子精筛膜产线及淡化设备</td>
+<td>室内产线、集装箱设备、现场安装及农业应用配图</td>
+<td>膜材料、设备研发与农业水处理；产能与成本字段按项目记录</td>
+</tr>
+<tr><td>柔性水果采摘与分选</td>
+<td>温室机械臂、输送分选设备、双面视觉采图、三轴结构与柔性夹爪</td>
+<td>感知、机械控制、采摘及产后处理协同</td>
+</tr>
+<tr><td>智慧无人配送车</td>
+<td>温室或棚区道路中的车辆现场照片</td>
+<td>智能装备的应用形态；图像不提供载重、续航或导航精度</td>
+</tr>
+<tr><td>沉浸式数字文旅体验装备</td>
+<td>数字文旅框架、互动装置与空间案例</td>
+<td>内容、感知、机械、空间和运营的协同</td>
+</tr>
+</tbody></table>
+<h3 id="section14">1.0.8 联系信息</h3><p>智慧绿洲创新中心公共地址：浙江省嘉兴市嘉善县西塘镇开源大道68号（数慧云巷园区）。邮编314102，电话0573-84576680，邮箱HRoasis@zju.edu.cn。</p><h2 id="section15">1.1 智能设计的技术定位</h2><p>智能设计：让行业数据转化为可执行的智能能力。</p><p>智能设计以多源异构数据处理、专业知识表达和领域模型为基础，形成感知、理解、生成、分析和辅助执行能力，应用于农业、公安政务、时尚、物流、数字商业和教育。</p><p>多模态智能感知和多模态设计生成，对应感知与生成两组技术主题。</p><div class="knowledge-gallery" data-topic="1.1"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0007.jpg" loading="lazy" decoding="async" alt="1.1 智能设计的技术定位" title="点击放大查看细节" width="1800" height="1273"><figcaption>智能设计的技术定位</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0010.jpg" loading="lazy" decoding="async" alt="1.1 智能设计的技术定位" title="点击放大查看细节" width="43" height="43"><figcaption>智能设计的技术定位</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0032.jpg" loading="lazy" decoding="async" alt="1.1 智能设计的技术定位" title="点击放大查看细节" width="1800" height="1013"><figcaption>智能设计的技术定位 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0113.jpg" loading="lazy" decoding="async" alt="1.1 智能设计的技术定位" title="点击放大查看细节" width="1672" height="941"><figcaption>智能设计的技术定位</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0114.jpg" loading="lazy" decoding="async" alt="1.1 智能设计的技术定位" title="点击放大查看细节" width="200" height="200"><figcaption>智能设计的技术定位 · 现场与实物</figcaption></figure></div><h2 id="section16">1.2 四阶段技术链条与成果形态</h2><table><thead><tr><th>阶段</th>
+<th>具体工作</th>
+<th>成果形态</th>
+</tr>
+</thead>
+<tbody><tr><td>行业数据资产化</td>
+<td>接入图像、视频、业务单据、传感数据、文档及用户反馈，清洗、标注、结构化、统一管理</td>
+<td>数据资源目录、标注样本、入库装置、业务数据表、数据流向</td>
+</tr>
+<tr><td>领域知识模型化</td>
+<td>建立对象、属性、关系、流程、规则与标签，将专业经验变为可表达的业务知识</td>
+<td>服装标签树、物流业务蓝图、品类属性图谱、政务知识条目</td>
+</tr>
+<tr><td>AI模型行业化</td>
+<td>模型选型、领域训练、微调、视觉识别、多模态融合、检索增强及推理优化</td>
+<td>训练前后对照、混淆场景测试、模型工作流、性能与部署记录</td>
+</tr>
+<tr><td>场景应用智能化</td>
+<td>将识别、预测、生成、问答与工作流接入业务岗位和设备</td>
+<td>农田控制、数字门店、警务写作、物流审单、设计编辑与岗位助手</td>
+</tr>
+</tbody></table>
+<p>技术链条包含行业数据资产化、领域知识模型化、AI模型行业化和场景应用智能化。业务采集、结果复核、问题回流、数据更新、版本评估和应用迭代构成反馈闭环。</p><p>PROV-O以实体、活动和主体描述资料来源及生成关系。这里的主体可以是人员或组织，属于来源模型中的agent概念。</p><h2 id="section17">1.3 核心技术与产品体系</h2><p>核心技术包括垂直领域AIGC产品大模型、创新设计大数据集群、材料创新设计、计算机视觉与智能控制、数字交互和具身智能。软件、材料、装备与交互共同构成研究基础。</p><p>脱盐膜的材料研发与设备应用有独立人员研究记录，对应绿色设计与智能装备方向。</p><h2 id="section18">1.4 四类模型能力</h2><table><thead><tr><th>模型组</th>
+<th>原的能力</th>
+<th>与六大场景的关系</th>
+</tr>
+</thead>
+<tbody><tr><td>绿洲AI设计模型</td>
+<td>文生图、图生图、视频生成、可控生成</td>
+<td>时尚、家居、包装、文化体验的内容生成</td>
+</tr>
+<tr><td>绿洲AI对话模型</td>
+<td>多轮对话、多模态问答、智能代理、垂类知识库</td>
+<td>公安政务知识服务、企业岗位助手、教育问答</td>
+</tr>
+<tr><td>绿洲AI视觉模型</td>
+<td>图像识别、人脸识别、人体识别、视频处理</td>
+<td>公安事件感知、数字门店、库存识别与巡检</td>
+</tr>
+<tr><td>绿洲数据模型</td>
+<td>产品画像、用户画像、趋势分析、决策报告</td>
+<td>数字商业、产品企划、经营分析与行业决策</td>
+</tr>
+</tbody></table>
+<p>模型能力按设计生成、对话与知识服务、视觉感知、数据分析四组组织。生成效果与概念界面中的示例数字不作为实际业务绩效。</p><p>CLIP联合学习图像与文本表示，以图文对应关系支持自然语言与图像匹配。图像和文本位于可比较的表征空间，是多模态检索的一类技术路径。</p><div class="knowledge-gallery" data-topic="1.4"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0197.jpg" loading="lazy" decoding="async" alt="1.4 四类模型能力" title="点击放大查看细节" width="1024" height="1024"><figcaption>四类模型能力</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0198.jpg" loading="lazy" decoding="async" alt="1.4 四类模型能力" title="点击放大查看细节" width="1024" height="1024"><figcaption>四类模型能力</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0199.jpg" loading="lazy" decoding="async" alt="1.4 四类模型能力" title="点击放大查看细节" width="1024" height="1024"><figcaption>四类模型能力</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0200.jpg" loading="lazy" decoding="async" alt="1.4 四类模型能力" title="点击放大查看细节" width="1024" height="1024"><figcaption>四类模型能力 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0201.jpg" loading="lazy" decoding="async" alt="1.4 四类模型能力" title="点击放大查看细节" width="1672" height="941"><figcaption>四类模型能力 · 概念与设计示意</figcaption></figure></div><h2 id="section19">1.5 数据集群与数据智能设计引擎</h2><p>工业设计案例资源包括人本、商业、技术、艺术、文化五个构成库，以及创新设计特色案例集和四链融合资源集，数据规模口径为超千万条。</p><p>数据智能引擎连接市场趋势、赛道判断、战略机会、用户需求、产品定位、设计创新与营销。舆情探针、需求洞察和产品蓝图包含热点、趋势、竞品、品牌、圈层、痛点、购买决策、卖点验证及造型、功能、成本、渠道等分析任务。</p><p>需求映射示例：“清洗麻烦”对应清洁维护需求、可拆卸属性、竞品比较和产品方案。</p><p>SKOS用首选标签、替代标签、上位、下位和相关关系组织概念；概念体系与训练模型权重是不同的知识表达。</p><div class="knowledge-gallery" data-topic="1.5"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0041.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="1080" height="577"><figcaption>数据集群与数据智能设计引擎</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0042.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="270" height="186"><figcaption>数据集群与数据智能设计引擎 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0043.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="268" height="188"><figcaption>数据集群与数据智能设计引擎 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0044.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="400" height="240"><figcaption>数据集群与数据智能设计引擎 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0195.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="862" height="994"><figcaption>数据集群与数据智能设计引擎</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0196.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="1436" height="1198"><figcaption>数据集群与数据智能设计引擎</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0202.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="1672" height="941"><figcaption>数据集群与数据智能设计引擎</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0203.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="200" height="200"><figcaption>数据集群与数据智能设计引擎 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0403.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="1800" height="503"><figcaption>数据集群与数据智能设计引擎 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0404.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="1062" height="538"><figcaption>数据集群与数据智能设计引擎</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0405.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="1300" height="692"><figcaption>数据集群与数据智能设计引擎</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0406.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="922" height="462"><figcaption>数据集群与数据智能设计引擎</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0407.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="1042" height="602"><figcaption>数据集群与数据智能设计引擎</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0408.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="1080" height="594"><figcaption>数据集群与数据智能设计引擎 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0409.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="850" height="562"><figcaption>数据集群与数据智能设计引擎 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0410.jpg" loading="lazy" decoding="async" alt="1.5 数据集群与数据智能设计引擎" title="点击放大查看细节" width="1800" height="914"><figcaption>数据集群与数据智能设计引擎 · 概念与设计示意</figcaption></figure></div><h1 id="section20">二、六大应用场景：智能设计 × 行业</h1><h2 id="section21">场景1／智能设计 × 智慧农业</h2><p>黄琦老师｜第三师45团“排碱渠水淡化+有机特色种植”项目</p><h3 id="section22">2.1.1 项目身份与状态</h3><p>第三师45团排碱渠水淡化与有机特色种植项目位于新疆生产建设兵团第三师图木舒克市45团，目标规模1万亩，方案时间为2026年9月，当前知识条目阶段为可行性研究与建设规划。</p><p>合作方式为企业投资运营、高校技术支持、团场土地及配套协作；资金筹措拟由一米八农业科技集团投入20000万元，援疆专项补贴4000万元。补贴为拟筹资金。</p><p>2023年投资项目可研大纲以必要性、方案可行性和风险可控性组织论证，覆盖需求、建设、运营、投融资、财务及风险等维度。</p><h3 id="section23">2.1.2 水土与气候条件</h3><table><thead><tr><th>要素</th>
+<th>A文件数据或描述</th>
+<th>适用条件与状态</th>
+</tr>
+</thead>
+<tbody><tr><td>原水</td>
+<td>排碱渠年排水约8200万m³，含盐量3—10g/L</td>
+<td>规划水源参数；水质检测和逐月流量实测尚无完整记录</td>
+</tr>
+<tr><td>土地</td>
+<td>沙漠戈壁未利用地，砂质土，地势较平坦</td>
+<td>拟用地；土地边界、权属与审批尚无完整记录</td>
+</tr>
+<tr><td>光照</td>
+<td>年日照2800—3200小时，中值图示3000小时</td>
+<td>当地气候假设。</td>
+</tr>
+<tr><td>昼夜温差</td>
+<td>15—20℃，图示18℃</td>
+<td>字段包括季节和统计口径</td>
+</tr>
+<tr><td>降水</td>
+<td>50—80mm，图示65mm</td>
+<td>关联灌溉需水、蒸发和淋洗需求共同分析</td>
+</tr>
+<tr><td>无霜期</td>
+<td>200—220天，图示210天</td>
+<td>方案气候条件；品种田间适应性数据未载</td>
+</tr>
+<tr><td>年均温</td>
+<td>图示12℃</td>
+<td>与灾害性低温风险分开介绍</td>
+</tr>
+</tbody></table>
+<p>拟利用沙漠戈壁地和排碱渠水，构建淡化、供水与种植协同系统。气候、水质和土地参数属于项目规划条件；品种适应性取决于具体地块、土壤、水源和田间表现。</p><p>果树需冷量通常以低于45°F的累计小时表达。该栽培资料列日本李约500—900小时、欧洲李约700—1000小时，反映不同类型的休眠需求差异。</p><div class="knowledge-gallery" data-topic="2.1.2"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0001.jpg" loading="lazy" decoding="async" alt="2.1.2 水土与气候条件" title="点击放大查看细节" width="1800" height="1326"><figcaption>水土与气候条件 · 建设规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0002.jpg" loading="lazy" decoding="async" alt="2.1.2 水土与气候条件" title="点击放大查看细节" width="1800" height="1222"><figcaption>水土与气候条件 · 建设规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0004.jpg" loading="lazy" decoding="async" alt="2.1.2 水土与气候条件" title="点击放大查看细节" width="1706" height="1279"><figcaption>水土与气候条件 · 建设规划</figcaption></figure></div><h3 id="section24">2.1.3 淡化工程及水土治理</h3><p>淡化工艺采用iFS离子精筛膜路线，包含取水预处理、精密前处理、淡化和灌溉供水。拟建设两座中心，每座1000吨/小时，总规模2000吨/小时；方案指标为脱盐率≥95%、产水率80%—85%、运行成本约0.50元/吨。</p><p>中心拟沿排碱渠南侧布局，距种植区约2—3公里，每座占地10—15亩，合计约25亩，配置电网接入、分区供水和备用能力。</p><p>2000吨/小时的规模口径未区分进水与产水。若为进水，产水约1600—1700吨/小时；若为产水，进水约2353—2500吨/小时。以上为水量平衡计算，非运行实测。</p><p>水土治理包括有机肥掺拌培肥、发酵车间、防护林网与滴灌。浓水处置存在回排和集中处理、资源化利用两条规划路线，工程定型前不合并为同一工艺。</p><p>处理后的咸水与其他非常规水资源属于农业补充水源；应用涉及水质控制、混配和作物适应条件。淡化产水、浓水和灌溉水分别构成水量与水质对象。</p><div class="knowledge-gallery" data-topic="2.1.3"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0005.jpg" loading="lazy" decoding="async" alt="2.1.3 淡化工程及水土治理" title="点击放大查看细节" width="1800" height="931"><figcaption>淡化工程及水土治理 · 建设规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0006.jpg" loading="lazy" decoding="async" alt="2.1.3 淡化工程及水土治理" title="点击放大查看细节" width="540" height="759"><figcaption>淡化工程及水土治理 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/pages/A009.jpg" loading="lazy" decoding="async" alt="2.1.3 淡化工程及水土治理" title="点击放大查看细节" width="1600" height="900"><figcaption>淡化工程及水土治理 · 建设规划</figcaption></figure></div><h3 id="section25">2.1.4 种植结构和试验田</h3><table><thead><tr><th>作物／用途</th>
+<th align="right">面积</th>
+<th align="right">占项目总面积</th>
+<th>的主要参数</th>
+</tr>
+</thead>
+<tbody><tr><td>西梅</td>
+<td align="right">2500亩</td>
+<td align="right">25%</td>
+<td>自然开心形，3m×4m，约55株/亩；商品果率85%，盛产期单价10元/kg</td>
+</tr>
+<tr><td>味帝（杏李）</td>
+<td align="right">3500亩</td>
+<td align="right">35%</td>
+<td>自然开心形，约55株/亩；商品果率75%，盛产期单价15元/kg</td>
+</tr>
+<tr><td>恐龙蛋（杏李）</td>
+<td align="right">3500亩</td>
+<td align="right">35%</td>
+<td>自然开心形，约55株/亩；商品果率75%，盛产期单价12.5元/kg</td>
+</tr>
+<tr><td>试验田</td>
+<td align="right">500亩</td>
+<td align="right">5%</td>
+<td>100亩尾水生态养殖，100亩芦笋／山药，300亩水稻、开心果、巴旦木</td>
+</tr>
+<tr><td>紫花苜蓿套种</td>
+<td align="right">约5700亩</td>
+<td align="right">不另占总面积</td>
+<td>在9500亩果园行间前1—4年套种，按果园面积60%估算</td>
+</tr>
+</tbody></table>
+<p>西梅2500亩、味帝3500亩、恐龙蛋3500亩与试验田500亩构成1万亩布局。苜蓿套种约5700亩，为9500亩果园面积的60%，与果树面积重叠。</p><p>西梅农艺方案为定干60—70cm、三主枝错落、基角50—60°；味帝第一年留3主枝、第二年开角、第三年起疏枝不短截；恐龙蛋参照味帝并强调抗风透光。</p><p>多数日本李存在自交不亲和性，果园配置涉及相容授粉品种；开放中心形和修剪与冠层光照、通风和结果部位管理相关。</p><div class="knowledge-gallery" data-topic="2.1.4"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/pages/A011.jpg" loading="lazy" decoding="async" alt="2.1.4 种植结构和试验田" title="点击放大查看细节" width="1600" height="900"><figcaption>种植结构和试验田 · 建设规划</figcaption></figure></div><h3 id="section26">2.1.5 有机种植体系的逐项资料</h3><ul><li>秋季基肥：每年10—11月，全园深翻施用；方案亩施发酵玉米1500kg、发酵油渣400kg、骨粉120kg、矿源钾60kg、矿源中微量元素40kg。恐龙蛋方案的发酵玉米为1800kg/亩，与通用方案不同，按品种分别记录。</li>
+<li>追肥：全年4—5次，萌芽前、新梢旺长期、幼果膨大期、果实转色期等，发酵油渣浸出液与矿源钾随水滴施。</li>
+<li>叶面施肥：计划全年5次，已明确花前、谢花后、幼果期和转色期4个阶段，第5次时点尚不明确。</li>
+<li>基础清园：冬季修剪后和早春萌芽前使用石硫合剂；物理措施列黄板30张/亩、蓝板10张/亩、性诱捕器6个/亩、每30—50亩1台杀虫灯。</li>
+<li>生物措施：蜜蜂授粉、三叶草培育天敌、捕食螨防治红蜘蛛；需关注的病虫害包括细菌性穿孔病、李实蜂、李小食心虫、红蜘蛛、蚜虫、流胶病。</li>
+</ul>
+<p>以下施肥、植保和授粉参数属于项目种植方案。有机种植涉及投入品、生产过程、认证与追溯，项目规划目标不等于已取得有机认证。</p><p>有机产品认证记录关联认证证书、生产加工主体、产品及追溯标识；投入品、生产、运输与销售记录构成认证管理的资料链。</p><h3 id="section27">2.1.6 智慧农业装备与智能设计的关系</h3><table><thead><tr><th>类别</th>
+<th align="right">列出的投资</th>
+<th>配置</th>
+<th>数据与业务动作</th>
+</tr>
+</thead>
+<tbody><tr><td>智能耕整与种植</td>
+<td align="right">260万元</td>
+<td>北斗自动驾驶拖拉机、激光平地机、智能精量播种机</td>
+<td>地块、路线、播种作业及设备记录</td>
+</tr>
+<tr><td>智慧田间管理</td>
+<td align="right">340万元</td>
+<td>水肥一体化、植保无人机、激光除草机器人、果园机械</td>
+<td>墒情、灌溉、施肥、植保与除草任务</td>
+</tr>
+<tr><td>智能采收</td>
+<td align="right">240万元</td>
+<td>振动采收机、轨道运输车、智能分选设备</td>
+<td>采收批次、转运与分选信息</td>
+</tr>
+<tr><td>智能产后处理</td>
+<td align="right">230万元</td>
+<td>光电分选线、智能冷库、真空预冷</td>
+<td>果品等级、库存、温度与保鲜过程</td>
+</tr>
+<tr><td>感知与决策</td>
+<td align="right">240万元</td>
+<td>物联网、多光谱遥感、AI巡田、大数据平台</td>
+<td>长势、病虫害预警、田间一张图和生产辅助决策</td>
+</tr>
+</tbody></table>
+<p>装备覆盖耕整种植、田间管理、采收、产后处理与感知决策五组功能。预算存在1000万元总体口径、1340万元专项口径，以及1310万元分项合计，分别作为预算版本保留。</p><p>田间控制包含土壤湿度监测、电磁阀启停、远程手动控制和水肥滴施。节水60%以上、灌溉用工减少80%、智能作业减少人工60%为规划目标，非已验证结果。</p><p>标准条件下作物蒸散量ETc以作物系数Kc与参考蒸散量ETo的乘积计算；作物系数随生育阶段变化，气象需水与土壤含水量属于不同信息。</p><div class="knowledge-gallery" data-topic="2.1.6"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/pages/A014.jpg" loading="lazy" decoding="async" alt="2.1.6 智慧农业装备与智能设计的关系" title="点击放大查看细节" width="1600" height="900"><figcaption>智慧农业装备与智能设计的关系 · 建设规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/pages/A015.jpg" loading="lazy" decoding="async" alt="2.1.6 智慧农业装备与智能设计的关系" title="点击放大查看细节" width="1600" height="900"><figcaption>智慧农业装备与智能设计的关系 · 建设规划</figcaption></figure></div><h3 id="section28">2.1.7 投资、运营与现金流</h3><p>总投资拟为24000万元：基础设施6600万元、淡化中心5500万元、智能装备1000万元、种苗1400万元、试验田500万元和流动资金9000万元；固定投资合计15000万元。</p><p>十年营业收入预测依次为228、1366、4781、8196、11383、11383、11383、11383、11383、11383万元；成本依次为2940、4205、5240、5994、6470、6750、6750、6750、6750、6750万元。稳定阶段年经营净现金流预测4633万元，静态回收期约8年。</p><p>按年度现金流复算，第6至10年累计值依次为-9262、-4629、4、4637、9270万元。累计尾数存在1—2万元版本差异；流动资金占用回收方式未展开，财务预测与实际经营分开管理。</p><p>用工方案为管理人员约40人、固定种植工人约150人、高峰临时用工800—1000人；苜蓿每年3茬，2茬外销、1茬还田，预计亩均年净收益400元、合计228万元。</p><p>企业投资项目可研包括运营、投融资及财务可持续性，建设投资、流动资金与经营现金流分别表达。</p><div class="knowledge-gallery" data-topic="2.1.7"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/pages/A016.jpg" loading="lazy" decoding="async" alt="2.1.7 投资、运营与现金流" title="点击放大查看细节" width="1600" height="900"><figcaption>投资、运营与现金流 · 建设规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/pages/A017.jpg" loading="lazy" decoding="async" alt="2.1.7 投资、运营与现金流" title="点击放大查看细节" width="1600" height="900"><figcaption>投资、运营与现金流 · 建设规划</figcaption></figure></div><h3 id="section29">2.1.8 农业项目简介</h3><p>“面向南疆沙漠戈壁的农业生产条件，项目提出将排碱渠水淡化、水土改良、有机林果种植与智慧农业装备统筹设计。以第三师45团1万亩综合利用方案为载体，连接水资源、地块、作物和作业数据，探索从农情感知、生产辅助决策到水肥与装备执行的业务链条。”</p><p>政策背景：《全国智慧农业行动计划（2024—2028年）》部署农业数据平台、基础模型和智慧农场等方向。记录类型：全国政策，非本项目实施成绩。</p><p>GB/T 19630—2019《有机产品 生产、加工、标识与管理体系要求》覆盖生产、加工、标识和管理体系；“有机”在此具有明确标准对象。</p><h2 id="section30">场景2／智能设计 × 公安政务</h2><p>力通联合实验室｜多模态感知、警务知识服务与业务治理</p><h3 id="section31">2.2.1 案例范围与合作依据</h3><p>公安政务方向包含城市事件感知与交通治理、警务知识与办公、政工关系图谱与警情预警三组应用。不同应用具有各自实施阶段和业务范围。力通无限联合实验室于2023年开展共建。</p><p>实验室官方介绍提供多模态感知研究方向，与联合实验室机构记录形成方向和组织两个资料维度。</p><h3 id="section32">2.2.2 多模态感知系统架构逐层解释</h3><table><thead><tr><th>层次</th>
+<th>中的具体组成</th>
+<th>技术和业务作用</th>
+</tr>
+</thead>
+<tbody><tr><td>基础设施</td>
+<td>X86／ARM、CPU／GPU／NPU、监控设备、传感器、通信网关、边缘设备、中心服务</td>
+<td>连接现场视频、传感和算力设备</td>
+</tr>
+<tr><td>数据层</td>
+<td>视频流、图片服务、OCR、政务数据、数据采集加工、治理、关键帧计算</td>
+<td>将现场内容变为可计算的输入</td>
+</tr>
+<tr><td>计算层</td>
+<td>雾计算节点、MindSpore、TensorFlow／PyTorch、分流汇聚预测、日志与性能监控</td>
+<td>组织模型推理及资源运行</td>
+</tr>
+<tr><td>平台服务</td>
+<td>消息队列、k3s、调度服务、数据库、存储、镜像仓库、主题库</td>
+<td>支撑多任务部署、事件传递和持续运行</td>
+</tr>
+<tr><td>智能分析</td>
+<td>多模态大模型、大数据分析、目标识别与追踪</td>
+<td>识别目标、理解行为和形成事件信息</td>
+</tr>
+<tr><td>决策层</td>
+<td>运行监测、分析、消息推送、应急指挥、规则、舆情监听、数据展示及预警方案</td>
+<td>将识别结果接入人工处置和治理流程</td>
+</tr>
+<tr><td>场景层</td>
+<td>智慧交通、社区、警务、商圈，农业与能碳等扩展方向</td>
+<td>架构可扩展方向。</td>
+</tr>
+</tbody></table>
+<p>K3s架构区分运行控制平面与数据存储的server，以及运行工作负载的agent。多节点部署和高可用属于独立架构配置。</p><div class="knowledge-gallery" data-topic="2.2.2"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0045.jpg" loading="lazy" decoding="async" alt="2.2.2 多模态感知系统架构逐层解释" title="点击放大查看细节" width="1700" height="1135"><figcaption>多模态感知系统架构逐层解释</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0046.jpg" loading="lazy" decoding="async" alt="2.2.2 多模态感知系统架构逐层解释" title="点击放大查看细节" width="1700" height="1133"><figcaption>多模态感知系统架构逐层解释 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0047.jpg" loading="lazy" decoding="async" alt="2.2.2 多模态感知系统架构逐层解释" title="点击放大查看细节" width="1700" height="1133"><figcaption>多模态感知系统架构逐层解释 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0048.jpg" loading="lazy" decoding="async" alt="2.2.2 多模态感知系统架构逐层解释" title="点击放大查看细节" width="1700" height="1135"><figcaption>多模态感知系统架构逐层解释 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0049.jpg" loading="lazy" decoding="async" alt="2.2.2 多模态感知系统架构逐层解释" title="点击放大查看细节" width="1700" height="1133"><figcaption>多模态感知系统架构逐层解释 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0050.jpg" loading="lazy" decoding="async" alt="2.2.2 多模态感知系统架构逐层解释" title="点击放大查看细节" width="1700" height="1134"><figcaption>多模态感知系统架构逐层解释</figcaption></figure></div><h3 id="section33">2.2.3 交通、社区与气象执法的具体任务</h3><p>交通任务包括实线变道、闯红灯、逆行、车牌分类、摩托车识别、未戴头盔、人员超载和视频接入优化。区域状态为嘉善已交付、舟山验收中、桐乡推进中。</p><p>社区任务包括人脸检测、违规横幅、消防通道占用、电动车进电梯、危险攀爬、乱倒垃圾、烟雾和斗殴识别。</p><p>斗殴识别针对多人、复杂动作、光影与天气变化，结合多模态理解和计算机视觉区分斗殴、跳舞、争吵；测试记录为精度80%、10—20fps，测试条件未完整披露。</p><p>气象执法扩展涵盖系留气球监测、探测站保护、道路结冰、团雾、积雪和冰雹，阶段为DEMO及方案；射击视频教学纠错为训练反馈应用。</p><p>MindYOLO部署文档包含检查点导出为MindIR及后端部署过程；训练权重、导出格式、推理环境与硬件分别构成部署条件。</p><div class="knowledge-gallery" data-topic="2.2.3"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0051.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1800" height="927"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0052.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1372" height="391"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0053.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1800" height="1051"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0054.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1800" height="1051"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0055.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1800" height="920"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0056.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="972" height="336"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0057.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1472" height="336"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0058.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="484" height="336"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0059.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="498" height="336"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0060.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1800" height="1547"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0061.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1440" height="1080"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0062.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="990" height="1452"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0063.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1800" height="927"><figcaption>交通、社区与气象执法的具体任务 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0064.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1800" height="879"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0065.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1800" height="1013"><figcaption>交通、社区与气象执法的具体任务</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0066.jpg" loading="lazy" decoding="async" alt="2.2.3 交通、社区与气象执法的具体任务" title="点击放大查看细节" width="1800" height="1051"><figcaption>交通、社区与气象执法的具体任务 · 概念与设计示意</figcaption></figure></div><h3 id="section34">2.2.4 现有性能口径</h3><table><thead><tr><th>指标</th>
+<th>指标定义与状态</th>
+<th>记录属性</th>
+</tr>
+</thead>
+<tbody><tr><td>单模型准确率90%—95%</td>
+<td>为“预期”</td>
+<td>标作研发预期，记录属性：研发预期</td>
+</tr>
+<tr><td>40—100fps、提升25%</td>
+<td></td>
+<td>尚无完整记录：设备、分辨率、并发及对照条件</td>
+</tr>
+<tr><td>研发成本节省约40%</td>
+<td></td>
+<td>项目成本指标；基准和成本范围尚不完整</td>
+</tr>
+<tr><td>斗殴识别精度80%</td>
+<td>为测试</td>
+<td>不与单模型预期90%—95%混合</td>
+</tr>
+<tr><td>国产信创适配</td>
+<td></td>
+<td>说明已作适配，具体型号和版本在尚无完整记录</td>
+</tr>
+</tbody></table>
+<p>HOTA把目标检测与跨帧关联纳入多目标追踪评价。检测正确与否、轨迹是否持续对应同一目标是两个不同问题。</p><h3 id="section35">2.2.5 警务办公与知识服务的逐功能资料</h3><p>警务办公功能包括公文写作、修订流转、知识库管理和问答、演示文稿生成、问卷分析及问题反馈。设计稿、模拟数据与实际部署分别标记。</p><ol><li><strong>智能写作：</strong>支持多达20种公文文体，文体可扩展；可在线修订、多轮润色、上传文档纠错、自定义模板和格式，输出docx、演示文稿。界面中功能环节包括文体选择、输入要素、生成正文、修订以及下载。 </li>
+<li><strong>业务流转：</strong>按文体要素修改文章，润色后接业务平台，可预览、复制、下载并向相应业务部门流转。流转功能是平台设计能力，实际流转量尚无完整统计。 </li>
+<li><strong>知识库管理：</strong>个人库与部门库隔离，单个／批量导入解析，批量启停、解析、清空、下载，查看单文档状态。及标有“设计稿”，状态记录。 </li>
+<li><strong>知识库对话：</strong>模型版本、知识库版本和引用片段可配置；支持文件对话、历史会话、联网搜索等。含“模拟数据”标注。 </li>
+<li><strong>项目资料撰写：</strong>大纲重生成、页数选择、模板选择、内容二次修改与格式优化。 </li>
+<li><strong>调查问卷：</strong>在线发布、员工填报、数据入库、文本总结和报表输出，支持文字、图片、词云与表格。状态：图表为模拟数据自动生成。 </li>
+<li><strong>问题反馈报告：</strong>业务系统获取数据，汇总部门问题，形成PDF，跟踪反馈事项与处理结果，并支持指挥中心下发处理。 </li>
+</ol>
+<p>RAG把外部知识检索与生成模型结合；检索文档和模型参数分别存储，检索更新与模型重新训练是不同操作。</p><div class="knowledge-gallery" data-topic="2.2.5"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0348.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1692" height="904"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0349.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>警务办公与知识服务的逐功能资料 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0350.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0351.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0352.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1016" height="1800"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0353.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1351" height="1800"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0354.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0355.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0356.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="894"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0357.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="926"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0358.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="1070"><figcaption>警务办公与知识服务的逐功能资料 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0359.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="991"><figcaption>警务办公与知识服务的逐功能资料 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0360.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="1116"><figcaption>警务办公与知识服务的逐功能资料 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0361.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="1048"><figcaption>警务办公与知识服务的逐功能资料 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0362.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="1021"><figcaption>警务办公与知识服务的逐功能资料 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0363.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="926"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0364.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="759" height="591"><figcaption>警务办公与知识服务的逐功能资料 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0365.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="926"><figcaption>警务办公与知识服务的逐功能资料 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0367.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="926"><figcaption>警务办公与知识服务的逐功能资料 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0368.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1708" height="1292"><figcaption>警务办公与知识服务的逐功能资料 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0370.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="1728"><figcaption>警务办公与知识服务的逐功能资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0371.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="744"><figcaption>警务办公与知识服务的逐功能资料 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0425.jpg" loading="lazy" decoding="async" alt="2.2.5 警务办公与知识服务的逐功能资料" title="点击放大查看细节" width="1800" height="926"><figcaption>警务办公与知识服务的逐功能资料 · 概念与设计示意</figcaption></figure></div><h3 id="section36">2.2.6 政工、交管、预测与预警</h3><ul><li><strong>智慧政工：</strong>整合基础信息、履历、家庭和社会关联，构建警务人员数字档案和关系图谱，辅助识别潜在利益冲突、回避关系等；称已部署省公安厅，同时写明“人物都是AI生成”。画面人物属性：AI生成。 </li>
+<li><strong>交警综合治理：</strong>依托交警一张图和大数据平台，覆盖隐患动态排查、派单、处理、精准宣教；货车监管和辅警管理为拓展规划。写明部分子功能开发中、智能模块推进中，模块状态分别记录。 </li>
+<li><strong>110接警预测：</strong>读取历史接警数据，用时序预测方法输出区域、类型与未来警情数量，辅以报表和大模型检索问答；预测界面为模拟数据，非实际预测效果评测。 </li>
+<li><strong>城市大数据预警：</strong>监测、预警、处置流程以家庭暴力等风险为切入口，包含风险画像、等级、案情分析报告和案件类型时序演化。记录类型：人工研判辅助。 </li>
+</ul>
+<p>PROV-O以实体、活动和主体描述资料来源及生成关系。这里的主体可以是人员或组织，属于来源模型中的agent概念。</p><div class="knowledge-gallery" data-topic="2.2.6"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0372.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="990"><figcaption>政工、交管、预测与预警 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0373.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="883"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0374.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1093"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0375.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1152" height="1800"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0376.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="888" height="1198"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0377.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1013"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0378.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1013"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0379.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1013"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0380.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1013"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0381.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1013"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0382.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1013"><figcaption>政工、交管、预测与预警 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0383.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1013"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0384.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1013"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0385.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1013"><figcaption>政工、交管、预测与预警</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0386.jpg" loading="lazy" decoding="async" alt="2.2.6 政工、交管、预测与预警" title="点击放大查看细节" width="1800" height="1013"><figcaption>政工、交管、预测与预警</figcaption></figure></div><h3 id="section37">2.2.7 公安政务技术链路</h3><p>“从视频里的目标和行为，到业务中的知识和流程，系统将分散信息转为可识别的城市事件与可追溯的工作依据。以多模态感知、知识服务和业务闭环支持交通治理、社区管理与警务办公，并根据场景完成推理优化及国产化适配。”</p><p>交通识别、事件处置流程与带引用的知识问答分别对应感知、治理和知识服务。RAG的技术背景指生成时检索相关外部知识，但“知识库”并未自动证明每个模块都采用同一种RAG架构。</p><p>MCP服务端能力包含资源、提示和工具：资源提供上下文，提示提供交互模板，工具承载可调用操作。此链接为规范草案版本。</p><h2 id="section38">场景3／智能设计 × 时尚产业</h2><p>云衣时尚系统｜服装设计、面料理解、虚拟换装与商业影像</p><h3 id="section39">2.3.1 产品身份与应用范围</h3><p>云衣是实验室自主研发的智能图像可控生成产品，服务服装设计、检索、旅拍、换装及商业影像，应用范围涉及嘉兴、湖州等地服装及平台企业。</p><p>公开发布报道包含服装线稿、文字描述和效果生成，连接设计输入与输出。</p><h3 id="section40">2.3.2 行业问题与数据基础</h3><p>行业问题包括设计同质化、供应链沟通、库存资金占用、原料品控、拍摄成本与通用模型可控性。</p><p>数据资源规模为10TB图库和200万数字标签；容量、标签数量与独立款式数量为不同指标。标签覆盖类别、版型、领袖结构、长度、面料、纹样、色彩、风格、场景、模特和拍摄信息。</p><p>DeepFashion2把服装检测、关键点、实例分割和消费者图到商家图检索列为不同任务，评价还区分尺度、遮挡、视角等条件。</p><h3 id="section41">2.3.3 从设计到营销的完整能力清单</h3><table><thead><tr><th>任务</th>
+<th>输入和控制对象</th>
+<th>输出示例</th>
+</tr>
+</thead>
+<tbody><tr><td>行业理解</td>
+<td>服装图片及专业语义</td>
+<td>设计要素解析、行业标签、服装描述</td>
+</tr>
+<tr><td>多模态检索</td>
+<td>图片、文字、属性、库存对象</td>
+<td>相似款、辅料、库存检索</td>
+</tr>
+<tr><td>图案与面料设计</td>
+<td>图形、花型、风格和颜色</td>
+<td>纹样生成、面料生成、连续／变体图案</td>
+</tr>
+<tr><td>款式设计</td>
+<td>文字、参考图、线稿、版型</td>
+<td>款式生成、线稿成衣</td>
+</tr>
+<tr><td>面料成衣融合</td>
+<td>面料参考、衣款／线稿</td>
+<td>保留纹理与成衣形态的视觉结果</td>
+</tr>
+<tr><td>虚拟上身</td>
+<td>人像、服装、姿势</td>
+<td>服装上身、智能换装、多人多姿势</td>
+</tr>
+<tr><td>配饰与妆造</td>
+<td>配饰、首饰、人像</td>
+<td>配饰生成、首饰上身、妆造生成</td>
+</tr>
+<tr><td>商业影像</td>
+<td>人像、服装、背景、光照</td>
+<td>场景生成、人物置景、溶图打光、人像风格化</td>
+</tr>
+</tbody></table>
+<p>产品能力覆盖1000款式可控生成和超100种数字场景，连接服装理解、检索、设计、换装和商业内容生产。</p><p>CLIP联合学习图像与文本表示，以图文对应关系支持自然语言与图像匹配。图像和文本位于可比较的表征空间，是多模态检索的一类技术路径。</p><h3 id="section42">2.3.4 服装生成与材质融合</h3><p>服装生成流程连接花型、工艺、面料、SKC、款式和上身效果。童装与人物适配关注服装细节保持和姿势变化；无缝材质设计关注花形变体与重复铺排。</p><p>面料融合包含羊绒、丝绸、亚麻等视觉材质生成；视觉外观不等于实物面料成分或纺织打样结果。AI汉服换装同时关联少儿文化体验。</p><p>ControlNet在预训练扩散模型基础上引入额外条件分支，以边缘、深度、姿态等空间信息控制生成。</p><div class="knowledge-gallery" data-topic="2.3.4"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0152.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="887"><figcaption>服装生成与材质融合 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0153.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="732" height="728"><figcaption>服装生成与材质融合 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0154.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1358" height="1360"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0155.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1354" height="1358"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0156.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1024" height="1022"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0157.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1128" height="840"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0158.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="750" height="1000"><figcaption>服装生成与材质融合 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0159.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1024" height="1024"><figcaption>服装生成与材质融合 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0160.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="1009"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0161.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="1009"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0162.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="512" height="512"><figcaption>服装生成与材质融合 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0163.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="374" height="560"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0164.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1610" height="1470"><figcaption>服装生成与材质融合 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0165.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="740"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0166.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="853" height="1280"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0167.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1280" height="1280"><figcaption>服装生成与材质融合 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0168.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1280" height="1280"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0169.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="853" height="1280"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0172.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="760" height="1024"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0176.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1024" height="1024"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0177.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="851" height="1280"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0182.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="873"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0183.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="979"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0184.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="1207"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0185.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="1481"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0186.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="855"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0187.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1360" height="770"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0188.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1362" height="772"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0189.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1362" height="770"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0190.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1364" height="770"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0191.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="1011"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0192.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="1016"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0193.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="1011"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0194.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1702" height="958"><figcaption>服装生成与材质融合</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0411.jpg" loading="lazy" decoding="async" alt="2.3.4 服装生成与材质融合" title="点击放大查看细节" width="1800" height="886"><figcaption>服装生成与材质融合</figcaption></figure></div><h3 id="section43">2.3.5 非标钮扣的测量与入库</h3><p>非标钮扣数字化以正面光源采集外观，背光测量尺寸，将实物转为图片、尺寸及结构化库存，支持文字检索、图片检索和入库。仓储机器人、视频巡检与异常预警属于升级规划。</p><p>相机标定涉及内参、外参及径向和切向畸变。像素尺寸、成像几何与实际长度换算之间存在标定关系。</p><div class="knowledge-gallery" data-topic="2.3.5"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0075.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1800" height="1104"><figcaption>非标钮扣的测量与入库</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0076.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1800" height="624"><figcaption>非标钮扣的测量与入库</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0077.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1800" height="621"><figcaption>非标钮扣的测量与入库</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0078.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1098" height="1108"><figcaption>非标钮扣的测量与入库</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0079.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1012" height="1800"><figcaption>非标钮扣的测量与入库 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0080.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1252" height="754"><figcaption>非标钮扣的测量与入库</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0081.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1262" height="748"><figcaption>非标钮扣的测量与入库</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0082.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1252" height="756"><figcaption>非标钮扣的测量与入库</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0083.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1264" height="748"><figcaption>非标钮扣的测量与入库</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0084.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1672" height="941"><figcaption>非标钮扣的测量与入库 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0413.jpg" loading="lazy" decoding="async" alt="2.3.5 非标钮扣的测量与入库" title="点击放大查看细节" width="1604" height="1080"><figcaption>非标钮扣的测量与入库</figcaption></figure></div><h3 id="section44">2.3.6 生成技术与评价方法</h3><p>图像虚拟试穿研究将人像和服装图片作为输入，目标是生成穿着效果图，关注衣物细节保持和人物适配。它对应图像试穿任务；云衣具体算法未完全披露，物理尺寸合体为另一评价对象。</p><p>ControlNet以边缘、深度、姿态等空间条件引导扩散生成；LoRA以低秩参数更新适配模型。记录类型：相关技术原理；本组资料未披露云衣全部实现细节。、</p><p>技术词条：版型保持、纹样位置与重复单元、面料视觉一致性、人物身份和姿势保持、局部遮挡、生成失败率、人工返修时间、商业审核通过率。记录类型：任务与评价术语，非已发布的产品评测数值。</p><p>EMVA 1288使用量子效率、噪声、信噪比、动态范围等指标描述相机特性。分辨率只是相机与测量系统参数之一。</p><h3 id="section45">2.3.7 时尚系统简介</h3><p>“云衣以服装图片和行业标签为基础，连接设计理解、多模态检索、可控生成与商业影像制作。通过面料、款式、人物和场景的组合控制，支持从设计探索、虚拟上身到营销素材生产的连续工作。”</p><p>IDM-VTON面向以人物图和服装图生成穿着效果的任务；服装细节保持和人物适配是图像试穿的核心问题，输出属于视觉效果。</p><h2 id="section46">场景4／智能设计 × 智慧物流</h2><p>凯鸿项目｜业务调研、流程知识建模与智能物流平台规划</p><h3 id="section47">2.4.1 项目身份与研究范围</h3><p>凯鸿物流项目围绕业务调研、问题洞察、服务蓝图、系统架构初稿和模块规划展开，目标是支撑未来5—10年业务增长。首期研究现有系统、数据模型及技术架构。</p><p>服务蓝图把客户行为、前台接触、后台活动和支持过程沿时间展开，显性与不可见活动通过可见性界线区分。</p><div class="knowledge-gallery" data-topic="2.4.1"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0115.jpg" loading="lazy" decoding="async" alt="2.4.1 项目身份与研究范围" title="点击放大查看细节" width="1800" height="361"><figcaption>项目身份与研究范围 · 调研与系统规划</figcaption></figure></div><h3 id="section48">2.4.2 访谈和问卷的具体范围</h3><table><thead><tr><th>调研对象</th>
+<th>主要岗位／业务</th>
+<th>方法与产物</th>
+</tr>
+</thead>
+<tbody><tr><td>汽修、贸易、采购、行政、人事、IT</td>
+<td>关键业务负责人</td>
+<td>围绕流程、系统使用、痛点、改进期望访谈</td>
+</tr>
+<tr><td>汽运及财务审计</td>
+<td>普运调度、后勤、客服，集运调度、司机，财务、审计</td>
+<td>半结构访谈，并对6类一线岗位实地跟踪</td>
+</tr>
+<tr><td>联运、仓储、堆场、箱管</td>
+<td>负责人及一线员工</td>
+<td>观察、追问、记录三角验证</td>
+</tr>
+<tr><td>问卷人群</td>
+<td>普运业务18、普运司机27、集运业务13、集运司机31、财务10、审计9</td>
+<td>合计108份，含多选、5点李克特量表和开放题</td>
+</tr>
+</tbody></table>
+<p>研究采用管理访谈、一线岗位跟踪、问卷与交叉验证，覆盖汽修、贸易、采购、行政、人事、IT、汽运、财务审计、联运、仓储、堆场和箱管。问卷共108份。</p><p>蓝图中的客户触点、岗位活动、后台过程和支持系统，是不同的调研记录层次；照片、访谈、问卷各提供不同证据。</p><div class="knowledge-gallery" data-topic="2.4.2"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0116.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1440" height="1080"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0117.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1440" height="1080"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0118.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1440" height="1080"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0119.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1440" height="1080"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0120.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1440" height="1080"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0121.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1080" height="1440"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0122.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1800" height="1350"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0123.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1800" height="1350"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0124.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1800" height="1350"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0125.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1440" height="1080"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0126.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="484" height="364"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0127.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="486" height="364"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0128.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1440" height="1080"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0129.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1440" height="1080"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0130.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1350" height="1800"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0131.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="1800" height="1350"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0132.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="564" height="1002"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0133.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="560" height="1005"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0134.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="564" height="999"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0135.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="561" height="1002"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0136.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="561" height="1001"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0137.jpg" loading="lazy" decoding="async" alt="2.4.2 访谈和问卷的具体范围" title="点击放大查看细节" width="563" height="1002"><figcaption>访谈和问卷的具体范围 · 调研与系统规划</figcaption></figure></div><h3 id="section49">2.4.3 已发现的业务痛点</h3><ul><li><strong>货代：</strong>需在ERP、Excel、企业微信／QQ和外部网站间切换。调研中超过50%每分钟至少切换一次，88.9%每分钟至少复制粘贴一次。比例适用于相关调研样本。 </li>
+<li>销售商务：75%受访者将船期及运费信息分散列为困扰，58%提及历史报价记录不完整；需求归类：统一查询、报价复用和客户信息管理。</li>
+<li><strong>报关：</strong>从官网、群聊、公众号等渠道获取政策，常见耗时10—30分钟，部分为30—90分钟；对应政策知识汇聚、时效管理和单证辅助。 </li>
+<li><strong>贸易采购：</strong>客户、产品、价格基础数据未与合同生成映射；海外分支中文系统和越南文翻译不完整；对应合同生成和完整本地化。 </li>
+<li><strong>行政：</strong>已审定合同与外部签署版本需人工比对；合同新建、文件预览和模板查找步骤繁琐；对应差异高亮、字段说明和任务导向交互。 </li>
+<li><strong>人事：</strong>入职、调薪、绩效、岗位变动信息分散；流程触发及结果回写不足；对应员工全周期视图和自动流转。 </li>
+</ul>
+<p>世界海关组织数据模型以统一数据元素及结构促进跨机构信息交换，支撑单一窗口和数据协调；字段名称、定义和代码是互通基础。</p><div class="knowledge-gallery" data-topic="2.4.3"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0138.jpg" loading="lazy" decoding="async" alt="2.4.3 已发现的业务痛点" title="点击放大查看细节" width="1736" height="978"><figcaption>已发现的业务痛点 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0139.jpg" loading="lazy" decoding="async" alt="2.4.3 已发现的业务痛点" title="点击放大查看细节" width="1736" height="972"><figcaption>已发现的业务痛点 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0140.jpg" loading="lazy" decoding="async" alt="2.4.3 已发现的业务痛点" title="点击放大查看细节" width="1738" height="976"><figcaption>已发现的业务痛点 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0141.jpg" loading="lazy" decoding="async" alt="2.4.3 已发现的业务痛点" title="点击放大查看细节" width="1800" height="1051"><figcaption>已发现的业务痛点 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0142.jpg" loading="lazy" decoding="async" alt="2.4.3 已发现的业务痛点" title="点击放大查看细节" width="1800" height="1055"><figcaption>已发现的业务痛点 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0143.jpg" loading="lazy" decoding="async" alt="2.4.3 已发现的业务痛点" title="点击放大查看细节" width="1796" height="1060"><figcaption>已发现的业务痛点 · 调研与系统规划</figcaption></figure></div><h3 id="section50">2.4.4 物流业务与服务蓝图</h3><p>服务蓝图按订单状态、关键事件、客户触点、业务岗位、支持系统和业务约束展开。</p><p>关键约束包含一柜多票、多柜多票、铁路与汽车计费单位转换、仓储个性化计费、箱号船次关联、免费用箱期、跨境开票审批、附件匹配和实物库存同步。以下内容为现状问题与系统需求，非已交付功能。</p><table><thead><tr><th>业务链</th>
+<th>主要步骤</th>
+<th>关键单据／对象</th>
+<th>关联岗位及系统</th>
+</tr>
+</thead>
+<tbody><tr><td>商机与接单</td>
+<td>背调、询价、报价、合同、订单创建、运输方案</td>
+<td>客户、报价、合同、订单</td>
+<td>销售商务，CRM、OA、外部企业及运价信息</td>
+</tr>
+<tr><td>货代</td>
+<td>订舱、提单制作、船期港口跟踪、费用录入</td>
+<td>订舱单、提单、船期、费用</td>
+<td>货代操作、单证、货代通、港口与船司网站</td>
+</tr>
+<tr><td>铁路／联运</td>
+<td>委托供应商、全程跟踪、短驳衔接、计费</td>
+<td>运输清单、装车明细、提货计划</td>
+<td>联运调度与后勤、联运系统、铁路供应商</td>
+</tr>
+<tr><td>公路运输</td>
+<td>派车、提货、运输、签收、回单、费用</td>
+<td>派车单、签收单、回单</td>
+<td>调度、司机、客服、后勤，运输系统</td>
+</tr>
+<tr><td>报关</td>
+<td>汇总材料、申报、放行、费用</td>
+<td>报关资料、申报单、放行单</td>
+<td>报关员，云报关、单一窗口等</td>
+</tr>
+<tr><td>仓储</td>
+<td>入库需求、核单、库位登记、出库、拣货、盘点</td>
+<td>SKU、批次、库位、入出库单</td>
+<td>仓管和客户，云仓储及客户系统</td>
+</tr>
+<tr><td>箱管</td>
+<td>接收用箱、调箱、提箱、装箱、还箱、状态更新</td>
+<td>集装箱、船次、免费用箱期</td>
+<td>货代、箱管、船司与订单系统</td>
+</tr>
+<tr><td>堆场</td>
+<td>EDO／设备单、贝位分配、提还箱、堆存</td>
+<td>箱号、贝位、设备单</td>
+<td>办单员、堆高司机、验箱员、堆场系统</td>
+</tr>
+<tr><td>财务审计</td>
+<td>对账、开票、收付款、入账、审单</td>
+<td>对账单、发票、凭证、附件</td>
+<td>会计、出纳、审计、财务和OA</td>
+</tr>
+</tbody></table>
+<table><thead><tr><th>业务问题与需求</th>
+<th>对应对象与业务约束</th>
+</tr>
+</thead>
+<tbody><tr><td>客户一次录入后不能自动贯通合同、报价和拜访；多名销售可能重复开发同一客户</td>
+<td>客户主数据、客户池、跟进状态、工商背调及历史合作关联</td>
+</tr>
+<tr><td>提成计算偶有错误，历史报价和同线路市场价缺少统一参照</td>
+<td>提成规则、报价版本、费用基线与核对记录</td>
+</tr>
+<tr><td>船公司拆单后才能补建系统订单，一柜多票、多柜多票依赖线下处理</td>
+<td>订单、箱、提单及船次之间的一对多／多对多关系。</td>
+</tr>
+<tr><td>铁路按箱、汽运按车辆、实际又可能按签收吨位结算</td>
+<td>分运输段计量单位、数量换算、成本计算与原始凭证</td>
+</tr>
+<tr><td>一箱货物可拆给多辆平板车，反之亦然；转运后难以对应前后两次派单</td>
+<td>运段、货物批次、箱与车的映射，以及仓储先进先出与订单完结之间的约束</td>
+</tr>
+<tr><td>客户经微信群、电话、邮件Excel下单，字段不规范</td>
+<td>非结构化输入解析、缺失字段提示及人工复核；</td>
+</tr>
+<tr><td>地址必须完全一致才能搜索；空格、门牌缺漏等导致重复创建</td>
+<td>地址标准化、候选匹配与地点主数据。</td>
+</tr>
+<tr><td>货代需要在船司、港口、业务系统和聊天／邮件之间反复查询与更新</td>
+<td>事件节点、第三方接口与推送；接口授权状态未载</td>
+</tr>
+<tr><td>在途GPS可能因欠费或关闭失效；专线拼车多次转运后仍需人工询问</td>
+<td>轨迹缺失、信息置信度、节点回报与异常通知，不承诺全程实时定位</td>
+</tr>
+<tr><td>工厂装卸等待不稳定；部分手机上传仅能现场拍照，无法从相册选择</td>
+<td>时间窗口、司机移动端操作及兼容性；等待预测是需求，尚非已实现效果</td>
+</tr>
+<tr><td>客户仓储Excel逐条录入，SKU多时易错；不同客户按件、吨、面积或时长计费</td>
+<td>SKU、批次、库位、数量与可配置计费规则</td>
+</tr>
+<tr><td>部分外仓手工盘点，型号、批次、入库时间、库位容量缺少统一管理</td>
+<td>入出库和盘点的连续状态，不只存一个总库存数</td>
+</tr>
+<tr><td>卸柜和装车服务捆绑计费，但两者作业次数不一致</td>
+<td>换算公式、原始作业量、计算过程和对账凭证；费率按合同与实际作业计算</td>
+</tr>
+<tr><td>箱管提箱时间等已导数据难改；提单号前端非必填，后续还箱又必需</td>
+<td>字段必填阶段、纠错留痕与状态迁移</td>
+</tr>
+<tr><td>箱号、船次、订单没有自动联动；免费用箱期缺少预警</td>
+<td>箱状态、船次关联及剩余免费天数。30天为业务示例，具体期限由船司及合同决定</td>
+</tr>
+<tr><td>越南堆场与第三方开票系统重复录入，日均20—30单（调研口径）</td>
+<td>业务与开票字段映射；此为调研口径，不是新系统已自动处理单量</td>
+</tr>
+<tr><td>当地现金支付即时开票与内部三级审核存在时效冲突</td>
+<td>内控规则、风险分级与开票流程协调。</td>
+</tr>
+<tr><td>预录数量与实际提还量不同时，订单可能不能正确完结</td>
+<td>部分履约、撤销／冲销、剩余额度与结算状态</td>
+</tr>
+<tr><td>回单纸质接收、登记和归档依赖Excel，遗失或延期影响结算</td>
+<td>回单登记、电子化、追踪和逾期提醒，及客户是否接受电子回单</td>
+</tr>
+<tr><td>金蝶、业务系统和OA同步不足，付款申请与银行凭证仍多手工处理</td>
+<td>财务数据接口、凭证生成、支付回执和对账一致性</td>
+</tr>
+<tr><td>价格比较、运输路径和附件匹配依赖人工，缺少费用证据链</td>
+<td>合同、签收、路径节点、标准价／历史价／市场价的关联核验</td>
+</tr>
+<tr><td>固定三道审核未按风险区分，重复工作多且易疲劳</td>
+<td>风险分层、审核任务、证据展示与复核留痕；AI审核属于辅助方向</td>
+</tr>
+<tr><td>部分固定供应商缺少系统性评价和备选资源</td>
+<td>供应商履约、成本、可靠性与中断风险评估</td>
+</tr>
+</tbody></table>
+<p>关系模型区分一对多和多对多；关联对象可以在连接关系上保存额外字段，用于表达数量、角色、顺序或费用等关系属性。</p><div class="knowledge-gallery" data-topic="2.4.4"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0144.jpg" loading="lazy" decoding="async" alt="2.4.4 物流业务与服务蓝图" title="点击放大查看细节" width="1800" height="1500"><figcaption>物流业务与服务蓝图 · 调研与系统规划</figcaption></figure></div><h3 id="section51">2.4.5 联运业务流程</h3><p>晋中联运链路连接运输清单、装柜计划、装车、提送、短驳、仓储、回单与费用结算，起点名称存在嘉兴和安徽两个版本。</p><p>武宣—嘉兴链路依次包括装货计划、订舱、拖车、建单、提货、武宣码头、小船中转、换大船、目的港签收、核算和对账付款。运输拆单与中转再拆单构成订单、运段、箱货和单据的多层关联。</p><p>EPCIS事件记录物品在业务中的发生时间、地点和情境；聚合事件表达箱、托盘与内含货物的组合或拆解，适用于追踪对象关系的变化。</p><div class="knowledge-gallery" data-topic="2.4.5"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0145.jpg" loading="lazy" decoding="async" alt="2.4.5 联运业务流程" title="点击放大查看细节" width="1139" height="1800"><figcaption>联运业务流程 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0146.jpg" loading="lazy" decoding="async" alt="2.4.5 联运业务流程" title="点击放大查看细节" width="1775" height="1800"><figcaption>联运业务流程 · 调研与系统规划</figcaption></figure></div><h3 id="section52">2.4.6 系统规划中的具体内容</h3><p>系统规划面向架构性能、流程协同、数据知识和风险管控，包含最小业务单元解耦、读写分离、AI解析录入、数据仓库与BI、费用、单证、审单和统一知识服务。</p><p>架构由接入、应用、业务、数据模型与硬件层构成。接入包括鉴权、网关、负载均衡；应用包括海关条例、船期运价、CRM、培训和知识服务；业务包括货代、报关、内外贸、联运、财务审计、采购；基础能力包括关系库、消息队列、湖仓、大模型、优化模型和视觉。</p><p>模块规划包括CRM、SRM、FMS、TMS、WMS、OMS、堆场箱管、报关、贸易、汽修、审计财务、审批采购与AI助手。项目阶段为架构与模块规划。</p><p>DCSA运输可视化标准区分货运、运输和设备事件，对应不同业务对象与节点；订单状态、运输过程和集装箱状态分别表达。</p><div class="knowledge-gallery" data-topic="2.4.6"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0147.jpg" loading="lazy" decoding="async" alt="2.4.6 系统规划中的具体内容" title="点击放大查看细节" width="1800" height="934"><figcaption>系统规划中的具体内容 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0148.jpg" loading="lazy" decoding="async" alt="2.4.6 系统规划中的具体内容" title="点击放大查看细节" width="1800" height="1082"><figcaption>系统规划中的具体内容 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0149.jpg" loading="lazy" decoding="async" alt="2.4.6 系统规划中的具体内容" title="点击放大查看细节" width="1800" height="941"><figcaption>系统规划中的具体内容 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0150.jpg" loading="lazy" decoding="async" alt="2.4.6 系统规划中的具体内容" title="点击放大查看细节" width="1800" height="1359"><figcaption>系统规划中的具体内容 · 调研与系统规划</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0151.jpg" loading="lazy" decoding="async" alt="2.4.6 系统规划中的具体内容" title="点击放大查看细节" width="1800" height="1657"><figcaption>系统规划中的具体内容 · 调研与系统规划</figcaption></figure></div><h3 id="section53">2.4.7 企业数字化成果内容</h3><p>凯鸿既有数字化体系包括“凯鸿之翼”，以订单主线连接运输、仓储、报关与供应链信息互通；对应业务背景版本为2023年。</p><p>海关数据协调包含字段定义和代码统一；企业既有系统互通与跨机构数据互通分别属于企业内外两层。</p><h3 id="section54">2.4.8 物流平台项目简介</h3><p>“面向复杂物流业务，项目通过管理访谈、一线跟踪、问卷和服务蓝图，把订单、运输、仓储、堆场箱管与财务审计之间的关系转为系统可以表达的业务结构。在此基础上规划数据资产、知识服务、AI辅助和BI能力，为智能物流平台建设形成依据。”</p><p>物流事件不仅记录当前状态，也记录包装组合、拆解和对象关系变化，关联项目中的箱货与运段表达。</p><h2 id="section55">场景5／智能设计 × 数字商业运营</h2><p>蔡博｜AI智慧商圈、数字门店与数据驱动经营</p><h3 id="section56">2.5.1 智慧商圈与数字门店</h3><p>智慧商圈聚焦点位人流、进店人数、去重追踪和开店评估；数字门店进一步分析货架、展台、体验区中的注目、停留、触碰、试用与商品互动。</p><p>客流计数精度记录为85%—90%，属于特定任务指标；测试集与现场条件未完整披露。</p><p>数字场所受众测量区分场所客流、屏幕覆盖流量与屏幕受众。到场、可接触画面和实际受众对应不同统计条件。</p><div class="knowledge-gallery" data-topic="2.5.1"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0067.jpg" loading="lazy" decoding="async" alt="2.5.1 智慧商圈与数字门店" title="点击放大查看细节" width="1342" height="720"><figcaption>智慧商圈与数字门店</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0068.jpg" loading="lazy" decoding="async" alt="2.5.1 智慧商圈与数字门店" title="点击放大查看细节" width="1342" height="720"><figcaption>智慧商圈与数字门店</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0069.jpg" loading="lazy" decoding="async" alt="2.5.1 智慧商圈与数字门店" title="点击放大查看细节" width="1300" height="760"><figcaption>智慧商圈与数字门店</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0070.jpg" loading="lazy" decoding="async" alt="2.5.1 智慧商圈与数字门店" title="点击放大查看细节" width="1681" height="936"><figcaption>智慧商圈与数字门店</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0071.jpg" loading="lazy" decoding="async" alt="2.5.1 智慧商圈与数字门店" title="点击放大查看细节" width="1080" height="608"><figcaption>智慧商圈与数字门店</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0072.jpg" loading="lazy" decoding="async" alt="2.5.1 智慧商圈与数字门店" title="点击放大查看细节" width="1080" height="879"><figcaption>智慧商圈与数字门店 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0073.jpg" loading="lazy" decoding="async" alt="2.5.1 智慧商圈与数字门店" title="点击放大查看细节" width="1080" height="878"><figcaption>智慧商圈与数字门店</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0074.jpg" loading="lazy" decoding="async" alt="2.5.1 智慧商圈与数字门店" title="点击放大查看细节" width="1672" height="941"><figcaption>智慧商圈与数字门店</figcaption></figure></div><h3 id="section57">2.5.2 数字门店感知对象与硬件</h3><p>数字门店整合算法、软件和硬件，通过视线、动作和区域分析感知注目、停留、触碰和体验。采集设备包括附加摄像头、外壳、单面镜和多角度吸附安装结构。</p><p>设备厚度由95mm降至56.5mm，降幅约40.5%；成本降低40%为项目指标口径。进一步小型化与无线化属于产品规划。</p><p>摄像头位置、视角和畸变与区域坐标标定相关；装置外壳尺寸和视觉测量参数分别记录。</p><div class="knowledge-gallery" data-topic="2.5.2"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0085.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="1672" height="941"><figcaption>数字门店感知对象与硬件 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0087.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="1024" height="1536"><figcaption>数字门店感知对象与硬件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0088.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="1800" height="981"><figcaption>数字门店感知对象与硬件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0089.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="1800" height="1350"><figcaption>数字门店感知对象与硬件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0090.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="1800" height="1005"><figcaption>数字门店感知对象与硬件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0091.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="1800" height="1007"><figcaption>数字门店感知对象与硬件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0104.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="1707" height="1280"><figcaption>数字门店感知对象与硬件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0105.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="769" height="577"><figcaption>数字门店感知对象与硬件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0106.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="769" height="577"><figcaption>数字门店感知对象与硬件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0107.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="497" height="372"><figcaption>数字门店感知对象与硬件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0108.jpg" loading="lazy" decoding="async" alt="2.5.2 数字门店感知对象与硬件" title="点击放大查看细节" width="723" height="496"><figcaption>数字门店感知对象与硬件</figcaption></figure></div><h3 id="section58">2.5.3 从线下行为到运营指标</h3><p>线下行为指标包括注意客流与时长、体验客流与时长、回头客流和商品互动。有效客流、有效注目和有效互动构成三级行为漏斗；行为转化率不等于交易成交率。</p><table><thead><tr><th>运营对象</th>
+<th>数据对象</th>
+<th>业务问题</th>
+<th>统计维度</th>
+</tr>
+</thead>
+<tbody><tr><td>有效客流</td>
+<td>经过／进入区域、去重记录</td>
+<td>区域是否有人、时段差异</td>
+<td>区域范围、去重时窗、统计周期</td>
+</tr>
+<tr><td>有效注目</td>
+<td>朝向／注目、时长</td>
+<td>商品是否引起关注</td>
+<td>注目判定阈值、遮挡与距离</td>
+</tr>
+<tr><td>有效互动</td>
+<td>触碰、拿起、体验等</td>
+<td>关注是否进入体验</td>
+<td>行为定义、误判及重复计数</td>
+</tr>
+<tr><td>动线热区</td>
+<td>轨迹、停留位置</td>
+<td>陈列和布局是否合理</td>
+<td>坐标标定、分区、统计粒度</td>
+</tr>
+<tr><td>SKU对比</td>
+<td>不同商品注目／互动指标</td>
+<td>哪些商品或陈列更有效</td>
+<td>同时段、同流量、展示条件</td>
+</tr>
+<tr><td>经营联动</td>
+<td>POS、销售、活动及库存</td>
+<td>是否有销售与补货影响</td>
+<td>是否真实接入交易数据</td>
+</tr>
+</tbody></table>
+<p>有效客流、注目与互动对应不同条件筛选后的行为记录；场所客流和受众口径在受众测量标准中也分别定义。</p><h3 id="section59">2.5.4 研发成果与核心组件</h3><ul><li>5类核心算法：客流识别与追踪、用户行为、门店热区、停留时长、广告内容监控。</li>
+<li>5层系统：视频输入、AI算法处理、数据处理、结果输出、门店对接。</li>
+<li>4类平台：门店管理、数据可视化、运营分析、AI后台；3类数据平台：采集、存储、分析。</li>
+<li>8类组件：人脸检测、特征提取、姿态检测、物体检测、图像理解、特征匹配、任务调度、相似度计算。</li>
+<li>研发规模：55+前后端及算法核心文件、40+API；这属于工程规模指标。</li>
+<li>接入与并发：支持RTSP／RTMP两类视频协议，已实现多摄像头并发，未给出并发上限。</li>
+<li>运行监控4项：Redis、Celery Worker、数据库连接、GPU资源；稳定性4类机制：健康检查、分布式任务队列、事务存储、秒级更新。</li>
+<li>分析能力：三级行为漏斗；当日客流累计、行为更新、转化率计算；日周月聚合、同比环比、趋势预测。</li>
+</ul>
+<p>ByteTrack研究以检测框关联形成跨帧轨迹；追踪轨迹进一步关联过线计数、驻留和区域分析，轨迹编号本身不等于真实身份。</p><div class="knowledge-gallery" data-topic="2.5.4"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0086.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="1672" height="941"><figcaption>研发成果与核心组件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0092.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="1800" height="981"><figcaption>研发成果与核心组件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0093.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="1800" height="1350"><figcaption>研发成果与核心组件 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0094.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="1800" height="981"><figcaption>研发成果与核心组件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0095.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="1672" height="941"><figcaption>研发成果与核心组件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0098.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="1280" height="498"><figcaption>研发成果与核心组件 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0099.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="1432" height="1104"><figcaption>研发成果与核心组件 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0100.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="259" height="194"><figcaption>研发成果与核心组件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0101.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="700" height="525"><figcaption>研发成果与核心组件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0102.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="1678" height="958"><figcaption>研发成果与核心组件</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0103.jpg" loading="lazy" decoding="async" alt="2.5.4 研发成果与核心组件" title="点击放大查看细节" width="1726" height="904"><figcaption>研发成果与核心组件</figcaption></figure></div><h3 id="section60">2.5.5 系统架构与运营分析</h3><p>系统从视频接入与预处理、任务调度、数据存储、行为分析到平台管理组织运行，覆盖品牌、门店、展台、设备、任务、状态和异常管理。</p><p>运营界面包括SKU对比、历史时段与时长、注目和互动转化、三级漏斗、设备配置、区域监控及展架对比。界面示例值与累计试点数据分别统计。</p><p>HOTA把目标检测与跨帧关联纳入多目标追踪评价。检测正确与否、轨迹是否持续对应同一目标是两个不同问题。</p><div class="knowledge-gallery" data-topic="2.5.5"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0096.jpg" loading="lazy" decoding="async" alt="2.5.5 系统架构与运营分析" title="点击放大查看细节" width="1536" height="1024"><figcaption>系统架构与运营分析</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0097.jpg" loading="lazy" decoding="async" alt="2.5.5 系统架构与运营分析" title="点击放大查看细节" width="1672" height="941"><figcaption>系统架构与运营分析 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0109.jpg" loading="lazy" decoding="async" alt="2.5.5 系统架构与运营分析" title="点击放大查看细节" width="1800" height="820"><figcaption>系统架构与运营分析</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0110.jpg" loading="lazy" decoding="async" alt="2.5.5 系统架构与运营分析" title="点击放大查看细节" width="1800" height="837"><figcaption>系统架构与运营分析</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0111.jpg" loading="lazy" decoding="async" alt="2.5.5 系统架构与运营分析" title="点击放大查看细节" width="1800" height="827"><figcaption>系统架构与运营分析</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0112.jpg" loading="lazy" decoding="async" alt="2.5.5 系统架构与运营分析" title="点击放大查看细节" width="1800" height="831"><figcaption>系统架构与运营分析</figcaption></figure></div><h3 id="section61">2.5.6 已有的量化记录</h3><table><thead><tr><th>原文</th>
+<th>记录含义</th>
+<th>统计范围</th>
+</tr>
+</thead>
+<tbody><tr><td>4个试点展台</td>
+<td>以4个展台开展试点</td>
+<td>试点单位：展台；千店为合作计划</td>
+</tr>
+<tr><td>2.7k+累计运行周期</td>
+<td>原指标保留，单位未载</td>
+<td>时间单位未载</td>
+</tr>
+<tr><td>1.3k+累计分析视频时长</td>
+<td>原指标保留，单位未载</td>
+<td>时长单位未载，利用率尚无完整记录</td>
+</tr>
+<tr><td>11w+客流记录</td>
+<td>超11万条分析记录</td>
+<td>统计对象：客流记录</td>
+</tr>
+<tr><td>5w+注目记录</td>
+<td>超5万条注目分析记录</td>
+<td>统计对象：注目记录</td>
+</tr>
+<tr><td>4k+互动记录</td>
+<td>超4000条互动分析记录</td>
+<td>统计对象：互动记录</td>
+</tr>
+<tr><td>15+看板，10+模块</td>
+<td>产品功能规模</td>
+<td>记录属性：功能规模</td>
+</tr>
+</tbody></table>
+<p>试点规模为4个展台；千家门店属于合作拓展计划。客流、注目、互动均为记录量，不能直接换算为独立消费者或交易数。</p><p>原始计数、去重人数、持续时长与受众量属于不同统计指标，数量单位和统计窗口分别保留。</p><h3 id="section62">2.5.7 关联案例：数据驱动选品与产品创新</h3><p>产品创新连接线上舆情与线下行为。公牛大路灯包括人群画像、属性诊断和营销；利仁电饼铛分析40万条社媒与10万余条电商评论，覆盖早餐、家庭、带娃等场景。</p><p>星巴克主题分析含6大场景、20个子场景，涉及风格、材质、色彩、功能、IP和节令；苏泊尔分析含5类一级属性、16项二级属性及声量满意度比较。服务模式包括趋势工具、定制咨询、爆品创新、品牌防御和品牌升级。</p><p>Kano原始研究区分必备、一元与魅力等质量属性，强调功能实现与主观满意度之间的不同关系；该分类与单纯评论情感分数不同。</p><div class="knowledge-gallery" data-topic="2.5.7"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0324.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1447" height="1009"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0325.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="855"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0326.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0327.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0328.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0329.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1630" height="442"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0330.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="668" height="714"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0331.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="768" height="456"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0332.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1672" height="941"><figcaption>关联案例：数据驱动选品与产品创新 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0333.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1011"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0334.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1012"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0335.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1005"><figcaption>关联案例：数据驱动选品与产品创新 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0336.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0337.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0338.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0339.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0340.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0341.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0342.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0343.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="979"><figcaption>关联案例：数据驱动选品与产品创新 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0344.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="600"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0345.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1654" height="1468"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0346.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1374" height="742"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0347.jpg" loading="lazy" decoding="async" alt="2.5.7 关联案例：数据驱动选品与产品创新" title="点击放大查看细节" width="1800" height="1013"><figcaption>关联案例：数据驱动选品与产品创新</figcaption></figure></div><h3 id="section63">2.5.8 数字门店系统简介</h3><p>“将门店现场转为可分析的经营数据，通过客流、注目、停留和互动，理解商品被看见、被关注、被体验的过程。数字门店系统整合采集硬件、行为算法和运营看板，为陈列、动线、SKU与活动优化提供依据。”</p><p>跨帧轨迹关联把单帧目标变为连续行为记录，构成停留、过线和区域分析的数据基础。</p><h2 id="section64">场景6／智能设计 × 未来教育</h2><p>邹宁老师｜少年宫方向、少儿文化体验与互动学习空间</p><h3 id="section65">2.6.1 项目关系与资料分类</h3><p>教育方向连接文化体验、交互空间与智能设计，关联邹宁的产品创新、虚拟现实、具身交互和认知建模研究。</p><p>现有应用包括AI汉服换装、儿童想象课堂、自然感官与艺术装置；少年宫专属课程、教育智能体和学习成效尚无完整交付记录，因此分列为教育研究与场景发展方向。</p><p>邹宁产品创新、智能设计、虚拟现实与具身交互、认知建模方向，合作专著包括2025年《交叉学科下的世界设计史》和2024年《设计文化学》。</p><h3 id="section66">2.6.2 AI汉服换装与文化体验</h3><p>AI汉服换装结合文化服饰、图像生成和线下互动终端，提供服饰主题选择与视觉体验。课程大纲、年龄分层、课时和学习评价尚无完整实施记录。</p><p>学生AI能力的“理解—应用—创造”进阶，为文化图像体验提供了独立的学习目标分类；体验照片与能力评价分别记录。</p><div class="knowledge-gallery" data-topic="2.6.2"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0178.jpg" loading="lazy" decoding="async" alt="2.6.2 AI汉服换装与文化体验" title="点击放大查看细节" width="513" height="686"><figcaption>AI汉服换装与文化体验 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0179.jpg" loading="lazy" decoding="async" alt="2.6.2 AI汉服换装与文化体验" title="点击放大查看细节" width="1706" height="1279"><figcaption>AI汉服换装与文化体验</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0180.jpg" loading="lazy" decoding="async" alt="2.6.2 AI汉服换装与文化体验" title="点击放大查看细节" width="513" height="686"><figcaption>AI汉服换装与文化体验</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0181.jpg" loading="lazy" decoding="async" alt="2.6.2 AI汉服换装与文化体验" title="点击放大查看细节" width="1279" height="1706"><figcaption>AI汉服换装与文化体验</figcaption></figure></div><h3 id="section67">2.6.3 乐处空间的公司、流程与覆盖资料</h3><p>乐处空间使命为“艺术生活化、生活艺术化”，愿景为“在每个人心里种下美好的种子”，价值观为“创作自由，极致审美”。S.P.I.M包含空间装置、交互体验、活动衍生和整合传播。</p><p>2023年业务覆盖口径为15余个艺术装置、13余个落展省份、28余座城市，包括杭州、深圳、南京、西安、佛山、重庆、上海、长沙、武汉、宁波、天津、苏州、嘉兴、兰州等。</p><p>的愿景是“在每个人心里种下美好的种子”，价值观为“创作自由，极致审美”。这些是乐处空间的品牌表达。</p><p>合作商场与品牌包括环宇城、嘉里中心、星河COCO Park、万象天地、新城控股、吾悦广场、万象城、银泰城（蚌埠）、远洋商业、天街、天街城、楚河汉街、华采天地、金地集团、王府井集团、文三街科技、绿景、天德广场、中大国际、宜悦城、COCO city和武林路女人街。品牌、集团与具体商场分别归类。</p><p>其他作品主题包括光音碎片、静待花开、火焰装置、文三街数字装置、行走的美术馆、绿野仙踪和空气乐园。</p><p>乐处空间2023年联系信息：微信、微博、小红书账号“乐处空间”，小红书号1033239900；地址杭州市西湖区石祥西路859号紫金创业B座601-1。该地址为历史公司信息。</p><p>S.P.I.M服务内容：空间与形态设计；观众触发、反馈和参与；演出活动、课程体验及周边衍生；传播视觉、物料与媒体运营。资料依据：。</p><p>互动空间属于非正式学习环境，兴趣、理解、参与和学习身份是不同观察维度。</p><div class="knowledge-gallery" data-topic="2.6.3"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0427.jpg" loading="lazy" decoding="async" alt="2.6.3 乐处空间的公司、流程与覆盖资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>乐处空间的公司、流程与覆盖资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0428.jpg" loading="lazy" decoding="async" alt="2.6.3 乐处空间的公司、流程与覆盖资料" title="点击放大查看细节" width="1800" height="1012"><figcaption>乐处空间的公司、流程与覆盖资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0429.jpg" loading="lazy" decoding="async" alt="2.6.3 乐处空间的公司、流程与覆盖资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>乐处空间的公司、流程与覆盖资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0430.jpg" loading="lazy" decoding="async" alt="2.6.3 乐处空间的公司、流程与覆盖资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>乐处空间的公司、流程与覆盖资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0431.jpg" loading="lazy" decoding="async" alt="2.6.3 乐处空间的公司、流程与覆盖资料" title="点击放大查看细节" width="1800" height="1012"><figcaption>乐处空间的公司、流程与覆盖资料</figcaption></figure></div><h3 id="section68">2.6.4 《生机·误入荷塘》</h3><p>主题与构图： 以西湖荷塘为灵感，放大荷叶、莲蓬等自然元素，通过人物与装置尺度对比形成“进入荷塘深处”的体验。</p><p>结构参数： 三个岛屿直径分别约7m、3.5m、1.8m，总面积200㎡（含地贴）；荷叶约69片、莲蓬10个；荷叶直径110／80／60／45cm；高度范围约2.8—3m（两种设计尺寸口径）；绿色系；玻璃钢荷叶、金属荷杆、钢木结构地台。整体立面横向尺寸11m。</p><p>交互机制： 定时干冰烟泡装置，泡泡随机飘落，接触衣物与肌肤时呈现不同状态。泡液、烟雾成分、控制器与传感器型号未载。关联主题：植物尺度、泡膜、接触与观察。</p><p>泡膜前后表面反射的光发生干涉，形成随膜厚变化的色彩。泡膜光学与烟泡中的烟雾材料分别属于不同知识对象。</p><div class="knowledge-gallery" data-topic="2.6.4"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0432.jpg" loading="lazy" decoding="async" alt="2.6.4 《生机·误入荷塘》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《生机·误入荷塘》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0433.jpg" loading="lazy" decoding="async" alt="2.6.4 《生机·误入荷塘》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《生机·误入荷塘》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0434.jpg" loading="lazy" decoding="async" alt="2.6.4 《生机·误入荷塘》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《生机·误入荷塘》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0435.jpg" loading="lazy" decoding="async" alt="2.6.4 《生机·误入荷塘》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《生机·误入荷塘》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0436.jpg" loading="lazy" decoding="async" alt="2.6.4 《生机·误入荷塘》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《生机·误入荷塘》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0437.jpg" loading="lazy" decoding="async" alt="2.6.4 《生机·误入荷塘》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《生机·误入荷塘》／ · 现场与实物</figcaption></figure></div><h3 id="section69">2.6.5 《停云听雨》</h3><p>主题与构图： 把风雨、昼夜与自然色彩引入商场空间，营造身心微旅行。弧形钢架、吊挂云朵、地台与休息体验区构成空间主体。</p><p>结构参数： 布置范围约10m×10m，空间按圆形组织，几何尺寸口径尚未统一；整体高4m，云朵高低错落，吊挂于钢管；白色基础、灯光随场景变色；不锈钢架、人造棉、LED灯带、钢木地台。局部构件尺寸为2.5m和3.12m。</p><p>交互机制： 红外感应触发云朵光效与白噪音，交互动作为招手。四种光声情境为清晨薄雾、风雨欲来、林间观云、七彩云；林间观云用奶白与流动绿色，配流水、风和树叶声。杭州嘉里中心版本增加星空地贴、星星凳和四节气互动。</p><p>PIR传感器被动检测视野内红外辐射变化，常用于人体移动触发；传感输出与身份识别属于不同层级。</p><div class="knowledge-gallery" data-topic="2.6.5"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0439.jpg" loading="lazy" decoding="async" alt="2.6.5 《停云听雨》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《停云听雨》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0440.jpg" loading="lazy" decoding="async" alt="2.6.5 《停云听雨》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《停云听雨》／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0441.jpg" loading="lazy" decoding="async" alt="2.6.5 《停云听雨》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《停云听雨》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0442.jpg" loading="lazy" decoding="async" alt="2.6.5 《停云听雨》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《停云听雨》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0443.jpg" loading="lazy" decoding="async" alt="2.6.5 《停云听雨》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《停云听雨》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0444.jpg" loading="lazy" decoding="async" alt="2.6.5 《停云听雨》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《停云听雨》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0445.jpg" loading="lazy" decoding="async" alt="2.6.5 《停云听雨》／" title="点击放大查看细节" width="960" height="544"><figcaption>《停云听雨》／</figcaption></figure></div><h3 id="section70">2.6.6 《丛林秘境》</h3><p>主题： 用视觉、听觉、嗅觉、触觉构建自然沉浸体验。</p><p>结构参数： 直径10m圆形区域，4个岛屿散布镜面地台，高2.4m；白色系、灯光随场景变；玻璃钢、亚克力、镜面铝塑板、PVC海洋球、红外感应染色灯。</p><p>交互机制： 观众游走触发模拟自然气味，灯光模拟森林一天光线变化；武林女装街国庆版本把小岛沿街分放、外壳覆红色渐变膜。知识关联：多感官观察与自然环境感知。</p><p>可寻址灯珠能够分别控制像素；RGB以三个色彩通道混色，RGBW增加独立白色通道，颜色、亮度和时间序列组合形成动态光效。</p><div class="knowledge-gallery" data-topic="2.6.6"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0446.jpg" loading="lazy" decoding="async" alt="2.6.6 《丛林秘境》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《丛林秘境》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0447.jpg" loading="lazy" decoding="async" alt="2.6.6 《丛林秘境》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《丛林秘境》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0448.jpg" loading="lazy" decoding="async" alt="2.6.6 《丛林秘境》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《丛林秘境》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0449.jpg" loading="lazy" decoding="async" alt="2.6.6 《丛林秘境》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《丛林秘境》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0450.jpg" loading="lazy" decoding="async" alt="2.6.6 《丛林秘境》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《丛林秘境》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0451.jpg" loading="lazy" decoding="async" alt="2.6.6 《丛林秘境》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《丛林秘境》／</figcaption></figure></div><h3 id="section71">2.6.7 《跳舞的刺玫瑰》</h3><p>主题： 带刺玫瑰的刺做成柔软可触摸，借此表达人与人外在棱角与柔软回应。</p><p>结构参数： 直径14m区域，可调整分体地台；11个不规则地台、中央大型感应开合玫瑰3朵、阵列小玫瑰777朵；整体高4.5m，小玫瑰0.8m；大玫瑰金属杆与EVA花，其他花为金属杆与环氧树脂，木质烤漆地台。细图称三朵大花直径80cm、高3／3.5／4m，0.8m处设置感应开关，底部配重位于地台；总高与构件高度分开保留。</p><p>交互机制： 项目记录用语为人体热感应触控，观众握住枝干中部后触发花朵开合。传感器类型和控制电路未载。关联主题：人体输入、控制信号、机械开合。</p><p>电容触控通过人体接触引起的电容变化形成输入信号；热感、接近和接触属于不同感知机制。该知识解释触控类型，未指定玫瑰装置硬件。</p><div class="knowledge-gallery" data-topic="2.6.7"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0453.jpg" loading="lazy" decoding="async" alt="2.6.7 《跳舞的刺玫瑰》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《跳舞的刺玫瑰》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0454.jpg" loading="lazy" decoding="async" alt="2.6.7 《跳舞的刺玫瑰》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《跳舞的刺玫瑰》／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0455.jpg" loading="lazy" decoding="async" alt="2.6.7 《跳舞的刺玫瑰》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《跳舞的刺玫瑰》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0456.jpg" loading="lazy" decoding="async" alt="2.6.7 《跳舞的刺玫瑰》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《跳舞的刺玫瑰》／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0457.jpg" loading="lazy" decoding="async" alt="2.6.7 《跳舞的刺玫瑰》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《跳舞的刺玫瑰》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0458.jpg" loading="lazy" decoding="async" alt="2.6.7 《跳舞的刺玫瑰》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《跳舞的刺玫瑰》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0459.jpg" loading="lazy" decoding="async" alt="2.6.7 《跳舞的刺玫瑰》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《跳舞的刺玫瑰》／</figcaption></figure></div><h3 id="section72">2.6.8 《繁花》</h3><p>主题： 真丝、折纸、纱网及灯光构成城市秘密花园。</p><p>结构参数： 长10m、宽16m（含地贴），5个3—5m的自然花岛，最高2.8m；玻璃钢、真松树皮、纸艺与丝制花、木质花房、纱网月亮；白色木花房1个、粉红繁花椅1个、立体字1个、感应开合花8朵。</p><p>交互机制： 红外机械花感应，初始半闭，人经过缓慢打开，离开恢复；区域分布为2朵、2朵、4朵，合计8朵。关联主题：接近感应、机械结构与行为反馈。</p><p>位置舵机按角度控制，连续旋转舵机通常按方向与速度控制；控制信号、机械传动和行程分别影响装置运动。</p><div class="knowledge-gallery" data-topic="2.6.8"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0460.jpg" loading="lazy" decoding="async" alt="2.6.8 《繁花》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《繁花》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0461.jpg" loading="lazy" decoding="async" alt="2.6.8 《繁花》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《繁花》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0462.jpg" loading="lazy" decoding="async" alt="2.6.8 《繁花》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《繁花》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0463.jpg" loading="lazy" decoding="async" alt="2.6.8 《繁花》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《繁花》／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0464.jpg" loading="lazy" decoding="async" alt="2.6.8 《繁花》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《繁花》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0465.jpg" loading="lazy" decoding="async" alt="2.6.8 《繁花》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《繁花》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0466.jpg" loading="lazy" decoding="async" alt="2.6.8 《繁花》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《繁花》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0467.jpg" loading="lazy" decoding="async" alt="2.6.8 《繁花》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《繁花》／</figcaption></figure></div><h3 id="section73">2.6.9 《阿布找朋友》</h3><p>主题： 以原始、直接的交友方式回应通讯录式疏离。</p><p>结构参数： 约140㎡（含地贴），五个小场景：触角森林、花田、蘑菇村、撑伞阿布、飞行阿布气模；正文高3.7m；不规则地台3个、中央展台1个、大玻璃钢雕塑4个、悬挂气模1个；材质有玻璃钢人偶、纸艺花、金属蘑菇树、植绒玻璃钢。立面含更高气模或局部尺寸标注，总高与气模／局部标注分别记录。</p><p>交互机制：已明确的互动形式包括红外触发机械花开合，以及机械蘑菇重力感应，连接身体动作、传感和机械反馈。</p><p>应变式称重传感器利用受力引起的电阻变化，经电桥和放大读取载荷；校准把电信号与载荷数值对应。属于重力互动的一类技术原理。</p><div class="knowledge-gallery" data-topic="2.6.9"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0468.jpg" loading="lazy" decoding="async" alt="2.6.9 《阿布找朋友》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《阿布找朋友》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0469.jpg" loading="lazy" decoding="async" alt="2.6.9 《阿布找朋友》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《阿布找朋友》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0470.jpg" loading="lazy" decoding="async" alt="2.6.9 《阿布找朋友》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《阿布找朋友》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0471.jpg" loading="lazy" decoding="async" alt="2.6.9 《阿布找朋友》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《阿布找朋友》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0472.jpg" loading="lazy" decoding="async" alt="2.6.9 《阿布找朋友》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《阿布找朋友》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0473.jpg" loading="lazy" decoding="async" alt="2.6.9 《阿布找朋友》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《阿布找朋友》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0474.jpg" loading="lazy" decoding="async" alt="2.6.9 《阿布找朋友》／" title="点击放大查看细节" width="1280" height="720"><figcaption>《阿布找朋友》／</figcaption></figure></div><h3 id="section74">2.6.10 《梦境》</h3><p>主题： 以孩童情感和“娃”的形象连接超现实世界，海报可见张一鸣作品署名。</p><p>结构参数：14m×12m（可调整），高2.4m；雕塑作品、版画、打卡、万花筒互动四区；玻璃钢造型、木质地台。万花筒整体1m×0.6m×1.3m，筒体1m×0.6m×0.7m，立架0.6m×0.6m×0.65m，分部高度与总高存在装配关系，分部高度按结构图归档。</p><p>交互机制：六面镜面与内部旋转机械形成变化图案，核心光学机制为多次反射。旋转改变光影组合，支持光学观察与艺术互动。</p><p>相交镜面形成多重像，镜面夹角影响所见图像数量和排列。万花筒中的图案与多次反射有关。</p><div class="knowledge-gallery" data-topic="2.6.10"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0475.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《梦境》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0476.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《梦境》／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0477.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《梦境》／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0478.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《梦境》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0479.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="1800" height="1201"><figcaption>《梦境》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0480.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="1800" height="1201"><figcaption>《梦境》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0481.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="1080" height="1620"><figcaption>《梦境》／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0482.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="1080" height="1619"><figcaption>《梦境》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0483.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="1200" height="1800"><figcaption>《梦境》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0484.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="1080" height="720"><figcaption>《梦境》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0485.jpg" loading="lazy" decoding="async" alt="2.6.10 《梦境》／" title="点击放大查看细节" width="960" height="544"><figcaption>《梦境》／ · 现场与实物</figcaption></figure></div><h3 id="section75">2.6.11 《流浪的树》</h3><p>主题： 以穿梭宇宙、色彩和情绪构成心灵旅程。</p><p>结构参数：15m×15m可调整，最高4.5m；玻璃钢人偶、树脂水母、手工地毯、木地台。六区包括中心岛“五彩斑斓的我”、星球岛“孤独”、海洋岛“悲伤”、极光岛“热爱”、繁花岛“快乐”、丛林岛“勇敢”。</p><p>交互机制： 红外人体识别光影，中心岛“爆炸的思念”，观众接近小蓝人与小树时产生自下而上的极光灯效。知识关联：情绪表达、艺术创作与互动叙事，记录类型：艺术叙事与接近感应。</p><p>逐像素颜色与时间变化可形成上升、流动和渐变效果；该原理解释灯光表现，装置具体控制器未载。</p><div class="knowledge-gallery" data-topic="2.6.11"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0486.jpg" loading="lazy" decoding="async" alt="2.6.11 《流浪的树》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《流浪的树》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0487.jpg" loading="lazy" decoding="async" alt="2.6.11 《流浪的树》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《流浪的树》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0488.jpg" loading="lazy" decoding="async" alt="2.6.11 《流浪的树》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《流浪的树》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0489.jpg" loading="lazy" decoding="async" alt="2.6.11 《流浪的树》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《流浪的树》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0490.jpg" loading="lazy" decoding="async" alt="2.6.11 《流浪的树》／" title="点击放大查看细节" width="1800" height="1013"><figcaption>《流浪的树》／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0491.jpg" loading="lazy" decoding="async" alt="2.6.11 《流浪的树》／" title="点击放大查看细节" width="1800" height="1012"><figcaption>《流浪的树》／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0492.jpg" loading="lazy" decoding="async" alt="2.6.11 《流浪的树》／" title="点击放大查看细节" width="1280" height="720"><figcaption>《流浪的树》／</figcaption></figure></div><h3 id="section76">2.6.12 装置之外的活动与传播资料</h3><p>活动与传播覆盖艺术家演讲签售、现代舞、古典乐、儿童想象课堂、公益主题活动、公众参与、衍生品、主视觉延展及媒体传播。《阿布找朋友》《梦境》等主题包含配套周边。</p><p>活动出席、参与实践、兴趣和知识理解属于不同记录类型；传播曝光与学习效果分别建档。</p><div class="knowledge-gallery" data-topic="2.6.12"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0493.jpg" loading="lazy" decoding="async" alt="2.6.12 装置之外的活动与传播资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>装置之外的活动与传播资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0494.jpg" loading="lazy" decoding="async" alt="2.6.12 装置之外的活动与传播资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>装置之外的活动与传播资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0495.jpg" loading="lazy" decoding="async" alt="2.6.12 装置之外的活动与传播资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>装置之外的活动与传播资料 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0496.jpg" loading="lazy" decoding="async" alt="2.6.12 装置之外的活动与传播资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>装置之外的活动与传播资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0497.jpg" loading="lazy" decoding="async" alt="2.6.12 装置之外的活动与传播资料" title="点击放大查看细节" width="884" height="1800"><figcaption>装置之外的活动与传播资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0498.jpg" loading="lazy" decoding="async" alt="2.6.12 装置之外的活动与传播资料" title="点击放大查看细节" width="1221" height="1800"><figcaption>装置之外的活动与传播资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0499.jpg" loading="lazy" decoding="async" alt="2.6.12 装置之外的活动与传播资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>装置之外的活动与传播资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0500.jpg" loading="lazy" decoding="async" alt="2.6.12 装置之外的活动与传播资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>装置之外的活动与传播资料</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0501.jpg" loading="lazy" decoding="async" alt="2.6.12 装置之外的活动与传播资料" title="点击放大查看细节" width="1800" height="1013"><figcaption>装置之外的活动与传播资料</figcaption></figure></div><h3 id="section77">2.6.13 教育研究与非正式学习资料</h3><p>互动艺术装置以购物中心巡展等形式连接文化、艺术、科普和公众参与。</p><p>人工智能教育涉及课程、实验室开放、虚拟仿真及沉浸式空间。观察、操作、生成和反馈是学习体验的不同环节；活动参与不等同于学习成效。</p><p>UNESCO学生AI能力框架含以人为本、AI伦理、AI技术与应用、AI系统设计四个维度，共12项能力；学习进阶为理解、应用、创造。</p><h1 id="section78">三、跨行业技术方法与关联产品</h1><h2 id="section79">3.1 统一主线：行业知识的计算化与智能应用</h2><p>六个场景共享的方法是把数据、对象、关系、规则和任务组织成系统，再选择适合的模型与设备。资料映射如下：</p><table><thead><tr><th>场景</th>
+<th>数据对象</th>
+<th>业务知识／约束</th>
+<th>AI任务</th>
+<th>应用与执行</th>
+<th>项目进展与实施阶段</th>
+</tr>
+</thead>
+<tbody><tr><td>农业</td>
+<td>水、土、地块、作物、气象、设备</td>
+<td>灌溉阈值、种植制度、作业安排</td>
+<td>农情识别、辅助决策方向</td>
+<td>水肥、作业调度、溯源规划</td>
+<td>工程与种植可研详细，AI实测较少</td>
+</tr>
+<tr><td>公安政务</td>
+<td>视频、事件、文档、人员、警情</td>
+<td>事件定义、法规、组织权限与流程</td>
+<td>识别、问答、生成、图谱及预测</td>
+<td>预警、派单、报告、知识服务</td>
+<td>有界面、部署状态和部分测试值</td>
+</tr>
+<tr><td>时尚</td>
+<td>服装、面料、人像、标签</td>
+<td>款式结构、材质、风格与视觉控制</td>
+<td>检索、解析、可控生成、换装</td>
+<td>设计与营销内容生产</td>
+<td>产品界面和图像样例丰富</td>
+</tr>
+<tr><td>物流</td>
+<td>订单、运段、箱、仓、单据、费用</td>
+<td>计费、拆并单、审核、跨系统关系</td>
+<td>解析、录单、问答、优化规划</td>
+<td>新平台架构与岗位辅助方案</td>
+<td>调研、蓝图和规划明确</td>
+</tr>
+<tr><td>数字商业</td>
+<td>视频、轨迹、注目、互动及舆情</td>
+<td>区域、阈值、SKU、经营指标</td>
+<td>追踪、行为分析、趋势与运营辅助</td>
+<td>看板、陈列优化、经营分析</td>
+<td>有试点与工程记录，经营因果数据未载</td>
+</tr>
+<tr><td>未来教育</td>
+<td>文化素材、互动行为、课程内容</td>
+<td>文化语义、学习任务与年龄分层</td>
+<td>换装、交互、知识服务方向</td>
+<td>文化体验和互动空间</td>
+<td>体验案例明确，少年宫交付未载</td>
+</tr>
+</tbody></table>
+<p>SKOS用首选标签、替代标签、上位、下位和相关关系组织概念；概念体系与训练模型权重是不同的知识表达。</p><h2 id="section80">3.2 四项可复用能力及真实案例支撑</h2><p>数据资产化： 钮扣把非标实物转成图片和尺寸；云衣把图像转成标签；物流把分散单据和系统关系整理成对象；数字门店把连续视频转为行为记录。共性是把“难以直接计算的材料”变成稳定的数据对象。</p><p>知识结构化： 服装款式与材质、物流订单与运段、警务部门与权限、产品品类与满意度构成不同领域的关系结构。农业和教育知识图谱的实例专页未载。</p><p>模型专业化： 公安多模态事件识别、云衣材质融合、梦天品牌风格适配、产品舆情模组对应通用能力与领域数据、规则的组合。微调、检索和规则系统按各项目披露内容记录。</p><p>应用场景化： 门店看板、警务文档流转、包装编辑、家装局部修改及物流岗位助手，把模型结果接入使用者的工作。业务可用还包括权限、版本、接口、日志、复核与运维。</p><p>对象之间的一对多、多对多及关联属性提供了业务关系的通用表达方式；订单、服装标签和知识条目具有各自业务语义。</p><h2 id="section81">3.3 企业AI三层能力模型</h2><p>企业AI能力包括感知中枢、结构主脑和决策副驾：分别承担数据采集解析、对象关系与规则建模、分析生成及岗位辅助。</p><p>应用概念包括门店、仓储、财务、选品、供应链、管理问数、设计审核和知识流程。概念界面中的收入、毛利、预测和采购量为示例数据。</p><p>价值目标包括提升感知理解和协同速度、支持复杂信息判断、将个人经验组织化沉淀。</p><table><thead><tr><th>层次</th>
+<th>子模块</th>
+<th>具体输入 输出与工作</th>
+</tr>
+</thead>
+<tbody><tr><td>感知中枢</td>
+<td>多模态输入</td>
+<td>门店视频、物流接口与识别规则、非标商品图像与尺寸、入库信息、公共数据、文本图像</td>
+</tr>
+<tr><td>感知中枢</td>
+<td>感知识别</td>
+<td>目标识别、多目标追踪、客流统计、行为识别、特征提取</td>
+</tr>
+<tr><td>感知中枢</td>
+<td>分析理解</td>
+<td>热区、停留、流程监测、库存检索、异常预警</td>
+</tr>
+<tr><td>感知中枢</td>
+<td>经营输出</td>
+<td>看板、运营复盘、管理决策与持续优化</td>
+</tr>
+<tr><td>结构主脑</td>
+<td>业务建模</td>
+<td>业务对象、流程、关系、字段映射</td>
+</tr>
+<tr><td>结构主脑</td>
+<td>规则沉淀</td>
+<td>规则引擎、知识库、标签体系与提示词工程</td>
+</tr>
+<tr><td>结构主脑</td>
+<td>多模态理解</td>
+<td>图像、文本、OCR及融合理解</td>
+</tr>
+<tr><td>结构主脑</td>
+<td>分析推理</td>
+<td>关联挖掘、趋势、异常、问答及决策生成</td>
+</tr>
+<tr><td>决策副驾</td>
+<td>管理问数与经营摘要</td>
+<td>自然语言问数、报表摘要、异常指标解释、经营复盘</td>
+</tr>
+<tr><td>决策副驾</td>
+<td>工作流辅助</td>
+<td>智能审批、节点提醒、任务分发和异常流转</td>
+</tr>
+<tr><td>决策副驾</td>
+<td>专业生成与审核</td>
+<td>图片与文案、素材拆解、规则校验、广告法等审核辅助</td>
+</tr>
+<tr><td>决策副驾</td>
+<td>知识与岗位助手</td>
+<td>企业知识库、多轮问答、SOP调用及岗位智能体</td>
+</tr>
+</tbody></table>
+<p>工作流按预设路径组织模型和工具，智能体可动态选择过程与工具；链式、路由、并行和协调等是不同的组合模式。</p><div class="knowledge-gallery" data-topic="3.3"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0391.jpg" loading="lazy" decoding="async" alt="3.3 企业AI三层能力模型" title="点击放大查看细节" width="200" height="200"><figcaption>企业AI三层能力模型</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0392.jpg" loading="lazy" decoding="async" alt="3.3 企业AI三层能力模型" title="点击放大查看细节" width="129" height="129"><figcaption>企业AI三层能力模型</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0393.jpg" loading="lazy" decoding="async" alt="3.3 企业AI三层能力模型" title="点击放大查看细节" width="129" height="129"><figcaption>企业AI三层能力模型 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0394.jpg" loading="lazy" decoding="async" alt="3.3 企业AI三层能力模型" title="点击放大查看细节" width="124" height="124"><figcaption>企业AI三层能力模型 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0395.jpg" loading="lazy" decoding="async" alt="3.3 企业AI三层能力模型" title="点击放大查看细节" width="1672" height="941"><figcaption>企业AI三层能力模型 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0396.jpg" loading="lazy" decoding="async" alt="3.3 企业AI三层能力模型" title="点击放大查看细节" width="1672" height="941"><figcaption>企业AI三层能力模型 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0397.jpg" loading="lazy" decoding="async" alt="3.3 企业AI三层能力模型" title="点击放大查看细节" width="1672" height="941"><figcaption>企业AI三层能力模型</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0398.jpg" loading="lazy" decoding="async" alt="3.3 企业AI三层能力模型" title="点击放大查看细节" width="1672" height="941"><figcaption>企业AI三层能力模型 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0399.jpg" loading="lazy" decoding="async" alt="3.3 企业AI三层能力模型" title="点击放大查看细节" width="1672" height="941"><figcaption>企业AI三层能力模型 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0400.jpg" loading="lazy" decoding="async" alt="3.3 企业AI三层能力模型" title="点击放大查看细节" width="1672" height="941"><figcaption>企业AI三层能力模型 · 概念与设计示意</figcaption></figure></div><h2 id="section82">3.4 关联产品与企业服务案例</h2><h3 id="section83">中国电信全球舆情</h3><p>全球舆情分析围绕信息采集、事件识别、态势分析、研判预警与决策辅助组织功能；国际事件预测界面为演示，尚无完整业务效果评测。</p><p>RAG把外部知识检索与生成模型结合；检索文档和模型参数分别存储，检索更新与模型重新训练是不同操作。</p><div class="knowledge-gallery" data-topic="sentiment"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0204.jpg" loading="lazy" decoding="async" alt="中国电信全球舆情／" title="点击放大查看细节" width="1280" height="800"><figcaption>中国电信全球舆情／</figcaption></figure></div><h3 id="section84">包装智能生成</h3><p>七项任务为灵感创意、素材编辑、文案生成、自动拆分、营销视频、应用场景视频、审核助手。素材编辑包括扩图、去除／替换／添加元素、风格化、去背景和清晰化。图层拆解将包装图中的图案、文字和装饰元素分离，并作高清修复。</p><p>包装生成工作流覆盖灵感、图案、工程稿、文案及审核；视频制作包含人物与包装交互、主播文案、语言、音色、语速、音量及介绍视频生成。审核为辅助检查。</p><p>资料归类：技术底座的生成设计与编辑工具；数字商业的营销内容服务。</p><p>局部重绘以图像、蒙版和生成条件为输入，通常白色区域参与重绘、黑色区域保留。蒙版范围与整体生成属于不同控制方式。</p><div class="knowledge-gallery" data-topic="pack"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0205.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1800" height="1273"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0206.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1800" height="1273"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0207.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="809" height="1439"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0208.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1297" height="1800"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0210.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="983" height="1800"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0212.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="808" height="1432"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0213.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="736" height="1107"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0214.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1024" height="1024"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0216.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="983" height="1800"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0218.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1800" height="838"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0220.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1800" height="1273"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0221.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1800" height="1273"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0222.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1568" height="685"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0223.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1800" height="1273"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0224.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1800" height="1273"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0225.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1059" height="824"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0226.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1088" height="960"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0227.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1065" height="966"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0228.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="896" height="1152"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0229.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1544" height="511"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0230.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1611" height="521"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0231.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="736" height="989"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0232.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1248" height="832"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0233.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1248" height="832"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0234.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1760" height="1168"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0235.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1200" height="1200"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0236.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="31" height="28"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0237.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="115" height="274"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0238.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="115" height="161"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0239.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="22" height="23"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0240.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="36" height="40"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0241.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="32" height="36"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0242.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="65" height="39"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0243.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="32" height="35"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0244.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="48" height="23"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0245.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="119" height="24"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0246.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="32" height="32"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0247.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1280" height="1152"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0248.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1280" height="560"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0249.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="536" height="1280"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0250.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1112" height="1280"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0251.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1280" height="1280"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0252.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="912" height="1280"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0253.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1280" height="728"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0254.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1136" height="1280"><figcaption>包装智能生成／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0255.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1280" height="256"><figcaption>包装智能生成／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0256.jpg" loading="lazy" decoding="async" alt="包装智能生成／" title="点击放大查看细节" width="1280" height="1280"><figcaption>包装智能生成／</figcaption></figure></div><h3 id="section85">梦天AI家居／为关联样例</h3><p>梦天AI家居围绕品牌风格、空间结构、产品和材质适配生成家装效果，包含文生图、风格迁移、多场景、五金、局部编辑、结构保持和高清增强。</p><p>系统整合空间识别、产品素材库、趋势与品牌设计数据、模型及软件，支持卧室、阳台、客厅等空间的原始条件与设计效果对比。</p><p>家居生成研发包含数据治理、模型选型与轻量微调、节点工作流、语言模型适配、自然语言转专业指令、多模态空间解析、批量生成、局部编辑和产品库。管理端提供权限、资产、服务器监控、版本回滚、API与插件。网站概念界面中的50,000+、98%、30s为示例值。</p><p>资料归类：技术底座的领域生成模型和软件工程；数字商业的门店设计赋能。品牌语义和专业数据参与领域生成适配。</p><p>ComfyUI节点表示独立操作，具有输入、输出和参数；节点连线传递数据，模型加载、条件、采样和保存可组成工作流。</p><div class="knowledge-gallery" data-topic="home"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0257.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1615" height="404"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0258.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1615" height="404"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0259.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1615" height="404"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0260.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1592" height="479"><figcaption>梦天AI家居／为关联样例 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0261.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="674" height="379"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0262.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="674" height="379"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0263.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="674" height="379"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0264.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="674" height="379"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0265.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="612" height="493"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0266.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="607" height="340"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0267.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="607" height="340"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0268.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1280" height="853"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0269.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="553" height="277"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0270.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1273"><figcaption>梦天AI家居／为关联样例 · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0271.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="768" height="432"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0272.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="768" height="432"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0273.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="148" height="148"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0274.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1462" height="1086"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0275.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="822" height="501"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0276.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="906" height="446"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0277.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1154" height="459"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0278.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1562" height="1047"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0279.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="956"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0280.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1014"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0281.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="858" height="1119"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0282.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1368" height="1800"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0283.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="864"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0284.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="874"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0285.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="852"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0287.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="826"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0288.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="819"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0289.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="986"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0290.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="980"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0291.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="974"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0292.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1296"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0294.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0295.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0296.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1084"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0297.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0298.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0299.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0300.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0301.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0302.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0303.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0304.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0305.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="1013"><figcaption>梦天AI家居／为关联样例 · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0306.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="384" height="384"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0307.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="800" height="800"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0308.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="800" height="800"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0309.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="800" height="800"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0310.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1800" height="918"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0418.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="768" height="432"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0419.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1280" height="853"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0420.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1024" height="1024"><figcaption>梦天AI家居／为关联样例 · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0421.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1280" height="960"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0423.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1005" height="1800"><figcaption>梦天AI家居／为关联样例</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0424.jpg" loading="lazy" decoding="async" alt="梦天AI家居／为关联样例" title="点击放大查看细节" width="1014" height="1430"><figcaption>梦天AI家居／为关联样例 · 现场与实物</figcaption></figure></div><h3 id="section86">海尔、钱江与工业产品</h3><p>海尔样例包括洗衣机、冰箱及旋钮变体，钱江样例为摩托车外观生成，其他工业产品样例含工矿灯、摄像头、铝合金定量铲和智能垃圾桶。串联市场洞察、产品设计、3D设计仿真与营销内容；记录类型为智能设计引擎应用样例。</p><p>glTF 2.0以几何、场景、纹理和材质组织三维资产，PBR材质包含基础颜色、金属度和粗糙度等参数。渲染外观与实体材料检测分别建档。</p><div class="knowledge-gallery" data-topic="industry"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0311.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="1800" height="864"><figcaption>海尔、钱江与工业产品／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0312.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="1000" height="1718"><figcaption>海尔、钱江与工业产品／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0313.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="1800" height="1313"><figcaption>海尔、钱江与工业产品／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0314.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="1800" height="1006"><figcaption>海尔、钱江与工业产品／ · 生成效果</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0315.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="1800" height="1006"><figcaption>海尔、钱江与工业产品／ · 现场与实物</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0316.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="928" height="1232"><figcaption>海尔、钱江与工业产品／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0317.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="928" height="1232"><figcaption>海尔、钱江与工业产品／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0319.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="928" height="1232"><figcaption>海尔、钱江与工业产品／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0320.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="800" height="450"><figcaption>海尔、钱江与工业产品／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0321.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="800" height="450"><figcaption>海尔、钱江与工业产品／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0322.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="800" height="450"><figcaption>海尔、钱江与工业产品／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0323.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="800" height="450"><figcaption>海尔、钱江与工业产品／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0414.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="800" height="800"><figcaption>海尔、钱江与工业产品／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0415.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="800" height="800"><figcaption>海尔、钱江与工业产品／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0416.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="800" height="800"><figcaption>海尔、钱江与工业产品／</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0417.jpg" loading="lazy" decoding="async" alt="海尔、钱江与工业产品／" title="点击放大查看细节" width="800" height="800"><figcaption>海尔、钱江与工业产品／</figcaption></figure></div><h3 id="section87">通用智能体与企业岗位助手</h3><p>智能体技术包括提示词、指令、监督微调（SFT）、偏好对齐、奖励模型、工作流与多智能体协作。RLHF指基于人类反馈的强化学习；这些方法属于技术体系，具体训练方式按应用选择。</p><p>岗位助手技术栈包括大模型、嵌入与向量库、推理部署、编程框架、MCP和工作流，覆盖票据OCR与报账、供应商准入与询比价、招商活动与复盘、客诉及舆情归因。界面金额、评分及效率为示例值。</p><p>工作流按预设路径组织模型和工具，智能体可动态选择过程与工具；链式、路由、并行和协调等是不同的组合模式。</p><div class="knowledge-gallery" data-topic="agents"><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0387.jpg" loading="lazy" decoding="async" alt="通用智能体与企业岗位助手／" title="点击放大查看细节" width="1672" height="941"><figcaption>通用智能体与企业岗位助手／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0388.jpg" loading="lazy" decoding="async" alt="通用智能体与企业岗位助手／" title="点击放大查看细节" width="1672" height="941"><figcaption>通用智能体与企业岗位助手／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0389.jpg" loading="lazy" decoding="async" alt="通用智能体与企业岗位助手／" title="点击放大查看细节" width="1672" height="941"><figcaption>通用智能体与企业岗位助手／ · 概念与设计示意</figcaption></figure><figure><img src="%E9%80%90%E9%A1%B5%E9%80%90%E5%9B%BE%E8%B5%84%E6%96%99%E5%BA%93/thumbs/I0390.jpg" loading="lazy" decoding="async" alt="通用智能体与企业岗位助手／" title="点击放大查看细节" width="1672" height="941"><figcaption>通用智能体与企业岗位助手／ · 概念与设计示意</figcaption></figure></div><h1 id="section88">四、技术架构与业务体系</h1><h2 id="section89">4.1 智能设计总体架构</h2><p>总体架构由行业数据、专业知识、模型能力、行业应用和业务反馈构成。</p><table><thead><tr><th>层级</th>
+<th>对象与功能</th>
+<th>对应资料</th>
+</tr>
+</thead>
+<tbody><tr><td>行业数据</td>
+<td>图片、视频、文档、单据、传感信号、用户反馈</td>
+<td></td>
+</tr>
+<tr><td>专业知识</td>
+<td>概念、标签、对象关系、业务流程、规则约束</td>
+<td></td>
+</tr>
+<tr><td>模型能力</td>
+<td>视觉识别、文本理解、多模态、领域适配、生成与检索增强</td>
+<td></td>
+</tr>
+<tr><td>行业应用</td>
+<td>农业、公安政务、时尚、物流、数字商业、教育与互动</td>
+<td>六大场景资料</td>
+</tr>
+<tr><td>业务反馈</td>
+<td>运行状态、人工复核、问题记录、版本与效果评价</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>各层以对象标识、字段、接口和业务事件连接。数据与知识说明模型处理什么；应用与反馈记录模型在业务中输出什么、进入哪个岗位和流程。</p><p>PROV-O以实体、活动和主体描述资料来源及生成关系。这里的主体可以是人员或组织，属于来源模型中的agent概念。</p><h2 id="section90">4.2 跨行业业务对象</h2><p>农业围绕水土、作物和作业；公安围绕目标、事件和流程；时尚围绕款式、面料和人物；物流围绕订单、运段和箱货；数字商业围绕客流、SKU和互动；教育围绕文化、学习任务和反馈。</p><h2 id="section91">4.3 业务反馈与版本管理</h2><p>实际运行通过任务状态、人工复核、异常处置和版本记录形成反馈。预测、生成与风险判断进入业务前，分别保留输入条件、计算过程及结果。</p><h2 id="section92">4.4 项目成果与技术原理</h2><p>项目成果包含软件、设备、原型、测试与交付；技术知识包含概念、方法和评价体系。一般原理与具体项目实现分别组织，规划、试点和运营具有各自状态。</p><h1 id="section93">五、实验室与场景介绍</h1><h2 id="section94">5.1 实验室整体介绍</h2><p>浙江大学未来设计实验室是浙江大学长三角智慧绿洲创新中心面向智能设计、产业创新和绿色发展的研究与转化团队。实验室由孙守迁教授任主任、柴春雷教授任执行主任，汇集相关领域教师、研究人员、博士后与工程技术人员，围绕数据智能与产品创新、绿色设计与智能装备、数字文旅创新技术开展研究与应用。</p><p>实验室参与全省数字创意智能系统与装备重点实验室建设，并通过力通无限、芯驰数字、LOCATION等联合机构及企业项目开展协同创新。项目能力涉及云衣时尚、城市多模态感知、非标商品检索、数字门店、物流业务建模、家居设计生成、水处理与农业装备、互动艺术与数字体验等产品和场景。相关教师与成员在教学成果、设计创作、学生创新竞赛和科研工程方面形成了各自的积累。</p><p>资料库以“智能设计技术底座 × 六大行业场景”为组织方式，呈现智慧农业、公安政务、时尚产业、智慧物流、数字商业运营与未来教育的不同应用。实验室将行业数据、专业知识、AI模型与业务流程结合，探索从感知和理解，到生成、辅助决策与执行的技术体系。各项目按研发、规划、测试、试点及交付等阶段组织成果。</p><h2 id="section95">5.2 六大场景简介</h2><p>智慧农业： 面向第三师45团的水土与种植条件，将咸水淡化、有机林果、田间感知和智慧装备纳入同一建设方案，探索农业生产的感知、辅助决策与作业协同。</p><p>公安政务： 通过多模态感知和行业知识服务，将视频事件、业务文档与治理流程连接，为交通、社区和警务办公提供识别、检索、生成与处置支持。</p><p>时尚产业： 云衣以服装数据、面料与款式标签支持行业理解和可控生成，连接设计检索、面料融合、虚拟换装与商业影像。</p><p>智慧物流： 以调研和服务蓝图理解复杂业务，把订单、运段、箱管、仓储与财务审计关系转为系统结构，为智能物流平台规划与岗位辅助形成基础。</p><p>数字商业运营： 整合门店采集硬件、视觉算法和分析平台，把客流、注目、停留与互动转为运营依据，支持陈列、SKU与体验优化。</p><p>未来教育： 以文化主题、生成技术与交互装置支持观察、参与和创作，探索将技术体验与课程任务连接的学习空间。</p><h2 id="section96">5.3 共性技术底座</h2><p>从一张服装图到专业标签，从一条物流订单到跨部门流程，从一段视频到城市事件或顾客行为，智能设计首先理解对象及其关系，再用适合的模型完成识别、生成、分析和辅助执行。数据资产化、知识结构化、模型专业化和应用场景化，构成跨行业复用的方法基础。</p><p>图像与文本的共同表征提供跨模态匹配路径；关系建模、检索、模型训练和业务执行仍是不同技术环节。</p><h2 id="section97">5.4 成果记录与状态标签</h2><p>成果按所属主体、产品或项目名称、时间、实施状态、数据来源及统计口径归档。项目阶段包括可行性研究、调研与蓝图、研发、设计稿、测试、试点、交付、验收及运营。图示属性包括实物照片、结构图、生成效果、软件界面、模拟数据和概念示意。平台、个人、共同团队及合作企业分别保留成果归属。</p><p>实体、活动和主体的来源关系用于记录谁生成何种资料、资料经过何种处理；对应项目、人员、版本与结果的关联。</p><h1 id="section98">附：数据口径与记录版本</h1><table><thead><tr><th>编号</th>
+<th>数据项目</th>
+<th>版本与口径</th>
+</tr>
+</thead>
+<tbody><tr><td>01</td>
+<td>建设期1年／2年</td>
+<td>建设期存在1年、2年两个版本</td>
+</tr>
+<tr><td>02</td>
+<td>智能装备1000／1340万元，分项合计1310万元</td>
+<td>三种口径说明来源</td>
+</tr>
+<tr><td>03</td>
+<td>6大需求但表格5类</td>
+<td>标题6类，表内5类</td>
+</tr>
+<tr><td>04</td>
+<td>全额投资方与4000万拟补贴</td>
+<td>区分投资主体和筹资来源</td>
+</tr>
+<tr><td>05</td>
+<td>2000吨/小时进水或产水</td>
+<td>未确定，附算术条件解释</td>
+</tr>
+<tr><td>06</td>
+<td>浓水回排／集中资源化</td>
+<td>路线未定，保留差异</td>
+</tr>
+<tr><td>07</td>
+<td>苜蓿与果园面积重叠，60%的分母</td>
+<td>以9500亩果园为分母</td>
+</tr>
+<tr><td>08</td>
+<td>叶喷次数、品种基肥差别</td>
+<td>保留品种及次数差异</td>
+</tr>
+<tr><td>09</td>
+<td>累计现金流尾数与流动资金口径</td>
+<td>财务预测与复算值分别管理</td>
+</tr>
+<tr><td>10</td>
+<td>气候、水量、水质、成本和成熟度</td>
+<td>可研参数；检测与运行数据未载</td>
+</tr>
+<tr><td>11</td>
+<td>预期准确率与斗殴测试值</td>
+<td>分任务分状态</td>
+</tr>
+<tr><td>12</td>
+<td>嘉善／舟山／桐乡状态不同</td>
+<td>按地点保留</td>
+</tr>
+<tr><td>13</td>
+<td>设计稿／模拟数据</td>
+<td>显著标识</td>
+</tr>
+<tr><td>14</td>
+<td>AI生成人物</td>
+<td>人物属性：AI生成</td>
+</tr>
+<tr><td>15</td>
+<td>时间线年份、路线安徽／嘉兴</td>
+<td>阶段年份未载；安徽、嘉兴两个路线名称</td>
+</tr>
+<tr><td>16</td>
+<td>108份总样本与局部比例样本</td>
+<td>总样本与分组样本分别记录</td>
+</tr>
+<tr><td>17</td>
+<td>业务范围规划</td>
+<td>记录属性：业务规划</td>
+</tr>
+<tr><td>18</td>
+<td>行业比例无引用</td>
+<td>项目记录描述；原始统计出处未载</td>
+</tr>
+<tr><td>19</td>
+<td>千店计划与4展台试点</td>
+<td>分阶段说明</td>
+</tr>
+<tr><td>20</td>
+<td>2.7k、1.3k缺单位</td>
+<td>原值留存、单位未载</td>
+</tr>
+<tr><td>21</td>
+<td>行为漏斗与交易成交</td>
+<td>行为与交易分别记录</td>
+</tr>
+<tr><td>22</td>
+<td>概念界面与示例经营数据</td>
+<td>数据属性：概念界面示例</td>
+</tr>
+<tr><td>23</td>
+<td>成本下降超过100%</td>
+<td>百分比口径异常，计算式尚不完整</td>
+</tr>
+<tr><td>24</td>
+<td>总尺寸／局部尺寸不一致或混写</td>
+<td>逐图对应尺寸部位</td>
+</tr>
+<tr><td>25</td>
+<td>称3种交互，仅清晰列2种</td>
+<td>第3种交互形式未载</td>
+</tr>
+<tr><td>26</td>
+<td>展期局部没有年份，地点不同</td>
+<td>活动按各自海报归档</td>
+</tr>
+<tr><td>27</td>
+<td>互动艺术／少儿体验与少年宫关系</td>
+<td>文化体验与少年宫专属交付分别管理</td>
+</tr>
+</tbody></table>
+<details class="bibliography"><summary>技术文献与公开机构信息</summary><ul><li><a href="https://yrd.zju.edu.cn/zxjj/list.htm" target="_blank" rel="noopener">智慧绿洲机构介绍</a></li><li><a href="https://yrd.zju.edu.cn/wlsjsys_74965/list.htm" target="_blank" rel="noopener">未来设计实验室官方介绍</a></li><li><a href="https://www.cs.zju.edu.cn/_upload/article/files/d4/45/e46a2ca6469693738d84d1fffc3f/642ea7c2-932e-4023-b1bb-ce1618ee6c27.pdf" target="_blank" rel="noopener">2026年导师信息库</a></li><li><a href="https://yrd.zju.edu.cn/2026/0612/c90461a3177867/page.htm" target="_blank" rel="noopener">智慧绿洲成员页</a></li><li><a href="https://person.zju.edu.cn/id" target="_blank" rel="noopener">教师个人页</a></li><li><a href="https://person.zju.edu.cn/kylehq" target="_blank" rel="noopener">黄琦浙江大学个人页</a></li><li><a href="https://yrd.zju.edu.cn/2026/0529/c90461a3167856/page.htm" target="_blank" rel="noopener">2026年成员页</a></li><li><a href="https://yrd.zju.edu.cn/2026/0612/c90461a3177846/page.htm" target="_blank" rel="noopener">课程建设公开记录</a></li><li><a href="https://person.zju.edu.cn/0011108" target="_blank" rel="noopener">教师页</a></li><li><a href="https://person.zju.edu.cn/0014589" target="_blank" rel="noopener">教师页</a></li><li><a href="https://yrd.zju.edu.cn/2026/0529/c90461a3168028/page.htm" target="_blank" rel="noopener">邹宁研究与著作</a></li><li><a href="https://yrd.zju.edu.cn/2026/0529/c90461a3168026/page.htm" target="_blank" rel="noopener">官方成员页</a></li><li><a href="https://www.zju.edu.cn/2016/0728/c32708a1512167/pagem.htm" target="_blank" rel="noopener">浙江大学潘云鹤介绍</a></li><li><a href="https://yrd.zju.edu.cn/wlsjsys_90461/list.htm" target="_blank" rel="noopener">研究与工程人员目录</a></li><li><a href="https://yrd.zju.edu.cn/kyhz/list2.htm" target="_blank" rel="noopener">智慧绿洲联合研究机构目录</a></li><li><a href="https://www.ltit.info/h-col-101.html" target="_blank" rel="noopener">力通科技发展历程</a></li><li><a href="https://yrd.zju.edu.cn/yrden/FutureDesignLab/list.htm" target="_blank" rel="noopener">官方英文合作列表</a></li><li><a href="https://yrd.zju.edu.cn/kyhz/list.htm" target="_blank" rel="noopener">高校目录</a></li><li><a href="https://hz.linhuiba.com/" target="_blank" rel="noopener">邻汇吧官网</a></li><li><a href="https://zjnews.zjol.com.cn/zjnews/202411/t20241119_30653887.shtml" target="_blank" rel="noopener">智能设计平台发布记录</a></li><li><a href="https://wzjxj.wenzhou.gov.cn/module/download/downfile.jsp?classid=0&amp;filename=04d5bbbe87e541d282dc2b879754ba3c.pdf" target="_blank" rel="noopener">政府公开报告清单</a></li><li><a href="https://ugrs.zju.edu.cn/jljgjjcgj/list.htm" target="_blank" rel="noopener">浙江大学教学成果名单</a></li><li><a href="https://www.zju.edu.cn/2012/1228/c33536a63383/pagem.htm" target="_blank" rel="noopener">浙江大学校方报道</a></li><li><a href="https://yrd.zju.edu.cn/2026/0529/c90461a3168030/page.htm" target="_blank" rel="noopener">徐健鸣成员页</a></li><li><a href="https://yrd.zju.edu.cn/2026/0528/c90461a3167570/page.htm" target="_blank" rel="noopener">龚卿成员页</a></li><li><a href="https://yrd.zju.edu.cn/2026/0528/c90461a3167554/page.htm" target="_blank" rel="noopener">殷敏</a></li><li><a href="https://yrd.zju.edu.cn/2026/0528/c90461a3167587/page.htm" target="_blank" rel="noopener">于卓玉</a></li><li><a href="https://yrd.zju.edu.cn/2026/0528/c90461a3167599/page4.htm" target="_blank" rel="noopener">李培泉成员页</a></li><li><a href="https://yrd.zju.edu.cn/2026/0528/c90461a3167574/page.htm" target="_blank" rel="noopener">吉姝蕾音乐与学校服务资料</a></li><li><a href="https://yrd.zju.edu.cn/2024/0925/c70162a2967297/page.htm" target="_blank" rel="noopener">官方报道</a></li><li><a href="https://yrd.zju.edu.cn/2026/0528/c90461a3167593/page.htm" target="_blank" rel="noopener">膜材料人员研究资料</a></li><li><a href="https://yrd.zju.edu.cn/" target="_blank" rel="noopener">官网公共信息</a></li><li><a href="https://www.w3.org/TR/prov-o/" target="_blank" rel="noopener">PROV-O资料来源</a></li><li><a href="https://arxiv.org/abs/2103.00020" target="_blank" rel="noopener">CLIP图文表示</a></li><li><a href="https://www.w3.org/TR/skos-reference/" target="_blank" rel="noopener">SKOS知识组织</a></li><li><a href="https://www.ndrc.gov.cn/xxgk/zcfb/ghxwj/202304/P020230407401908613786.pdf" target="_blank" rel="noopener">投资项目可研大纲</a></li><li><a href="https://ipm.ucanr.edu/home-and-landscape/cultural-tips-for-growing-plum-and-prune/" target="_blank" rel="noopener">UC IPM李与西梅栽培</a></li><li><a href="https://yrd.zju.edu.cn/cxcgzhyzzx/list.htm" target="_blank" rel="noopener">智慧绿洲概念验证清单</a></li><li><a href="https://www.fao.org/4/t0234e/T0234E01.htm" target="_blank" rel="noopener">FAO灌溉水质</a></li><li><a href="https://www.fao.org/land-water/water/agricultural-water-management/non-conventional-water-resources-in-agriculture/en" target="_blank" rel="noopener">FAO农业非常规水资源</a></li><li><a href="https://fruitsandnuts.ucdavis.edu/plum-orchard-management" target="_blank" rel="noopener">UC Davis李园管理</a></li><li><a href="https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/fgs/art/2023/art_8af5fb561be24a5b9c8a63a56421450e.html" target="_blank" rel="noopener">有机产品认证管理</a></li><li><a href="https://www.fao.org/4/x0490e/x0490e0a.htm" target="_blank" rel="noopener">FAO作物蒸散计算</a></li><li><a href="https://www.moa.gov.cn/ztzl/zhnyzxd/gdlj/202411/P020241120580724020607.pdf" target="_blank" rel="noopener">全国智慧农业行动计划</a></li><li><a href="https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=6C7830BA57AF12ACE93AF43B8CA7B315" target="_blank" rel="noopener">有机产品国家标准条目</a></li><li><a href="https://docs.k3s.io/architecture" target="_blank" rel="noopener">K3s轻量化集群</a></li><li><a href="https://mindspore-lab.github.io/mindyolo/tutorials/deployment/" target="_blank" rel="noopener">MindYOLO模型部署</a></li><li><a href="https://link.springer.com/content/pdf/10.1007/s11263-020-01375-2.pdf" target="_blank" rel="noopener">HOTA多目标追踪评价</a></li><li><a href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener">RAG原始论文</a></li><li><a href="https://modelcontextprotocol.io/specification/draft/server/index" target="_blank" rel="noopener">MCP服务端规范（草案）</a></li><li><a href="https://yrd.zju.edu.cn/lzcg_88996/list.htm" target="_blank" rel="noopener">智慧绿洲成果目录</a></li><li><a href="https://arxiv.org/abs/1901.07973" target="_blank" rel="noopener">DeepFashion2服装任务</a></li><li><a href="https://arxiv.org/abs/2302.05543" target="_blank" rel="noopener">ControlNet论文</a></li><li><a href="https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html" target="_blank" rel="noopener">相机标定与畸变</a></li><li><a href="https://arxiv.org/abs/2403.05139" target="_blank" rel="noopener">IDM-VTON论文</a></li><li><a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noopener">LoRA论文</a></li><li><a href="https://www.emva.org/standards-technology/emva-1288/" target="_blank" rel="noopener">EMVA 1288相机表征</a></li><li><a href="https://www.nngroup.com/articles/service-blueprints-definition/" target="_blank" rel="noopener">服务蓝图定义</a></li><li><a href="https://www.wcoomd.org/en/topics/facilitation/instrument-and-tools/tools/data-model.aspx?p=1" target="_blank" rel="noopener">WCO海关数据模型</a></li><li><a href="https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html" target="_blank" rel="noopener">SQLAlchemy关系映射</a></li><li><a href="https://ref.gs1.org/guidelines/epcis-cbv/2.0.0/" target="_blank" rel="noopener">EPCIS与CBV实施指南</a></li><li><a href="https://dcsa.org/standards/track-and-trace" target="_blank" rel="noopener">DCSA运输可视化</a></li><li><a href="https://www.bse.cn/disclosure/2023/2023-10-23/1698056294_298204.pdf" target="_blank" rel="noopener">凯鸿2023年公开披露之一</a></li><li><a href="https://www.bse.cn/disclosure/2023/2023-10-23/1698056291_866450.pdf" target="_blank" rel="noopener">凯鸿2023年公开披露之二</a></li><li><a href="https://www.mediaratingcouncil.org/sites/default/files/Standards/DPB%20Standards%20Version%201.0%20%28Final%29%203-15-17.pdf" target="_blank" rel="noopener">MRC数字场所受众口径</a></li><li><a href="https://arxiv.org/abs/2110.06864" target="_blank" rel="noopener">ByteTrack论文</a></li><li><a href="https://www.jstage.jst.go.jp/article/quality/14/2/14_KJ00002952366/_article/-char/en" target="_blank" rel="noopener">Kano原始研究</a></li><li><a href="https://person.zju.edu.cn/0014589/795729.html" target="_blank" rel="noopener">邹宁浙江大学个人页</a></li><li><a href="https://www.unesco.org/en/articles/ai-competency-framework-students?hub=84624" target="_blank" rel="noopener">UNESCO学生AI能力框架</a></li><li><a href="https://www.nationalacademies.org/read/12614/chapter/3" target="_blank" rel="noopener">非正式科学学习</a></li><li><a href="https://annex.exploratorium.edu/xref/exhibits/soap_bubbles.html" target="_blank" rel="noopener">泡膜与光学</a></li><li><a href="https://learn.adafruit.com/pir-passive-infrared-proximity-motion-sensor/overview" target="_blank" rel="noopener">PIR红外运动感应</a></li><li><a href="https://cdn-learn.adafruit.com/downloads/pdf/adafruit-neopixel-uberguide.pdf" target="_blank" rel="noopener">可寻址灯光</a></li><li><a href="https://docs.arduino.cc/tutorials/uno-r4-wifi/touch/?queryID=undefined" target="_blank" rel="noopener">电容触控原理</a></li><li><a href="https://support.arduino.cc/hc/en-us/articles/360017053760-Troubleshoot-servo-motors" target="_blank" rel="noopener">舵机运动控制</a></li><li><a href="https://learn.sparkfun.com/tutorials/getting-started-with-load-cells/all" target="_blank" rel="noopener">称重与重力输入</a></li><li><a href="https://www.exploratorium.edu/snacks/corner-reflector" target="_blank" rel="noopener">镜面多次反射</a></li><li><a href="https://www.sohu.com/a/452299494_114778" target="_blank" rel="noopener">36氪乐处报道转载</a></li><li><a href="https://www.moe.gov.cn/jyb_xwfb/gzdt_gzdt/s5987/202412/t20241202_1165500.html" target="_blank" rel="noopener">2024教育部部署</a></li><li><a href="https://www.moe.gov.cn/srcsite/A16/s3342/202604/t20260410_1433240.html" target="_blank" rel="noopener">教育部等五部门2026年行动计划</a></li><li><a href="https://www.anthropic.com/research/building-effective-agents" target="_blank" rel="noopener">工作流与智能体</a></li><li><a href="https://huggingface.co/docs/diffusers/en/using-diffusers/inpaint" target="_blank" rel="noopener">Diffusers图像局部重绘</a></li><li><a href="https://docs.comfy.org/basic-concepts/nodes" target="_blank" rel="noopener">ComfyUI节点与连接</a></li><li><a href="https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html" target="_blank" rel="noopener">glTF材质与场景数据</a></li><li><a href="https://www.loc.gov/standards/mets/METSPrimer.pdf" target="_blank" rel="noopener">数字资料元数据</a></li><li><a href="https://digitalpreservation.no/docs/principles/" target="_blank" rel="noopener">数字保存原则</a></li><li><a href="https://www.fao.org/4/t0667e/t0667e0b.htm" target="_blank" rel="noopener">FAO盐渍土与滴灌</a></li><li><a href="https://arxiv.org/abs/1810.04805" target="_blank" rel="noopener">BERT原始论文</a></li><li><a href="https://github.com/Comfy-Org/docs/blob/main/basic-concepts/nodes.mdx" target="_blank" rel="noopener">Comfy官方节点文档</a></li></ul></details></article></div><script id="inline-editor-script">
+(()=>{'use strict';
+const article=document.querySelector('article'),status=document.getElementById('save-status'),toggle=document.getElementById('edit-toggle');
+const key='future-design-knowledge-illustrated-v2:'+location.pathname;
+let timer,handle=null,edited=false,savedRange=null;
+const say=t=>status.textContent=t;
+function rebuild(){const nav=document.querySelector('aside');nav.replaceChildren();article.querySelectorAll('h1,h2,h3').forEach((h,i)=>{h.id='section'+i;const a=document.createElement('a');a.href='#'+h.id;a.className='l'+h.tagName.slice(1);a.textContent=h.textContent;nav.append(a);});}
+function stash(){clearTimeout(timer);try{localStorage.setItem(key,JSON.stringify({html:article.innerHTML,time:Date.now()}));say('草稿已自动保存到此浏览器 · '+new Date().toLocaleTimeString('zh-CN')+' · 写入 HTML 文件请点“保存文件”');return true;}catch(e){say('浏览器无法保存草稿，请点击“保存文件”或“下载副本”保留修改。');return false;}}
+try{let d=JSON.parse(localStorage.getItem(key)||'null');if(d&&typeof d.html==='string'){article.innerHTML=d.html;say('已恢复此浏览器中的草稿。写入 HTML 文件请点“保存文件”。');}else say('正文可直接编辑；草稿自动保存在此浏览器，保存文件后可分享。');}catch(e){say('正文可直接编辑；此浏览器的草稿存储不可用，请保存文件保留修改。');}
+article.contentEditable='true';article.setAttribute('aria-label','实验室资料库正文，可直接编辑');article.spellcheck=false;rebuild();
+article.addEventListener('input',()=>{edited=true;clearTimeout(timer);say('正在保存草稿…');timer=setTimeout(()=>{stash();rebuild();},450);});
+document.addEventListener('selectionchange',()=>{const sel=getSelection();if(sel.rangeCount&&article.contains(sel.anchorNode))savedRange=sel.getRangeAt(0).cloneRange();});
+function command(name,value=null){article.focus();if(savedRange){const sel=getSelection();sel.removeAllRanges();sel.addRange(savedRange);}document.execCommand(name,false,value);stash();rebuild();}
+document.querySelectorAll('[data-command]').forEach(b=>{b.addEventListener('mousedown',e=>e.preventDefault());b.onclick=()=>command(b.dataset.command);});
+document.getElementById('block-format').onchange=e=>{if(e.target.value)command('formatBlock',e.target.value);e.target.value='';};
+toggle.onclick=()=>{const on=article.contentEditable!=='true';article.contentEditable=String(on);toggle.textContent=on?'切换阅读':'编辑正文';document.getElementById('edit-hint').textContent=on?'直接点击正文即可修改，表格也可以编辑':'阅读模式 · 点击“编辑正文”继续修改';if(!on){stash();rebuild();}};
+article.addEventListener('click',e=>{if(article.contentEditable==='true'&&e.target.closest('a')&&!e.metaKey&&!e.ctrlKey)e.preventDefault();});
+function snapshot(){rebuild();const copy=document.documentElement.cloneNode(true);copy.querySelector('#image-zoom')?.removeAttribute('open');copy.querySelector('article').innerHTML=article.innerHTML;copy.querySelector('article').setAttribute('contenteditable','true');copy.querySelector('#save-status').textContent='正文可直接编辑；草稿自动保存在此浏览器。';copy.querySelector('#edit-toggle').textContent='切换阅读';copy.querySelector('#edit-hint').textContent='直接点击正文即可修改，表格也可以编辑';return '<!doctype html>\n'+copy.outerHTML;}
+function download(){stash();const blob=new Blob([snapshot()],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='实验室资料库_主题正文_已编辑.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);say('已下载含当前修改的 HTML 副本；保留在资料库文件夹中可继续打开关联资料。');edited=false;}
+document.getElementById('download-html').onclick=download;
+document.getElementById('save-html').onclick=async()=>{stash();if(!window.showSaveFilePicker){download();return;}try{if(!handle)handle=await window.showSaveFilePicker({suggestedName:decodeURIComponent(location.pathname.split('/').pop())||'实验室资料库_主题正文.html',types:[{description:'可编辑 HTML 网页',accept:{'text/html':['.html']}}]});const writer=await handle.createWritable();await writer.write(snapshot());await writer.close();edited=false;say('已保存到文件：'+handle.name+' · 正文与排版均已保留');}catch(e){if(e.name==='AbortError')say('未写入文件；浏览器草稿仍保留，可再次保存。');else say('文件保存失败，请点击“下载副本”保留修改。');}};
+window.addEventListener('pagehide',()=>{if(edited)stash();});
+})();
+</script><dialog id="image-zoom"><button type="button" id="close-zoom">关闭 ×</button><div class="zoom-scroll"><img id="zoom-image" alt="放大图像"></div></dialog><script>document.querySelector('article').addEventListener('click',e=>{if(e.target.matches('.knowledge-gallery img')){document.getElementById('zoom-image').src=e.target.dataset.full||e.target.src;document.getElementById('image-zoom').showModal();}});document.getElementById('close-zoom').onclick=()=>document.getElementById('image-zoom').close();</script></body></html>

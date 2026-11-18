@@ -1,0 +1,502 @@
+[
+  {
+    "name": "LittleD_ChestIdentity",
+    "position": [
+      3.9475992e-08,
+      -0.3184154,
+      0.0012002289
+    ],
+    "quaternion": [
+      6.154916e-08,
+      -1.0,
+      -1.4901163e-07,
+      1.1920928e-07
+    ],
+    "scale": [
+      1.0,
+      1.0000001,
+      1.0000001
+    ],
+    "children": [
+      {
+        "name": "Chest badge integrated backing",
+        "position": [
+          0.0,
+          0.515,
+          0.22
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.22,
+          0.27,
+          0.14
+        ],
+        "children": [],
+        "material": "LittleD_Teal",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Copper signature",
+        "position": [
+          0.016,
+          0.421,
+          0.332
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.082,
+          0.008,
+          0.009
+        ],
+        "children": [],
+        "material": "LittleD_Copper",
+        "mesh": "10202",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "D monogram",
+        "position": [
+          0.0,
+          0.526,
+          0.331
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          -1.0,
+          1.0,
+          1.0
+        ],
+        "children": [],
+        "material": "LittleD_JadeLight",
+        "mesh": "4300000",
+        "meshGuid": "9a199773f38c7c7408a8c552d2be45fd"
+      },
+      {
+        "name": "D-01 identification",
+        "position": [
+          0.15,
+          0.37,
+          0.245
+        ],
+        "quaternion": [
+          0.0,
+          1.0,
+          0.0,
+          -4.371139e-08
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "children": [],
+        "text": "D-01"
+      },
+      {
+        "name": "D badge bezel",
+        "position": [
+          0.0,
+          0.515,
+          0.28
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.245,
+          0.29,
+          0.07
+        ],
+        "children": [],
+        "material": "LittleD_Teal",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Graphite inset",
+        "position": [
+          0.0,
+          0.515,
+          0.314
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.207,
+          0.249,
+          0.025
+        ],
+        "children": [],
+        "material": "LittleD_Graphite",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      }
+    ]
+  },
+  {
+    "name": "LittleD_HeadIdentity",
+    "position": [
+      6.6090775e-05,
+      -0.7553677,
+      0.041734185
+    ],
+    "quaternion": [
+      5.9100945e-08,
+      -0.99962,
+      0.02752079,
+      0.0015779976
+    ],
+    "scale": [
+      1.0,
+      1.0000002,
+      1.0000001
+    ],
+    "children": [
+      {
+        "name": "Brow copper dot",
+        "position": [
+          -0.015,
+          1.365,
+          0.165
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.018,
+          0.018,
+          0.018
+        ],
+        "children": [],
+        "material": "LittleD_Copper",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Antenna socket mirrored",
+        "position": [
+          -0.21,
+          1.423,
+          -0.035
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.085,
+          0.045,
+          0.085
+        ],
+        "children": [],
+        "material": "LittleD_Graphite",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Temple accent -1",
+        "position": [
+          -0.405,
+          1.105,
+          -0.035
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.025,
+          0.125,
+          0.125
+        ],
+        "children": [],
+        "material": "LittleD_Teal",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Offset antenna",
+        "position": [
+          0.235,
+          1.5,
+          -0.035
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          -0.1478094,
+          0.9890159
+        ],
+        "scale": [
+          0.024,
+          0.14,
+          0.025
+        ],
+        "children": [],
+        "material": "LittleD_Copper",
+        "mesh": "10202",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Brow identity stripe",
+        "position": [
+          -0.085,
+          1.365,
+          0.16
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.1,
+          0.014,
+          0.016
+        ],
+        "children": [],
+        "material": "LittleD_Teal",
+        "mesh": "10202",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Temple housing -1",
+        "position": [
+          -0.377,
+          1.105,
+          -0.035
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.055,
+          0.18,
+          0.18
+        ],
+        "children": [],
+        "material": "LittleD_Graphite",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Temple accent 1",
+        "position": [
+          0.405,
+          1.105,
+          -0.035
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.025,
+          0.125,
+          0.125
+        ],
+        "children": [],
+        "material": "LittleD_Teal",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Antenna beacon",
+        "position": [
+          0.256,
+          1.571,
+          -0.035
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.064,
+          0.055,
+          0.055
+        ],
+        "children": [],
+        "material": "LittleD_JadeLight",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Antenna beacon mirrored",
+        "position": [
+          -0.256,
+          1.571,
+          -0.035
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.064,
+          0.055,
+          0.055
+        ],
+        "children": [],
+        "material": "LittleD_JadeLight",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Temple light 1",
+        "position": [
+          0.423,
+          1.105,
+          -0.025
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.012,
+          0.075,
+          0.025
+        ],
+        "children": [],
+        "material": "LittleD_JadeLight",
+        "mesh": "10202",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Temple housing 1",
+        "position": [
+          0.377,
+          1.105,
+          -0.035
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.055,
+          0.18,
+          0.18
+        ],
+        "children": [],
+        "material": "LittleD_Graphite",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Offset antenna mirrored",
+        "position": [
+          -0.235,
+          1.5,
+          -0.035
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.1478094,
+          0.9890159
+        ],
+        "scale": [
+          0.024,
+          0.14,
+          0.025
+        ],
+        "children": [],
+        "material": "LittleD_Copper",
+        "mesh": "10202",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Temple light -1",
+        "position": [
+          -0.423,
+          1.105,
+          -0.025
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.012,
+          0.075,
+          0.025
+        ],
+        "children": [],
+        "material": "LittleD_JadeLight",
+        "mesh": "10202",
+        "meshGuid": "0000000000000000e000000000000000"
+      },
+      {
+        "name": "Antenna socket",
+        "position": [
+          0.21,
+          1.423,
+          -0.035
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "scale": [
+          0.085,
+          0.045,
+          0.085
+        ],
+        "children": [],
+        "material": "LittleD_Graphite",
+        "mesh": "10207",
+        "meshGuid": "0000000000000000e000000000000000"
+      }
+    ]
+  }
+]

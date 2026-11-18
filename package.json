@@ -1,0 +1,19 @@
+{
+  "name": "little-d-robot-html",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "node scripts/restore-assets.mjs",
+    "start": "node scripts/restore-assets.mjs && node server.mjs",
+    "launch": "node scripts/restore-assets.mjs && node tools/launch.mjs",
+    "check": "node scripts/check-package.mjs"
+  },
+  "dependencies": {
+    "three": "0.180.0",
+    "ws": "8.23.0"
+  },
+  "version": "2026.11.18",
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-30",
+  "version": "realtime-lab-v5",
+  "renderer": "Three.js 0.180.0, locally bundled",
+  "foreground": "Runtime meshes, PBR materials, curve-driven water packets, growing single plant, independent 3D fruit and basket",
+  "logic_checks": {
+    "total": 18,
+    "passed": 18,
+    "page": "tests/physics.html",
+    "covers": [
+      "No input does not pump",
+      "Arriving water determines completion",
+      "Uncleared particles persist",
+      "Wipe captures particles",
+      "Membrane targeting gate",
+      "Water and ions collect separately",
+      "Wrong routing fails",
+      "Both routes must complete",
+      "No irrigation no growth",
+      "Soil-dependent growth",
+      "Fruit detaches on pinch",
+      "Outside basket fails and retries",
+      "Gravity landing inside basket succeeds",
+      "Pinch wrist pump drive",
+      "Pinch wrist valve control",
+      "Membrane layer expansion",
+      "Layer release resets",
+      "Drag debris to collector"
+    ]
+  },
+  "browser_errors": "None in independent final verification page",
+  "limits": [
+    "Procedural 3D prototype; visual fidelity can be refined",
+    "Symbolic game water/ion/soil simulation, not measured treatment or agronomic performance",
+    "Synthetic-input physics checks do not replace onsite real-hand calibration"
+  ],
+  "visual_review": "Five stages and device insight panel inspected at 1280x720"
+}

@@ -1,0 +1,13 @@
+services:
+  little-d:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    restart: unless-stopped
+    env_file: ../.env.production
+    environment:
+      HOST: 0.0.0.0
+      PORT: 4173
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:4173}
+    ports:
+      - "127.0.0.1:4173:4173"

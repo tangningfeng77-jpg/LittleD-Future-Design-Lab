@@ -1,0 +1,5 @@
+.gradle/
+**/build/
+.signing/
+local.properties
+app/src/androidTest/assets/private-config.json

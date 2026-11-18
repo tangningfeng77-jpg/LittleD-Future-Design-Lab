@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#122f30">
+<meta name="description" content="从一滴水到一份收获。用下压、前推、展开和上托跟随水流，用握拳完成收获。">
+<title>IFS 水流旅程</title>
+<link rel="preload" as="image" href="assets/images/opening.png?v=3hq"><link rel="stylesheet" href="style.css?v=video3">
+</head>
+<body data-state="opening" data-mode="gesture">
+<main id="experience" aria-label="循水而生，全屏手势故事" aria-describedby="instruction">
+<img id="still" class="scene" src="assets/images/opening.png?v=3hq" alt="农田、水渠与远处的水处理设施">
+<video id="story-video" class="scene film" playsinline preload="none" disablepictureinpicture></video>
+<button id="start-experience" type="button" hidden>启用声音</button>
+<div class="edge-shade" aria-hidden="true"></div>
+<div id="gesture-cursor" aria-hidden="true"><span class="halo"></span><span class="core"></span><svg viewBox="0 0 64 64"><circle id="action-progress" cx="32" cy="32" r="30"/></svg><span class="cursor-dot"></span></div>
+<aside id="guide" aria-label="当前动作演示">
+<div class="guide-caption"><span class="tiny-line"></span>跟随手势 <span class="demo-label">模拟演示</span></div>
+<canvas id="guide-canvas" width="1280" height="720" aria-label="中央放大的半透明白色模拟手展示当前动作"></canvas>
+<div id="guide-copy">
+<p id="instruction" aria-live="polite">向下轻压，跟随水流潜入</p>
+<p id="gesture-detail">单手张开 · 先停稳，再向下移动</p>
+<p id="gesture-status" role="status">将手放在摄像头前</p>
+</div>
+</aside>
+<aside id="hand-feedback" aria-label="实时手部关节反馈">
+<div class="tracking-line"><span id="tracking-light"></span><span id="tracking-status" role="status">正在准备手势识别</span></div>
+<progress id="model-progress" max="100" aria-label="手势组件下载进度"></progress>
+<p id="hand-camera-name">正在连接摄像头…</p><select id="hand-camera-picker" aria-label="选择手势摄像头"><option value="">系统默认摄像头</option></select><label class="hand-preview-toggle"><input id="hand-camera-preview" type="checkbox">显示摄像头取景</label><canvas id="hand-canvas" width="560" height="340" aria-label="实时识别的蓝色手部关节"></canvas>
+<div id="hand-information">等待手部进入画面</div>
+<div class="privacy-note">默认只显示关节 · 取景仅在本机显示</div>
+</aside>
+<div id="camera-controls"><button id="camera-toggle" type="button">启用摄像头</button><button id="fullscreen" type="button" aria-label="切换全屏">⛶</button></div>
+<p id="notice" role="alert" hidden></p>
+<p class="sr-only">在七个交互点跟随画面中央的白色模拟手推进。微观探索后自动返回取水口，iFS 至番茄青果连续播放。成熟番茄处握拳即可采摘。按 F 或右上角按钮进入浏览器全屏。</p>
+</main>
+<script type="module" src="player.mjs?v=video3hq"></script>
+</body></html>
+

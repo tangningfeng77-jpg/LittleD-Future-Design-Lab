@@ -1,0 +1,3 @@
+from pathlib import Path
+p=Path('robot-html/server.mjs');s=p.read_text(encoding='utf-8-sig').replace("[path.join(root,'..','.env.local'),path.join(root,'.env.local')]","[path.join(root,'.env.local'),path.join(root,'..','.env.local')]");s=s.replace("new URL(req.url,'http://localhost').pathname==='/ '?'/index.html':new URL(req.url,'http://localhost').pathname","new URL(req.url,'http://localhost').pathname");p.write_text(s,encoding='utf8')
+p=Path('robot-html/README.md');s=p.read_text(encoding='utf-8-sig').replace('服务先读取此目录的上一级 `.env.local`（沿用原项目百炼配置），再读取本目录 `.env.local`；已存在的系统环境变量优先。','服务优先使用系统环境变量，其次读取本目录 `.env.local`，缺失项再从上一级 `.env.local` 沿用原项目百炼配置。');p.write_text(s,encoding='utf8')

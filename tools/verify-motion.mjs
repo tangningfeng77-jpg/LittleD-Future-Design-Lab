@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import * as THREE from '../public/vendor/three/build/three.module.js';
+import {SmoothMotion} from '../public/motion.js';
+const root=new THREE.Object3D(),mixer=new THREE.AnimationMixer(root);
+const make=(name,v)=>new THREE.AnimationClip(name,2,[new THREE.NumberKeyframeTrack('.rotation[z]',[0,1,2],[v,v+.2,v])]);
+const idle=make('idle',0),hello=make('hello',1),talk=make('talk',-.5);let returns=0;
+const motion=new SmoothMotion(mixer,{onReturn:()=>{returns++;motion.play(idle);}});motion.play(idle);motion.update(.1);motion.play(hello,{once:true});
+let last=root.rotation.z;for(let i=0;i<120;i++){if(i===12)motion.play(talk);if(i===24)motion.play(hello,{once:true});motion.update(1/60);assert(Math.abs(root.rotation.z-last)<.12,'pose discontinuity');last=root.rotation.z;const sum=[...motion.actions.values()].reduce((s,a)=>s+a.getEffectiveWeight(),0);assert(Math.abs(sum-1)<1e-5,'weights must stay normalized');}assert.equal(returns,1);assert.equal(motion.target.getClip(),idle);
+const t=motion.play(talk,{once:true});motion.update(.2);const time=t.time;motion.play(talk,{once:false});assert.equal(t.time,time,'same clip must not restart');assert.equal(motion.once,false);
+console.log('PASS: continuous poses during interrupted transitions, normalized weights, early smooth return, no restart on same clip.');

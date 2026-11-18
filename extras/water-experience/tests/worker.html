@@ -1,0 +1,3 @@
+<!doctype html><meta charset="utf-8"><title>手势线程检查</title><h1>手势识别线程检查</h1><p id="result">加载中…</p><script>
+const out=document.querySelector('#result'),worker=new Worker('../hand-worker.js?v=6');worker.onmessage=async({data})=>{if(data.type==='ready'){const canvas=new OffscreenCanvas(480,360);canvas.getContext('2d').fillRect(0,0,480,360);const bitmap=canvas.transferToImageBitmap();worker.postMessage({type:'frame',bitmap,timestamp:1000},[bitmap])}else if(data.type==='result'){out.textContent='PASS：识别线程初始化成功，空画面处理 '+data.inferenceMs.toFixed(1)+'ms，未误检手部。';document.title='PASS · 手势线程';worker.terminate()}else{out.textContent='FAIL：'+data.message;document.title='FAIL · 手势线程'}};worker.onerror=e=>{out.textContent='FAIL：'+e.message};worker.postMessage({type:'init'});
+</script>

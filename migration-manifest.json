@@ -1,0 +1,28 @@
+{
+  "source": "Assets/Scenes/展厅.unity → Rob13 / Rob13_Body",
+  "modelSha256": "d463284d258466d5cc2309db7d9e4eec58435ab8197406a409a9683db79f35d4",
+  "animations": 36,
+  "accessories": [
+    "LittleD_ChestIdentity",
+    "LittleD_HeadIdentity"
+  ],
+  "excluded": [
+    "展厅场景",
+    "空间导航与场景转场",
+    "展厅影片"
+  ],
+  "originalScripts": [
+    "RobotAutomaticWalker.cs",
+    "RobotEchoFilter.cs",
+    "RobotExhibitionMedia.cs",
+    "RobotExhibitionVideo.cs",
+    "RobotInteractionPanel.cs",
+    "RobotLabKnowledge.cs",
+    "RobotOriginalFilmDecoder.cs",
+    "RobotRealtimeVision.cs",
+    "RobotRealtimeVoice.cs",
+    "RobotSpaceMemoryStore.cs",
+    "RobotSpatialGuide.cs",
+    "RobotVisitPoints.cs"
+  ]
+}

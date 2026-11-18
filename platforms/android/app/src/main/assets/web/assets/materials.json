@@ -1,0 +1,308 @@
+{
+  "Rob13Body": {
+    "maps": {
+      "_BumpMap": "Rob13_LP_Rob13_Normal.png",
+      "_EmissionMap": "Rob13_LP_Rob13_Emission.png",
+      "_MainTex": "Rob13_LP_Rob13_AlbedoTransparency.png",
+      "_MetallicGlossMap": "Rob13_LP_Rob13_MetallicSmoothness.png"
+    },
+    "colors": {
+      "_BaseColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "_Color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "_EmissionColor": [
+        1.4980392,
+        0.95144403,
+        0.0,
+        1.0
+      ],
+      "_SpecColor": [
+        0.19999996,
+        0.19999996,
+        0.19999996,
+        1.0
+      ]
+    }
+  },
+  "Rob13Emo_eyes": {
+    "maps": {
+      "_MainTex": "Emotions4.png"
+    },
+    "colors": {
+      "_BaseColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "_Color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.2214013,
+        1.498039,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "Rob13Emo_mouth": {
+    "maps": {
+      "_MainTex": "Emotions4.png"
+    },
+    "colors": {
+      "_Color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.0,
+        2.0,
+        0.16469045,
+        1.0
+      ]
+    }
+  },
+  "Rob13Emo_speak": {
+    "maps": {
+      "_MainTex": "Curves.png"
+    },
+    "colors": {
+      "_Color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.0,
+        2.0,
+        1.9417905,
+        1.0
+      ]
+    }
+  },
+  "Rob13Glass": {
+    "maps": {
+      "_BumpMap": "Rob13_LP_Rob13_Normal.png",
+      "_MainTex": "Rob13_LP_Rob13_AlbedoTransparency.png",
+      "_MetallicGlossMap": "Rob13_LP_Rob13_MetallicSmoothness.png"
+    },
+    "colors": {
+      "_Color": [
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "_EmissionColor": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "LittleD_Copper": {
+    "maps": {},
+    "colors": {
+      "_Color": [
+        0.78,
+        0.39,
+        0.17,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "LittleD_Eyes": {
+    "maps": {
+      "_MainTex": "Emotions4.png"
+    },
+    "colors": {
+      "_BaseColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "_Color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.126,
+        0.71999997,
+        0.594,
+        0.9
+      ]
+    }
+  },
+  "LittleD_Graphite": {
+    "maps": {},
+    "colors": {
+      "_Color": [
+        0.045,
+        0.065,
+        0.075,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "LittleD_JadeLight": {
+    "maps": {},
+    "colors": {
+      "_Color": [
+        0.25,
+        0.94,
+        0.79,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.1625,
+        0.611,
+        0.5135,
+        0.65
+      ]
+    }
+  },
+  "LittleD_MouthEmo": {
+    "maps": {
+      "_MainTex": "Emotions4.png"
+    },
+    "colors": {
+      "_BaseColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "_Color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.126,
+        0.71999997,
+        0.594,
+        0.9
+      ]
+    }
+  },
+  "LittleD_MouthSpeach": {
+    "maps": {
+      "_MainTex": "Curves.png"
+    },
+    "colors": {
+      "_Color": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.126,
+        0.71999997,
+        0.594,
+        0.9
+      ]
+    }
+  },
+  "LittleD_Porcelain": {
+    "maps": {},
+    "colors": {
+      "_Color": [
+        0.97,
+        0.94,
+        0.84,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "LittleD_Shell": {
+    "maps": {
+      "_BumpMap": "Rob13_LP_Rob13_Normal.png",
+      "_EmissionMap": "Rob13_LP_Rob13_Emission.png",
+      "_MainTex": "Rob13_LP_Rob13_AlbedoTransparency.png",
+      "_MetallicGlossMap": "Rob13_LP_Rob13_MetallicSmoothness.png"
+    },
+    "colors": {
+      "_BaseColor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "_Color": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.112,
+        0.64000005,
+        0.52800006,
+        0.8
+      ],
+      "_SpecColor": [
+        0.19999996,
+        0.19999996,
+        0.19999996,
+        1.0
+      ]
+    }
+  },
+  "LittleD_Teal": {
+    "maps": {},
+    "colors": {
+      "_Color": [
+        0.04,
+        0.63,
+        0.55,
+        1.0
+      ],
+      "_EmissionColor": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  }
+}

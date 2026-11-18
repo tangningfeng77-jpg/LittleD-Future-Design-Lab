@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {RobotVoice} from '../public/voice.js';
+const caption={textContent:'',dataset:{},classList:{add(){caption.visible=true},remove(){caption.visible=false}}};
+globalThis.document={getElementById:()=>caption};
+let lastSource;
+const voice=new RobotVoice({config:()=>({voice:'Tina'}),setSpeaking(){}});
+voice.ctx={currentTime:5,createBuffer(channels,length,rate){assert.equal(channels,1);assert.equal(rate,24000);return {duration:length/rate,getChannelData:()=>new Float32Array(length)}},createBufferSource(){return lastSource={connect(){},disconnect(){},start(t){this.startAt=t},stop(){}}}};
+voice.audio=async()=>{};voice.analyser={};voice.director={active:true,begin(){},text(){},cancel(){}};
+const pcm=Buffer.alloc(48000).toString('base64');
+const sentence={text:'这是第一句话。',chunks:[pcm]};
+const done=voice.playSentence(sentence);await Promise.resolve();
+assert(!caption.visible,'caption cannot appear while audio is still scheduled in the future');
+voice.ctx.currentTime=5.031;voice.tickSpeech();assert.equal(caption.textContent,sentence.text);assert(caption.visible);assert(Math.abs(voice.sentenceCue.end-6.03)<.0001);
+voice.ctx.currentTime=6.03;lastSource.onended();await done;assert(!caption.visible,'caption must end when the actual sentence buffer ends');
+const cancelled=voice.playSentence({text:'取消后不可残留。',chunks:[pcm]});await Promise.resolve();voice.stopAudio();await cancelled;assert.equal(voice.sources.size,0);voice.tickSpeech();assert(!caption.visible);
+let resume;voice.audio=()=>new Promise(r=>resume=r);const stale=voice.playSentence(sentence);voice.stopAudio();resume();await stale;assert.equal(voice.sources.size,0,'interrupt during audio resume must not start old speech');
+console.log('PASS: captions follow actual audio start/end; interrupt cancels audio/caption; late audio resume cannot revive cancelled speech.');

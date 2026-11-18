@@ -1,0 +1,3 @@
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {fileURLToPath} from 'node:url';
+const root=path.dirname(path.dirname(fileURLToPath(import.meta.url))),manifest=JSON.parse(fs.readFileSync(path.join(root,'TRANSFER_MANIFEST.json'),'utf8'));
+let total=0;for(const f of manifest.files){const p=path.join(root,...f.path.split('/'));const bytes=fs.readFileSync(p);if(bytes.length!==f.size||crypto.createHash('sha256').update(bytes).digest('hex')!==f.sha256)throw Error('File verification failed: '+f.path);total++;}console.log('PASS: '+total+' files match the transfer manifest.');

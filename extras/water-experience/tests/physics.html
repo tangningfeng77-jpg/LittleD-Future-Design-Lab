@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><base href="../"><title>实时交互物理验证</title><style>body{background:#14251d;color:#d9f2e4;font:15px monospace;padding:30px}canvas{width:320px;height:240px}li{margin:12px 0}.fail{color:#ff9999}</style><h1>实时交互物理验证</h1><p id="summary">运行中…</p><ol id="results"></ol><canvas id="test"></canvas><script type="module">
+import {GameWorld} from '../game-world.js?v=6';
+const results=document.getElementById('results'),summary=document.getElementById('summary');let failures=0;
+function check(ok,text){const li=document.createElement('li');li.textContent=(ok?'PASS ':'FAIL ')+text;if(!ok){li.className='fail';failures++}results.append(li)}
+try{
+ const w=new GameWorld(document.getElementById('test'));w.skipRender=true;w.resize(320,240);
+ let input={x:.5,y:.5,dx:0,dy:0,open:true,visible:true,pointer:true,pinching:false};
+ const step=(n,fn)=>{for(let i=0;i<n;i++){if(fn)fn(i);w.update(.025,input,true)}};
+ w.setStage(1);step(300);check(w.volume===0,'静止手掌不会凭时间自动抽水');step(550,i=>{input.dx=i%2?.02:-.02});check(w.volume>=72&&w.done,'挥动提供泵压，水到达容器后才完成');
+ w.setStage(2);input.dx=0;input.x=1;step(80);check(w.filtered<w.filterTotal*.9,'净化边界未扫过的颗粒仍然存在');input.x=.01;step(220);check(w.filtered>=w.filterTotal*.97&&w.done,'推动竖线实际截留颗粒，清理完毕才通关');
+ w.setStage(3);input.x=.01;input.y=.01;step(100);check(!w.primed&&w.waterCount===0,'未对准膜结构时不会启动或自动增加分离数');step(720,()=>{const p=w.project(w.target);input.x=p.x/320;input.y=p.y/240});check(w.primed&&w.waterCount>=42&&w.saltCount>=20&&w.done,'对准稳定后水与盐沿不同轨迹分别进入收集容器');
+ w.setStage(4);input.x=.95;step(200);check(w.errors>0&&w.fresh===0,'蓝色淡水误入右侧会记录错误，不计作正确灌溉水');step(2200,()=>{const p=w.packets.filter(p=>p.path===w.feed).sort((a,b)=>b.t-a.t)[0];input.x=(p?p.salt:w.nextSalt)?.95:.05});check(w.fresh>=28&&w.brine>=28&&w.done,'两路水必须分别到达正确容器才能通关');
+ w.setStage(5);input.x=.02;input.y=.1;input.open=false;input.pointer=false;step(100);check(w.growth===0,'未给根部浇水，番茄不会仅凭时间生长');step(2400,()=>{const p=w.project(new (w.target.constructor)(.75,.75,0));input.x=p.x/320;input.y=p.y/240;input.open=w.moisture<.6;input.pointer=false;input.dx=.001});check(w.salt<.7&&w.growth>=1&&w.phase==='picking','滴灌命中根部，改善水分盐分后单株生长并进入采摘');
+ w.setStage(5,{harvest:true});input.open=true;input.dx=0;step(150);let p=w.project(w.mainFruit.getWorldPosition(w.target.clone()));input.x=p.x/320;input.y=p.y/240;input.pinching=true;w.pickingStep(.025,input,true);check(w.held,'对准果实捏合会使3D果实脱离植株');input.x=.02;input.y=.2;for(let i=0;i<20;i++)w.pickingStep(.025,input,true);input.pinching=false;for(let i=0;i<180;i++)w.pickingStep(.025,input,true);check(!w.collected&&!w.done&&w.phase==='picking','放到篮外会落地并允许重试，不会错误通关');
+ p=w.project(w.mainFruit.getWorldPosition(w.target.clone()));input.x=p.x/320;input.y=p.y/240;input.pinching=true;w.pickingStep(.025,input,true);const basket=w.project(w.basket.pos.clone().add(new (w.target.constructor)(0,.6,0)));input.x=basket.x/320;input.y=basket.y/240;for(let i=0;i<30;i++)w.pickingStep(.025,input,true);input.pinching=false;for(let i=0;i<150;i++)w.pickingStep(.025,input,true);check(w.collected&&w.done,'果实释放后受重力下落，命中木篮才收获成功');
+ // Additional manipulations use explicit pinch and wrist rotation input.
+ const aim=p=>{const q=w.project(p);input.x=q.x/320;input.y=q.y/240};
+ w.setStage(1);input={x:.5,y:.5,dx:0,dy:0,visible:true,open:false,pointer:false,pinching:true,roll:0};aim(w.target);w.enhancedActions(.025,input,true);input.roll=.7;w.enhancedActions(.025,input,true);check(w.grippingPump&&w.rotaryDrive>0,'捏合驱动单元并转腕能提供泵动力');
+ w.setStage(4);aim(w.target);input.roll=0;w.enhancedActions(.025,input,true);input.roll=1.4;w.enhancedActions(.025,input,true);check(w.grippingValve&&w.valve>.3,'捏合转腕能精细调节实体分流阀');
+ w.setStage(3);aim(w.target);input.dx=.15;for(let i=0;i<10;i++)w.enhancedActions(.025,input,true);check(w.membraneGrip&&w.membraneLayerGroup.scale.z>1.5,'捏合拖动可转动并展开膜层');input.pinching=false;w.enhancedActions(.025,input,true);for(let i=0;i<80;i++)w.enhancedActions(.025,input,true);check(!w.membraneGrip&&Math.abs(w.membraneLayerGroup.scale.z-1)<.001,'松开后膜层平滑复位，恢复分离操作');
+ w.setStage(2);const particle=w.contaminants[0];aim(particle.m.position);input.pinching=true;input.dx=0;w.enhancedActions(.025,input,true);aim(w.filterCollector);input.pinching=false;w.enhancedActions(.025,input,true);check(particle.removed&&w.filtered===1,'捏住独立杂质并送入过滤装置才记为捕获');
+ w.skipRender=false;w.update(.025,input,false);summary.textContent=failures?'存在 '+failures+' 项失败':'全部交互物理验证通过';document.title=failures?'FAIL · 实时交互物理验证':'PASS · 实时交互物理验证';
+}catch(e){check(false,e.stack);summary.textContent='验证异常';document.title='ERROR · 实时交互物理验证'}
+</script>

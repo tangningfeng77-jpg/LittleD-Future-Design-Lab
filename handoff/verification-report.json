@@ -1,0 +1,16 @@
+{
+  "source_platform": "Windows x64",
+  "target_platform": "macOS Apple Silicon",
+  "checks": {
+    "all_36_animations_and_144_pose_samples": "passed",
+    "smooth_motion": "passed",
+    "speech_expression": "passed",
+    "photo_framing": "passed",
+    "isolated_server_assets_and_63_module_references": "passed",
+    "package_local_ai_settings_without_parent_environment": "passed",
+    "private_env_not_http_accessible": "passed",
+    "official_mac_runtime_sha256": "passed",
+    "mac_runtime_mach_o_arm64_header": "passed"
+  },
+  "mac_execution": "Official ARM64 executable verified; not executed on an actual Mac in this Windows session."
+}

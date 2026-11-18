@@ -1,0 +1,254 @@
+[
+  {
+    "name": "R_13_Dance0",
+    "take": "Armature_Rob13|R_13_Dance0",
+    "first": 0.0,
+    "last": 120.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_Dance1",
+    "take": "Armature_Rob13|R_13_Dance1",
+    "first": 0.0,
+    "last": 120.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_EmoAngry",
+    "take": "Armature_Rob13|R_13_EmoAngry",
+    "first": 0.0,
+    "last": 130.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_EmoCry",
+    "take": "Armature_Rob13|R_13_EmoCry",
+    "first": 0.0,
+    "last": 180.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_EmoDontKnow",
+    "take": "Armature_Rob13|R_13_EmoDontKnow",
+    "first": 0.0,
+    "last": 110.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_EmoHello",
+    "take": "Armature_Rob13|R_13_EmoHello",
+    "first": 0.0,
+    "last": 140.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_EmoLaught",
+    "take": "Armature_Rob13|R_13_EmoLaught",
+    "first": 0.0,
+    "last": 260.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_EmoLookingFor",
+    "take": "Armature_Rob13|R_13_EmoLookingFor",
+    "first": 0.0,
+    "last": 225.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_EmoNo",
+    "take": "Armature_Rob13|R_13_EmoNo",
+    "first": 0.0,
+    "last": 140.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_EmoTalk1",
+    "take": "Armature_Rob13|R_13_EmoTalk1",
+    "first": 0.0,
+    "last": 262.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_EmoThumbsUp",
+    "take": "Armature_Rob13|R_13_EmoThumbsUp",
+    "first": 0.0,
+    "last": 150.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_EmoWin",
+    "take": "Armature_Rob13|R_13_EmoWin",
+    "first": 0.0,
+    "last": 140.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_fallBack",
+    "take": "Armature_Rob13|R_13_fallBack",
+    "first": 0.0,
+    "last": 55.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_fallFront",
+    "take": "Armature_Rob13|R_13_fallFront",
+    "first": 0.0,
+    "last": 60.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_GetHitFront",
+    "take": "Armature_Rob13|R_13_GetHitFront",
+    "first": 0.0,
+    "last": 48.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_GetHitLeft",
+    "take": "Armature_Rob13|R_13_GetHitLeft",
+    "first": 0.0,
+    "last": 48.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_GetHitRight",
+    "take": "Armature_Rob13|R_13_GetHitRight",
+    "first": 0.0,
+    "last": 48.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_Idle",
+    "take": "Armature_Rob13|R_13_Idle",
+    "first": 0.0,
+    "last": 120.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_jump",
+    "take": "Armature_Rob13|R_13_jump",
+    "first": 0.0,
+    "last": 100.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_jumpForward",
+    "take": "Armature_Rob13|R_13_jumpForward",
+    "first": 0.0,
+    "last": 100.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_riseFromBack",
+    "take": "Armature_Rob13|R_13_riseFromBack",
+    "first": 0.0,
+    "last": 100.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_riseFromFront",
+    "take": "Armature_Rob13|R_13_riseFromFront",
+    "first": 0.0,
+    "last": 110.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_run",
+    "take": "Armature_Rob13|R_13_run",
+    "first": 0.0,
+    "last": 121.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_run_TurnLeft90",
+    "take": "Armature_Rob13|R_13_run_TurnLeft90",
+    "first": 0.0,
+    "last": 121.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_run_TurnRight90",
+    "take": "Armature_Rob13|R_13_run_TurnRight90",
+    "first": 0.0,
+    "last": 121.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_runJump",
+    "take": "Armature_Rob13|R_13_runJump",
+    "first": 0.0,
+    "last": 120.0,
+    "loop": false
+  },
+  {
+    "name": "R_13_strafeLeft",
+    "take": "Armature_Rob13|R_13_strafeLeft",
+    "first": 0.0,
+    "last": 121.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_strafeRight",
+    "take": "Armature_Rob13|R_13_strafeRight",
+    "first": 0.0,
+    "last": 121.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_walk",
+    "take": "Armature_Rob13|R_13_walk",
+    "first": 0.0,
+    "last": 121.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_walk_TurnLeft90",
+    "take": "Armature_Rob13|R_13_walk_TurnLeft90",
+    "first": 0.0,
+    "last": 121.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_walk_TurnRight90",
+    "take": "Armature_Rob13|R_13_walk_TurnRight90",
+    "first": 0.0,
+    "last": 121.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_walkBack",
+    "take": "Armature_Rob13|R_13_walkBack",
+    "first": 0.0,
+    "last": 121.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_turn180left",
+    "take": "Armature_Rob13|R_13_turn180left",
+    "first": 0.0,
+    "last": 60.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_turn180Right",
+    "take": "Armature_Rob13|R_13_turn180Right",
+    "first": 0.0,
+    "last": 60.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_turn90Left",
+    "take": "Armature_Rob13|R_13_turn90Left",
+    "first": 0.0,
+    "last": 60.0,
+    "loop": true
+  },
+  {
+    "name": "R_13_turn90Right",
+    "take": "Armature_Rob13|R_13_turn90Right",
+    "first": 0.0,
+    "last": 60.0,
+    "loop": true
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-06",
+  "browser": "Chrome headless",
+  "input": "模拟麦克风：你好小迪",
+  "provider": "阿里百炼",
+  "voice": "沿用小D配置音色",
+  "checks": {
+    "spoken_greeting_recognized": true,
+    "fixed_welcome_audio_played": true,
+    "audio_peak": 0.621063232421875,
+    "video_autoplay_after_welcome": true,
+    "video_paused": false,
+    "video_readyState": 4,
+    "video_ended_callback": "将进度跳至片尾后等待真实ended事件",
+    "post_video_guidance_spoken": true,
+    "returned_to_waiting": true
+  },
+  "limitations": [
+    "模拟麦克风，尚未验证用户真实麦克风与扬声器听感",
+    "首次未准备好的语料仍需百炼生成；分段校验后尽早播放。自动原生全屏是否允许取决于浏览器权限，拒绝时占满网页。"
+  ],
+  "post_video_guidance_approval": "2026-11-06 用户确认先使用当前文案，之后再调整",
+  "latency_optimization": {
+    "fixed_bailian_audio": "按原文、模型、音色提前准备并保存，固定语料命中后不再生成",
+    "warm_trigger_to_speaking_ms": 51,
+    "measurement_scope": "同一页面内输入固定问候到播放状态，不含语音转写或首次生成",
+    "after_reload_cache_hit": true,
+    "after_reload_trigger_ms": 57,
+    "after_reload_new_generation_connections": 0
+  },
+  "video_ui": {
+    "controls": false,
+    "child_elements": 1,
+    "viewport": "1440x900",
+    "native_fullscreen_verified": true,
+    "click_to_exit_and_followup_verified": true
+  },
+  "normal_conversation": {
+    "first_greeting_only": true,
+    "fixed_answer_recorded_as_assistant_turn": true,
+    "normal_spoken_question_verified": true,
+    "repeated_greeting_does_not_restart": true,
+    "name_and_interest_retained": true,
+    "auto_mic_restored": true,
+    "latest_context_and_input_ack_before_response": true,
+    "full_regression": "Chrome + 模拟麦克风；最终控制流程回归在测试环境加速语音播放；实际百炼调用。"
+  }
+}

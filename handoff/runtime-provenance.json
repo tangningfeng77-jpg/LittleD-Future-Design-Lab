@@ -1,0 +1,12 @@
+{
+  "version": "v24.22.2",
+  "platform": "darwin-arm64",
+  "download_url": "https://nodejs.org/dist/v24.22.2/node-v24.22.2-darwin-arm64.tar.gz",
+  "archive_sha256": "aa9549349e47dffaa42dcf95d6e06ade8c4bdafc980979883b88767670df385a",
+  "binary_sha256": "b6fb419f0f43bb2fbca273700294dd2f3b685a64b60e8417c295f47646a70e4a",
+  "windows_backup": {
+    "version": "v24.19.0",
+    "source": "Existing Codex Node runtime on the source Windows machine",
+    "binary_sha256": "3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237"
+  }
+}

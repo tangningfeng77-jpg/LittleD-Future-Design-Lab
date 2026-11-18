@@ -1,0 +1,11 @@
+import net from 'node:net';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {spawn} from 'node:child_process';
+const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+const probe=port=>new Promise(resolve=>{const s=net.createServer();s.once('error',()=>resolve(false));s.listen(port,'127.0.0.1',()=>s.close(()=>resolve(true)));});
+let port=Number(process.env.PORT||4173);for(let count=0;count<30;count++,port++)if(await probe(port))break;
+const child=spawn(process.execPath,['server.mjs'],{cwd:root,env:{...process.env,PORT:String(port)},stdio:['inherit','pipe','inherit']});
+let opened=false;child.stdout.on('data',data=>{process.stdout.write(data);if(!opened&&data.toString().includes('http://127.0.0.1:')){opened=true;const url=`http://127.0.0.1:${port}`;const opener=process.platform==='darwin'?spawn('open',[url],{stdio:'ignore'}):process.platform==='win32'?spawn('rundll32',['url.dll,FileProtocolHandler',url],{stdio:'ignore'}):null;opener?.on('error',()=>console.log('Open this URL in your browser: '+url));}});
+child.on('error',e=>{console.error('Startup failed: '+e.message);process.exitCode=1;});child.on('exit',code=>{process.exitCode=code||0;});
+for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>{child.kill(signal);});
