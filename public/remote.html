@@ -79,6 +79,16 @@ button.warn{background:#fff3ee;color:var(--warn);border-color:#f2cfc0}
   </div>
 </div>
 <div class="card">
+  <strong>收音</strong> <span class="muted">现场嘈杂时用</span>
+  <div class="grid2" style="margin-top:8px">
+    <button data-cmd="mic" data-arg="noisy">嘈杂环境模式</button>
+    <button data-cmd="mic" data-arg="normal">安静环境模式</button>
+    <button data-cmd="mic" data-arg="off">关闭自动收音</button>
+    <button data-cmd="mic" data-arg="on">开启自动收音</button>
+  </div>
+  <p class="muted">关闭自动收音后，可用下面“替来宾提问”，或在大屏旁按 V 键说话。</p>
+</div>
+<div class="card">
   <strong>替来宾提问</strong>
   <div class="row" style="margin-top:8px"><input id="say" placeholder="例如：这个项目用了什么设计方法？"><button class="pri" id="sayBtn">让小D 回答</button></div>
   <p class="muted">适合现场嘈杂、语音听不清时使用。</p>

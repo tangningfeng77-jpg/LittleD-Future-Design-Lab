@@ -27,9 +27,10 @@ export class ProgrammeGuide {
       this.items = this.channels.flatMap(c => c.items);
       this.channel = this.channels[0]?.id || 'lab';
     } catch { this.items = []; }
-    await Promise.all(this.items.filter(it => it.kind === 'deck' && /^\d{4}-/.test(it.deck)).map(async it => {
-      try { const r = await (await fetch('api/gd?op=read&id=' + encodeURIComponent(it.deck))).json(); it.cover = r.item?.cover; it.award = r.item ? `${r.item.year} ${r.item.award}` : ''; } catch {}
-    }));
+    // 封面在后台补齐，不阻塞启动；节目单正在显示时补齐后刷新
+    this.coversReady = Promise.all(this.items.filter(it => it.kind === 'deck' && /^\d{4}-/.test(it.deck)).map(async it => {
+      try { const r = await (await fetch('api/gd?op=read&id=' + encodeURIComponent(it.deck), {signal: AbortSignal.timeout(20000)})).json(); it.cover = r.item?.cover; it.award = r.item ? `${r.item.year} ${r.item.award}` : ''; } catch {}
+    })).then(() => { if (this.isShowing) this.show(); });
     return this.items.length > 0;
   }
 

@@ -324,6 +324,34 @@ export async function warmDecks(ids) {
   for (const id of ids) { try { await buildDeck(id); } catch (e) { console.warn('warm deck', id, e.message); } }
 }
 
+// ---------- 意图理解（第七轮）：把来宾的任意说法理解成要执行的动作 ----------
+const ACTIONS = {
+  play: '播放某个节目，args.key 为节目编号键（如 gov:3）',
+  search_play: '在好设计馆里找一个项目或方法做成节目播放，args.query 为关键词',
+  guide: '打开节目单，args.channel 可选（lab/gov/enterprise/methods）',
+  next_page: '节目翻到下一页', prev_page: '节目回到上一页', pause: '暂停', resume: '继续讲', replay: '这一页再讲一遍',
+  restart: '节目从头讲', goto_page: '跳到第几页，args.page 为数字', exit: '退出节目回到节目单',
+  next_part: '主持流程进入下一部分', skip: '跳过正在讲的这一段', ask_cue: '问屏幕提示卡上的第几个问题，args.n 为 1-3',
+  bridge: '去看好设计馆（从实验室环节过渡）', route: '开始某条路线的好设计馆导览，args.route 为 government 或 enterprise',
+  lab_scene: '介绍实验室某个场景，args.scene 为 agriculture/public-services/fashion/logistics/commerce/education',
+  welcome: '开始实验室参观（开场欢迎）', end_visit: '结束参观', compare: '比较刚看过的两个项目', open_page: '在屏幕打开原始网页',
+  home: '小D 回到大厅中间', help: '显示使用帮助', stop: '停止说话',
+  answer: '来宾是在提问或闲聊，不需要执行动作，交给讲解员回答'
+};
+export async function understand(text, context) {
+  const t0 = Date.now();
+  const prompt = `你是展厅讲解机器人“小D”的指令理解模块。根据来宾这句话和当前屏幕情况，判断来宾想让小D 做什么。
+可选动作：
+${Object.entries(ACTIONS).map(([k, v]) => `- ${k}：${v}`).join('\n')}
+当前情况（JSON）：${JSON.stringify(context).slice(0, 3500)}
+来宾说：“${String(text).slice(0, 120)}”
+规则：明确要求看、播放、换、翻页、跳转、停、继续、开始、结束、打开时选对应动作；“这个/那个/刚才那个”按当前情况理解；提到节目单里的项目时用 play 并给出 key；节目单里没有但像是好设计项目或方法时用 search_play。只是问问题、问原因、问细节、聊天时选 answer。拿不准时选 answer。
+只输出 JSON：{"action":"","args":{},"confidence":0.0}`;
+  const j = await llmJSON(prompt);
+  const action = ACTIONS[j?.action] ? j.action : 'answer';
+  return {action, args: j?.args && typeof j.args === 'object' ? j.args : {}, confidence: +j?.confidence || 0, ms: Date.now() - t0};
+}
+
 // ---------- HTTP 入口：/api/gd?op=search|read|relate ----------
 const hits = [];
 function limited() { const now = Date.now(); while (hits.length && now - hits[0] > 60000) hits.shift(); if (hits.length >= 60) return true; hits.push(now); return false; }
@@ -350,6 +378,12 @@ export async function handleGd(req, res) {
       return send(200, { source: SOURCE, note: NOTE, query: q, projects, methods, empty: !projects.length && !methods.length ? '好设计馆里没有找到直接相关的内容，照实告诉访客，不要编造。' : undefined });
     }
     if (op === 'read') return send(200, { source: SOURCE, note: NOTE, item: await read(u.searchParams.get('id')) });
+    if (op === 'intent' && req.method === 'POST') {
+      const chunks = []; let size = 0;
+      for await (const c of req) { size += c.length; if (size > 16384) return send(413, {error: 'too large'}); chunks.push(c); }
+      let b = {}; try { b = JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}'); } catch { return send(400, {error: 'body'}); }
+      return send(200, await understand(String(b.text || ''), b.context || {}));
+    }
     if (op === 'media') return send(200, {source: SOURCE, media: await mediaFor(String(u.searchParams.get('id') || ''))});
     if (op === 'deck') return send(200, {source: SOURCE, deck: await buildDeck(u.searchParams.get('id'))});
     if (op === 'relate') return send(200, { source: SOURCE, note: NOTE, ...(await relate(u.searchParams.get('a'), u.searchParams.get('b'))) });

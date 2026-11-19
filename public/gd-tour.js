@@ -17,6 +17,7 @@ const ROUTE_KEY = 'littled.gdRoute';
 const ASK_STOP = /^(请|那)?(你)?(带我|给我|带我们|给我们)?(看看|看一看|介绍|介绍一下|介绍下|参观|参观一下|了解|了解一下|了解下|讲讲|讲一讲|讲下|说说|说下)(一下)?好设计馆?(吧|呢|好吗)?$|^好设计馆?(是什么|是干什么的|介绍一下)(呀|呢)?$/;
 const ASK_GUIDE = /^(节目单|看看节目单|打开节目单|节目表|有哪些节目|有什么节目|还有哪些(节目|项目|内容)|还有什么(可以)?(看|讲)的?|都有什么(节目|项目|内容)?|看看有什么|有什么可以看的?|菜单|目录|频道)(呀|呢|吗)?$/;
 const ASK_HELP = /^(帮助|怎么用|怎么玩|怎么操作|你能做什么|你会什么|我可以说什么|我能说什么|可以说什么|有哪些功能|有什么功能|使用说明|说明书)(呀|呢|吗)?$/;
+const ACTIONISH = /看|播|放|讲|打开|换|下一|上一|回到|回去|停|暂停|继续|跳|去|带我|开始|结束|关|第|频道|节目|页|项目|展品|那个|这个|刚才|再|重新|帮我|帮助|算了|别|不要|想听|想了解|介绍/;
 const LINES = {
   guide: '这是节目单，分实验室、政府、企业和设计方法几个频道。想看哪个，说第几个或者名字就可以。',
   after: '这个项目就讲到这里。屏幕上是节目单，想接着看哪个，说第几个就可以。',
@@ -36,13 +37,16 @@ export class GdTour {
     this.route = this.initialRoute();
     const st = voice.gd;
     this.deck = new DeckPlayer(voice, st);
-    this.deck.onState = () => this.controls?.sync();
+    this.deck.onState = () => { this.controls?.sync(); this.syncHall(); };
+    setInterval(() => this.syncHall(), 1000);
     this.guide = new ProgrammeGuide(st);
     this.guide.onPick = it => { this.voice.log?.('你', `（点选）${it.title}`); this.startProgramme(it); };
     this.guide.onChange = () => this.controls?.sync();
     st.deck = this.deck;
     st.onKey = e => this.onKey(e);
     window.gdTour = this;   // 便于现场排查
+    // 嘈杂环境：网址加 ?noise=high，或手机遥控切换；阈值更高，避免一直“听不完”
+    try { voice.noisyRoom = new URLSearchParams(location.search).get('noise') === 'high' || localStorage.getItem('littled.noisy') === '1'; } catch {}
     // 主持人接管好设计环节时，不再追加实验室流程的固定引导语（提示由屏幕左侧的提示卡给出）
     if (typeof voice.nextStepGuidance === 'function') {
       const orig = voice.nextStepGuidance.bind(voice);
@@ -56,12 +60,12 @@ export class GdTour {
     catch { this.script = null; }
     if (this.script && !this.script.routes?.[this.route]) this.route = this.script.defaultRoute || Object.keys(this.script.routes || {})[0];
     this.mountRoutePicker();
+    this.initHall();                       // 展厅不依赖网络，先搭起来
     await this.guide.load();
     this.guide.channel = this.guide.channelForRoute(this.route) || this.guide.channel;
     this.controls = new Controls(this);
     this.host = new Host(this);
     this.host.setScript(this.script);
-    this.initHall();
     this.warmLines();
     return !!this.script;
   }
@@ -140,8 +144,8 @@ export class GdTour {
       const moved = Math.hypot(e.clientX - down.x, e.clientY - down.y), dt = performance.now() - down.t; down = null;
       if (moved > 8 || dt > 450) return;                          // 拖动旋转视角不算
       if (e.target.closest('.gd-screen, .gd-ctrl, button, a, input, select, textarea, .right, .scene-choice')) return;
-      const panel = this.hall?.pick(e.clientX, e.clientY);
-      if (panel && !this.isTalking()) { this.voice.log?.('你', `（点展板）${panel.title}`); this.ripple(e.clientX, e.clientY); this.startProgramme(panel); return; }
+      const hit = this.hall?.pick(e.clientX, e.clientY);
+      if (hit?.guideChannel && !this.isTalking()) { this.ripple(e.clientX, e.clientY); this.showGuide({channel: hit.guideChannel === 'route' ? this.guide.channelForRoute(this.route) : hit.guideChannel}); return; }
       this.interruptAll(e.clientX, e.clientY);
     }, true);
   }
@@ -240,7 +244,7 @@ export class GdTour {
   // ---------- 讲解员手机遥控与控制条 ----------
   async remote(cmd, arg, fromRemote = false) {
     const v = this.voice, d = this.deck;
-    if (fromRemote) v.log?.('遥控', {stop: '停止', toggle: '暂停/继续', next: '下一页', prev: '上一页', restart: '本页重讲', guide: '节目单', channel: '换频道', play: '播放节目', tour: '开始导览', welcome: '开场欢迎', idle: '回到待机', say: String(arg || ''), help: '帮助', close: '关闭屏幕', home: '回到中间', nextpart: '下一部分', ask: '替来宾问提示问题', closing: '结束参观', bridge: '去看好设计馆'}[cmd] || cmd);
+    if (fromRemote) v.log?.('遥控', {stop: '停止', toggle: '暂停/继续', next: '下一页', prev: '上一页', restart: '本页重讲', guide: '节目单', channel: '换频道', play: '播放节目', tour: '开始导览', welcome: '开场欢迎', idle: '回到待机', say: String(arg || ''), help: '帮助', close: '关闭屏幕', home: '回到中间', nextpart: '下一部分', ask: '替来宾问提示问题', closing: '结束参观', bridge: '去看好设计馆', mic: '收音设置'}[cmd] || cmd);
     this.stopAttract({keepScreen: cmd !== 'idle'});
     switch (cmd) {
       case 'stop': this.interruptAll(); break;
@@ -262,6 +266,13 @@ export class GdTour {
       case 'ask': this.host?.ask(+arg || 0); break;
       case 'closing': this.host?.closing(); break;
       case 'bridge': this.host?.bridge(); break;
+      case 'mic': {
+        const v2 = this.voice, box = document.getElementById('autoMic');
+        if (arg === 'off' && box) { box.checked = false; v2.status?.('自动收音已关闭，可用按住说话或遥控'); }
+        if (arg === 'on' && box) { box.checked = true; v2.capture?.(); v2.status?.('自动收音已开启'); }
+        if (arg === 'noisy' || arg === 'normal') { v2.noisyRoom = arg === 'noisy'; v2.vad = null; try { localStorage.setItem('littled.noisy', v2.noisyRoom ? '1' : '0'); } catch {} v2.status?.(v2.noisyRoom ? '已切换为嘈杂环境模式' : '已切换为安静环境模式'); }
+        break;
+      }
     }
     this.controls?.sync();
   }
@@ -284,6 +295,8 @@ export class GdTour {
       return true;
     }
     if (this.offered && negative(text)) this.offered = false;
+    // 没有命中固定说法时，交给意图理解：听懂来宾想让小D 做什么，再执行
+    if (ACTIONISH.test(c) && c.length <= 40 && await this.understandAndAct(c, text)) { this.controls?.sync(); return true; }
     if (this.deck.playing) this.deck.pause();   // 来宾提问：节目停在当前页，先回答
     // 让回答落在刚才讲的内容上
     const st = this.voice.gd;
@@ -295,6 +308,78 @@ export class GdTour {
   }
 
   cancel() { this.token++; this.running = false; }
+
+  // 展厅氛围跟随讲解：节目播放时压暗环境、追光、墙面屏幕显示当前页配图；导览按路线配色
+  syncHall() {
+    const h = this.hall; if (!h) return;
+    const d = this.deck, v = this.voice;
+    if (d.deck && d.active) {
+      h.setTheme(this.current?.channel || this.guide.channelForRoute(this.route) || 'gov');
+      h.setPresenting(!d.paused);
+      const key = d.deck.id + ':' + d.index;
+      if (key !== this.mediaKey) {
+        this.mediaKey = key;
+        const s = d.deck.slides[d.index] || {}, imgs = [s.image || d.deck.cover, ...d.deck.slides.map(x => x.image), d.deck.cover].filter(Boolean);
+        h.showMedia([...new Set(imgs)], d.deck.name);
+      }
+      return;
+    }
+    if (this.mediaKey) { this.mediaKey = null; h.resetMedia(); }
+    if (this.running || this.host?.waiting) { h.setTheme(this.guide.channelForRoute(this.route) || 'gov'); h.setPresenting(!!this.running && !this.host?.waiting && this.isTalking()); return; }
+    h.setPresenting(false);
+    h.setTheme(v.selectedScene ? 'lab' : this.guide.isShowing ? (this.guide.channel || 'idle') : 'idle');
+  }
+
+  // ---------- 意图理解：任意说法 → 动作 ----------
+  intentContext() {
+    const d = this.deck, h = this.host, v = this.voice, st = v.gd;
+    return {
+      mode: d.deck && d.active ? (d.paused ? 'programme_paused' : 'programme_playing') : this.guide.isShowing ? 'guide' : h?.waiting ? 'host_pause_between_parts' : this.running ? 'host_presenting' : v.selectedScene ? 'lab_scene' : v.tour?.started ? 'lab_tour' : 'free',
+      programme: d.deck ? {title: d.deck.name, page: d.index + 1, pages: d.deck.slides.length} : null,
+      channel: this.guide.channel,
+      programmes: this.guide.channels.map(c => ({channel: c.id, name: c.short || c.name, items: c.items.map(it => `${it.key}=${it.title}`)})),
+      cues: h?.cues || [], act: ['开场', '实验室', '好设计馆', '自由点播', '收尾'][h?.act] || '',
+      lab_scene: v.selectedScene?.title || null, route: this.route,
+      recent_projects: [st?.focus?.current?.name, st?.focus?.previous?.name].filter(Boolean)
+    };
+  }
+
+  async understandAndAct(c, raw) {
+    let r;
+    try {
+      const resp = await fetch('api/gd?op=intent', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({text: raw, context: this.intentContext()}), signal: AbortSignal.timeout(3500)});
+      r = await resp.json();
+    } catch { return false; }
+    if (!r?.action || r.action === 'answer' || (r.confidence && r.confidence < .5)) return false;
+    const a = r.args || {}, d = this.deck, v = this.voice, log = () => v.log?.('你', raw);
+    const deckOn = d.deck && d.active;
+    switch (r.action) {
+      case 'play': { const it = this.guide.byKey(String(a.key || '')); if (!it) return false; log(); this.startProgramme(it); return true; }
+      case 'search_play': { const q = String(a.query || '').slice(0, 30); if (q.length < 2) return false; const res = await gdHandle('gd_search', {query: q, kind: 'all'}, v.gd); const id = res.projects?.[0]?.id || res.methods?.[0]?.research_id; if (!id) return false; log(); this.current = null; this.playDeck(id); return true; }
+      case 'guide': log(); this.showGuide({channel: this.guide.chan(a.channel)?.id === a.channel ? a.channel : undefined}); return true;
+      case 'next_page': if (deckOn) { log(); d.next(); return true; } if (this.host?.waiting || this.running) { log(); return this.host.skip(); } return false;
+      case 'prev_page': if (deckOn) { log(); d.prev(); return true; } return false;
+      case 'pause': case 'stop': log(); if (deckOn && !d.paused) d.pause(); else this.interruptAll(); return true;
+      case 'resume': if (deckOn) { log(); d.resume(); return true; } if (this.host?.waiting) { log(); this.host.waiting.resolve(true); return true; } return false;
+      case 'replay': if (d.deck) { log(); d.replay(); return true; } return false;
+      case 'restart': if (d.deck) { log(); d.restartDeck(); return true; } return false;
+      case 'goto_page': if (d.deck && +a.page > 0) { log(); d.goto(+a.page - 1); return true; } return false;
+      case 'exit': log(); this.showGuide({say: false}); return true;
+      case 'next_part': log(); if (this.host?.waiting) this.host.waiting.resolve(true); else if (!this.host?.skip()) this.showGuide({say: false}); return true;
+      case 'skip': log(); return this.host?.skip() || true;
+      case 'ask_cue': if (this.host?.cues?.[+a.n - 1]) { log(); this.host.ask(+a.n - 1); return true; } return false;
+      case 'bridge': log(); this.host?.bridge(); return true;
+      case 'route': if (this.setRoute(a.route)) { log(); d.stop(); this.run(); return true; } return false;
+      case 'lab_scene': { const scene = SCENE_CHOICES.find(x => x.id === a.scene); if (!scene) return false; this.deck.stop(); v.gd?.screen?.close(); v.respond('我想了解' + scene.title + '。', {sceneEntry: scene}); return true; }
+      case 'welcome': if (v.tour && !v.tour.started) { log(); d.stop(); v.gd?.screen?.close(); this.hall?.walkHome(); v.tour.start(); return true; } return false;
+      case 'end_visit': log(); this.host?.closing(); return true;
+      case 'compare': return this.command('这两个有什么关系', raw);
+      case 'open_page': return this.command('看原网页', raw);
+      case 'home': log(); this.hall?.walkHome(); return true;
+      case 'help': log(); this.controls?.showHelp(); this.speak(LINES.help, ++this.token); return true;
+    }
+    return false;
+  }
 
   // 口令：直接执行，不靠模型决定是否调用工具。返回 true 表示已处理完；
   // 对比之后把真实资料放进 pendingFacts 再交给模型讲解（返回 false）。

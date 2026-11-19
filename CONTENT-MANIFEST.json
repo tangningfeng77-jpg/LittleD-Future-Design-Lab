@@ -28,8 +28,8 @@
     },
     {
       "path": "public/photo-stage.js",
-      "bytes": 9752,
-      "sha256": "798b425d2df902e43665713797cc7a8945b3f7731fc8ddd164f21c950a82036c"
+      "bytes": 9831,
+      "sha256": "8b716b5e136b58387c43da1fe5e9ce054f42d02567a906b71359b7cd8b9c862b"
     },
     {
       "path": "public/visual-cues.js",
@@ -93,8 +93,8 @@
     },
     {
       "path": "public/voice.js",
-      "bytes": 51052,
-      "sha256": "d3342b731380b46979bf2ca021323b1be1520583b9ee93396ddba0be4c2a8068"
+      "bytes": 51898,
+      "sha256": "14c7c36b4eda13a2fa3887ef6cb7d506f10c34cb6a1c19a891a8fef592836eb6"
     },
     {
       "path": "public/tour-flow.js",
@@ -24258,8 +24258,8 @@
     },
     {
       "path": "gd-proxy.mjs",
-      "bytes": 24781,
-      "sha256": "eb707c946fe14b406bf3e955d64aaf0133d1e67246dceb0c0fd58de077b4f353"
+      "bytes": 27769,
+      "sha256": "615795a69e851413aa86d8fd9e969e671a7f9386f952830aa132c8be1fe5decd"
     },
     {
       "path": "public/gooddesign.js",
@@ -24293,8 +24293,8 @@
     },
     {
       "path": "public/gd-tour.js",
-      "bytes": 26499,
-      "sha256": "b0be915c46989eb538ce2c643e259c10d081dfd630afb5b941d5ab1728d84788"
+      "bytes": 33564,
+      "sha256": "2de74a5462ce6eac1a354f75f67a4b2a841bd282fa56d5cc07f0ab74b23f1367"
     },
     {
       "path": "public/assets/tour/programmes.json",
@@ -24308,8 +24308,8 @@
     },
     {
       "path": "public/gd-guide.js",
-      "bytes": 5972,
-      "sha256": "ad2a7019ebde5229d3e37b52be93d221e3e5639059bbf4f6b7996e8d6c8cd50b"
+      "bytes": 6161,
+      "sha256": "43a2693e3c1258cf0b235c0eb5a33bf83605226bfbeab02edb69bffecbccac03"
     },
     {
       "path": "public/assets/tour/audience.json",
@@ -24323,18 +24323,18 @@
     },
     {
       "path": "public/gd-hall.js",
-      "bytes": 14150,
-      "sha256": "078b65529600be0454749019bdbd68daba85cbddbcbbb3d9c8f9f6e715c79d3d"
+      "bytes": 23861,
+      "sha256": "94a77eed9fd930d4b6888052b47f232f742858de6e57ad4b2f44887930b56223"
     },
     {
       "path": "public/remote.html",
-      "bytes": 7697,
-      "sha256": "82ed12e12b833a3869bc70a640c3b7e921477b08dedafb037fe321f026eed7be"
+      "bytes": 8250,
+      "sha256": "64c309630864ee9389cd7da19ea6b854ee3f0e56b0fc1ae0eabd2237b930b32b"
     },
     {
       "path": "remote.mjs",
-      "bytes": 3930,
-      "sha256": "c7428cdda85f98a56a2826f7145f6b25a40be3d42c540e0495480134b90d41e1"
+      "bytes": 3937,
+      "sha256": "248d990fce308833636a25db9ad42ce31d884fba9bfb40502e87c6f721a1fb19"
     },
     {
       "path": "tools/classify-audience.mjs",
