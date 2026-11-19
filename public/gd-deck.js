@@ -1,6 +1,7 @@
 // 讲解幻灯片（第四轮）：好设计项目以“节目”的方式在展示屏上逐页播放，小D 逐页口播；
 // 点一下小D 或说“停”暂停，“继续”“下一页”“上一页”控制。幻灯片由本机服务按项目档案生成（api/gd?op=deck）。
 import {requestFixedSpeech} from './tour-flow.js';
+import {deck as localDeck} from './gd-local.js';
 
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
 const wait = ms => new Promise(r => setTimeout(r, ms));
@@ -17,7 +18,10 @@ export class DeckPlayer {
   model() { return this.voice.providerModel || 'qwen3.8-omni-flash-realtime'; }
 
   async load(id) {
-    const r = await (await fetch('api/gd?op=deck&id=' + encodeURIComponent(id), {signal: AbortSignal.timeout(120000)})).json();
+    // 先读 COS 上预先生成的讲稿，没有再请服务器生成
+    let r = null;
+    try { r = {deck: await localDeck(id)}; } catch {}
+    if (!r?.deck?.slides?.length) r = await (await fetch('api/gd?op=deck&id=' + encodeURIComponent(id), {signal: AbortSignal.timeout(120000)})).json();
     if (!r.deck) throw Error(r.error || '幻灯片暂时生成不了');
     // 提前合成整套口播，翻页时不卡顿
     try { const v = this.voice.config().voice; for (const s of r.deck.slides) requestFixedSpeech(s.narration, v, this.model(), {background: true}); } catch {}

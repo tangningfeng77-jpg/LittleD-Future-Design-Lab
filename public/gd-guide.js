@@ -2,6 +2,8 @@
 // 每个频道内编号从 1 开始；说“第三个”指当前频道第三个，说“企业频道”切换；名字在所有频道里找。
 // 清单 assets/tour/programmes.json。
 
+import {asset, gdApi} from './gd-local.js';
+
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
 const clean = s => String(s || '').normalize('NFKC').replace(/[\s，。！？、,.!?～~“”"'·]/g, '').toLowerCase();
 const CN = {零: 0, 一: 1, 二: 2, 两: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9, 十: 10};
@@ -29,7 +31,7 @@ export class ProgrammeGuide {
     } catch { this.items = []; }
     // 封面在后台补齐，不阻塞启动；节目单正在显示时补齐后刷新
     this.coversReady = Promise.all(this.items.filter(it => it.kind === 'deck' && /^\d{4}-/.test(it.deck)).map(async it => {
-      try { const r = await (await fetch('api/gd?op=read&id=' + encodeURIComponent(it.deck), {signal: AbortSignal.timeout(20000)})).json(); it.cover = r.item?.cover; it.award = r.item ? `${r.item.year} ${r.item.award}` : ''; } catch {}
+      try { const r = await gdApi({op: 'read', id: it.deck}); it.cover = r.item?.cover; it.award = r.item ? `${r.item.year} ${r.item.award}` : ''; } catch {}
     })).then(() => { if (this.isShowing) this.show(); });
     return this.items.length > 0;
   }
@@ -39,8 +41,8 @@ export class ProgrammeGuide {
 
   image(it) {
     if (it.image) return it.image;
-    if (it.kind === 'lab-scene') return `./assets/scene-choices/${it.scene}.png`;
-    if (it.kind === 'lab-project') return './assets/ifs-project/ifs-project-icon.png';
+    if (it.kind === 'lab-scene') return asset(`./assets/scene-choices/${it.scene}.png`);
+    if (it.kind === 'lab-project') return asset('./assets/ifs-project/ifs-project-icon.png');
     return it.cover || '';
   }
 

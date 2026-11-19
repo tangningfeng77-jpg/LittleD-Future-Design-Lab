@@ -41,7 +41,7 @@ export class TourFlow {
  constructor(voice){
   this.voice=voice;this.state='idle';this.started=false;this.welcomeDelivered=false;this.guidanceDelivered=false;this.token=0;
   const panel=document.createElement('section');panel.className='tour-player';panel.hidden=true;panel.setAttribute('role','region');panel.setAttribute('aria-label','实验室介绍视频');
-  panel.innerHTML='<video playsinline preload="auto" disablepictureinpicture disableremoteplayback src="./assets/tour/1111.mp4"></video><button class="tour-skip" type="button">结束视频</button>';
+  panel.innerHTML='<video playsinline preload="auto" disablepictureinpicture disableremoteplayback src="'+window.ldAsset('./assets/tour/1111.mp4')+'"></video><button class="tour-skip" type="button">结束视频</button>';
   document.body.append(panel);this.panel=panel;this.video=panel.querySelector('video');this.video.muted=true;
   panel.querySelector('button').onclick=()=>this.finishVideo('skipped');
   this.video.onended=()=>this.finishVideo('completed');

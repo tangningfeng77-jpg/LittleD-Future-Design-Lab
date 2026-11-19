@@ -18,7 +18,7 @@ export class SceneChoices {
   this.buttons=SCENE_CHOICES.map((scene,index)=>{
    const button=document.createElement('button');button.type='button';button.className='scene-choice';button.dataset.scene=scene.id;button.setAttribute('aria-label',scene.title);button.style.setProperty('--order',index);
    const art=document.createElement('span');art.className='scene-art';art.setAttribute('aria-hidden','true');
-   const image=document.createElement('img');image.src='./assets/scene-choices/'+scene.image;image.alt='';image.draggable=false;
+   const image=document.createElement('img');image.src=window.ldAsset('./assets/scene-choices/'+scene.image);image.alt='';image.draggable=false;
    const [width,height,center,top]=ART_BOUNDS[scene.image];
    image.style.cssText=`width:calc(var(--icon-size) * ${width});height:calc(var(--icon-size) * ${height});left:calc(50% - var(--icon-size) * ${center});top:calc(var(--icon-size) * -${top})`;
    art.append(image);

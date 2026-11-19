@@ -27,7 +27,7 @@ export class ProjectEntry{
  window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==this.frame.contentWindow)return;if(e.data?.type==='ifs-device-status'){this.deviceStatus.textContent=e.data.message;this.frame.dataset.camera=e.data.status;}if(e.data?.type==='ifs-complete'&&!this.panel.hidden)this.close();});
  }
  prepare(){if(this.prepared)return;this.prepared=true;this.frame.src='./assets/ifs-project/index.html?prepare=1';}
- offer(){this.offered=true;this.icon.hidden=true;if(this.visuals)this.visuals.show([{id:'IFS-ENTRY',title:'进入 IFS 项目',kind:'项目入口',url:'./assets/ifs-project/ifs-project-icon.png',project:true,onActivate:this.onEnter}]);else this.icon.hidden=false;}
+ offer(){this.offered=true;this.icon.hidden=true;if(this.visuals)this.visuals.show([{id:'IFS-ENTRY',title:'进入 IFS 项目',kind:'项目入口',url:window.ldAsset('./assets/ifs-project/ifs-project-icon.png'),project:true,onActivate:this.onEnter}]);else this.icon.hidden=false;}
  enter(){this.offered=false;this.icon.hidden=true;this.visuals?.clear();this.panel.hidden=false;if(!this.prepared){this.prepared=true;this.frame.src='./assets/ifs-project/index.html?autostart=1';}else this.frame.contentWindow?.postMessage({type:'ifs-start'},location.origin);}
  close(){this.offered=false;this.panel.hidden=true;this.icon.hidden=true;this.visuals?.clear();this.frame.contentWindow?.postMessage({type:'ifs-reset'},location.origin);this.onReturn?.();}
  hide(){this.offered=false;this.icon.hidden=true;this.visuals?.clear();this.panel.hidden=true;}

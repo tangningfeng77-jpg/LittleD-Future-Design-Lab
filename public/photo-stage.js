@@ -3,7 +3,7 @@ import * as THREE from 'three';
 // Aspect-preserving framing and bounded movement prevent unsupported edge views.
 export function fitPhotoFov(aspect){return THREE.MathUtils.radToDeg(2*Math.atan(Math.tan(THREE.MathUtils.degToRad(55/2))*.94*Math.min(1,1.5/aspect)));}
 export async function createPhotoStage({scene,camera,controls,renderer}){
- const loader=new THREE.TextureLoader();const photo=await loader.loadAsync('./assets/lab-background.jpg').catch(()=>loader.loadAsync('./assets/lab-background.png'));photo.colorSpace=THREE.SRGBColorSpace;photo.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+ const loader=new THREE.TextureLoader();const photo=await loader.loadAsync(window.ldAsset('./assets/lab-background.jpg')).catch(()=>loader.loadAsync('./assets/lab-background.jpg')).catch(()=>loader.loadAsync('./assets/lab-background.png'));photo.colorSpace=THREE.SRGBColorSpace;photo.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
  const reference=new THREE.PerspectiveCamera(55,1.5,.05,60);reference.position.set(0,1.65,6);reference.lookAt(0,.95,0);reference.updateMatrixWorld(true);
  const photoMatrix=new THREE.Matrix4().multiplyMatrices(reference.projectionMatrix,reference.matrixWorldInverse);
  const reflectionTarget=new THREE.WebGLRenderTarget(512,512,{type:THREE.HalfFloatType,depthBuffer:true});

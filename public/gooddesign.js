@@ -1,6 +1,8 @@
 // 好设计知识接入：工具定义、调用本机 /api/gd、展示屏控制（第二阶段）、本地知识包加载。
 // 令牌只在本机服务端（.env.local 的 GD_MCP_TOKEN），浏览器只访问同源 /api/gd。
 
+import {gdApi} from './gd-local.js';
+
 export const GD_TOOLS = [
   {type: 'function', function: {
     name: 'gd_search',
@@ -59,10 +61,8 @@ const clipArg = (v, n = 80) => String(v || '').trim().slice(0, n);
 const PROJECT_ID = /^\d{4}-[a-z]?\d+$/i, METHOD_ID = /^(R\d{1,3}|WB\d{1,3}|IM-[A-Z]+-\d+)$/i;
 const SECTIONS = {home: '/', projects: '/projects/', methods: '/methods/', museum: '/museum/', apps: '/apps/', model: '/model/', about: '/about/'};
 
-async function api(params) {
-  const response = await fetch('api/gd?' + new URLSearchParams(params), {signal: AbortSignal.timeout(20000)});
-  return response.json();
-}
+// 第八轮：项目检索与阅读在浏览器本地完成（gd-local.js），本地答不了才问服务器
+const api = params => gdApi(params);
 
 function setFocus(st, item) {
   if (!item || item.kind === 'method' || !item.id || item.id === st.focus.current?.id) return;
