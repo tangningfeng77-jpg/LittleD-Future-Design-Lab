@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "note": "小D 知识包清单。kind=builtin 为内置实验室资料；kind=remote 经本机服务在线读取；kind=local 为放在本目录下的资料包，会并入实验室知识检索。",
+  "packs": [
+    {"id": "lab", "name": "未来设计实验室", "kind": "builtin", "path": "../lab-knowledge/knowledge.json"},
+    {"id": "gooddesign", "name": "好设计馆", "kind": "remote", "api": "/api/gd", "requires": "GD_MCP_TOKEN"}
+  ]
+}

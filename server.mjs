@@ -1,4 +1,5 @@
 import {searchWeb} from './web-search.mjs';
+import {handleGd,gdConfigured} from './gd-proxy.mjs';
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -15,7 +16,8 @@ const config=()=>JSON.parse(fs.readFileSync(path.join(pub,'assets/robot-config.j
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.png':'image/png','.fbx':'application/octet-stream','.css':'text/css; charset=utf-8','.mov':'video/quicktime','.mp4':'video/mp4','.m4a':'audio/mp4','.wav':'audio/wav','.wasm':'application/wasm','.jpg':'image/jpeg','.jpeg':'image/jpeg','.svg':'image/svg+xml'};
 const server=http.createServer(async(req,res)=>{
  if(new URL(req.url,'http://localhost').pathname==='/api/search'){res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Cache-Control','no-store');try{const q=new URL(req.url,'http://localhost').searchParams.get('q');return res.end(JSON.stringify(await searchWeb(q)));}catch{return res.end(JSON.stringify({results:[],error:'联网查询暂不可用，请使用已确认的知识回答，不编造结论。'}));}}
- if(req.url==='/api/status'){res.setHeader('Content-Type',mime['.json']);return res.end(JSON.stringify({configured:!!(process.env.DASHSCOPE_API_KEY&&process.env.DASHSCOPE_WORKSPACE_ID),provider:'阿里百炼',model:config().model}));}
+ if(new URL(req.url,'http://localhost').pathname==='/api/gd')return handleGd(req,res);
+ if(req.url==='/api/status'){res.setHeader('Content-Type',mime['.json']);return res.end(JSON.stringify({configured:!!(process.env.DASHSCOPE_API_KEY&&process.env.DASHSCOPE_WORKSPACE_ID),provider:'阿里百炼',model:config().model,gooddesign:gdConfigured()}));}
  const urlPath=new URL(req.url,'http://localhost').pathname;
  const reference=urlPath==='/references'||urlPath.startsWith('/references/');
  const staticRoot=reference?path.join(root,'资料'):pub;

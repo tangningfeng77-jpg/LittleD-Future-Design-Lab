@@ -93,8 +93,8 @@
     },
     {
       "path": "public/voice.js",
-      "bytes": 49253,
-      "sha256": "003e55b44cb471c6142a6cf7bd811e9e3fdcefef064d6633f776dee44233684c"
+      "bytes": 50575,
+      "sha256": "a70b1de62d9da956f71c9461c327d06b14d0480595ea9b6469384479dfc54f9c"
     },
     {
       "path": "public/tour-flow.js",
@@ -23658,8 +23658,8 @@
     },
     {
       "path": "scripts/check-package.mjs",
-      "bytes": 1187,
-      "sha256": "d94657295d3ceacb8b4958abc67b5c004557421936f95e42c566af70597aaeb8"
+      "bytes": 1225,
+      "sha256": "285d06fd3a9a74c3d7d8f34bc51869e3bc340425050d3632d9d98001c4342cef"
     },
     {
       "path": "platforms/android/.gitignore",
@@ -24228,8 +24228,8 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 6348,
-      "sha256": "95d700e3afa13f37c62b71c3adc4835f962e08e67fe3554bc0d812611db6a312"
+      "bytes": 6515,
+      "sha256": "c956e9cb599b5d0fb49be2b198a7f0c4c6f86f3f83ec398a68e6244ad39e759f"
     },
     {
       "path": "web-search.mjs",
@@ -24255,6 +24255,26 @@
       "path": "启动机器人.cmd",
       "bytes": 221,
       "sha256": "79a1fd9e6601fd360534a0c5c4992f95ab34ad8b71717ec78790a4ab30d4a552"
+    },
+    {
+      "path": "gd-proxy.mjs",
+      "bytes": 10696,
+      "sha256": "256cf267d66687cc82480ff0c715f68db0904fada811df880d7afe1643eddbbc"
+    },
+    {
+      "path": "public/gooddesign.js",
+      "bytes": 4822,
+      "sha256": "fd2d63cb80a6ddedaaa876ef8473a29edaff1c186b3df8ecf11dc0d8da8c9bb0"
+    },
+    {
+      "path": "public/assets/packs/index.json",
+      "bytes": 463,
+      "sha256": "6f41e751d6921e103c8cbbec9297bb755674ec94fe9fc86c1ce2c37f46ea6b12"
+    },
+    {
+      "path": "public/assets/packs/README.md",
+      "bytes": 1431,
+      "sha256": "3028020c725fd77fc13b806c23fa350c6327298f16c9d0a8c5ed502026e3869e"
     }
   ]
 }
