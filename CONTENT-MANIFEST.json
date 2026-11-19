@@ -23658,8 +23658,8 @@
     },
     {
       "path": "scripts/check-package.mjs",
-      "bytes": 1365,
-      "sha256": "91e950d1e047cf78859ab0643e08406eedec04ccd45e70d55b9f80ea2e2f0cf5"
+      "bytes": 1385,
+      "sha256": "176e2f34ed3d0e531a2ca678c5bff801969f816cc5d6cee174c2db4466529340"
     },
     {
       "path": "platforms/android/.gitignore",
@@ -24258,8 +24258,8 @@
     },
     {
       "path": "gd-proxy.mjs",
-      "bytes": 24101,
-      "sha256": "6d623b7d028012633f29a1a9d34141d5a2acf12e7614ddb4a4dd7e0e1c07e0da"
+      "bytes": 24781,
+      "sha256": "eb707c946fe14b406bf3e955d64aaf0133d1e67246dceb0c0fd58de077b4f353"
     },
     {
       "path": "public/gooddesign.js",
@@ -24278,23 +24278,23 @@
     },
     {
       "path": "public/gd-screen.css",
-      "bytes": 10233,
-      "sha256": "9438f5f39d66572058c03a9c76cf16e2f2b13f9823080c560b852049979eb921"
+      "bytes": 12612,
+      "sha256": "d45da9ae3a8bd9ea3887ca2487c7368a1b79c8a3693e98271a5c379911191fef"
     },
     {
       "path": "public/gd-screen.js",
-      "bytes": 7236,
-      "sha256": "c3509363b2455dbdc4d07b5cd2bdb6513f31238cc13221fdfab87eed86df2e1a"
+      "bytes": 9515,
+      "sha256": "32d3dcb93382559e8451bf9c5d1b1e0a471574ff2eadea00d0474645ab44931b"
     },
     {
       "path": "public/assets/tour/gooddesign-tour.json",
-      "bytes": 3616,
-      "sha256": "9a5b1910854d40e32338caec5105ebd06ff9631045a33841a6d27510570a078c"
+      "bytes": 7630,
+      "sha256": "8c2e0b6d408ce903358b8101858a838f46078bc08138890c979be9194af45d58"
     },
     {
       "path": "public/gd-tour.js",
-      "bytes": 25385,
-      "sha256": "8209ab91d7d33636b7c48b49912775ce4951b18c78306f242f598402a0b91aa2"
+      "bytes": 26499,
+      "sha256": "b0be915c46989eb538ce2c643e259c10d081dfd630afb5b941d5ab1728d84788"
     },
     {
       "path": "public/assets/tour/programmes.json",
@@ -24303,8 +24303,8 @@
     },
     {
       "path": "public/gd-deck.js",
-      "bytes": 7101,
-      "sha256": "931df9e44167fc176b6641496e9d543616fe4d491fc437d74634199c16e846cd"
+      "bytes": 7123,
+      "sha256": "f89816f6f514b3ee6e5fe71fe1f6294025a7e9eeba85a9556d9346bbd63dce6f"
     },
     {
       "path": "public/gd-guide.js",
@@ -24318,8 +24318,8 @@
     },
     {
       "path": "public/gd-controls.js",
-      "bytes": 6310,
-      "sha256": "f9ddb94a6a7118e75dafb01ca3aed68b8c5e04b5f51abe657794bb297928620d"
+      "bytes": 6561,
+      "sha256": "dc98f6f479b7e82746f9e2911e1c63ea18a9e7f5eb5839d8b7bb54974669670e"
     },
     {
       "path": "public/gd-hall.js",
@@ -24328,18 +24328,23 @@
     },
     {
       "path": "public/remote.html",
-      "bytes": 6560,
-      "sha256": "146ee49e93519d45f0a988a169cb08d90c105bd2ac0bbca6aa72ce739ddcf044"
+      "bytes": 7697,
+      "sha256": "82ed12e12b833a3869bc70a640c3b7e921477b08dedafb037fe321f026eed7be"
     },
     {
       "path": "remote.mjs",
-      "bytes": 3890,
-      "sha256": "5a9e4cd7f873761720aeb09b9b3c0f77a093913bd4d3afd6c97a892e48e3d808"
+      "bytes": 3930,
+      "sha256": "c7428cdda85f98a56a2826f7145f6b25a40be3d42c540e0495480134b90d41e1"
     },
     {
       "path": "tools/classify-audience.mjs",
       "bytes": 2831,
       "sha256": "97e62e81bd71e9e672a8244e342228eee8e557fdf2fc0ea879b26629a93b8a24"
+    },
+    {
+      "path": "public/gd-host.js",
+      "bytes": 13445,
+      "sha256": "23bbc932fb8d36150a29da32142ef91fe8d590ba7cdb2dce17b879024a9ceda1"
     }
   ]
 }

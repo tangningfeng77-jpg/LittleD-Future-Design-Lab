@@ -9,6 +9,7 @@ import {SCENE_CHOICES} from './scene-choices.js';
 import {DeckPlayer} from './gd-deck.js';
 import {ProgrammeGuide, parseNumber} from './gd-guide.js';
 import {Controls} from './gd-controls.js';
+import {Host, deckFacts} from './gd-host.js';
 
 const clean = s => String(s || '').normalize('NFKC').replace(/[\s，。！？、,.!?～~]/g, '');
 const wait = ms => new Promise(r => setTimeout(r, ms));
@@ -41,6 +42,12 @@ export class GdTour {
     this.guide.onChange = () => this.controls?.sync();
     st.deck = this.deck;
     st.onKey = e => this.onKey(e);
+    window.gdTour = this;   // 便于现场排查
+    // 主持人接管好设计环节时，不再追加实验室流程的固定引导语（提示由屏幕左侧的提示卡给出）
+    if (typeof voice.nextStepGuidance === 'function') {
+      const orig = voice.nextStepGuidance.bind(voice);
+      voice.nextStepGuidance = () => (this.host?.waiting || this.running || (this.deck.deck && this.deck.active) || this.guide.isShowing) ? '' : orig();
+    }
     this.bindTap();
   }
 
@@ -52,6 +59,8 @@ export class GdTour {
     await this.guide.load();
     this.guide.channel = this.guide.channelForRoute(this.route) || this.guide.channel;
     this.controls = new Controls(this);
+    this.host = new Host(this);
+    this.host.setScript(this.script);
     this.initHall();
     this.warmLines();
     return !!this.script;
@@ -108,7 +117,8 @@ export class GdTour {
       const {requestFixedSpeech} = await import('./tour-flow.js');
       const v = this.voice.config().voice, model = this.voice.providerModel || 'qwen3.8-omni-flash-realtime';
       const r = this.routeConf, s = this.script || {};
-      const lines = [s.offer, s.intro?.say, ...(r.steps || []).map(x => x.say), r.closing?.say, s.idle?.greeting, ...Object.values(LINES)].filter(Boolean);
+      const beats = seg => [seg?.intro, ...((seg?.beats) || []).map(b => b.say)];
+      const lines = [s.offer, s.bridge?.say, s.host?.continueLine, ...beats(s.intro), ...(r.segments || []).flatMap(beats), r.closing?.say, s.closing?.say, s.idle?.greeting, ...Object.values(LINES)].filter(Boolean);
       for (const t of lines) requestFixedSpeech(t, v, model, {background: true});
     } catch {}
   }
@@ -230,7 +240,7 @@ export class GdTour {
   // ---------- 讲解员手机遥控与控制条 ----------
   async remote(cmd, arg, fromRemote = false) {
     const v = this.voice, d = this.deck;
-    if (fromRemote) v.log?.('遥控', {stop: '停止', toggle: '暂停/继续', next: '下一页', prev: '上一页', restart: '本页重讲', guide: '节目单', channel: '换频道', play: '播放节目', tour: '开始导览', welcome: '开场欢迎', idle: '回到待机', say: String(arg || ''), help: '帮助', close: '关闭屏幕', home: '回到中间'}[cmd] || cmd);
+    if (fromRemote) v.log?.('遥控', {stop: '停止', toggle: '暂停/继续', next: '下一页', prev: '上一页', restart: '本页重讲', guide: '节目单', channel: '换频道', play: '播放节目', tour: '开始导览', welcome: '开场欢迎', idle: '回到待机', say: String(arg || ''), help: '帮助', close: '关闭屏幕', home: '回到中间', nextpart: '下一部分', ask: '替来宾问提示问题', closing: '结束参观', bridge: '去看好设计馆'}[cmd] || cmd);
     this.stopAttract({keepScreen: cmd !== 'idle'});
     switch (cmd) {
       case 'stop': this.interruptAll(); break;
@@ -248,6 +258,10 @@ export class GdTour {
       case 'help': this.controls?.showHelp(); this.speak(LINES.help, ++this.token); break;
       case 'close': d.stop(); this.guide.visible = false; v.gd?.screen?.close(); break;
       case 'home': this.hall?.walkHome(); break;
+      case 'nextpart': if (!this.host?.skip() && d.deck && d.active) d.next(); break;
+      case 'ask': this.host?.ask(+arg || 0); break;
+      case 'closing': this.host?.closing(); break;
+      case 'bridge': this.host?.bridge(); break;
     }
     this.controls?.sync();
   }
@@ -255,8 +269,10 @@ export class GdTour {
   // voice.respond 开头调用：返回 true 表示已处理（不再交给模型）
   async intercept(text, {sceneEntry} = {}) {
     if (!this.script || !this.voice.gdEnabled || sceneEntry || this.voice.tour?.state === 'video') { this.stopAttract(); return false; }
-    if (this.running) this.cancel(); // 访客插话：停止后续剧本
     const c = clean(text);
+    this.host?.touch();
+    if (this.host?.handle(c)) { this.voice.log?.('你', text); this.stopAttract({keepScreen: true}); return true; }
+    if (this.running && !this.host?.waiting) this.cancel(); // 讲解中插话：停止当前段落（段落间答疑不打断流程）
     const handled = await this.command(c, text);
     this.stopAttract({keepScreen: handled});
     if (handled) { this.controls?.sync(); return true; }
@@ -269,6 +285,12 @@ export class GdTour {
     }
     if (this.offered && negative(text)) this.offered = false;
     if (this.deck.playing) this.deck.pause();   // 来宾提问：节目停在当前页，先回答
+    // 让回答落在刚才讲的内容上
+    const st = this.voice.gd;
+    if (st && !st.pendingFacts) {
+      if (this.host?.facts?.text) st.pendingFacts = `【来宾在问刚才讲的“${this.host.facts.title}”。优先依据这些内容回答，资料里没有的照实说：】\n${this.host.facts.text}`;
+      else if (this.deck.deck && this.deck.active) st.pendingFacts = `【来宾在看节目“${this.deck.deck.name}”。优先依据节目内容回答，资料里没有的照实说：】\n${deckFacts(this.deck.deck)}`;
+    }
     return false;
   }
 
@@ -371,30 +393,16 @@ export class GdTour {
     try { await gdHandle('open_page', {target}, this.voice.gd); } catch (e) { console.warn('好设计导览打开页面失败', e.message); }
   }
 
-  // 好设计一站：按路线逐段讲解；step 可以是 {open, say}（页面 + 讲解）或 {say, deck}（引子 + 项目节目）
+  // 好设计馆环节：由主持人按路线逐段讲解（网页高亮或节目），每段之后答疑；讲完回到节目单
   async run() {
     const token = ++this.token;
     this.running = true;
-    const route = this.routeConf;
-    const steps = [this.script.intro, ...(route.steps || [])].filter(Boolean);
-    this.voice.status?.(`好设计导览 · ${route.name}`);
+    this.voice.status?.(`好设计导览 · ${this.routeConf.name}`);
     this.controls?.sync();
     try {
-      for (const step of steps) {
-        if (token !== this.token) return;
-        if (step.deck) {
-          if (step.say && !(await this.speak(step.say, token))) return;
-          const it = this.guide.items.find(x => x.deck === step.deck);
-          if (it && this.hall) await Promise.race([this.hall.walkToItem(it), wait(9000)]);
-          if (!(await this.deck.playToEnd(step.deck)) || token !== this.token) return;
-        } else {
-          await this.open(step.open);
-          if (!(await this.speak(step.say, token))) return;
-        }
-        await wait((step.pauseSeconds ?? 1.5) * 1000);
-      }
-      if (token !== this.token) return;
-      if (route.closing?.open) await this.open(route.closing.open);
+      const ok = await this.host.runRoute(token);
+      if (!ok || token !== this.token) return;
+      const route = this.routeConf;
       this.deck.stop();
       this.guide.show({channel: this.guide.channelForRoute(this.route)});
       this.guideShownAt = Date.now();

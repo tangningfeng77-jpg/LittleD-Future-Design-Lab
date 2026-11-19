@@ -2,7 +2,8 @@
 // 只打开好设计馆域名下的页面。小D 与页面同站部署时（如 haoshejiguan.com/littled/），展示屏直接给页面套展厅样式、
 // 直接翻页缩放，不依赖网站上线展厅模式脚本。
 
-const KIOSK_CSS = '[data-gd-chrome="navigation"],[data-gd-chrome="footer"],.gd-skip,.gd-ip-trigger,.gd-drawer,.apf-host,#apf-host{display:none!important}html{scroll-behavior:smooth}body{cursor:none}';
+const KIOSK_CSS = '[data-gd-chrome="navigation"],[data-gd-chrome="footer"],.gd-skip,.gd-ip-trigger,.gd-drawer,.apf-host,#apf-host{display:none!important}html{scroll-behavior:smooth}body{cursor:none}'
+  + '.gd-focus{position:relative;z-index:5;outline:3px solid #4fc8ea!important;outline-offset:8px;border-radius:10px;box-shadow:0 0 0 100vmax rgba(12,34,50,.22),0 0 28px #7fdcf2!important;transition:box-shadow .5s,outline-color .5s}';
 const cleanTitle = t => String(t || '').replace(/\s*[·|｜-]\s*好设计馆?\s*$/, '').replace(/\s*·\s*项目档案\s*$/, '');
 
 export class GdScreen {
@@ -103,6 +104,41 @@ export class GdScreen {
     document.body.classList.add('gd-screen-open');
     return this.state;
   }
+
+  // 讲解时在网页上高亮正在讲的部分：找到包含这段文字的最小元素，滚到中间并加聚光
+  focusText(text) {
+    const p = this.panes.find(x => x.direct);
+    if (!p || !text) return false;
+    try {
+      const doc = p.frame.contentDocument, want = String(text).replace(/\s+/g, '');
+      doc.querySelectorAll('.gd-focus').forEach(e => e.classList.remove('gd-focus'));
+      let best = null;
+      // 先找标题（目录、导航里的同名链接不算），再找包含这段文字的最小块
+      for (const e of doc.body.querySelectorAll('h1,h2,h3,h4,h5,h6,p,li,a,button,strong,span,div,section,article,figure,td')) {
+        if (e.closest('[data-gd-chrome],.gd-drawer,nav,aside,.toc,[role="navigation"]')) continue;
+        const t = (e.textContent || '').replace(/\s+/g, '');
+        if (!t.includes(want)) continue;
+        const heading = /^H[1-6]$/.test(e.tagName), score = (heading ? 0 : 100000) + t.length;
+        if (!best || score < best.score) best = {e, score};
+      }
+      if (!best) return false;
+      let el = best.e;
+      // 在卡片、图、列表项里时，高亮整张卡片
+      for (let up = el.parentElement, n = 0; up && up !== doc.body && n < 6; up = up.parentElement, n++) {
+        if (/^(FIGURE|ARTICLE|LI)$/.test(up.tagName) || [...up.classList].some(c => /(^|-)card$/.test(c))) {
+          if (up.getBoundingClientRect().height < (doc.defaultView.innerHeight || 800) * .85) el = up;
+          break;
+        }
+      }
+      // 文字太短的元素（如单个标题），向上找一个合适的卡片或段落框
+      while (el.parentElement && el.getBoundingClientRect().width < 260 && el.parentElement !== doc.body) el = el.parentElement;
+      el.classList.add('gd-focus');
+      el.scrollIntoView({behavior: 'smooth', block: 'center'});
+      return true;
+    } catch { return false; }
+  }
+
+  clearFocus() { for (const p of this.panes) { try { p.frame?.contentDocument?.querySelectorAll('.gd-focus').forEach(e => e.classList.remove('gd-focus')); } catch {} } }
 
   close() {
     this.el.hidden = true;

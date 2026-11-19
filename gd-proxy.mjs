@@ -149,7 +149,7 @@ export async function relate(a, b) {
 
 // ---------- 讲解幻灯片（第四轮）：把项目档案整理成 4–6 页“节目”，每页配一段口播 ----------
 // 有语言模型时由模型整理（GD_DECK_MODEL；默认用百炼兼容接口与同一把密钥），否则按档案原文切分。结果缓存在磁盘。
-const DECK_VERSION = 'v5';
+const DECK_VERSION = 'v6';
 // 口播按句截断，不在半句处断开
 const sentences = (t, n) => { let out = ''; for (const x of String(t || '').split(/(?<=[。！？；])/)) { if ((out + x).length > n) break; out += x; } return out || clip(t, n); };
 const deckDir = () => process.env.GD_DECK_CACHE || path.join(process.cwd(), '.cache', 'decks');
@@ -260,18 +260,21 @@ async function llmDeck(src) {
     ? '4 到 5 页：这个方法是什么、解决什么问题；怎么做（步骤可分两页，每页讲两三步）；要注意什么、适用边界；最后一页一句话说它能帮企业或团队做什么。'
     : '4 到 6 页。第一页介绍项目是什么、谁做的、获什么奖；之后依次讲：要解决的问题、关键设计或技术（可分两页）、带来的价值；最后一页一句话总结它对设计创新的启示（只能从资料推出）。';
   const j = await llmJSON(`${head}
-输出 JSON：{"slides":[{"title":"","points":["",""],"narration":""${figures.length ? ',"figure":0' : ''}}]}
+输出 JSON：{"slides":[{"title":"","points":["",""],"narration":""${figures.length ? ',"figure":0' : ''}}],"questions":["","",""]}
 要求：
 - ${order}
 - title 不超过 12 个字；points 每页 2 到 3 条，每条不超过 24 个字，points 里数字照常用阿拉伯数字；
 - ${NARRATION_RULES}
+- questions 是展厅来宾听完后最可能想问的三个问题，每个不超过 18 个字，要能用上面的资料回答；口语化，不重复幻灯片标题。
 - 只输出 JSON。`);
   if (!j) return null;
   const slides = (j.slides || []).slice(0, 6).map(s => {
     const f = figures[(+s.figure || 0) - 1];
     return {title: clip(s.title, 14), points: (s.points || []).slice(0, 3).map(x => clip(x, 30)).filter(Boolean), narration: clip(s.narration, 140), ...(f ? {image: f.url, caption: f.name} : {})};
   }).filter(s => s.title && s.narration);
-  return slides.length >= 3 ? slides : null;
+  if (slides.length < 3) return null;
+  slides.questions = (j.questions || []).map(q => clip(String(q).replace(/[？?]*$/, '？'), 22)).filter(q => q.length > 3).slice(0, 3);
+  return slides;
 }
 
 // 没有指定原理图的页，按顺序配上图集照片（首页用封面）
@@ -300,8 +303,10 @@ export async function buildDeck(id) {
     let slides = null, by = 'rules';
     try { slides = await llmDeck(src); if (slides) by = 'llm'; } catch (e) { console.warn('deck llm', id, e.message); }
     if (!slides) slides = ruleDeck(src);
+    const llmQuestions = slides.questions;
     slides = attachMedia(slides.map(s => ({...s, narration: speakable(s.narration)})), src.media);
-    const deck = {id, kind: src.kind, name: src.p.name, year: src.p.year, award: src.p.award, unit: src.p.unit, cover: src.cover, page: src.page || projectPage(id), by, version: DECK_VERSION, slides};
+    const questions = llmQuestions?.length ? llmQuestions : (src.kind === 'method' ? ['这个方法适合什么时候用？', '第一步怎么做？', '有用到它的获奖项目吗？'] : ['它解决了什么问题？', '关键的设计是什么？', '还有类似的项目吗？']);
+    const deck = {id, kind: src.kind, name: src.p.name, questions, year: src.p.year, award: src.p.award, unit: src.p.unit, cover: src.cover, page: src.page || projectPage(id), by, version: DECK_VERSION, slides};
     try { fs.mkdirSync(deckDir(), {recursive: true}); fs.writeFileSync(file, JSON.stringify(deck)); } catch (e) { console.warn('deck cache', e.message); }
     return deck;
   })().finally(() => decking.delete(id));

@@ -3,7 +3,7 @@
 // POST api/remote/cmd   {code, cmd, arg}   手机发命令
 // POST api/remote/state {code, state}      屏幕上报当前状态
 // GET  api/remote/state?code=1234          手机读取状态（节目单、正在播放）
-const CMDS = new Set(['stop', 'toggle', 'next', 'prev', 'restart', 'guide', 'channel', 'play', 'tour', 'welcome', 'idle', 'say', 'help', 'close', 'home']);
+const CMDS = new Set(['stop', 'toggle', 'next', 'prev', 'restart', 'guide', 'channel', 'play', 'tour', 'welcome', 'idle', 'say', 'help', 'close', 'home', 'nextpart', 'ask', 'closing', 'bridge']);
 const screens = new Map();   // code → Set(res)
 const states = new Map();    // code → {state, at}
 const hits = new Map();      // ip → [times]

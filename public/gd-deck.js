@@ -87,7 +87,7 @@ export class DeckPlayer {
     this.voice.status?.('正在准备节目…');
     const deck = await this.load(id);
     if (token !== this.token) return;
-    this.deck = deck; this.index = 0;
+    this.deck = deck; this.lastDeck = deck; this.index = 0;
     const st = this.st;
     if (st.focus.current?.id !== deck.id) { st.focus.previous = st.focus.current; st.focus.current = {id: deck.id, name: deck.name, page: deck.page}; }
     this.run(token);
