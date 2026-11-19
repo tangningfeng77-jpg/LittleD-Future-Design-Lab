@@ -34,11 +34,13 @@ export const GD_NAMES = new Set(GD_TOOLS.map(t => t.function.name));
 const SCREEN_TOOLS = new Set(['open_page', 'page_control', 'switch_project']);
 
 const BASE_INSTRUCTIONS = '你还能查阅好设计馆：一个收录历届中国好设计获奖项目（数百个）和 64 种设计方法的设计知识平台。访客问到实验室资料以外的设计项目、某个行业的优秀设计、某件事的设计方法，或主动提到“好设计”时，调用 gd_search，再按需 gd_read；问两个项目的关系时调用 gd_relate。讲好设计馆的内容时可以自然说一句“好设计馆里收录了……”，项目要说出名称、获奖年份和奖项，用一两个具体细节讲清它解决什么问题；不要读编号和网址。好设计馆里没找到时照实说，再回到实验室能讲的内容。';
-const SCREEN_INSTRUCTIONS = '你身边有一块展示屏，能播放节目（项目幻灯片）、显示节目单，也能打开好设计馆的页面。来宾想知道还能看什么时，告诉他可以说“节目单”，或者说第几个、说项目名字。访客想看某个项目、方法或好设计馆时调用 open_page；说“往下翻”“放大”“关掉”时调用 page_control；说“换一个”“下一个”“回到刚才那个”“换成某某”时调用 switch_project；比较两个项目时 gd_relate 会自动左右分屏。打开页面后讲内容本身，不描述网页长什么样，也不说“我已经打开了网页”，可以说“请看屏幕”。';
+const SCREEN_INSTRUCTIONS = '你身边有一块展示屏，能播放节目（项目幻灯片）、显示节目单，也能打开好设计馆的页面。节目单分实验室、偏政府领导、偏企业、设计方法四个频道。来宾想知道还能看什么时，告诉他可以说“节目单”或频道名，再说第几个或项目名字；想知道怎么用，可以说“帮助”。访客想看某个项目、方法或好设计馆时调用 open_page；说“往下翻”“放大”“关掉”时调用 page_control；说“换一个”“下一个”“回到刚才那个”“换成某某”时调用 switch_project；比较两个项目时 gd_relate 会自动左右分屏。打开页面后讲内容本身，不描述网页长什么样，也不说“我已经打开了网页”，可以说“请看屏幕”。';
 
 // 每轮更新：告诉模型展示屏和当前项目的状态（讲解员用翻页笔换了项目，小D 也知道）
+const PERSONA = '你是未来设计实验室展厅里的 AI 讲解员小D，经常接待政府和企业的领导。称呼来宾用“您”；先说结论，再讲一两个依据；不堆术语。来宾打断你后，不重复刚才的话，直接回应新问题。听不清时简短请对方再说一遍。不知道或资料里没有的就说没有，不编造；数字、单位、奖项只依据资料。回答后可以给一个具体的下一步，例如“您可以说节目单，或者说第几个”。';
+
 export function gdInstructions(st) {
-  let t = BASE_INSTRUCTIONS;
+  let t = PERSONA + BASE_INSTRUCTIONS;
   if (st?.screen) {
     t += SCREEN_INSTRUCTIONS;
     const pages = st.screen.state.pages;
@@ -54,7 +56,7 @@ export const GD_INSTRUCTIONS = BASE_INSTRUCTIONS;
 export function createGdState(base) { return {base: String(base || 'https://haoshejiguan.com').replace(/\/+$/, ''), focus: {current: null, previous: null}, list: [], screen: null}; }
 
 const clipArg = (v, n = 80) => String(v || '').trim().slice(0, n);
-const PROJECT_ID = /^\d{4}-[a-z]?\d+$/i, METHOD_ID = /^(R\d{1,3}|IM-[A-Z]+-\d+)$/i;
+const PROJECT_ID = /^\d{4}-[a-z]?\d+$/i, METHOD_ID = /^(R\d{1,3}|WB\d{1,3}|IM-[A-Z]+-\d+)$/i;
 const SECTIONS = {home: '/', projects: '/projects/', methods: '/methods/', museum: '/museum/', apps: '/apps/', model: '/model/', about: '/about/'};
 
 async function api(params) {

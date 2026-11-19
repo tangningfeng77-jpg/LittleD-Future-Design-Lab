@@ -135,7 +135,7 @@ export async function readMethod(id) {
 export async function read(id) {
   id = String(id || '').trim();
   if (/^\d{4}-[a-z]?\d+$/i.test(id)) return { kind: 'project', ...(await readProject(id)) };
-  if (/^(IM-|R\d)/i.test(id)) return { kind: 'method', ...(await readMethod(id)) };
+  if (/^(IM-|R\d|WB\d)/i.test(id)) return { kind: 'method', ...(await readMethod(id)) };
   throw Error('编号格式不对：项目形如 2021-c21，方法形如 R08 或 IM-ML-008');
 }
 
@@ -149,7 +149,7 @@ export async function relate(a, b) {
 
 // ---------- 讲解幻灯片（第四轮）：把项目档案整理成 4–6 页“节目”，每页配一段口播 ----------
 // 有语言模型时由模型整理（GD_DECK_MODEL；默认用百炼兼容接口与同一把密钥），否则按档案原文切分。结果缓存在磁盘。
-const DECK_VERSION = 'v4';
+const DECK_VERSION = 'v5';
 // 口播按句截断，不在半句处断开
 const sentences = (t, n) => { let out = ''; for (const x of String(t || '').split(/(?<=[。！？；])/)) { if ((out + x).length > n) break; out += x; } return out || clip(t, n); };
 const deckDir = () => process.env.GD_DECK_CACHE || path.join(process.cwd(), '.cache', 'decks');
@@ -167,6 +167,25 @@ function cnNumber(n) {
 }
 export const speakable = t => String(t || '').replace(/(\d{4})(?=年)/g, y => y.split('').map(d => CN[d]).join('')).replace(/(\d+)\.(\d+)/g, (m, a, b) => cnNumber(a) + '点' + b.split('').map(d => '零一二三四五六七八九'[d]).join('')).replace(/\d+/g, cnNumber).replace(/%/g, '').replace(/[“”"'‘’《》()（）\[\]]/g, '');
 
+// 好设计馆的项目媒体：封面、图集、原理图。GD_MEDIA_DIR 指向网站发布目录（与网站同机部署时），
+// GD_MEDIA_URL 为这些文件的对外地址前缀（/littled/media/ 由 nginx 只读映射到 cases/gal 与 schematics）。
+let schematicsIndex = null;
+function projectMedia(id, p) {
+  const out = [];
+  if (p.cover) out.push({url: `${BASE}/inno/portal/${p.cover}`, kind: 'cover'});
+  const dir = process.env.GD_MEDIA_DIR, pub = (process.env.GD_MEDIA_URL || '').replace(/\/+$/, '');
+  if (!dir || !pub) return out;
+  try {
+    for (const f of fs.readdirSync(path.join(dir, 'cases/gal')).filter(f => f.startsWith(id + '-')).sort()) out.push({url: `${pub}/gal/${f}`, kind: 'photo'});
+  } catch {}
+  try {
+    schematicsIndex ??= JSON.parse(fs.readFileSync(path.join(dir, 'schematics.json'), 'utf8'));
+    const parts = schematicsIndex[id]?.parts || {};
+    for (const list of Object.values(parts)) for (const f of list || []) if (f.file) out.push({url: `${pub}/${f.file}`, kind: 'figure', name: f.name});
+  } catch {}
+  return out;
+}
+
 async function projectSource(id) {
   const p = (await getCatalog()).find(x => x.id === id);
   if (!p) throw Error('没有这个项目编号');
@@ -176,7 +195,22 @@ async function projectSource(id) {
     if (r.ok) { const t = htmlText(await r.text()); const a = t.indexOf('项目简介'), b = t.indexOf('就这个项目'); text = (a >= 0 ? t.slice(a, b > a ? b : undefined) : '').replace(/^项目简介\s*\/\s*OVERVIEW\s*/, '').trim(); }
   } catch {}
   if (!text) text = p.summary || '';
-  return {p, text: text.slice(0, 3000), cover: p.cover ? `${BASE}/inno/portal/${p.cover}` : null};
+  const media = projectMedia(id, p);
+  return {kind: 'project', p, text: text.slice(0, 3000), media, cover: media.find(m => m.kind === 'cover')?.url || media[0]?.url || null};
+}
+
+async function methodSource(id) {
+  const found = await mcp('inno_search_methods', {query: id, limit: 3});
+  const m = (found.data || []).find(x => x.method_id === id || x.research_id === id) || (found.data || [])[0];
+  if (!m) throw Error('没有这个方法编号');
+  const sec = async name => { try { const r = await mcp('inno_read_method', {method_id: m.method_id, section: name, limit: 8}); return r.data ?? r; } catch { return null; } };
+  const [steps, io, bounds] = await Promise.all([sec('steps'), sec('io'), sec('boundaries')]);
+  const lines = [`方法：${m.name}（${m.category}）`, `作用：${m.summary}`];
+  if (Array.isArray(steps)) lines.push('步骤：' + steps.map((x, i) => `${i + 1}. ${x.title}：${x.operation || ''}${x.checks?.length ? '（检查：' + x.checks.join('；') + '）' : ''}`).join('\n'));
+  if (io?.outputs) lines.push('产出：' + io.outputs.map(o => `${o.label}${o.interpretation ? '，' + o.interpretation : ''}`).join('；'));
+  if (bounds?.applicability) lines.push('适用：' + bounds.applicability);
+  if (bounds?.interpretation) lines.push('边界：' + bounds.interpretation);
+  return {kind: 'method', p: {id: m.research_id || m.method_id, name: m.name, year: '', award: '', unit: m.category}, page: m.research_id ? methodPage(m.research_id) : null, text: lines.join('\n').slice(0, 3000), media: [], cover: null};
 }
 
 function ruleDeck(src) {
@@ -184,65 +218,100 @@ function ruleDeck(src) {
   const parts = text.split(/\n/).map(s => s.trim()).filter(Boolean);
   const feats = parts.filter(s => /^\d+[\s.、)]/.test(s)).slice(0, 4);
   const intro = parts.filter(s => !/^\d+[\s.、)]|^[一二三四五六]、/.test(s)).join('').split(/(?<=。)/).slice(0, 3).join('');
-  const slides = [{title: p.name.slice(0, 18), points: [`${p.year}年 中国好设计${p.award}`, p.unit.slice(0, 30)], narration: `这是${p.name}，获得了中国好设计${p.award}。`}];
-  if (intro) slides.push({title: '要解决的问题', points: intro.split(/[。；]/).filter(Boolean).slice(0, 3).map(s => clip(s, 28)), narration: sentences(intro, 110)});
+  const first = src.kind === 'method' ? {title: p.name.slice(0, 18), points: [p.unit], narration: `这是好设计馆收录的设计方法：${p.name}。`}
+    : {title: p.name.slice(0, 18), points: [`${p.year}年 中国好设计${p.award}`, p.unit.slice(0, 30)], narration: `这是${p.name}，获得了中国好设计${p.award}。`};
+  const slides = [first];
+  if (intro) slides.push({title: src.kind === 'method' ? '它解决什么' : '要解决的问题', points: intro.split(/[。；]/).filter(Boolean).slice(0, 3).map(s => clip(s, 28)), narration: sentences(intro, 110)});
   for (const f of feats) { const body = f.replace(/^\d+[\s.、)]+/, ''); const [t, ...rest] = body.split(/[：:]/); const text = rest.join('：') || body; slides.push({title: clip(t, 14), points: text.split(/[，。；]/).filter(x => x.length > 3).slice(0, 3).map(x => clip(x, 28)), narration: sentences(text, 110)}); }
   return slides;
 }
 
-async function llmDeck(src) {
+export async function llmJSON(prompt) {
   const ws = process.env.DASHSCOPE_WORKSPACE_ID, key = process.env.GD_DECK_LLM_KEY || process.env.DASHSCOPE_API_KEY, model = process.env.GD_DECK_MODEL;
   const base = process.env.GD_DECK_LLM_URL || (ws ? `https://${ws}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1` : '');
   if (!model || !key || !base) return null;
-  const {p, text} = src;
-  const prompt = `你在为展厅讲解机器人“小D”准备一个项目的讲解幻灯片。只依据下面的项目资料，不补充资料以外的事实、数字或效果。
-项目：${p.name}（${p.year}年中国好设计${p.award}，${p.unit}）
-资料：
-${text}
-
-输出 JSON：{"slides":[{"title":"","points":["",""],"narration":""}]}
-要求：
-- 4 到 6 页。第一页介绍项目是什么、谁做的、获什么奖；之后依次讲：要解决的问题、关键设计或技术（可分两页）、带来的价值；最后一页一句话总结它对设计创新的启示（只能从资料推出）。
-- title 不超过 12 个字；points 每页 2 到 3 条，每条不超过 24 个字，points 里数字照常用阿拉伯数字；
-- narration 是这一页的口播，2 到 3 句、60 到 110 个汉字，口语化，像讲解员面对来宾说话，前后页自然衔接；不要说“这一页”“下一页”“各位来宾好”这类话，直接讲内容；不写阿拉伯数字，数字用汉字写，百分数写成“百分之三十八”这样的读法；不用英文缩写以外的英文；不加引号和括号。
-- 只输出 JSON。`;
-  let j = null, lastErr;
-  for (let attempt = 0; attempt < 2 && !j; attempt++) {
+  let lastErr;
+  for (let attempt = 0; attempt < 2; attempt++) {
     try {
       const r = await fetch(base.replace(/\/+$/, '') + '/chat/completions', {
         method: 'POST', signal: AbortSignal.timeout(60000),
         headers: {Authorization: 'Bearer ' + key, 'Content-Type': 'application/json'},
         body: JSON.stringify({model, messages: [{role: 'user', content: prompt}], max_tokens: 3000, enable_thinking: false, response_format: {type: 'json_object'}})
       });
-      if (!r.ok) throw Error('deck llm ' + r.status);
+      if (!r.ok) throw Error('llm ' + r.status);
       const d = await r.json();
       const raw = d.choices?.[0]?.message?.content || '';
-      j = JSON.parse(raw.slice(raw.indexOf('{'), raw.lastIndexOf('}') + 1));
+      return JSON.parse(raw.slice(raw.indexOf('{'), raw.lastIndexOf('}') + 1));
     } catch (e) { lastErr = e; }
   }
-  if (!j) throw lastErr || Error('deck llm empty');
-  const slides = (j.slides || []).slice(0, 6).map(s => ({title: clip(s.title, 14), points: (s.points || []).slice(0, 3).map(x => clip(x, 30)).filter(Boolean), narration: clip(s.narration, 140)})).filter(s => s.title && s.narration);
+  throw lastErr || Error('llm empty');
+}
+
+const NARRATION_RULES = 'narration 是这一页的口播，2 到 3 句、60 到 110 个汉字，口语化，像讲解员面对来宾说话，前后页自然衔接；不要说“这一页”“下一页”“各位来宾好”这类话，直接讲内容；不写阿拉伯数字，数字用汉字写，百分数写成“百分之三十八”这样的读法；不用英文缩写以外的英文；不加引号和括号。';
+
+async function llmDeck(src) {
+  const {p, text, media} = src;
+  const figures = media.filter(m => m.kind === 'figure');
+  const figList = figures.length ? '\n可用的原理图（编号：名称）：\n' + figures.map((f, i) => `${i + 1}：${f.name}`).join('\n') + '\n讲到对应设计或技术的那一页，figure 填最贴切的原理图编号；没有合适的填 0。' : '';
+  const head = src.kind === 'method'
+    ? `你在为展厅讲解机器人“小D”准备一个设计方法的讲解幻灯片。只依据下面的资料，不补充资料以外的内容。\n${text}\n`
+    : `你在为展厅讲解机器人“小D”准备一个项目的讲解幻灯片。只依据下面的项目资料，不补充资料以外的事实、数字或效果。\n项目：${p.name}（${p.year}年中国好设计${p.award}，${p.unit}）\n资料：\n${text}\n${figList}\n`;
+  const order = src.kind === 'method'
+    ? '4 到 5 页：这个方法是什么、解决什么问题；怎么做（步骤可分两页，每页讲两三步）；要注意什么、适用边界；最后一页一句话说它能帮企业或团队做什么。'
+    : '4 到 6 页。第一页介绍项目是什么、谁做的、获什么奖；之后依次讲：要解决的问题、关键设计或技术（可分两页）、带来的价值；最后一页一句话总结它对设计创新的启示（只能从资料推出）。';
+  const j = await llmJSON(`${head}
+输出 JSON：{"slides":[{"title":"","points":["",""],"narration":""${figures.length ? ',"figure":0' : ''}}]}
+要求：
+- ${order}
+- title 不超过 12 个字；points 每页 2 到 3 条，每条不超过 24 个字，points 里数字照常用阿拉伯数字；
+- ${NARRATION_RULES}
+- 只输出 JSON。`);
+  if (!j) return null;
+  const slides = (j.slides || []).slice(0, 6).map(s => {
+    const f = figures[(+s.figure || 0) - 1];
+    return {title: clip(s.title, 14), points: (s.points || []).slice(0, 3).map(x => clip(x, 30)).filter(Boolean), narration: clip(s.narration, 140), ...(f ? {image: f.url, caption: f.name} : {})};
+  }).filter(s => s.title && s.narration);
   return slides.length >= 3 ? slides : null;
 }
 
+// 没有指定原理图的页，按顺序配上图集照片（首页用封面）
+function attachMedia(slides, media) {
+  const photos = media.filter(m => m.kind !== 'figure').map(m => m.url);
+  const used = new Set(slides.map(s => s.image).filter(Boolean));
+  let k = 1;
+  return slides.map((s, i) => {
+    if (s.image || i === 0 || !photos.length) return s;
+    const pool = photos.filter(u => !used.has(u));
+    const pick = pool.length ? pool[(k++ - 1) % pool.length] : photos[(k++) % photos.length];
+    used.add(pick);
+    return {...s, image: pick};
+  });
+}
+
+const PROJECT_ID = /^\d{4}-[a-z]?\d+$/i, METHOD_ID_RE = /^(R\d{1,3}|WB\d{1,3}|IM-[A-Z]+-\d+)$/i;
 export async function buildDeck(id) {
   id = String(id || '').trim();
-  if (!/^\d{4}-[a-z]?\d+$/i.test(id)) throw Error('编号格式不对：项目形如 2021-c21');
+  if (!PROJECT_ID.test(id) && !METHOD_ID_RE.test(id)) throw Error('编号格式不对：项目形如 2021-c21，方法形如 R08');
   const file = path.join(deckDir(), `${id}.${DECK_VERSION}.json`);
   try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
   if (decking.has(id)) return decking.get(id);
   const job = (async () => {
-    const src = await projectSource(id);
+    const src = PROJECT_ID.test(id) ? await projectSource(id) : await methodSource(id);
     let slides = null, by = 'rules';
     try { slides = await llmDeck(src); if (slides) by = 'llm'; } catch (e) { console.warn('deck llm', id, e.message); }
     if (!slides) slides = ruleDeck(src);
-    slides = slides.map(s => ({...s, narration: speakable(s.narration)}));
-    const deck = {id, name: src.p.name, year: src.p.year, award: src.p.award, unit: src.p.unit, cover: src.cover, page: projectPage(id), by, version: DECK_VERSION, slides};
+    slides = attachMedia(slides.map(s => ({...s, narration: speakable(s.narration)})), src.media);
+    const deck = {id, kind: src.kind, name: src.p.name, year: src.p.year, award: src.p.award, unit: src.p.unit, cover: src.cover, page: src.page || projectPage(id), by, version: DECK_VERSION, slides};
     try { fs.mkdirSync(deckDir(), {recursive: true}); fs.writeFileSync(file, JSON.stringify(deck)); } catch (e) { console.warn('deck cache', e.message); }
     return deck;
   })().finally(() => decking.delete(id));
   decking.set(id, job);
   return job;
+}
+
+export async function mediaFor(id) {
+  const p = (await getCatalog()).find(x => x.id === id);
+  return p ? projectMedia(id, p) : [];
 }
 
 // 启动后预先生成常用节目的幻灯片（节目单与导览剧本里的项目）
@@ -276,6 +345,7 @@ export async function handleGd(req, res) {
       return send(200, { source: SOURCE, note: NOTE, query: q, projects, methods, empty: !projects.length && !methods.length ? '好设计馆里没有找到直接相关的内容，照实告诉访客，不要编造。' : undefined });
     }
     if (op === 'read') return send(200, { source: SOURCE, note: NOTE, item: await read(u.searchParams.get('id')) });
+    if (op === 'media') return send(200, {source: SOURCE, media: await mediaFor(String(u.searchParams.get('id') || ''))});
     if (op === 'deck') return send(200, {source: SOURCE, deck: await buildDeck(u.searchParams.get('id'))});
     if (op === 'relate') return send(200, { source: SOURCE, note: NOTE, ...(await relate(u.searchParams.get('a'), u.searchParams.get('b'))) });
     return send(404, { error: '未知操作' });

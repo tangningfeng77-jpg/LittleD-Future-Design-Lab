@@ -1,0 +1,3002 @@
+{
+ "version": 1,
+ "generated": "2026-11-19",
+ "note": "由模型按项目名称与简介初分，供导览挑选；负责人可直接改 audience。",
+ "items": {
+  "2026-00": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "机床装备升级，制造企业可借鉴"
+  },
+  "2026-01": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "材料替代创新，装备产品升级"
+  },
+  "2026-02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "高效制造装备，产品创新借鉴"
+  },
+  "2026-03": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "液压阀产品创新与制造升级"
+  },
+  "2026-04": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "柔性制造系统，产业升级可借鉴"
+  },
+  "2026-05": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "复杂环境平台，国防装备战略"
+  },
+  "2026-06": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "重大能源工程，服务国家战略"
+  },
+  "2026-07": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "半导体装备工艺，产品制造升级"
+  },
+  "2026-08": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "机器人装备创新，制造升级借鉴"
+  },
+  "2026-09": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "航空试验系统，国家重大工程"
+  },
+  "2026-s00": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "电梯全生命周期，用户体验创新"
+  },
+  "2026-s01": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "核心机设计，能源战略装备"
+  },
+  "2026-s02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "刀具制造工艺，产品创新升级"
+  },
+  "2026-s03": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "在役结构修复，基础设施维护"
+  },
+  "2026-s04": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "人形机器人产品，体验与品牌"
+  },
+  "2026-s05": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "成形装备升级，制造工艺借鉴"
+  },
+  "2026-s06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "数控机床产品，制造装备升级"
+  },
+  "2026-s07": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "复合材料装备，低成本制造创新"
+  },
+  "2026-s08": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "激光制造技术，产品工艺升级"
+  },
+  "2026-s09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "光热发电系统，国家能源战略"
+  },
+  "2026-s10": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "铣床产品创新，规模化制造"
+  },
+  "2026-s11": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "极薄带工艺，材料制造升级"
+  },
+  "2026-s12": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "超结构软件装备，方法可借鉴"
+  },
+  "2026-s13": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "锻造操作机，重型装备升级"
+  },
+  "2026-s14": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "超声加工装备，产品制造升级"
+  },
+  "2026-s15": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "深井提升装备，矿业安全民生"
+  },
+  "2026-s16": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "全球首制运输船，国家战略工程"
+  },
+  "2026-s17": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "个性化膝关节，医疗卫生民生"
+  },
+  "2026-s18": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "压缩空气储能，能源战略工程"
+  },
+  "2026-e00": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "清洁燃料动力，绿色船舶战略"
+  },
+  "2026-e01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "自主高端装备，支撑国家制造战略"
+  },
+  "2026-e02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "民生健康，脑疾病诊疗公共服务"
+  },
+  "2026-e03": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "绿色制造装备，产品创新可借鉴"
+  },
+  "2026-e04": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "重大水电工程长效防护装备"
+  },
+  "2026-e05": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "制造装备升级，新能源产业配套"
+  },
+  "2026-e06": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "万米深井战略钻探关键部件"
+  },
+  "2026-e07": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "月面作业航天重大工程支撑"
+  },
+  "2026-e08": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "高端旋转机械产品创新方法"
+  },
+  "2026-e09": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "激光制孔装备，制造工艺升级"
+  },
+  "2025-00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "探月工程国家战略重大任务"
+  },
+  "2025-01": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "显示玻璃加工装备，产业升级"
+  },
+  "2025-02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "芯片战略产业超精密装备"
+  },
+  "2025-03": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "早癌诊疗民生健康机器人"
+  },
+  "2025-04": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "内腔抛光装备，制造工艺创新"
+  },
+  "2025-05": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "镁合金铸轧智能装备升级"
+  },
+  "2025-06": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "航空发动机重大攻关装备"
+  },
+  "2025-07": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "大运飞机降噪，国防效能"
+  },
+  "2025-08": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "雷达芯片散热，战略装备"
+  },
+  "2025-09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "山地轨道交通基础设施互联"
+  },
+  "2025-s00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "华龙一号核电国家重大装备"
+  },
+  "2025-s01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "应急救援装备，公共安全民生"
+  },
+  "2025-s02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "减振材料设计，高端装备应用"
+  },
+  "2025-s03": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "船用低碳燃料，双碳战略"
+  },
+  "2025-s04": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "管类柔性成形装备创新"
+  },
+  "2025-s05": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "远程微创医疗，民生健康"
+  },
+  "2025-s06": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "混动系统产品创新商业模式"
+  },
+  "2025-s07": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "航空航天摩擦件战略支撑"
+  },
+  "2025-s08": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "钛合金柔性产线制造升级"
+  },
+  "2025-s09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "煤矿智能掘锚，能源产业升级"
+  },
+  "2025-s10": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "混动起重机产品创新低碳"
+  },
+  "2025-s11": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "双碳战略储能关键"
+  },
+  "2025-s12": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "高铁重大工程配套"
+  },
+  "2025-s13": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "四网融合国家战略民生"
+  },
+  "2025-s14": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "双碳新型储能重大装备"
+  },
+  "2025-s15": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "双碳电力系统调节"
+  },
+  "2025-s16": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "智能制造柔性生产技术"
+  },
+  "2025-s17": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "重大工程关键材料装备"
+  },
+  "2025-s18": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "医疗民生临床重大需求"
+  },
+  "2025-s19": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "船舶工业软件设计方法"
+  },
+  "2025-e00": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "产品创新智能设计工具"
+  },
+  "2025-e01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "生态环保乡村农业装备"
+  },
+  "2025-e02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "高端工业母机产品创新"
+  },
+  "2024-00": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "航空高铁防冰重大需求"
+  },
+  "2024-01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "航天重大工程战略结构"
+  },
+  "2024-02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "核电国家重大装备安全"
+  },
+  "2024-03": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "能源安全战略重大装备"
+  },
+  "2024-04": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "装备设计开发制造升级"
+  },
+  "2024-05": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大工程隧道装备"
+  },
+  "2024-06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "机器人焊接检测装备升级"
+  },
+  "2024-07": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "城市轨道交通安全民生"
+  },
+  "2024-08": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "节能产品创新品牌能效"
+  },
+  "2024-09": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "建筑工业化民生环保"
+  },
+  "2024-s00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "海洋强国战略智能装备"
+  },
+  "2024-s01": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "工程机械产品产业化"
+  },
+  "2024-s02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "核心器件国产化产品创新"
+  },
+  "2024-s03": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "起重机产品研发产业化"
+  },
+  "2024-s04": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "高端复合机床产品创新"
+  },
+  "2024-s05": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "五轴机床航空航天制造"
+  },
+  "2024-s06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "激光制造装备升级方法"
+  },
+  "2024-s07": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "机器人磨抛制造升级"
+  },
+  "2024-s08": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家战略汽车强国"
+  },
+  "2024-s09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "海洋强国战略"
+  },
+  "2024-s10": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "核电站清洁煤发电"
+  },
+  "2024-s11": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "民族团结脱贫攻坚"
+  },
+  "2024-s12": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "城市交通中小运量"
+  },
+  "2024-s13": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "核安全关键设备"
+  },
+  "2024-s14": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家基建国之重器"
+  },
+  "2024-s15": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "碳达峰碳中和战略"
+  },
+  "2024-s16": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "交通强国新质生产力"
+  },
+  "2024-s17": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产业转型技术升级"
+  },
+  "2024-s18": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "轨道交通国家战略"
+  },
+  "2024-s19": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "集成电路关键设备"
+  },
+  "2023-00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "航空工业国家战略"
+  },
+  "2023-01": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "打破垄断核心技术"
+  },
+  "2023-02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "商用车变速器升级"
+  },
+  "2023-03": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "激光制造工业强国"
+  },
+  "2023-04": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "密封技术通用基础"
+  },
+  "2023-05": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "海洋油气国家战略"
+  },
+  "2023-06": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "空间环境模拟装置"
+  },
+  "2023-07": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "十三五水电规划"
+  },
+  "2023-08": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "国防地下工程"
+  },
+  "2023-09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "清洁燃煤发电装备"
+  },
+  "2023-s00": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "低碳节能产品创新"
+  },
+  "2023-s01": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "轨道交通产品创新"
+  },
+  "2023-s02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "碳达峰碳中和战略"
+  },
+  "2023-s03": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "环境友好输电线路"
+  },
+  "2023-s04": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "公共安全应急救援"
+  },
+  "2023-s05": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "先进加工技术装备"
+  },
+  "2023-s06": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "铁路桥梁约束装置"
+  },
+  "2023-s07": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "铁路养护重大装备"
+  },
+  "2023-s08": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "乳腺癌筛查民生健康"
+  },
+  "2023-s09": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "纺织机器人制造升级"
+  },
+  "2023-s10": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "锻造装备工艺升级"
+  },
+  "2023-s11": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "康复医疗民生战略"
+  },
+  "2023-s12": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "高端刀具制造升级"
+  },
+  "2023-s13": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "双碳目标重大装备"
+  },
+  "2023-s14": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "增雨飞机国家工程"
+  },
+  "2023-s15": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "机车产品创新出口"
+  },
+  "2023-s16": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "汽轮机技术装备升级"
+  },
+  "2023-s17": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国之重器能源安全"
+  },
+  "2023-s18": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "综采装备产品创新"
+  },
+  "2023-s19": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "转向架产品创新"
+  },
+  "2021-00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "深空探测国家专项"
+  },
+  "2021-01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "白鹤滩重大水电工程"
+  },
+  "2021-02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "混联机器人制造装备"
+  },
+  "2021-03": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "绿色节能船舶技术"
+  },
+  "2021-04": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "城市地下基础设施"
+  },
+  "2021-05": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "锻造生产线智能化升级"
+  },
+  "2021-06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "深孔加工装备技术"
+  },
+  "2021-07": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "海洋能源设施检测"
+  },
+  "2021-08": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "陆军防空国防装备"
+  },
+  "2021-09": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "五轴加工中心产品创新"
+  },
+  "2021-s00": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "煤炭清洁利用能源战略"
+  },
+  "2021-s01": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "鼓风机节能装备升级"
+  },
+  "2021-s02": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "核电清洁能源装备"
+  },
+  "2021-s03": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "模块化可重构设计方法"
+  },
+  "2021-s04": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "红外探测器产品创新"
+  },
+  "2021-s05": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "输送机胶带更换装备"
+  },
+  "2021-s06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "超精密平台核心部件"
+  },
+  "2021-s07": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "中低速磁浮交通装备"
+  },
+  "2021-s08": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "环保政策驱动矿山装备升级"
+  },
+  "2021-s09": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "高端装备制造精度与效率提升"
+  },
+  "2021-s10": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "煤炭工业安全高效绿色体系"
+  },
+  "2021-s11": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大工程与新能源消纳"
+  },
+  "2021-s12": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "掘进装备功能集成创新"
+  },
+  "2021-s13": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "航空发动机关键零件智能成形"
+  },
+  "2021-s14": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "消费升级与产品体验创新"
+  },
+  "2021-s15": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家战略柔性直流输电核心技术"
+  },
+  "2021-s16": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "用户体验与人性化设计"
+  },
+  "2021-s17": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "清洁低碳能源战略举措"
+  },
+  "2021-s18": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "用户市场需求导向高端设备"
+  },
+  "2021-s19": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "恶劣工况远程智能化操作"
+  },
+  "2021-c00": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "应对人口老龄化助老产品"
+  },
+  "2021-c01": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "医疗卫生临床器械创新"
+  },
+  "2021-c02": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "自动化生产线工艺优化"
+  },
+  "2021-c03": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "高速公路基础设施智能化改造"
+  },
+  "2021-c04": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "多环境巡检机器人技术"
+  },
+  "2021-c05": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "骨折复位康复医疗机器人"
+  },
+  "2021-c06": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "医院输液护理效率提升"
+  },
+  "2021-c07": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "高附加值邮轮外观品牌设计"
+  },
+  "2021-c08": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "公路养护基础设施自动化"
+  },
+  "2021-c09": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "老龄化助老辅具需求"
+  },
+  "2021-c10": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "老年人如厕辅助民生需求"
+  },
+  "2021-c11": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "公共卫生防疫设施消毒"
+  },
+  "2021-c12": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "行动不便人群洗护产品"
+  },
+  "2021-c13": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "儿童推车产品创新与品牌"
+  },
+  "2021-c14": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "六足机器人移动平台技术"
+  },
+  "2021-c15": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "超大轴类锻件制造装备升级"
+  },
+  "2021-c16": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家应急救援装备体系"
+  },
+  "2021-c17": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "爬壁机器人技术应用探索"
+  },
+  "2021-c18": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "煤矿巡检机器人，装备升级"
+  },
+  "2021-c19": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "助老机械，民生养老"
+  },
+  "2021-c20": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "孕妇医疗设备，民生健康"
+  },
+  "2021-c21": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "丘陵蔬菜机械化，乡村振兴"
+  },
+  "2021-c22": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "居家养老轮椅床，民生服务"
+  },
+  "2021-c23": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "螺丝刀产品创新，可借鉴"
+  },
+  "2021-c24": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "湿喷机装备升级"
+  },
+  "2021-c25": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "电气灭火产品，商业市场"
+  },
+  "2021-c26": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "脑卒中康复，医疗卫生"
+  },
+  "2021-c27": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "高铁物流，国家基础设施"
+  },
+  "2021-c28": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "医院配送机器人，医疗服务"
+  },
+  "2021-c29": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "AI应用，用户体验品牌"
+  },
+  "2021-c30": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "光伏运维，生态环保能源"
+  },
+  "2021-c31": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "3D打印定制，产品创新"
+  },
+  "2021-c32": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "模块化运输，商业模式创新"
+  },
+  "2021-c33": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "车载消杀，产品创新"
+  },
+  "2021-c34": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "康复机械臂，医疗民生"
+  },
+  "2021-c35": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "加工装置，制造升级"
+  },
+  "2021-c36": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "护理床椅，智慧养老民生"
+  },
+  "2021-c37": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "秸秆处理，乡村农业环保"
+  },
+  "2021-c38": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "假肢助残，民生医疗"
+  },
+  "2021-c39": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "消杀机器人，产品创新"
+  },
+  "2021-n00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "高铁隧道地基，重大工程"
+  },
+  "2021-n01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "地铁打磨车，基础设施"
+  },
+  "2021-n02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "柴油机研制，装备升级"
+  },
+  "2021-n03": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "制氧装备，国防民生"
+  },
+  "2021-n04": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "登机门设计，制造升级"
+  },
+  "2021-n05": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "煤气化，国家能源战略"
+  },
+  "2021-n06": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "轨道交通，基础设施"
+  },
+  "2021-n07": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "采煤机装备升级"
+  },
+  "2021-n08": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家电网安全战略保障"
+  },
+  "2021-n09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "造船强国战略关键装备"
+  },
+  "2020-00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "大国重器重大工程装备"
+  },
+  "2020-01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家运输结构调整战略"
+  },
+  "2020-02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "煤巷掘进装备制造升级"
+  },
+  "2020-03": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "智能制造物流产品创新"
+  },
+  "2020-04": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "环保新能源发电需求"
+  },
+  "2020-05": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "全球公共卫生安全应急"
+  },
+  "2020-06": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "智能制造装备技术突破"
+  },
+  "2020-07": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "新冠防疫公共卫生保障"
+  },
+  "2020-08": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "重大技术装备国产替代"
+  },
+  "2020-09": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "煤化工核心装备升级"
+  },
+  "2020-s00": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "重型冲压装备制造升级"
+  },
+  "2020-s01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "高端医疗影像设备自主"
+  },
+  "2020-s02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "房颤卒中医疗民生"
+  },
+  "2020-s03": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "高端钻进装备用户需求"
+  },
+  "2020-s04": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "关键零部件工艺创新"
+  },
+  "2020-s05": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "铁路运输安全环保"
+  },
+  "2020-s06": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "电网数据平台公共服务"
+  },
+  "2020-s07": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "液压机组装备升级"
+  },
+  "2020-s08": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "疫情防控公共卫生应急"
+  },
+  "2020-s09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "绿色低碳能源战略"
+  },
+  "2020-s10": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国防军警装备保障"
+  },
+  "2020-s11": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "露天矿装备成套创新"
+  },
+  "2020-s12": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "柔性自动化制造升级"
+  },
+  "2020-s13": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "船舶产品自主研发"
+  },
+  "2020-s14": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "矿用特种装备创新"
+  },
+  "2020-s15": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "糖业安全农业机械化"
+  },
+  "2020-s16": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "空气净化产品创新"
+  },
+  "2020-s17": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "独创工艺数控装备"
+  },
+  "2020-s18": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "城镇化与城市交通战略"
+  },
+  "2020-s19": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "铸造产业升级与制造装备"
+  },
+  "2020-c00": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "智能网联与基础设施协同"
+  },
+  "2020-c01": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "工业管材轧制装备升级"
+  },
+  "2020-c02": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "消防应急救援公共服务"
+  },
+  "2020-c03": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "抢险救援公共安全装备"
+  },
+  "2020-c04": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "公共卫生产品创新设计"
+  },
+  "2020-c05": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "消费产品体验与品牌"
+  },
+  "2020-c06": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "教育产品创新与用户体验"
+  },
+  "2020-c07": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "航天科普教育展示"
+  },
+  "2020-c08": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "垃圾智能分类生态环保"
+  },
+  "2020-c09": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "消费类食品加工小产品"
+  },
+  "2020-c10": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "老年人出行民生辅助"
+  },
+  "2020-c11": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "应急救助公共服务"
+  },
+  "2020-c12": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "下肢助力外骨骼产品创新"
+  },
+  "2020-c13": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "移动方舱医疗卫生应急"
+  },
+  "2020-c14": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "地铁齿轮箱装备制造"
+  },
+  "2020-c15": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "老年人如厕民生辅助"
+  },
+  "2020-c16": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "老年人起坐民生辅助"
+  },
+  "2020-c17": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "独居老人看护民生服务"
+  },
+  "2020-c18": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "水下机器人产品创新"
+  },
+  "2020-c19": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "安全电路连接产品创新"
+  },
+  "2020-c20": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "方舱实验室医疗卫生应急"
+  },
+  "2020-c21": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "窨井盖公共安全民生"
+  },
+  "2020-c22": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "竹材加工乡村产业装备"
+  },
+  "2020-c23": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "物联网供能模块化方案"
+  },
+  "2020-c24": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "大型混凝土基础设施装备"
+  },
+  "2020-c25": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "AI音乐创作产品体验"
+  },
+  "2020-c26": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "果园机械乡村农业装备"
+  },
+  "2020-c27": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "丘陵山地农业机器人"
+  },
+  "2020-c28": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "公共服务民生停车难题"
+  },
+  "2020-c29": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "养老民生适老产品"
+  },
+  "2020-c30": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "医疗卫生康复训练"
+  },
+  "2020-c31": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造车间数字化优化"
+  },
+  "2020-c32": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "社区养老民生辅助"
+  },
+  "2020-c33": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "高原高寒重大装备"
+  },
+  "2020-c34": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "医疗卫生环保分类"
+  },
+  "2020-c35": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "核心部件制造升级"
+  },
+  "2020-c36": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "公共交通儿童民生"
+  },
+  "2020-c37": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "医疗急救公共服务"
+  },
+  "2020-c38": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "精密测试装备升级"
+  },
+  "2020-c39": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "仿生产品创新设计"
+  },
+  "2020-n00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "生态环保垃圾处理"
+  },
+  "2020-n01": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "智能装备制造升级"
+  },
+  "2020-n02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "医疗急救器械创新"
+  },
+  "2020-n03": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "医疗产品创新"
+  },
+  "2020-n04": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "医院智能物流系统"
+  },
+  "2020-n05": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "远洋装备战略工程"
+  },
+  "2020-n06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "金融风控商业模式"
+  },
+  "2020-n07": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "矿业装备升级"
+  },
+  "2020-n08": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "重大电力装备"
+  },
+  "2020-n09": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "城市排水基础设施"
+  },
+  "2020-n10": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "煤巷掘进装备升级"
+  },
+  "2020-n11": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "农业收获重大装备"
+  },
+  "2020-n12": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "石油装备制造升级"
+  },
+  "2020-n13": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "压裂装备战略工程"
+  },
+  "2020-n14": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "印刷装备产品创新"
+  },
+  "2020-n15": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "铝挤压装备智能升级"
+  },
+  "2020-n16": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "酿造智能机器人"
+  },
+  "2020-n17": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "干燥工艺装备创新"
+  },
+  "2020-n18": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造工艺升级技术"
+  },
+  "2020-n19": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "医疗康复公共服务"
+  },
+  "2020-n20": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "半导体装备制造升级"
+  },
+  "2020-n21": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "公共卫生核酸检测服务"
+  },
+  "2020-n22": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业机械化乡村产业"
+  },
+  "2020-n23": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "智能剪辑产品体验"
+  },
+  "2020-n24": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "公共母婴设施民生"
+  },
+  "2020-n25": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "消防应急公共安全"
+  },
+  "2020-n26": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "快速部署公共卫生应急"
+  },
+  "2020-n27": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "低功耗摄像产品创新"
+  },
+  "2020-n28": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "极地科考国家战略"
+  },
+  "2020-n29": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "高端医疗影像民生装备"
+  },
+  "2019-00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "农业装备采棉机械化"
+  },
+  "2019-01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "芯片制造国家战略瓶颈"
+  },
+  "2019-02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "海上风电清洁能源工程"
+  },
+  "2019-03": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "印刷装备首创可借鉴"
+  },
+  "2019-04": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "手机模组产品创新体验"
+  },
+  "2019-05": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "大国重器重大装备"
+  },
+  "2019-06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "中药智能制造方案可借鉴"
+  },
+  "2019-07": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "高速冲压线装备升级"
+  },
+  "2019-08": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "隧道施工重大基础设施"
+  },
+  "2019-09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "医疗穿刺辅助民生"
+  },
+  "2019-s00": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "演艺装备成套创新"
+  },
+  "2019-s01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "低空安防公共安全"
+  },
+  "2019-s02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "农业青贮装备乡村产业"
+  },
+  "2019-s03": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "储气库国家能源战略"
+  },
+  "2019-s04": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "海洋石油能源基础设施"
+  },
+  "2019-s05": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "城际动车区域交通民生"
+  },
+  "2019-s06": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "精密加工装备创新方法"
+  },
+  "2019-s07": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "天然气管线国家能源动脉"
+  },
+  "2019-s08": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "高原工程抢险救灾国家基建"
+  },
+  "2019-s09": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "高端装备技术突破制造升级"
+  },
+  "2019-s10": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大科技工程深空探测"
+  },
+  "2019-s11": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "首例突破填补国家技术空白"
+  },
+  "2019-s12": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "清洁能源国家风电规划"
+  },
+  "2019-s13": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新用户体验健康座椅"
+  },
+  "2019-s14": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "智能制造装备升级商业模式"
+  },
+  "2019-s15": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "高端农机国产化打破封锁"
+  },
+  "2019-s16": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "增材制造装备批量化生产"
+  },
+  "2019-s17": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "煤炭分质利用产业升级环保"
+  },
+  "2019-s18": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新满足机场登机需求"
+  },
+  "2019-s19": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "非常规油气开发能源装备"
+  },
+  "2019-c00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "渐冻人助残民生医疗服务"
+  },
+  "2019-c01": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品设计教育方法可借鉴"
+  },
+  "2019-c02": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "康复医疗机器人民生健康"
+  },
+  "2019-c03": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "智能避障起重装备创新"
+  },
+  "2019-c04": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "精密复合加工制造升级"
+  },
+  "2019-c05": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "深海作业装备国家海洋战略"
+  },
+  "2019-c06": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "产品颠覆创新住宅油烟方案"
+  },
+  "2019-c07": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "轻型起重结构简单可借鉴"
+  },
+  "2019-c08": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "无人机行业解决方案商业模式"
+  },
+  "2019-c09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "污泥运输防二次污染环保民生"
+  },
+  "2019-c10": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "VOC废气净化生态环保"
+  },
+  "2019-c11": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "冻土破拆基础建设工程装备"
+  },
+  "2019-c12": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "一带一路沙漠筑路基础设施"
+  },
+  "2019-c13": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "小型液压吊车结构设计"
+  },
+  "2019-c14": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "脑卒中康复机械手医疗民生"
+  },
+  "2019-c15": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "塑料回收再生生态环保"
+  },
+  "2019-c16": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "深海集群作业海洋战略资源"
+  },
+  "2019-c17": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "建筑垃圾资源化生态环保"
+  },
+  "2019-c18": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "产品平台化设计，可借鉴"
+  },
+  "2019-c19": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业机械化，民生相关"
+  },
+  "2019-c20": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农田水利，基础设施"
+  },
+  "2019-c21": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "高端装备制造升级"
+  },
+  "2019-c22": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "秸秆利用，生态环保"
+  },
+  "2019-c23": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "人机工程，用户体验"
+  },
+  "2019-c24": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "装备自动化升级"
+  },
+  "2019-c25": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业机械化，乡村振兴"
+  },
+  "2019-c26": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新，用户体验"
+  },
+  "2019-c27": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "城市基础设施，生态环保"
+  },
+  "2019-c28": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "城市排水，公共服务"
+  },
+  "2019-c29": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "交互创新，用户体验"
+  },
+  "2019-c30": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "重大交通工程，区域升级"
+  },
+  "2019-c31": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "医疗康复，民生服务"
+  },
+  "2019-c32": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "新能源，国家战略"
+  },
+  "2019-c33": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造升级，自动化"
+  },
+  "2019-c34": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业装备，区域产业"
+  },
+  "2019-c35": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "公共安全，应急救援"
+  },
+  "2019-c36": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "产品创新，商业模式"
+  },
+  "2019-c37": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "设计工具，可借鉴方法"
+  },
+  "2019-c38": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "产品创新，用户体验"
+  },
+  "2019-c39": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业智能化，乡村振兴"
+  },
+  "2018-00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大科技工程"
+  },
+  "2018-01": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "产品创新，新能源"
+  },
+  "2018-02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "农业现代化，公共服务"
+  },
+  "2018-03": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大科技装备"
+  },
+  "2018-04": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "重大交通工程，自主创新"
+  },
+  "2018-05": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "重大装备，国家战略"
+  },
+  "2018-06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "芯片产品创新"
+  },
+  "2018-07": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "核电重大装备，国家战略"
+  },
+  "2018-08": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "自主关键主机保障国家信息安全"
+  },
+  "2018-09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家应急救援重大航空装备"
+  },
+  "2018-s00": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新与智能设计"
+  },
+  "2018-s01": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "装备制造升级战略基础设备"
+  },
+  "2018-s02": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "智能装备提升施工效率安全"
+  },
+  "2018-s03": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "保障铁路运营公共基础设施"
+  },
+  "2018-s04": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "服务海外重大桥梁基建工程"
+  },
+  "2018-s05": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "全球领先装备制造创新"
+  },
+  "2018-s06": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "清洁能源生态环保国家战略"
+  },
+  "2018-s07": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "绿色电力装备支撑能源战略"
+  },
+  "2018-s08": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "激光聚变核心技术国家保障"
+  },
+  "2018-s09": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "自主软件打破垄断可借鉴"
+  },
+  "2018-s10": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "高速机器人产品创新与协同"
+  },
+  "2018-s11": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "溢油应急生态环保民生"
+  },
+  "2018-s12": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "智能磨抛装备制造升级"
+  },
+  "2018-s13": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "微创手术机器人医疗卫生民生"
+  },
+  "2018-s14": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "口袋车产品创新用户体验"
+  },
+  "2018-s15": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "跨江过海隧道基础设施装备"
+  },
+  "2018-s16": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "航空发动机加工装备升级"
+  },
+  "2018-s17": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "纯电SUV产品创新与品牌"
+  },
+  "2018-s18": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "世界首创升船机重大工程"
+  },
+  "2018-s19": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "系统仿真软件设计方法可借鉴"
+  },
+  "2018-c00": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "学生竞赛AGV搬运概念设计"
+  },
+  "2018-c01": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "小型采摘器产品概念一般"
+  },
+  "2018-c02": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "响应人工智能教育政策民生"
+  },
+  "2018-c03": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "缓解老旧小区停车民生问题"
+  },
+  "2018-c04": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "水面环保船生态环保民生"
+  },
+  "2018-c05": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "重装车辆外观品牌设计创新"
+  },
+  "2018-c06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "小型轧机产品创新实验装备"
+  },
+  "2018-c07": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "家用自行车停放民生一般"
+  },
+  "2018-c08": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "物流搬运机器人产品创新"
+  },
+  "2018-c09": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "智能家居产品体验创新"
+  },
+  "2018-c10": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "高铁通信设备重大工程"
+  },
+  "2018-c11": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "轻型交通工具产品创新"
+  },
+  "2018-c12": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "生态环保与公共服务"
+  },
+  "2018-c13": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "摩托车产品与品牌创新"
+  },
+  "2018-c14": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "检测装备制造升级"
+  },
+  "2018-c15": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "市政公共服务民生改善"
+  },
+  "2018-c16": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "医疗救援航空重大装备"
+  },
+  "2018-c17": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业采摘助力乡村"
+  },
+  "2018-c18": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "港口物料装备产业升级"
+  },
+  "2018-c19": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "赛车设计方法借鉴"
+  },
+  "2018-c20": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "空气净化民生健康"
+  },
+  "2018-c21": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "消费品产品创新体验"
+  },
+  "2018-c22": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "小区停车民生公共服务"
+  },
+  "2018-c23": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业采摘助力乡村"
+  },
+  "2018-c24": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "协作机器人制造升级"
+  },
+  "2018-c25": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业采收机械乡村"
+  },
+  "2018-c26": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "婴童产品体验创新"
+  },
+  "2018-c27": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "仓储系统优化方法借鉴"
+  },
+  "2018-c28": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "建筑垃圾生态环保"
+  },
+  "2018-c29": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "消费品创新用户体验"
+  },
+  "2018-c30": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "3D打印制造战略升级"
+  },
+  "2018-c31": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "智能起重机装备升级"
+  },
+  "2018-c32": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "滩涂开发区域产业"
+  },
+  "2018-c33": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "抛光装备制造升级"
+  },
+  "2018-c34": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "水面垃圾环保公共服务"
+  },
+  "2018-c35": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业采摘助力乡村"
+  },
+  "2018-c36": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "儿童医疗民生健康"
+  },
+  "2018-c37": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农副产品加工农业"
+  },
+  "2018-c38": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "针对女性时尚腕表，首饰化设计创新"
+  },
+  "2018-c39": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "解决停车库安全，公共服务民生"
+  },
+  "2017-00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大科技基础设施核心创新"
+  },
+  "2017-01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大工程，中国标准动车组"
+  },
+  "2017-02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "绿色储能轨道交通，生态环保"
+  },
+  "2017-03": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大科技基础设施超级计算机"
+  },
+  "2017-04": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大工程新支线客机"
+  },
+  "2017-05": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大工程绞吸式挖泥船"
+  },
+  "2017-06": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "产品创新，人工智能移动计算平台"
+  },
+  "2017-07": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大工程翼龙II无人机"
+  },
+  "2017-08": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造与装备升级，高速列车传动"
+  },
+  "2017-09": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "城市地下空间大数据公共服务平台"
+  },
+  "2017-s00": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "商用车动力总成关键技术及工程化"
+  },
+  "2017-s01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大工程电源电压装备研发"
+  },
+  "2017-s02": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "高端轮胎模具，制造装备升级"
+  },
+  "2017-s03": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "深海滑翔机，国家战略科技"
+  },
+  "2017-s04": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "最小直径硬岩掘进机装备创新"
+  },
+  "2017-s05": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大水电工程巨型机组研制"
+  },
+  "2017-s06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "深海核磁共振成像仪技术工艺创新"
+  },
+  "2017-s07": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "极地科考全地形车，国家战略"
+  },
+  "2017-s08": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "工业技术软件化方案，可借鉴方法"
+  },
+  "2017-s09": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "车用柴油发动机节能减排产品创新"
+  },
+  "2017-s10": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "云工厂模式，商业模式创新"
+  },
+  "2017-s11": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "双旋六关节工业机器人产品创新"
+  },
+  "2017-s12": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "石墨烯重防腐涂料，生态环保工程"
+  },
+  "2017-s13": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "煤矿瓦斯抽采，国家战略与安全"
+  },
+  "2017-s14": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国产海底地震仪，国家战略科技"
+  },
+  "2017-s15": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "模块化建筑产品创新与商业模式"
+  },
+  "2017-s16": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "山地丘陵青贮收获机械，乡村农业"
+  },
+  "2017-s17": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "四全管理模式，可借鉴管理方法"
+  },
+  "2017-s18": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品文化附加值创新"
+  },
+  "2017-s19": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "商业模式创新典范"
+  },
+  "2017-c00": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "水下智能装备技术"
+  },
+  "2017-c01": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "可编程教育产品创新"
+  },
+  "2017-c02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "重大交通基础设施"
+  },
+  "2017-c03": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "婴幼儿民生健康"
+  },
+  "2017-c04": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "公共安全民生设计"
+  },
+  "2017-c05": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "起重装备制造升级"
+  },
+  "2017-c06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "起重装备制造升级"
+  },
+  "2017-c07": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "起重装备制造升级"
+  },
+  "2017-c08": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "绿色建材生态环保"
+  },
+  "2017-c09": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "定制化产品用户体验"
+  },
+  "2017-c10": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "机器人技术创新"
+  },
+  "2017-c11": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "消防应急救援装备"
+  },
+  "2017-c12": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "家电产品创新"
+  },
+  "2017-c13": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "物流商业模式创新"
+  },
+  "2017-c14": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "绿色包装生态环保"
+  },
+  "2017-c15": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "协作机器人制造升级"
+  },
+  "2017-c16": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "高速列车重大装备"
+  },
+  "2017-c17": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "公共安全民生救援"
+  },
+  "2017-c18": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "中医医疗民生健康"
+  },
+  "2017-c19": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "汽车用品体验设计"
+  },
+  "2017-c20": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "水生态环保治理"
+  },
+  "2017-c21": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "施工装备制造升级"
+  },
+  "2017-c22": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业装备乡村升级"
+  },
+  "2017-c23": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "文创产品创新体验"
+  },
+  "2017-c24": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "家电细节体验优化"
+  },
+  "2017-c25": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "绿色能源施工装备"
+  },
+  "2017-c26": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业植保生态环保"
+  },
+  "2017-c27": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "医疗康复民生辅具"
+  },
+  "2017-c28": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "医疗卫生与民生服务"
+  },
+  "2017-c29": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "智能产品与用户体验"
+  },
+  "2017-n00": {
+   "audience": "gov",
+   "score": 1,
+   "reason": "传统文化保护传承"
+  },
+  "2017-n01": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "数据共享公共服务"
+  },
+  "2017-n02": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "地铁节能基础设施"
+  },
+  "2017-n03": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家重大装备突破"
+  },
+  "2017-n04": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "信息不足难判断"
+  },
+  "2017-n05": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新用户体验"
+  },
+  "2017-n06": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "信息不足难判断"
+  },
+  "2017-n07": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "消防公共安全民生"
+  },
+  "2017-n08": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业机械化乡村"
+  },
+  "2017-n09": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造升级产品创新"
+  },
+  "2017-n10": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "创新创业训练产品"
+  },
+  "2017-n11": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新用户体验"
+  },
+  "2017-n12": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "装备升级产品创新"
+  },
+  "2017-n13": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "重大工程国产首套"
+  },
+  "2017-n14": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "制造装备核心部件"
+  },
+  "2017-n15": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造升级自动化"
+  },
+  "2017-n16": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "饮水安全民生健康"
+  },
+  "2017-n17": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "产品创新用户体验"
+  },
+  "2017-n18": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "产品创新一般"
+  },
+  "2017-n19": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家战略重大科技"
+  },
+  "2017-n20": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "基础设施智慧市政"
+  },
+  "2017-n21": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "装备升级产品创新"
+  },
+  "2017-n22": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家战略材料攻关"
+  },
+  "2017-n23": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "制造升级国产替代"
+  },
+  "2017-n24": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "助残民生公共服务"
+  },
+  "2017-n25": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "节能环保装备升级"
+  },
+  "2017-n26": {
+   "audience": "enterprise",
+   "score": 1,
+   "reason": "设计方法可借鉴"
+  },
+  "2017-n27": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "装配式建筑产业升级"
+  },
+  "2017-n28": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新，解决日常痛点"
+  },
+  "2017-n29": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "适老设计，民生关怀"
+  },
+  "2016-00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "重大工程，解决城市问题"
+  },
+  "2016-01": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "商业模式与战略思维"
+  },
+  "2016-02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "用户体验与品牌生态"
+  },
+  "2016-03": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农产品检测，民生农业"
+  },
+  "2016-04": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "新能源装备，生态环保"
+  },
+  "2016-05": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新，解决痛点"
+  },
+  "2016-06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新，用户体验"
+  },
+  "2016-07": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "商业模式创新，可借鉴"
+  },
+  "2016-s00": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造工艺升级"
+  },
+  "2016-s01": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "农业装备升级，产业"
+  },
+  "2016-s02": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造工艺创新"
+  },
+  "2016-s03": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "服务型制造商业模式"
+  },
+  "2016-s04": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "重大装备，国家战略"
+  },
+  "2016-s05": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "新能源装备，区域产业"
+  },
+  "2016-s06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "核心技术服务输出"
+  },
+  "2016-s07": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "高端装备，国家战略"
+  },
+  "2016-s08": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "基础设施，公共服务"
+  },
+  "2016-s09": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造工艺升级"
+  },
+  "2016-s10": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造装备升级"
+  },
+  "2016-s11": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家战略，高端制造"
+  },
+  "2016-s12": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "绿色制造，生态环保"
+  },
+  "2016-s13": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "商业模式创新生态"
+  },
+  "2016-s14": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "教育平台，公共服务"
+  },
+  "2016-s15": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家战略资源保障"
+  },
+  "2016-s16": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新，品牌专业"
+  },
+  "2016-s17": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新，教学应用"
+  },
+  "2016-s18": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "供给侧改革，物流平台"
+  },
+  "2015-00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "重大工程，国家战略"
+  },
+  "2015-01": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家战略重大装备突破"
+  },
+  "2015-02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "深海科考国家战略装备"
+  },
+  "2015-03": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "产品创新与用户体验典范"
+  },
+  "2015-04": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "商业模式创新可借鉴"
+  },
+  "2015-05": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "出行体验商业模式创新"
+  },
+  "2015-06": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "国家安全与信息服务"
+  },
+  "2015-07": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "制造装备升级代表"
+  },
+  "2015-08": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "城市内涝生态环保"
+  },
+  "2015-09": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "医疗卫生民生需求"
+  },
+  "2015-s00": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "医疗资源均等化民生"
+  },
+  "2015-s01": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "分散能源生态利用"
+  },
+  "2015-s02": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "公共交通服务民生"
+  },
+  "2015-s03": {
+   "audience": "gov",
+   "score": 3,
+   "reason": "航天领域技术填补"
+  },
+  "2015-s04": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "互联网模式与用户参与"
+  },
+  "2015-s05": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "制造工艺装备提升"
+  },
+  "2015-s06": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "产品创新交互体验"
+  },
+  "2015-s07": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "大规模定制商业模式"
+  },
+  "2015-s08": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "C2B模式与规模化定制"
+  },
+  "2015-s09": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "装备制造自主突破"
+  },
+  "2015-s10": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "绿色环保设计"
+  },
+  "2015-s11": {
+   "audience": "gov",
+   "score": 2,
+   "reason": "基础设施智能化升级"
+  },
+  "2015-s12": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "物流商业模式创新"
+  },
+  "2015-s13": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "装备制造自主创新"
+  },
+  "2015-s14": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "高精度装备制造升级"
+  },
+  "2015-s15": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "铸造工艺方法创新"
+  },
+  "2015-s16": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "复合制造工艺创新"
+  },
+  "2015-s17": {
+   "audience": "enterprise",
+   "score": 2,
+   "reason": "航空高效加工工艺"
+  },
+  "2015-s18": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "制造服务商业模式"
+  },
+  "2015-s19": {
+   "audience": "enterprise",
+   "score": 3,
+   "reason": "产品创新用户体验"
+  }
+ }
+}

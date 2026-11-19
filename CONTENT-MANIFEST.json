@@ -113,8 +113,8 @@
     },
     {
       "path": "public/app.js",
-      "bytes": 22090,
-      "sha256": "86f9b91c8c47288bf2cee4a3c322a39ab6e849f6b2394c4f86e0b798ae131f5b"
+      "bytes": 22509,
+      "sha256": "a0e6005d3afa71da4156ea9537b079bb80b2c98cd82d8bf80db75cfc0f62dec6"
     },
     {
       "path": "public/scene-overviews.js",
@@ -23658,8 +23658,8 @@
     },
     {
       "path": "scripts/check-package.mjs",
-      "bytes": 1308,
-      "sha256": "03841d786208ee7324176c1903f463f3b6f05d7bb2297026efbc2492f3147f48"
+      "bytes": 1365,
+      "sha256": "91e950d1e047cf78859ab0643e08406eedec04ccd45e70d55b9f80ea2e2f0cf5"
     },
     {
       "path": "platforms/android/.gitignore",
@@ -24228,8 +24228,8 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 8002,
-      "sha256": "9870484e0556d87c2c0edea5f2a95d699e7b062a4cfe03e02e93fc5bc8bbed6f"
+      "bytes": 8151,
+      "sha256": "5d4eefb71d96d4648b5a2df916da151ab960d6980e129b9eb5026260e7f10fff"
     },
     {
       "path": "web-search.mjs",
@@ -24258,13 +24258,13 @@
     },
     {
       "path": "gd-proxy.mjs",
-      "bytes": 19238,
-      "sha256": "26895c8462f35c34170edd0d245fa1e4c70fb82a7ba69249b9dfab748539dad0"
+      "bytes": 24101,
+      "sha256": "6d623b7d028012633f29a1a9d34141d5a2acf12e7614ddb4a4dd7e0e1c07e0da"
     },
     {
       "path": "public/gooddesign.js",
-      "bytes": 14927,
-      "sha256": "f12cc877c2ec2f9c7af4c5a508fc6ed6146d0e93f9529d0c8fd32b91e0791b9c"
+      "bytes": 15591,
+      "sha256": "e963d0fe8143dfde9c4b22651d4de367ac53c5c99889c7b110c2ec89a1ea2990"
     },
     {
       "path": "public/assets/packs/index.json",
@@ -24278,8 +24278,8 @@
     },
     {
       "path": "public/gd-screen.css",
-      "bytes": 7165,
-      "sha256": "cc11f0e3cc372694784cfce126aa164018a27046555b121c2e233c261676ce4f"
+      "bytes": 10233,
+      "sha256": "9438f5f39d66572058c03a9c76cf16e2f2b13f9823080c560b852049979eb921"
     },
     {
       "path": "public/gd-screen.js",
@@ -24293,23 +24293,53 @@
     },
     {
       "path": "public/gd-tour.js",
-      "bytes": 18606,
-      "sha256": "4159806559588883442feecd8ef2cf673702fd90beec71d46f5a520ab84849f3"
+      "bytes": 25385,
+      "sha256": "8209ab91d7d33636b7c48b49912775ce4951b18c78306f242f598402a0b91aa2"
     },
     {
       "path": "public/assets/tour/programmes.json",
-      "bytes": 2079,
-      "sha256": "792a666ee487fb2ec4cd2137c952a03b7b04c84e61b4e34578f295a0be289037"
+      "bytes": 8102,
+      "sha256": "58b740e76a67469494e7817abfb8cc77ceb48eca8a1f27d09cf18c58aabc0c3b"
     },
     {
       "path": "public/gd-deck.js",
-      "bytes": 6173,
-      "sha256": "73aa8f3e6d126d57e857e5ac2978639b335fbfd4e5d8672266e592ba4f929f42"
+      "bytes": 7101,
+      "sha256": "931df9e44167fc176b6641496e9d543616fe4d491fc437d74634199c16e846cd"
     },
     {
       "path": "public/gd-guide.js",
-      "bytes": 4663,
-      "sha256": "931547df7d4a59f799d0c68297537ea72815ac17cfa18dc3ba65a0bdb1822578"
+      "bytes": 5972,
+      "sha256": "ad2a7019ebde5229d3e37b52be93d221e3e5639059bbf4f6b7996e8d6c8cd50b"
+    },
+    {
+      "path": "public/assets/tour/audience.json",
+      "bytes": 64005,
+      "sha256": "8c29479135b6b2fc6cf0445e1c095eb43aac2c6459a95f02363ce93113ddf157"
+    },
+    {
+      "path": "public/gd-controls.js",
+      "bytes": 6310,
+      "sha256": "f9ddb94a6a7118e75dafb01ca3aed68b8c5e04b5f51abe657794bb297928620d"
+    },
+    {
+      "path": "public/gd-hall.js",
+      "bytes": 14150,
+      "sha256": "078b65529600be0454749019bdbd68daba85cbddbcbbb3d9c8f9f6e715c79d3d"
+    },
+    {
+      "path": "public/remote.html",
+      "bytes": 6560,
+      "sha256": "146ee49e93519d45f0a988a169cb08d90c105bd2ac0bbca6aa72ce739ddcf044"
+    },
+    {
+      "path": "remote.mjs",
+      "bytes": 3890,
+      "sha256": "5a9e4cd7f873761720aeb09b9b3c0f77a093913bd4d3afd6c97a892e48e3d808"
+    },
+    {
+      "path": "tools/classify-audience.mjs",
+      "bytes": 2831,
+      "sha256": "97e62e81bd71e9e672a8244e342228eee8e557fdf2fc0ea879b26629a93b8a24"
     }
   ]
 }

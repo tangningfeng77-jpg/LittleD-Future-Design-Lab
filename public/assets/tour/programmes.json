@@ -1,29 +1,334 @@
 {
-  "version": 1,
-  "note": "节目单：小D 可以讲的内容，按频道分组，编号自动从 1 开始连续排。来宾说“第三个”、说名字，或点卡片即开始。kind：lab-scene（实验室六大场景）、lab-project（IFS 项目）、gd-intro（好设计馆导览一站）、deck（好设计项目幻灯片，填 deck 项目编号）。以后实验室其他项目的 PPT 转成知识包后也加在这里。",
+  "version": 2,
+  "note": "节目单按频道组织（像电视）。每个频道内编号从 1 开始，来宾说“第三个”指当前频道的第三个；说“政府频道”“企业频道”“实验室频道”“方法频道”切换。route 表示该频道对应的导览路线：选了政府路线，节目单默认打开政府频道。偏政府领导、偏企业两个频道里的项目是按模型初分（assets/tour/audience.json，共 599 项）挑出的代表，负责人确定后直接替换 deck 编号即可。kind：lab-scene、lab-project、gd-intro（好设计馆导览一站，按 route 讲）、deck（好设计项目或设计方法的幻灯片节目，填项目编号如 2025-00 或方法编号如 R08）。",
   "channels": [
     {
+      "id": "lab",
       "name": "未来设计实验室",
+      "short": "实验室",
+      "aliases": [
+        "实验室",
+        "实验室频道"
+      ],
       "items": [
-        {"kind": "lab-scene", "scene": "agriculture", "title": "智慧农业"},
-        {"kind": "lab-scene", "scene": "public-services", "title": "公安政务"},
-        {"kind": "lab-scene", "scene": "fashion", "title": "时尚产业"},
-        {"kind": "lab-scene", "scene": "logistics", "title": "智慧物流"},
-        {"kind": "lab-scene", "scene": "commerce", "title": "数字商业运营"},
-        {"kind": "lab-scene", "scene": "education", "title": "未来教育"},
-        {"kind": "lab-project", "title": "IFS 离子精筛膜", "aliases": ["IFS", "离子精筛膜", "精筛膜"]}
+        {
+          "kind": "lab-scene",
+          "scene": "agriculture",
+          "title": "智慧农业"
+        },
+        {
+          "kind": "lab-scene",
+          "scene": "public-services",
+          "title": "公安政务"
+        },
+        {
+          "kind": "lab-scene",
+          "scene": "fashion",
+          "title": "时尚产业"
+        },
+        {
+          "kind": "lab-scene",
+          "scene": "logistics",
+          "title": "智慧物流"
+        },
+        {
+          "kind": "lab-scene",
+          "scene": "commerce",
+          "title": "数字商业运营"
+        },
+        {
+          "kind": "lab-scene",
+          "scene": "education",
+          "title": "未来教育"
+        },
+        {
+          "kind": "lab-project",
+          "title": "IFS 离子精筛膜",
+          "aliases": [
+            "IFS",
+            "离子精筛膜",
+            "精筛膜"
+          ]
+        }
       ]
     },
     {
-      "name": "好设计馆精选",
+      "id": "gov",
+      "name": "好设计 · 偏政府领导",
+      "short": "政府领导",
+      "route": "government",
+      "aliases": [
+        "政府",
+        "政府频道",
+        "政府领导",
+        "政府路线"
+      ],
       "items": [
-        {"kind": "gd-intro", "title": "好设计馆是什么", "aliases": ["好设计馆", "好设计"]},
-        {"kind": "deck", "deck": "2025-00", "title": "嫦娥五号六号月球钻取采样", "aliases": ["嫦娥", "月球采样", "钻取采样"]},
-        {"kind": "deck", "deck": "2025-03", "title": "消化道早癌手术机器人", "aliases": ["手术机器人", "早癌", "消化道"]},
-        {"kind": "deck", "deck": "2020-s15", "title": "甘蔗联合收获机", "aliases": ["甘蔗", "收获机"]},
-        {"kind": "deck", "deck": "2015-s19", "title": "海尔天樽空调", "aliases": ["海尔", "天樽", "空调"]},
-        {"kind": "deck", "deck": "2021-c21", "title": "蔬菜移栽机器人", "aliases": ["蔬菜", "移栽", "Antobot"]},
-        {"kind": "deck", "deck": "2025-09", "title": "山地城市列车", "aliases": ["列车", "山地", "重庆"]}
+        {
+          "kind": "gd-intro",
+          "route": "government",
+          "title": "好设计馆导览（政府）",
+          "aliases": [
+            "好设计馆导览"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2025-00",
+          "title": "嫦娥月球钻取采样",
+          "aliases": [
+            "嫦娥",
+            "月球采样",
+            "钻取采样"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2025-03",
+          "title": "早癌诊疗手术机器人",
+          "aliases": [
+            "手术机器人",
+            "早癌",
+            "消化道"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2026-06",
+          "title": "超临界二氧化碳发电站",
+          "aliases": [
+            "超临界",
+            "二氧化碳发电",
+            "发电站"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2024-02",
+          "title": "国和一号屏蔽电机主泵",
+          "aliases": [
+            "国和一号",
+            "主泵",
+            "核电"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2024-05",
+          "title": "多模式隧道掘进机",
+          "aliases": [
+            "掘进机",
+            "隧道"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2025-09",
+          "title": "山地城市新型列车",
+          "aliases": [
+            "列车",
+            "山地",
+            "重庆"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2020-s15",
+          "title": "甘蔗联合收获机",
+          "aliases": [
+            "甘蔗",
+            "收获机"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2021-c21",
+          "title": "蔬菜移栽机器人",
+          "aliases": [
+            "蔬菜",
+            "移栽",
+            "Antobot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enterprise",
+      "name": "好设计 · 偏企业",
+      "short": "企业",
+      "route": "enterprise",
+      "aliases": [
+        "企业",
+        "企业频道",
+        "企业路线"
+      ],
+      "items": [
+        {
+          "kind": "gd-intro",
+          "route": "enterprise",
+          "title": "好设计馆导览（企业）",
+          "aliases": [
+            "好设计馆导览"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2017-06",
+          "title": "麒麟970 芯片",
+          "aliases": [
+            "麒麟",
+            "970",
+            "芯片"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2019-04",
+          "title": "手机摄像头升降模组",
+          "aliases": [
+            "摄像头",
+            "升降模组",
+            "手机"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2015-s19",
+          "title": "海尔天樽空调",
+          "aliases": [
+            "海尔",
+            "天樽",
+            "空调"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2018-01",
+          "title": "光伏直驱变频空调",
+          "aliases": [
+            "光伏",
+            "直驱",
+            "变频空调"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2015-04",
+          "title": "人单合一开放式创新",
+          "aliases": [
+            "人单合一",
+            "开放式创新"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2016-07",
+          "title": "机床企业 4S 店营销",
+          "aliases": [
+            "4S店",
+            "机床营销"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2024-08",
+          "title": "动压气悬浮离心机",
+          "aliases": [
+            "离心机",
+            "气悬浮"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "2020-06",
+          "title": "磨切一体加工机器人",
+          "aliases": [
+            "磨切",
+            "加工机器人"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "methods",
+      "name": "好设计 · 设计方法",
+      "short": "设计方法",
+      "aliases": [
+        "方法",
+        "方法频道",
+        "设计方法"
+      ],
+      "items": [
+        {
+          "kind": "deck",
+          "deck": "R08",
+          "title": "用户观察与需求证据化",
+          "aliases": [
+            "用户观察",
+            "需求证据"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "R09",
+          "title": "待办任务理论",
+          "aliases": [
+            "待办任务",
+            "JTBD"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "R10",
+          "title": "领先用户法",
+          "aliases": [
+            "领先用户"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "R03",
+          "title": "设计思维",
+          "aliases": [
+            "设计思维"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "R11",
+          "title": "Kano 需求分类",
+          "aliases": [
+            "Kano",
+            "卡诺"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "R21",
+          "title": "TRIZ 创新方法",
+          "aliases": [
+            "TRIZ",
+            "萃智"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "R44",
+          "title": "原型与假设测试",
+          "aliases": [
+            "原型",
+            "假设测试"
+          ]
+        },
+        {
+          "kind": "deck",
+          "deck": "WB02",
+          "title": "3I 调研",
+          "aliases": [
+            "3I调研",
+            "3I"
+          ]
+        }
       ]
     }
   ]

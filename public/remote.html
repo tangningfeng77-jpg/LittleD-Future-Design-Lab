@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>小D 遥控</title>
+<style>
+:root{--bg:#eef4f8;--card:#fff;--fg:#153d58;--fg2:#5a7f93;--ac:#3f9fc0;--line:#d9eaf1;--warn:#c4542b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 "PingFang SC","Microsoft YaHei",system-ui,sans-serif;padding:16px 16px calc(24px + env(safe-area-inset-bottom))}
+h1{font-size:20px;margin:4px 0 12px;letter-spacing:.04em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+input{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:12px;flex:1;min-width:0;background:#f7fbfd;color:inherit}
+button{font:inherit;border:1px solid var(--line);background:#f7fbfd;color:var(--fg);border-radius:12px;padding:12px 10px;cursor:pointer;touch-action:manipulation}
+button:active{transform:scale(.97)}
+button.pri{background:var(--fg);color:#e8fbff;border-color:var(--fg)}
+button.warn{background:#fff3ee;color:var(--warn);border-color:#f2cfc0}
+.big{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.big button{padding:16px 4px;font-size:15px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#status{font-size:14px;color:var(--fg2);min-height:21px}
+#status b{color:var(--fg)}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:8px}
+.tabs button{padding:8px 12px;white-space:nowrap;border-radius:999px}
+.tabs button.on{background:var(--fg);color:#e8fbff;border-color:var(--fg)}
+.list{display:grid;gap:6px}
+.list button{display:flex;gap:10px;align-items:center;text-align:left;padding:10px 12px}
+.list b{display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:8px;background:var(--fg);color:#e8fbff;font-size:14px}
+.muted{color:var(--fg2);font-size:13px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--fg);color:#e8fbff;padding:8px 14px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
+#toast.on{opacity:1}
+</style>
+</head>
+<body>
+<h1>小D 遥控</h1>
+<div class="card">
+  <div class="row"><input id="code" inputmode="numeric" maxlength="4" placeholder="输入屏幕右下角的四位遥控码"><button class="pri" id="link">连接</button></div>
+  <p id="status" class="muted">未连接</p>
+</div>
+<div class="card">
+  <div class="big">
+    <button class="warn" data-cmd="stop">停止说话</button>
+    <button data-cmd="prev">上一页</button>
+    <button data-cmd="toggle">暂停/继续</button>
+    <button data-cmd="next">下一页</button>
+  </div>
+  <div class="grid2" style="margin-top:8px">
+    <button data-cmd="restart">本页重讲</button>
+    <button data-cmd="close">关闭屏幕</button>
+  </div>
+</div>
+<div class="card">
+  <div class="row" style="justify-content:space-between;margin-bottom:8px"><strong>节目单</strong><button data-cmd="guide">在大屏打开</button></div>
+  <div class="tabs" id="tabs"></div>
+  <div class="list" id="list"><p class="muted">连接后显示节目</p></div>
+</div>
+<div class="card">
+  <strong>导览</strong>
+  <div class="grid2" style="margin-top:8px">
+    <button data-cmd="tour" data-arg="government">政府路线导览</button>
+    <button data-cmd="tour" data-arg="enterprise">企业路线导览</button>
+    <button data-cmd="welcome">开场欢迎</button>
+    <button data-cmd="idle">回到待机</button>
+    <button data-cmd="help">显示帮助</button>
+    <button data-cmd="home">小D 回到中间</button>
+  </div>
+</div>
+<div class="card">
+  <strong>替来宾提问</strong>
+  <div class="row" style="margin-top:8px"><input id="say" placeholder="例如：这个项目用了什么设计方法？"><button class="pri" id="sayBtn">让小D 回答</button></div>
+  <p class="muted">适合现场嘈杂、语音听不清时使用。</p>
+</div>
+<div id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);let code='';let state=null;let channel='';
+const toast=t=>{const e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),1600);};
+const q=new URLSearchParams(location.search).get('code');try{code=q||localStorage.getItem('littled.remote')||'';}catch{}
+$('code').value=code;
+async function cmd(c,arg){if(!/^\d{4}$/.test(code)){toast('先输入遥控码');return;}try{const r=await fetch('api/remote/cmd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code,cmd:c,arg})});const j=await r.json();toast(j.ok?'已发送':(j.error||'没有发送成功'));setTimeout(poll,600);}catch{toast('网络不通');}}
+document.addEventListener('click',e=>{const b=e.target.closest('button[data-cmd]');if(b)cmd(b.dataset.cmd,b.dataset.arg);});
+$('link').onclick=()=>{code=$('code').value.trim();try{localStorage.setItem('littled.remote',code);}catch{}poll();};
+$('sayBtn').onclick=()=>{const t=$('say').value.trim();if(t){cmd('say',t);$('say').value='';}};
+function render(){const s=state;if(!s){$('list').innerHTML='<p class="muted">屏幕还没有上报节目单</p>';return;}
+ const chs=s.channels||[];if(!channel||!chs.some(c=>c.id===channel))channel=s.channel||chs[0]?.id;
+ $('tabs').replaceChildren(...chs.map(c=>{const b=document.createElement('button');b.textContent=c.name;b.className=c.id===channel?'on':'';b.onclick=()=>{channel=c.id;render();cmd('channel',c.id);};return b;}));
+ const ch=chs.find(c=>c.id===channel);$('list').replaceChildren(...(ch?.items||[]).map(it=>{const b=document.createElement('button');b.innerHTML='<b></b><span></span>';b.querySelector('b').textContent=it.no;b.querySelector('span').textContent=it.title;b.onclick=()=>cmd('play',it.key);return b;}));}
+async function poll(){if(!/^\d{4}$/.test(code)){$('status').textContent='未连接';return;}
+ try{const j=await (await fetch('api/remote/state?code='+code)).json();state=j.state;
+  const m={playing:'正在播放',paused:'已暂停',guide:'节目单',tour:'导览中',screen:'展示屏打开',idle:'待机'}[state?.mode]||'—';
+  $('status').textContent=j.online?`已连接 · ${m}${state?.deck?` · ${String(state.deck.title).slice(0,40)}（${+state.deck.page||0}/${+state.deck.pages||0}）`:''}`:'屏幕不在线：确认小D 页面已打开、遥控码正确';
+  render();}catch{$('status').textContent='网络不通';}}
+poll();setInterval(poll,3000);
+</script>
+</body>
+</html>

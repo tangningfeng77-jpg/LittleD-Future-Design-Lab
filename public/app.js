@@ -80,7 +80,7 @@ try{
  
  appearance();emotion(config.emotion);play(byName('Idle'));$('assetStatus').textContent='自然表达 · 实时陪伴';
  presentation=new VideoCompanion({robot,camera,scene,contact,perform:(name,once=false)=>play(byName(name),once),emote:index=>emotion(index,false)});
- window.robotStudio={robot,mixer,play:name=>play(byName(name)),get config(){return config;},setEmotion:emotion,director,handVisuals,presentation};
+ window.robotStudio={robot,mixer,scene,camera,controls,renderer,photoStage,contact,play:name=>play(byName(name)),get config(){return config;},setEmotion:emotion,director,handVisuals,presentation};
 }catch(e){$('fatal').hidden=false;$('fatal').textContent='机器人加载失败：'+e.message;console.error(e);}
 const emotionNames=['平静','开心','难过','怀疑','惊讶','宕机','嫌弃','生气','哭泣','喜爱'];for(let i=0;i<10;i++){const b=document.createElement('button');b.textContent=emotionNames[i];b.onclick=()=>emotion(i);$('emotions').append(b);}emotion(config.emotion);
 function fill(){for(const k of ['shell','glow','intensity','speed','voice','instructions'])$(k).value=config[k];$('speedValue').value=config.speed+'×';$('memory').value=config.memory||'';}fill();
@@ -90,7 +90,7 @@ $('reset').onclick=()=>{if(robot){robot.position.set(0,0,0);presentation?.return
 $('cameraReset')?.addEventListener('click',()=>photoStage.reset());
 $('export')?.addEventListener('click',()=>{save();const u=URL.createObjectURL(new Blob([JSON.stringify(config,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download='little-d-config.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);});
 $('import')?.addEventListener('change',async e=>{try{const c=JSON.parse(await e.target.files[0].text());if(!/^#[0-9a-f]{6}$/i.test(c.shell)||!/^#[0-9a-f]{6}$/i.test(c.glow)||!Number.isFinite(c.speed)||c.speed<.1||c.speed>2||!Number.isFinite(c.intensity)||c.intensity<0||c.intensity>3||!Number.isInteger(c.emotion)||c.emotion<0||c.emotion>9||typeof c.instructions!=='string'||typeof c.voice!=='string')throw Error('配置格式或数值不正确');config={...config,...c};fill();appearance();emotion(config.emotion);if(action)action.timeScale=config.speed;save();voice?.update();}catch(e){$('aiStatus').textContent='导入失败：'+e.message;}});
-voice=new RobotVoice({config:()=>({...config,instructions:config.instructions+'\n当前画面更新：小D站在用户提供照片重建的未来设计实验室迎宾空间中，地面有蓝白发光圆环，后墙写有未来设计实验室 / FUTURE DESIGN LAB。这里是有限视角的照片投影空间，并非完整可导航的展厅；不能编造照片之外的布局、展品或路线。'}),setSpeaking,play:name=>gesture(name),director,handVisuals,presentation});await voice.init();
+voice=new RobotVoice({config:()=>({...config,instructions:config.instructions+(window.gdHall?'\n当前画面：小D 在虚拟的未来设计实验室展厅里。展厅是圆形的，后墙写着未来设计实验室 / FUTURE DESIGN LAB；四面弧形展墙分别陈列实验室、偏政府领导、偏企业、设计方法四个频道的节目展板。开讲某个节目时小D 会走到对应展板前。不要编造展厅里没有的展品。':'\n当前画面更新：小D站在用户提供照片重建的未来设计实验室迎宾空间中，地面有蓝白发光圆环，后墙写有未来设计实验室 / FUTURE DESIGN LAB。这里是有限视角的照片投影空间，并非完整可导航的展厅；不能编造照片之外的布局、展品或路线。')}),setSpeaking,play:name=>gesture(name),director,handVisuals,presentation});await voice.init();
  window.robotStudio.voice=voice;
 $('applyAI')?.addEventListener('click',()=>{config.voice=$('voice').value;config.instructions=$('instructions').value;save();voice.update();});$('saveMemory')?.addEventListener('click',()=>{config.memory=$('memory').value;save();voice.update();});
 $('knowledge')?.addEventListener('click',()=>window.open('./assets/lab-knowledge/knowledge.json','_blank','noopener'));
