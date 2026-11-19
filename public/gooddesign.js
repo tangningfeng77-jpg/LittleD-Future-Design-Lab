@@ -58,7 +58,7 @@ const PROJECT_ID = /^\d{4}-[a-z]?\d+$/i, METHOD_ID = /^(R\d{1,3}|IM-[A-Z]+-\d+)$
 const SECTIONS = {home: '/', projects: '/projects/', methods: '/methods/', museum: '/museum/', apps: '/apps/', model: '/model/', about: '/about/'};
 
 async function api(params) {
-  const response = await fetch('/api/gd?' + new URLSearchParams(params), {signal: AbortSignal.timeout(20000)});
+  const response = await fetch('api/gd?' + new URLSearchParams(params), {signal: AbortSignal.timeout(20000)});
   return response.json();
 }
 

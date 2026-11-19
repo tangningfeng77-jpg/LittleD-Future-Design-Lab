@@ -1,5 +1,9 @@
 // 展示屏（第二阶段）：在小D 旁边打开好设计馆页面，可左右分屏；翻页、缩放通过 postMessage 交给页面的展厅模式处理。
-// 只打开好设计馆域名下的页面。
+// 只打开好设计馆域名下的页面。小D 与页面同站部署时（如 haoshejiguan.com/littled/），展示屏直接给页面套展厅样式、
+// 直接翻页缩放，不依赖网站上线展厅模式脚本。
+
+const KIOSK_CSS = '[data-gd-chrome="navigation"],[data-gd-chrome="footer"],.gd-skip,.gd-ip-trigger,.gd-drawer,.apf-host,#apf-host{display:none!important}html{scroll-behavior:smooth}body{cursor:none}';
+const cleanTitle = t => String(t || '').replace(/\s*[·|｜-]\s*好设计馆?\s*$/, '').replace(/\s*·\s*项目档案\s*$/, '');
 
 export class GdScreen {
   constructor(host, base) {
@@ -47,7 +51,9 @@ export class GdScreen {
     frame.setAttribute('sandbox', 'allow-scripts allow-same-origin');
     frame.src = item.safe;
     pane.append(head, frame);
-    return {el: pane, frame, title, url: item.url, id: item.id, ready: false, fixedTitle: !!item.title};
+    const p = {el: pane, frame, title, url: item.url, id: item.id, ready: false, fixedTitle: !!item.title, direct: false, zoom: 1.15};
+    frame.addEventListener('load', () => this.adopt(p));
+    return p;
   }
 
   // items: [{url, title?, id?}]，一项为单屏，两项为左右分屏
@@ -63,6 +69,18 @@ export class GdScreen {
     return this.state;
   }
 
+  // 同站页面：直接套展厅样式（隐藏导航、页脚、浮动按钮，字号放大）
+  adopt(p) {
+    let doc;
+    try { doc = p.frame.contentDocument; } catch { return; }
+    if (!doc?.documentElement) return;
+    try { const sh = new p.frame.contentWindow.CSSStyleSheet(); sh.replaceSync(KIOSK_CSS); doc.adoptedStyleSheets = [...doc.adoptedStyleSheets, sh]; } catch {}
+    doc.documentElement.style.setProperty('zoom', String(p.zoom));
+    p.direct = true; p.ready = true;
+    const setTitle = () => { if (!p.fixedTitle && doc.title) p.title.textContent = cleanTitle(doc.title).slice(0, 60); };
+    setTitle(); setTimeout(setTitle, 2500);
+  }
+
   close() {
     this.el.hidden = true;
     this.el.replaceChildren();
@@ -76,7 +94,22 @@ export class GdScreen {
     if (!this.isOpen) return {ok: false, reason: '展示屏没有打开'};
     const targets = side === 'left' ? this.panes.slice(0, 1) : side === 'right' ? this.panes.slice(1, 2) : this.panes;
     const message = {gdKiosk: 1, action};
-    for (const p of targets) p.frame.contentWindow?.postMessage(message, this.origin);
+    for (const p of targets) {
+      if (p.direct) {
+        try {
+          const w = p.frame.contentWindow, step = w.innerHeight * .72;
+          if (action === 'scroll_down') w.scrollBy({top: step, behavior: 'smooth'});
+          else if (action === 'scroll_up') w.scrollBy({top: -step, behavior: 'smooth'});
+          else if (action === 'top') w.scrollTo({top: 0, behavior: 'smooth'});
+          else if (action === 'zoom_in' || action === 'zoom_out') {
+            p.zoom = Math.min(1.6, Math.max(.8, Math.round((p.zoom + (action === 'zoom_in' ? .1 : -.1)) * 100) / 100));
+            p.frame.contentDocument.documentElement.style.setProperty('zoom', String(p.zoom));
+          }
+          continue;
+        } catch { p.direct = false; }
+      }
+      p.frame.contentWindow?.postMessage(message, this.origin);
+    }
     const notReady = targets.filter(p => !p.ready).length;
     return {ok: true, pending: notReady ? '页面还在加载或不支持展厅模式' : undefined};
   }

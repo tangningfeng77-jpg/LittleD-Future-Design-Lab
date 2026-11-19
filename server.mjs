@@ -47,9 +47,17 @@ server.on('upgrade',(req,socket,head)=>{
  if(req.url!='/realtime'||!allowedOrigins.includes(origin)){socket.destroy();return;}
  wss.handleUpgrade(req,socket,head,ws=>wss.emit('connection',ws));
 });
+// 托管时的用量保护（环境变量，0 或不设为不限）：同时连接数、每日连接数、单次连接时长（分钟）
+const LIMIT={max:+process.env.LITTLED_MAX_SESSIONS||0,daily:+process.env.LITTLED_DAILY_SESSIONS||0,minutes:+process.env.LITTLED_SESSION_MINUTES||0};
+let activeSessions=0,usageDay='',sessionsToday=0;
 wss.on('connection',client=>{
  const key=process.env.DASHSCOPE_API_KEY,workspace=process.env.DASHSCOPE_WORKSPACE_ID;
  const fail=message=>{if(client.readyState===WebSocket.OPEN)client.send(JSON.stringify({type:'relay.error',message}));};
+ const today=new Date().toISOString().slice(0,10);if(today!==usageDay){usageDay=today;sessionsToday=0;}
+ if(LIMIT.max&&activeSessions>=LIMIT.max){fail('现在体验的人较多，请稍后再试。');client.close();return;}
+ if(LIMIT.daily&&sessionsToday>=LIMIT.daily){fail('今日体验次数已用完，请明天再来。');client.close();return;}
+ activeSessions++;sessionsToday++;let counted=true;client.on('close',()=>{if(counted){counted=false;activeSessions--;}});
+ if(LIMIT.minutes)setTimeout(()=>{fail('本次体验时间已到，刷新页面可以重新开始。');client.close();},LIMIT.minutes*60000);
  if(!key||!workspace||!/^[a-zA-Z0-9-]+$/.test(workspace)){fail('未配置百炼密钥或业务空间 ID。请在本地 .env.local 中配置。');client.close();return;}
  const upstream=new WebSocket(`wss://${workspace}.cn-beijing.maas.aliyuncs.com/api-ws/v1/realtime?model=${encodeURIComponent(config().model)}`,{headers:{Authorization:'Bearer '+key},handshakeTimeout:15000});
  const allowed=new Set(['session.update','input_audio_buffer.append','input_audio_buffer.commit','input_audio_buffer.clear','input_image_buffer.append','response.create','response.cancel','conversation.item.create']);
