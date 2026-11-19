@@ -1,5 +1,5 @@
 import {searchWeb} from './web-search.mjs';
-import {handleGd,gdConfigured,gdBase} from './gd-proxy.mjs';
+import {handleGd,gdConfigured,gdBase,warmDecks} from './gd-proxy.mjs';
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -67,3 +67,5 @@ wss.on('connection',client=>{
  upstream.on('close',()=>client.close());client.on('close',()=>upstream.close());client.on('error',()=>upstream.close());
 });
 const port=Number(process.env.PORT||4173);server.listen(port,process.env.HOST||'127.0.0.1',()=>console.log(`小D HTML: http://127.0.0.1:${port}`));
+// 预先生成节目单和导览里好设计项目的讲解幻灯片
+if(gdConfigured())setTimeout(()=>{try{const ids=new Set();const scan=v=>{if(Array.isArray(v))v.forEach(scan);else if(v&&typeof v==='object'){if(typeof v.deck==='string')ids.add(v.deck);Object.values(v).forEach(scan);}};for(const f of ['programmes.json','gooddesign-tour.json'])try{scan(JSON.parse(fs.readFileSync(path.join(pub,'assets/tour',f),'utf8')));}catch{}warmDecks([...ids]);}catch(e){console.warn('warm',e.message);}},3000);

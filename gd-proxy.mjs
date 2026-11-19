@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 // 好设计知识接入（第一阶段）：小D 通过本机服务读取好设计馆的项目与方法。
 // 只读：只放行搜索和阅读类 MCP 工具；令牌只在本机 .env.local（GD_MCP_TOKEN），不会发到浏览器。
 const BASE = (process.env.GD_BASE || 'https://haoshejiguan.com').replace(/\/+$/, '');
@@ -70,7 +72,7 @@ function scoreProject(p, ts, whole, idf) {
 
 const projectCard = (p, long = false) => ({
   id: p.id, name: p.name, year: p.year, award: p.award, unit: clip(p.unit, 60),
-  summary: clip(p.summary, long ? 600 : 140), page: projectPage(p.id)
+  summary: clip(p.summary, long ? 600 : 140), page: projectPage(p.id), cover: p.cover ? `${BASE}/inno/portal/${p.cover}` : undefined
 });
 
 export async function searchProjects(query, limit = 5) {
@@ -145,6 +147,109 @@ export async function relate(a, b) {
   return { a: x, b: y, shared_terms: shared, guide: '从要解决的问题、关键技术或方法、使用场景三个角度比较；说出一个真正的共同点和一个关键差别；资料不足时直说只能从公开摘要看出这些。' };
 }
 
+// ---------- 讲解幻灯片（第四轮）：把项目档案整理成 4–6 页“节目”，每页配一段口播 ----------
+// 有语言模型时由模型整理（GD_DECK_MODEL；默认用百炼兼容接口与同一把密钥），否则按档案原文切分。结果缓存在磁盘。
+const DECK_VERSION = 'v4';
+// 口播按句截断，不在半句处断开
+const sentences = (t, n) => { let out = ''; for (const x of String(t || '').split(/(?<=[。！？；])/)) { if ((out + x).length > n) break; out += x; } return out || clip(t, n); };
+const deckDir = () => process.env.GD_DECK_CACHE || path.join(process.cwd(), '.cache', 'decks');
+const decking = new Map();
+const htmlText = h => String(h).replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/g, ' ').replace(/<br\s*\/?>/g, '\n').replace(/<\/(p|li|div|h\d)>/g, '\n').replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/[ \t]+/g, ' ').replace(/\n\s*\n+/g, '\n').trim();
+const CN = '〇一二三四五六七八九';
+// 固定语音按原文校验，口播里不留阿拉伯数字：年份逐位读，其余数字转中文读法
+function cnNumber(n) {
+  n = Number(n); if (!Number.isFinite(n)) return String(n);
+  if (n < 10) return '零一二三四五六七八九'[n];
+  const units = ['', '十', '百', '千', '万']; let out = '', str = String(Math.floor(n));
+  if (str.length > 5) return str.split('').map(d => CN[d]).join('');
+  for (let i = 0; i < str.length; i++) { const d = +str[i], u = units[str.length - 1 - i]; if (d) out += '零一二三四五六七八九'[d] + u; else if (!out.endsWith('零')) out += '零'; }
+  out = out.replace(/零+$/, ''); if (out.startsWith('一十')) out = out.slice(1); return out;
+}
+export const speakable = t => String(t || '').replace(/(\d{4})(?=年)/g, y => y.split('').map(d => CN[d]).join('')).replace(/(\d+)\.(\d+)/g, (m, a, b) => cnNumber(a) + '点' + b.split('').map(d => '零一二三四五六七八九'[d]).join('')).replace(/\d+/g, cnNumber).replace(/%/g, '').replace(/[“”"'‘’《》()（）\[\]]/g, '');
+
+async function projectSource(id) {
+  const p = (await getCatalog()).find(x => x.id === id);
+  if (!p) throw Error('没有这个项目编号');
+  let text = '';
+  try {
+    const r = await fetch(`${BASE}/inno/legacy/project/${encodeURIComponent(id)}.html`, {signal: AbortSignal.timeout(15000)});
+    if (r.ok) { const t = htmlText(await r.text()); const a = t.indexOf('项目简介'), b = t.indexOf('就这个项目'); text = (a >= 0 ? t.slice(a, b > a ? b : undefined) : '').replace(/^项目简介\s*\/\s*OVERVIEW\s*/, '').trim(); }
+  } catch {}
+  if (!text) text = p.summary || '';
+  return {p, text: text.slice(0, 3000), cover: p.cover ? `${BASE}/inno/portal/${p.cover}` : null};
+}
+
+function ruleDeck(src) {
+  const {p, text} = src;
+  const parts = text.split(/\n/).map(s => s.trim()).filter(Boolean);
+  const feats = parts.filter(s => /^\d+[\s.、)]/.test(s)).slice(0, 4);
+  const intro = parts.filter(s => !/^\d+[\s.、)]|^[一二三四五六]、/.test(s)).join('').split(/(?<=。)/).slice(0, 3).join('');
+  const slides = [{title: p.name.slice(0, 18), points: [`${p.year}年 中国好设计${p.award}`, p.unit.slice(0, 30)], narration: `这是${p.name}，获得了中国好设计${p.award}。`}];
+  if (intro) slides.push({title: '要解决的问题', points: intro.split(/[。；]/).filter(Boolean).slice(0, 3).map(s => clip(s, 28)), narration: sentences(intro, 110)});
+  for (const f of feats) { const body = f.replace(/^\d+[\s.、)]+/, ''); const [t, ...rest] = body.split(/[：:]/); const text = rest.join('：') || body; slides.push({title: clip(t, 14), points: text.split(/[，。；]/).filter(x => x.length > 3).slice(0, 3).map(x => clip(x, 28)), narration: sentences(text, 110)}); }
+  return slides;
+}
+
+async function llmDeck(src) {
+  const ws = process.env.DASHSCOPE_WORKSPACE_ID, key = process.env.GD_DECK_LLM_KEY || process.env.DASHSCOPE_API_KEY, model = process.env.GD_DECK_MODEL;
+  const base = process.env.GD_DECK_LLM_URL || (ws ? `https://${ws}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1` : '');
+  if (!model || !key || !base) return null;
+  const {p, text} = src;
+  const prompt = `你在为展厅讲解机器人“小D”准备一个项目的讲解幻灯片。只依据下面的项目资料，不补充资料以外的事实、数字或效果。
+项目：${p.name}（${p.year}年中国好设计${p.award}，${p.unit}）
+资料：
+${text}
+
+输出 JSON：{"slides":[{"title":"","points":["",""],"narration":""}]}
+要求：
+- 4 到 6 页。第一页介绍项目是什么、谁做的、获什么奖；之后依次讲：要解决的问题、关键设计或技术（可分两页）、带来的价值；最后一页一句话总结它对设计创新的启示（只能从资料推出）。
+- title 不超过 12 个字；points 每页 2 到 3 条，每条不超过 24 个字，points 里数字照常用阿拉伯数字；
+- narration 是这一页的口播，2 到 3 句、60 到 110 个汉字，口语化，像讲解员面对来宾说话，前后页自然衔接；不要说“这一页”“下一页”“各位来宾好”这类话，直接讲内容；不写阿拉伯数字，数字用汉字写，百分数写成“百分之三十八”这样的读法；不用英文缩写以外的英文；不加引号和括号。
+- 只输出 JSON。`;
+  let j = null, lastErr;
+  for (let attempt = 0; attempt < 2 && !j; attempt++) {
+    try {
+      const r = await fetch(base.replace(/\/+$/, '') + '/chat/completions', {
+        method: 'POST', signal: AbortSignal.timeout(60000),
+        headers: {Authorization: 'Bearer ' + key, 'Content-Type': 'application/json'},
+        body: JSON.stringify({model, messages: [{role: 'user', content: prompt}], max_tokens: 3000, enable_thinking: false, response_format: {type: 'json_object'}})
+      });
+      if (!r.ok) throw Error('deck llm ' + r.status);
+      const d = await r.json();
+      const raw = d.choices?.[0]?.message?.content || '';
+      j = JSON.parse(raw.slice(raw.indexOf('{'), raw.lastIndexOf('}') + 1));
+    } catch (e) { lastErr = e; }
+  }
+  if (!j) throw lastErr || Error('deck llm empty');
+  const slides = (j.slides || []).slice(0, 6).map(s => ({title: clip(s.title, 14), points: (s.points || []).slice(0, 3).map(x => clip(x, 30)).filter(Boolean), narration: clip(s.narration, 140)})).filter(s => s.title && s.narration);
+  return slides.length >= 3 ? slides : null;
+}
+
+export async function buildDeck(id) {
+  id = String(id || '').trim();
+  if (!/^\d{4}-[a-z]?\d+$/i.test(id)) throw Error('编号格式不对：项目形如 2021-c21');
+  const file = path.join(deckDir(), `${id}.${DECK_VERSION}.json`);
+  try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+  if (decking.has(id)) return decking.get(id);
+  const job = (async () => {
+    const src = await projectSource(id);
+    let slides = null, by = 'rules';
+    try { slides = await llmDeck(src); if (slides) by = 'llm'; } catch (e) { console.warn('deck llm', id, e.message); }
+    if (!slides) slides = ruleDeck(src);
+    slides = slides.map(s => ({...s, narration: speakable(s.narration)}));
+    const deck = {id, name: src.p.name, year: src.p.year, award: src.p.award, unit: src.p.unit, cover: src.cover, page: projectPage(id), by, version: DECK_VERSION, slides};
+    try { fs.mkdirSync(deckDir(), {recursive: true}); fs.writeFileSync(file, JSON.stringify(deck)); } catch (e) { console.warn('deck cache', e.message); }
+    return deck;
+  })().finally(() => decking.delete(id));
+  decking.set(id, job);
+  return job;
+}
+
+// 启动后预先生成常用节目的幻灯片（节目单与导览剧本里的项目）
+export async function warmDecks(ids) {
+  for (const id of ids) { try { await buildDeck(id); } catch (e) { console.warn('warm deck', id, e.message); } }
+}
+
 // ---------- HTTP 入口：/api/gd?op=search|read|relate ----------
 const hits = [];
 function limited() { const now = Date.now(); while (hits.length && now - hits[0] > 60000) hits.shift(); if (hits.length >= 60) return true; hits.push(now); return false; }
@@ -171,6 +276,7 @@ export async function handleGd(req, res) {
       return send(200, { source: SOURCE, note: NOTE, query: q, projects, methods, empty: !projects.length && !methods.length ? '好设计馆里没有找到直接相关的内容，照实告诉访客，不要编造。' : undefined });
     }
     if (op === 'read') return send(200, { source: SOURCE, note: NOTE, item: await read(u.searchParams.get('id')) });
+    if (op === 'deck') return send(200, {source: SOURCE, deck: await buildDeck(u.searchParams.get('id'))});
     if (op === 'relate') return send(200, { source: SOURCE, note: NOTE, ...(await relate(u.searchParams.get('a'), u.searchParams.get('b'))) });
     return send(404, { error: '未知操作' });
   } catch (e) {

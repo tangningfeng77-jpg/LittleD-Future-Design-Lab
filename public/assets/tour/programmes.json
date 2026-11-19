@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "note": "节目单：小D 可以讲的内容，按频道分组，编号自动从 1 开始连续排。来宾说“第三个”、说名字，或点卡片即开始。kind：lab-scene（实验室六大场景）、lab-project（IFS 项目）、gd-intro（好设计馆导览一站）、deck（好设计项目幻灯片，填 deck 项目编号）。以后实验室其他项目的 PPT 转成知识包后也加在这里。",
+  "channels": [
+    {
+      "name": "未来设计实验室",
+      "items": [
+        {"kind": "lab-scene", "scene": "agriculture", "title": "智慧农业"},
+        {"kind": "lab-scene", "scene": "public-services", "title": "公安政务"},
+        {"kind": "lab-scene", "scene": "fashion", "title": "时尚产业"},
+        {"kind": "lab-scene", "scene": "logistics", "title": "智慧物流"},
+        {"kind": "lab-scene", "scene": "commerce", "title": "数字商业运营"},
+        {"kind": "lab-scene", "scene": "education", "title": "未来教育"},
+        {"kind": "lab-project", "title": "IFS 离子精筛膜", "aliases": ["IFS", "离子精筛膜", "精筛膜"]}
+      ]
+    },
+    {
+      "name": "好设计馆精选",
+      "items": [
+        {"kind": "gd-intro", "title": "好设计馆是什么", "aliases": ["好设计馆", "好设计"]},
+        {"kind": "deck", "deck": "2025-00", "title": "嫦娥五号六号月球钻取采样", "aliases": ["嫦娥", "月球采样", "钻取采样"]},
+        {"kind": "deck", "deck": "2025-03", "title": "消化道早癌手术机器人", "aliases": ["手术机器人", "早癌", "消化道"]},
+        {"kind": "deck", "deck": "2020-s15", "title": "甘蔗联合收获机", "aliases": ["甘蔗", "收获机"]},
+        {"kind": "deck", "deck": "2015-s19", "title": "海尔天樽空调", "aliases": ["海尔", "天樽", "空调"]},
+        {"kind": "deck", "deck": "2021-c21", "title": "蔬菜移栽机器人", "aliases": ["蔬菜", "移栽", "Antobot"]},
+        {"kind": "deck", "deck": "2025-09", "title": "山地城市列车", "aliases": ["列车", "山地", "重庆"]}
+      ]
+    }
+  ]
+}

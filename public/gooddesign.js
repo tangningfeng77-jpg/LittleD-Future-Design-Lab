@@ -34,7 +34,7 @@ export const GD_NAMES = new Set(GD_TOOLS.map(t => t.function.name));
 const SCREEN_TOOLS = new Set(['open_page', 'page_control', 'switch_project']);
 
 const BASE_INSTRUCTIONS = '你还能查阅好设计馆：一个收录历届中国好设计获奖项目（数百个）和 64 种设计方法的设计知识平台。访客问到实验室资料以外的设计项目、某个行业的优秀设计、某件事的设计方法，或主动提到“好设计”时，调用 gd_search，再按需 gd_read；问两个项目的关系时调用 gd_relate。讲好设计馆的内容时可以自然说一句“好设计馆里收录了……”，项目要说出名称、获奖年份和奖项，用一两个具体细节讲清它解决什么问题；不要读编号和网址。好设计馆里没找到时照实说，再回到实验室能讲的内容。';
-const SCREEN_INSTRUCTIONS = '你身边有一块展示屏，能打开好设计馆的页面。访客想看某个项目、方法或好设计馆时调用 open_page；说“往下翻”“放大”“关掉”时调用 page_control；说“换一个”“下一个”“回到刚才那个”“换成某某”时调用 switch_project；比较两个项目时 gd_relate 会自动左右分屏。打开页面后讲内容本身，不描述网页长什么样，也不说“我已经打开了网页”，可以说“请看屏幕”。';
+const SCREEN_INSTRUCTIONS = '你身边有一块展示屏，能播放节目（项目幻灯片）、显示节目单，也能打开好设计馆的页面。来宾想知道还能看什么时，告诉他可以说“节目单”，或者说第几个、说项目名字。访客想看某个项目、方法或好设计馆时调用 open_page；说“往下翻”“放大”“关掉”时调用 page_control；说“换一个”“下一个”“回到刚才那个”“换成某某”时调用 switch_project；比较两个项目时 gd_relate 会自动左右分屏。打开页面后讲内容本身，不描述网页长什么样，也不说“我已经打开了网页”，可以说“请看屏幕”。';
 
 // 每轮更新：告诉模型展示屏和当前项目的状态（讲解员用翻页笔换了项目，小D 也知道）
 export function gdInstructions(st) {
@@ -164,7 +164,9 @@ export async function gdHandle(name, args, st) {
 // 翻页笔/键盘：展示屏打开时，上下键翻页，左右键换项目，Esc 关闭。输入框里不拦截。
 export function bindClicker(st, onChange = () => {}) {
   addEventListener('keydown', async e => {
-    if (!st.screen?.isOpen || e.altKey || e.ctrlKey || e.metaKey || /INPUT|TEXTAREA|SELECT/.test(e.target?.tagName || '')) return;
+    if (e.altKey || e.ctrlKey || e.metaKey || /INPUT|TEXTAREA|SELECT/.test(e.target?.tagName || '')) return;
+    if (st.onKey && st.onKey(e)) { e.preventDefault(); return; }   // 节目、节目单、打断优先
+    if (!st.screen?.isOpen) return;
     const scroll = {PageDown: 'scroll_down', ArrowDown: 'scroll_down', PageUp: 'scroll_up', ArrowUp: 'scroll_up', Home: 'top'}[e.key];
     try {
       if (scroll) { e.preventDefault(); st.screen.control(scroll); }

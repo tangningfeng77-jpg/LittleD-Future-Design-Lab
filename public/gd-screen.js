@@ -24,7 +24,7 @@ export class GdScreen {
   }
 
   get isOpen() { return !this.el.hidden; }
-  get state() { return {open: this.isOpen, pages: this.panes.map(p => ({title: p.title.textContent, url: p.url, id: p.id}))}; }
+  get state() { return {open: this.isOpen, pages: this.panes.map(p => ({title: p.title.textContent, url: p.url, id: p.id, deck: p.deck || null, custom: !!p.custom}))}; }
 
   // 只允许本站页面：返回带展厅模式参数的地址，或 null
   safeUrl(url) {
@@ -81,6 +81,29 @@ export class GdScreen {
     setTitle(); setTimeout(setTitle, 2500);
   }
 
+  // 在展示屏里显示自己的内容（幻灯片、节目单），而不是网页
+  showNode(node, {label = '好设计馆', title = '', deck = null} = {}) {
+    let p = this.panes.length === 1 && this.panes[0].custom ? this.panes[0] : null;
+    if (!p) {
+      this.el.replaceChildren();
+      const pane = document.createElement('section'); pane.className = 'gd-pane gd-pane-custom';
+      const head = document.createElement('div'); head.className = 'gd-pane-head';
+      const src = document.createElement('span'); src.className = 'gd-src';
+      const t = document.createElement('span'); t.className = 'gd-title';
+      head.append(src, t);
+      const stage = document.createElement('div'); stage.className = 'gd-pane-stage';
+      pane.append(head, stage); this.el.append(pane);
+      p = {el: pane, frame: null, title: t, src, stage, custom: true, ready: true, url: null, id: deck};
+      this.panes = [p];
+      this.el.classList.remove('split');
+    }
+    p.src.textContent = label; p.title.textContent = title; p.deck = deck; p.id = deck;
+    p.stage.replaceChildren(node);
+    this.el.hidden = false;
+    document.body.classList.add('gd-screen-open');
+    return this.state;
+  }
+
   close() {
     this.el.hidden = true;
     this.el.replaceChildren();
@@ -95,6 +118,7 @@ export class GdScreen {
     const targets = side === 'left' ? this.panes.slice(0, 1) : side === 'right' ? this.panes.slice(1, 2) : this.panes;
     const message = {gdKiosk: 1, action};
     for (const p of targets) {
+      if (p.custom || !p.frame) continue;
       if (p.direct) {
         try {
           const w = p.frame.contentWindow, step = w.innerHeight * .72;
