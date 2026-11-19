@@ -93,8 +93,8 @@
     },
     {
       "path": "public/voice.js",
-      "bytes": 50883,
-      "sha256": "68bd7e6e5fe58e6a23795561b3fb6be33501482c253c98762ff9d52b0bc82a69"
+      "bytes": 51052,
+      "sha256": "d3342b731380b46979bf2ca021323b1be1520583b9ee93396ddba0be4c2a8068"
     },
     {
       "path": "public/tour-flow.js",
@@ -24258,13 +24258,13 @@
     },
     {
       "path": "gd-proxy.mjs",
-      "bytes": 10730,
-      "sha256": "b444047fbc468941f24370fa1348606ad30b864a3685150ab3daec503b32f443"
+      "bytes": 11198,
+      "sha256": "23451863324d50fdd2aab0f3ec6be5c490ebda1060d8120bb41459f0b47e15b6"
     },
     {
       "path": "public/gooddesign.js",
-      "bytes": 12478,
-      "sha256": "e521a1d10a5419155309cc48bfe4bef238508ce8cfcb0792582177852c04130b"
+      "bytes": 14638,
+      "sha256": "70e4b9e358237e4ea42d4d0e64b12bc5b16867fed3ea9cd34724ceb608416f7d"
     },
     {
       "path": "public/assets/packs/index.json",
@@ -24288,13 +24288,13 @@
     },
     {
       "path": "public/assets/tour/gooddesign-tour.json",
-      "bytes": 3227,
-      "sha256": "7491706730c2a25016e708da9b97f61bd030922dfa2e6524f8f857fbf0fb9bb6"
+      "bytes": 3254,
+      "sha256": "4a4503a16b2942c3470ac1d967b69c065039c251fcde91185c19b013e4859dca"
     },
     {
       "path": "public/gd-tour.js",
-      "bytes": 6633,
-      "sha256": "4273962d3226a341786536ed441e63c53701efb9bde7800f81c2b19065eb2e52"
+      "bytes": 9463,
+      "sha256": "2e91da546592a21a07a02d37d912e5735556e5197bbf03859b196b771179a275"
     }
   ]
 }

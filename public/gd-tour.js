@@ -1,6 +1,6 @@
 // 好设计导览（第三阶段）：在实验室导览里加一站“好设计”，按来宾路线逐段讲解并在展示屏打开页面；
 // 无人交流时展示屏轮播精选项目；结尾可引向小D 访谈。剧本在 assets/tour/gooddesign-tour.json，现场可改。
-import {gdHandle} from './gooddesign.js';
+import {gdHandle, itemFacts} from './gooddesign.js';
 import {affirm, negative} from './guide-flow.js';
 
 const clean = s => String(s || '').normalize('NFKC').replace(/[\s，。！？、,.!?～~]/g, '');
@@ -60,6 +60,7 @@ export class GdTour {
     if (this.running) this.cancel(); // 访客插话：停止后续剧本，交给自由问答
     const c = clean(text);
     if (this.offered && negative(text)) { this.offered = false; return false; }
+    if (await this.command(c)) return true;
     if ((this.offered && affirm(text)) || ASK_STOP.test(c)) {
       this.offered = false;
       this.voice.log('你', text);
@@ -70,6 +71,37 @@ export class GdTour {
   }
 
   cancel() { this.token++; this.running = false; }
+
+  // 展示屏口令：直接执行，不靠模型决定是否调用工具。返回 true 表示已处理完（不再交给模型）；
+  // 换项目、打开、对比之后把真实资料放进 pendingFacts，再交给模型讲解（返回 false）。
+  async command(c) {
+    const st = this.voice.gd, screen = st?.screen;
+    if (!screen) return false;
+    const open = screen.isOpen;
+    const act = open && (/^(请|再|麻烦)?(往下|向下|下)(翻|滚|拉|看)|^下一页|^翻页|^往下$/.test(c) ? 'scroll_down'
+      : /^(请|再)?(往上|向上|上)(翻|滚|拉|看)|^上一页|^往上$/.test(c) ? 'scroll_up'
+      : /^(回到|返回)(顶部|开头|最上面)/.test(c) ? 'top'
+      : /^(放大|大一点|字大一点|再大一点)/.test(c) ? 'zoom_in'
+      : /^(缩小|小一点|再小一点)/.test(c) ? 'zoom_out'
+      : /^(关掉|关闭|收起)(屏幕|展示屏|页面|网页)?$|^(把)?(屏幕|页面|网页)(关掉|关了|关闭|收起来)$/.test(c) ? 'close' : '');
+    if (act) { screen.control(act); this.voice.status?.('展示屏：' + {scroll_down: '往下翻', scroll_up: '往上翻', top: '回到顶部', zoom_in: '放大', zoom_out: '缩小', close: '已关闭'}[act]); return true; }
+    const show = async (name, args) => {
+      const r = await gdHandle(name, args, st);
+      if (r?.error) { st.pendingFacts = `【展示屏没有切换：${r.error}】`; return false; }
+      st.pendingFacts = `【展示屏刚打开了好设计馆的这个条目，请看屏幕后讲解它，只依据以下资料：】\n` + itemFacts(r.item);
+      return false;
+    };
+    if (/^(再)?(换一个|换个|下一个|再来一个|看下一个)/.test(c) && (st.list?.length)) return show('switch_project', {direction: 'next'});
+    if (/^(回到|返回|再看)(刚才|上一个|前一个)|^上一个(项目)?$/.test(c) && st.focus?.previous) return show('switch_project', {direction: 'previous'});
+    if (/(这两个|两个项目|它们|他们|两者).*(关系|关联|联系|区别|不同|相同|共同|比较)|有什么(关系|关联|联系)$/.test(c) && st.focus?.current && st.focus?.previous) {
+      const r = await gdHandle('gd_relate', {}, st);
+      if (r?.a && r?.b) st.pendingFacts = `【展示屏已左右分屏打开两个项目。比较时只依据以下资料：从要解决的问题、关键技术或方法、使用场景比较，说出一个真正的共同点和一个关键差别。】\n${itemFacts(r.a)}\n${itemFacts(r.b)}`;
+      return false;
+    }
+    const m = c.match(/^(请)?(帮我)?(打开|给我看看|给我看|展示|看看)(一下)?(.{2,24}?)(吧|呢|这个项目|项目)?$/);
+    if (m && !/好设计馆?$|^屏幕/.test(m[5])) return show('open_page', {target: m[5].replace(/^(那个|这个|关于)/, '')});
+    return false;
+  }
 
   // 逐字朗读一段固定讲解，等它说完
   async speak(text, token) {

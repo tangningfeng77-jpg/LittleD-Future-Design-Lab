@@ -94,6 +94,29 @@ function openOnScreen(st, pages) {
   catch (e) { return '展示屏打不开：' + e.message; }
 }
 
+// 问题里提到好设计时，在模型作答前先检索，把真实结果作为本轮事实（不依赖模型自己决定调用工具）
+const GD_TOPIC = /好设计|获奖项目|获奖作品|获奖案例/;
+const FILLER = /好设计馆?|中国好设计|获奖(项目|作品|案例)?|有没有|有哪些|哪些|什么样?的?|怎么样?|如何|是否|能不能|可不可以|介绍(一下|下)?|讲讲|说说|看看|给我|请问|请|关于|方面|领域|相关|一些|一下|项目|案例|作品|里面|里|吗|呢|吧|呀|啊|的|[\s，。！？、,.!?]/g;
+export function itemFacts(it) {
+  if (!it) return '';
+  return it.kind === 'method' ? `设计方法“${it.name}”：${it.summary}${it.steps?.length ? '。步骤：' + it.steps.join('、') : ''}`
+    : `${it.name}（${it.year}年${it.award}，${it.unit}）：${it.summary}`;
+}
+export async function gdPrefetch(question, st) {
+  if (st.pendingFacts) { const f = st.pendingFacts; st.pendingFacts = ''; return f; }
+  if (!GD_TOPIC.test(String(question || ''))) return '';
+  const topic = String(question).replace(FILLER, '').slice(0, 30);
+  if (topic.length < 2) return '';
+  let r;
+  try { r = await gdHandle('gd_search', {query: topic}, st); } catch { return ''; }
+  const projects = r.projects || [], methods = r.methods || [];
+  if (!projects.length && !methods.length) return `【好设计馆检索：“${topic}”没有找到直接相关的项目或方法。照实告诉访客没有找到，不要列举或编造好设计馆的项目。】`;
+  let opened = '';
+  if (projects[0] && st.screen) { try { await gdHandle('open_page', {target: projects[0].id}, st); opened = `展示屏已打开第一个项目“${projects[0].name}”，可以说“请看屏幕”。`; } catch {} }
+  const lines = projects.map(p => `${p.name}（${p.year}年${p.award}，${p.unit}）：${p.summary}`).concat(methods.map(m => `设计方法“${m.name}”：${m.summary}`));
+  return `【好设计馆检索“${topic}”的真实结果。回答好设计馆相关问题时只依据这些条目，说出具体名称；不要补充列表之外的项目，不要编造技术细节。${opened}】\n` + lines.join('\n');
+}
+
 // 处理一个好设计工具调用，返回给模型的对象
 export async function gdHandle(name, args, st) {
   if (name === 'gd_search') {

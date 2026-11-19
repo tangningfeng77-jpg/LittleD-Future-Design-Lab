@@ -40,8 +40,10 @@ export async function getCatalog() {
 
 // ---------- 检索 ----------
 const STOP = new Set(['项目', '好设计', '有哪些', '哪些', '什么', '介绍', '一下', '相关', '方面', '有没有', '设计', '一个', '怎么', '如何', '怎样', '为什么', '可以', '我们', '这个', '那个', '还有']);
+// 口语里的虚词：“好设计馆里有没有农业方面的项目” → “农业”
+export const FILLER = /好设计馆?|中国好设计|获奖(项目|作品|案例)?|有没有|有哪些|哪些|什么样?的?|怎么样?|如何|是否|能不能|可不可以|介绍(一下|下)?|讲讲|说说|看看|给我|请问|请|关于|方面|领域|相关|一些|一下|项目|案例|作品|里面|里|吗|呢|吧|呀|啊|的/g;
 export function terms(query) {
-  const q = String(query || '').toLowerCase();
+  const q = String(query || '').toLowerCase().replace(FILLER, ' ');
   const words = q.split(/[\s,，、。；;：:！!？?和与及的]+/).filter(w => w.length >= 2 && !STOP.has(w));
   const out = new Set(words);
   for (const w of words) if (/^[㐀-鿿]{3,}$/.test(w)) for (let i = 0; i < w.length - 1; i++) { const b = w.slice(i, i + 2); if (!STOP.has(b)) out.add(b); }
@@ -63,7 +65,7 @@ function scoreProject(p, ts, whole, idf) {
   const coverage = ts.length ? (inName + inBody) / ts.length : 0;
   score *= 0.4 + 0.6 * coverage;
   const bonus = whole && whole.length >= 2 && name.includes(whole) ? 12 : 0;
-  return { score, rank: score + bonus, strong: inName > 0 || inBody >= 2 };
+  return { score, rank: score + bonus, strong: inName > 0 || inBody >= Math.min(2, ts.length) };
 }
 
 const projectCard = (p, long = false) => ({
