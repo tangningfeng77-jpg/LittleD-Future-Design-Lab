@@ -93,8 +93,8 @@
     },
     {
       "path": "public/voice.js",
-      "bytes": 50691,
-      "sha256": "c3e227c3897894e1337163ee04669dd07d8aac65488de1e23a2ffd2ae64eb31c"
+      "bytes": 50899,
+      "sha256": "f58d7f9b92ad244aa308d5de48a259bbbc843393871b4d9aa55b837441c0786a"
     },
     {
       "path": "public/tour-flow.js",
@@ -23658,8 +23658,8 @@
     },
     {
       "path": "scripts/check-package.mjs",
-      "bytes": 1247,
-      "sha256": "cf2909e3880417fbd9703446e5e724efda6e48bebdce63af1bb59b352f02b1d8"
+      "bytes": 1267,
+      "sha256": "be9903c0bdf59e730ed5bc84a5751cec593247c522ef815e9406524fbfe617d7"
     },
     {
       "path": "platforms/android/.gitignore",
@@ -24263,8 +24263,8 @@
     },
     {
       "path": "public/gooddesign.js",
-      "bytes": 12342,
-      "sha256": "ff7a2f3ba5518f75f4ab61420af41b2c29e5635ba4a0b3be23529c67dea8a6f4"
+      "bytes": 12479,
+      "sha256": "526cb9281cb987b6a7b1367bd275d8388495af710dd71254bca7788248648b22"
     },
     {
       "path": "public/assets/packs/index.json",
@@ -24285,6 +24285,16 @@
       "path": "public/gd-screen.js",
       "bytes": 3953,
       "sha256": "403c5166370af347eb8c94b082ee3ed71268fc0a09ef73ba4b30df452076b2b9"
+    },
+    {
+      "path": "public/assets/tour/gooddesign-tour.json",
+      "bytes": 3227,
+      "sha256": "7491706730c2a25016e708da9b97f61bd030922dfa2e6524f8f857fbf0fb9bb6"
+    },
+    {
+      "path": "public/gd-tour.js",
+      "bytes": 6633,
+      "sha256": "4273962d3226a341786536ed441e63c53701efb9bde7800f81c2b19065eb2e52"
     }
   ]
 }

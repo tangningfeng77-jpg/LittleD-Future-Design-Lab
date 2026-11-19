@@ -44,6 +44,7 @@ export function gdInstructions(st) {
     const pages = st.screen.state.pages;
     t += st.screen.isOpen ? `展示屏当前打开：${pages.map(p => p.title).filter(Boolean).join(' 与 ') || '好设计馆页面'}。` : '展示屏当前关闭。';
   }
+  if (st?.tourDone) t += '刚才已按导览介绍过好设计馆，来宾再问时直接回答具体问题，不重复整段介绍。';
   if (st?.focus?.current) t += `当前讲到的好设计项目：${st.focus.current.name}（${st.focus.current.id}）` + (st.focus.previous ? `；上一个：${st.focus.previous.name}（${st.focus.previous.id}）。` : '。');
   return t;
 }
