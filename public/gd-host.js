@@ -140,6 +140,17 @@ export class Host {
         return;
       }
       this.setAct(3);
+      // 第九轮：刚回答过的项目，直接给“播放节目”的入口和顺着问的问题
+      const found = (v.gd?.list || []).filter(p => p?.id && /^\d{4}-/.test(p.id)).slice(0, 2);
+      const cur = v.gd?.focus?.current, prev = v.gd?.focus?.previous;
+      if (found.length) {
+        const name = p => String(p.name || '').split('/')[0].slice(0, 14);
+        const qs = [cur?.name ? `${name(cur)}是怎么做的？` : `${name(found[0])}解决了什么问题？`, '还有类似的项目吗？', prev && cur ? '这两个有什么关系？' : '它用到了哪些设计方法？'];
+        this.show('顺着这个话题，你可以', qs.filter(q => !this.asked.has(q)), [
+          ...found.map(p => ({label: `播放「${name(p)}」`, say: [`播放${name(p)}`], run: () => t.playDeck(p.id)})),
+          {label: '看节目单', say: ['节目单'], run: () => t.showGuide()}]);
+        return;
+      }
       this.show('你可以问', ['好设计馆里有没有农业方面的项目？', '这两个有什么关系？'].filter(q => q !== '这两个有什么关系？' || (v.gd?.focus?.previous)), [
         {label: '看节目单', say: ['节目单'], run: () => t.showGuide()},
         {label: '结束参观', say: ['结束参观'], run: () => this.closing()}]);

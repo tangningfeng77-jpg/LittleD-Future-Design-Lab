@@ -10,6 +10,7 @@ import {DeckPlayer} from './gd-deck.js';
 import {ProgrammeGuide, parseNumber} from './gd-guide.js';
 import {Controls} from './gd-controls.js';
 import {Host, deckFacts} from './gd-host.js';
+import {TalkBar} from './gd-talkbar.js';
 
 const clean = s => String(s || '').normalize('NFKC').replace(/[\s，。！？、,.!?～~]/g, '');
 const wait = ms => new Promise(r => setTimeout(r, ms));
@@ -65,6 +66,7 @@ export class GdTour {
     this.guide.channel = this.guide.channelForRoute(this.route) || this.guide.channel;
     this.controls = new Controls(this);
     this.host = new Host(this);
+    this.talk = new TalkBar(this);
     this.host.setScript(this.script);
     this.warmLines();
     return !!this.script;
@@ -268,6 +270,7 @@ export class GdTour {
       case 'bridge': this.host?.bridge(); break;
       case 'mic': {
         const v2 = this.voice, box = document.getElementById('autoMic');
+        this.micManual = true;   // 讲解员手动设置过，对话条不再自动切换
         if (arg === 'off' && box) { box.checked = false; v2.status?.('自动收音已关闭，可用按住说话或遥控'); }
         if (arg === 'on' && box) { box.checked = true; v2.capture?.(); v2.status?.('自动收音已开启'); }
         if (arg === 'noisy' || arg === 'normal') { v2.noisyRoom = arg === 'noisy'; v2.vad = null; try { localStorage.setItem('littled.noisy', v2.noisyRoom ? '1' : '0'); } catch {} v2.status?.(v2.noisyRoom ? '已切换为嘈杂环境模式' : '已切换为安静环境模式'); }
