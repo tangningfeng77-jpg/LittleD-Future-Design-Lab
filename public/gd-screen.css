@@ -1,0 +1,12 @@
+/* 好设计馆展示屏：沿用字幕 HUD 的玻璃质感，不另加装饰 */
+.gd-screen{position:absolute;z-index:10;top:clamp(20px,5vh,64px);right:clamp(16px,3vw,56px);bottom:calc(clamp(16px,3vh,44px) + 92px);width:56%;display:grid;grid-template-columns:1fr;gap:clamp(10px,1.2vw,20px);animation:gd-screen-in .32s ease-out}
+.gd-screen[hidden]{display:none}
+.gd-screen.split{grid-template-columns:1fr 1fr}
+.gd-pane{display:flex;flex-direction:column;min-width:0;border:1px solid #edfbffc9;border-radius:18px;background:linear-gradient(120deg,#e6f6ff66,#b8dcec42);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 0 20px #a9e8ff35,inset 0 1px 0 #ffffff66;overflow:hidden}
+.gd-pane-head{display:flex;align-items:baseline;gap:12px;padding:10px 16px 8px;color:#234c65;font-family:"DIN Alternate","Hiragino Sans GB","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:.04em}
+.gd-src{flex:none;font-size:clamp(10px,.75vw,13px);letter-spacing:.16em;opacity:.7}
+.gd-title{min-width:0;font-size:clamp(13px,1vw,18px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gd-pane iframe{flex:1;width:100%;border:0;border-radius:0 0 17px 17px;background:#fff}
+@keyframes gd-screen-in{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.gd-screen{animation:none}}
+@media(max-width:900px){.gd-screen{left:16px;right:16px;width:auto;top:auto;height:52%}.gd-screen.split{grid-template-columns:1fr}}

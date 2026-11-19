@@ -13,8 +13,8 @@
     },
     {
       "path": "public/index.html",
-      "bytes": 5594,
-      "sha256": "bc52d6b325af3920f94d4a91b083962e57f68a334f226256c2f31cf42303f049"
+      "bytes": 5650,
+      "sha256": "57ab774a5bee40705d8ab7e0d6674c70d9b02c65632fb33cb056e6daefa25290"
     },
     {
       "path": "public/material-finish.js",
@@ -93,8 +93,8 @@
     },
     {
       "path": "public/voice.js",
-      "bytes": 50575,
-      "sha256": "a70b1de62d9da956f71c9461c327d06b14d0480595ea9b6469384479dfc54f9c"
+      "bytes": 50691,
+      "sha256": "c3e227c3897894e1337163ee04669dd07d8aac65488de1e23a2ffd2ae64eb31c"
     },
     {
       "path": "public/tour-flow.js",
@@ -113,8 +113,8 @@
     },
     {
       "path": "public/app.js",
-      "bytes": 21609,
-      "sha256": "38c103d9430dca19a149a776afe5f46ff2a96a73521ca18d7339678c036f5e7f"
+      "bytes": 22090,
+      "sha256": "86f9b91c8c47288bf2cee4a3c322a39ab6e849f6b2394c4f86e0b798ae131f5b"
     },
     {
       "path": "public/scene-overviews.js",
@@ -23658,8 +23658,8 @@
     },
     {
       "path": "scripts/check-package.mjs",
-      "bytes": 1225,
-      "sha256": "285d06fd3a9a74c3d7d8f34bc51869e3bc340425050d3632d9d98001c4342cef"
+      "bytes": 1247,
+      "sha256": "cf2909e3880417fbd9703446e5e724efda6e48bebdce63af1bb59b352f02b1d8"
     },
     {
       "path": "platforms/android/.gitignore",
@@ -24228,8 +24228,8 @@
     },
     {
       "path": "server.mjs",
-      "bytes": 6515,
-      "sha256": "c956e9cb599b5d0fb49be2b198a7f0c4c6f86f3f83ec398a68e6244ad39e759f"
+      "bytes": 6538,
+      "sha256": "fd943a62f285bf9ae90490aa0303d45503e84e4a6d7b97ba7104188114146eef"
     },
     {
       "path": "web-search.mjs",
@@ -24258,13 +24258,13 @@
     },
     {
       "path": "gd-proxy.mjs",
-      "bytes": 10696,
-      "sha256": "256cf267d66687cc82480ff0c715f68db0904fada811df880d7afe1643eddbbc"
+      "bytes": 10730,
+      "sha256": "b444047fbc468941f24370fa1348606ad30b864a3685150ab3daec503b32f443"
     },
     {
       "path": "public/gooddesign.js",
-      "bytes": 4822,
-      "sha256": "fd2d63cb80a6ddedaaa876ef8473a29edaff1c186b3df8ecf11dc0d8da8c9bb0"
+      "bytes": 12342,
+      "sha256": "ff7a2f3ba5518f75f4ab61420af41b2c29e5635ba4a0b3be23529c67dea8a6f4"
     },
     {
       "path": "public/assets/packs/index.json",
@@ -24275,6 +24275,16 @@
       "path": "public/assets/packs/README.md",
       "bytes": 1431,
       "sha256": "3028020c725fd77fc13b806c23fa350c6327298f16c9d0a8c5ed502026e3869e"
+    },
+    {
+      "path": "public/gd-screen.css",
+      "bytes": 1483,
+      "sha256": "104f5bb78ef4d1200616470e08d0419bc25ed303c22e0106d3bed0c58724e281"
+    },
+    {
+      "path": "public/gd-screen.js",
+      "bytes": 3953,
+      "sha256": "403c5166370af347eb8c94b082ee3ed71268fc0a09ef73ba4b30df452076b2b9"
     }
   ]
 }

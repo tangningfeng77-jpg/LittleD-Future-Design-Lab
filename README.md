@@ -30,7 +30,7 @@ npm start
 
 ## 接入好设计馆知识（可选）
 
-在 `.env.local` 再加一行 `GD_MCP_TOKEN=…`（好设计馆签发的只读令牌），重启后小D 就能用语音查询好设计馆的获奖项目和设计方法，并比较两个项目的关联。未配置时小D 的行为与原来完全一样。详见 [好设计接入说明](好设计接入说明.md)。
+在 `.env.local` 再加一行 `GD_MCP_TOKEN=…`（好设计馆签发的只读令牌），重启后小D 就能用语音查询好设计馆的获奖项目和设计方法、比较两个项目的关联，并在身边的展示屏上打开好设计馆页面（可用翻页笔翻页、换项目）。未配置时小D 的行为与原来完全一样。详见 [好设计接入说明](好设计接入说明.md)。
 
 实验室其他项目的资料可以做成知识包放进 `public/assets/packs/`，见 [知识包说明](public/assets/packs/README.md)。
 
@@ -42,7 +42,7 @@ npm start
 
 - `public/`：当前可运行展厅，包含全部资源及前端代码。
 - `server.mjs`、`web-search.mjs`：本地 HTTP、WebSocket 与检索服务。
-- `gd-proxy.mjs`、`public/gooddesign.js`：好设计馆知识接入（本机只读转发与小D 工具）。
+- `gd-proxy.mjs`、`public/gooddesign.js`、`public/gd-screen.js`：好设计馆知识接入（本机只读转发、小D 工具、展示屏）。
 - `packed-assets/`：大视频的完整分片与校验清单。
 - `source-unity/`：原始 Unity 相关源码和机器人资产，作为参考保留，并非完整 Unity 工程。
 - `platforms/android/`：既有安卓工程源码与原生 AudioRecord 桥；网页资源属于安卓旧基线，不等同当前桌面版本。构建需 Android SDK 35、JDK 17、Gradle 8.9，发布还需原发布者的签名证书。私人配置、证书和构建缓存已排除。未验证这份交付的安卓构建。
