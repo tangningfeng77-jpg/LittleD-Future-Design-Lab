@@ -32,7 +32,7 @@ export async function mcp(name, args) {
 
 // 知识库原文检索（第十一轮）：在已发布研究版的项目档案里逐字查找，返回带出处的原文片段。
 // 好设计接口单次结果较大，分两次各取 2 条；同一问题 30 分钟内直接用缓存。
-const FIELD_NAMES = {canonical_name: '项目名称', findings: '论文结论', abstract: '摘要', title: '标题', summary: '概述', problem: '要解决的问题', mechanism: '原理', tradeoff: '设计取舍', result: '成果', effect: '效果', application: '应用'};
+const FIELD_NAMES = {canonical_name: '项目名称', findings: '论文结论', abstract: '摘要', title: '标题', summary: '概述', problem: '要解决的问题', mechanism: '原理', tradeoff: '设计取舍', result: '成果', effect: '效果', application: '应用', original_statement: '原文陈述', material_apparatus: '材料与设备', methods: '方法', method: '方法', conclusion: '结论', conclusions: '结论', objective: '目标', parameters: '参数', parameter: '参数', innovation: '创新点', background: '背景', keywords: '关键词'};
 const factCache = new Map();
 export async function facts(q) {
   const hit = factCache.get(q); if (hit && Date.now() - hit.at < 1800000) return hit.v;
