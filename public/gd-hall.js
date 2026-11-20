@@ -243,7 +243,9 @@ export class Hall {
       im.onload = () => { const {g, c} = tex; g.fillStyle = '#0d1f3a'; g.fillRect(0, 0, c.width, c.height); cover(g, im, 0, 0, c.width, c.height);
         if (label) { g.fillStyle = 'rgba(8,24,48,.6)'; g.fillRect(0, c.height * .82, c.width, c.height * .18); g.fillStyle = '#eaf6ff'; g.font = `600 ${Math.round(c.height / 16)}px ${FONT}`; g.textAlign = 'left'; g.fillText(label.slice(0, 26), c.width * .04, c.height * .94); }
         tex.t.needsUpdate = true; };
-      im.src = url;
+      im.onerror = () => { this.drawScreenIdle(tex.g, tex.c.width, tex.c.height, idle); tex.t.needsUpdate = true; };
+      // COS 不带 Vary: Origin：同一张图若先被普通 <img> 缓存，再按跨域方式读会失败；跨域读时换个地址，缓存分开
+      im.src = /^https?:/.test(url) && !url.startsWith(location.origin) ? url + (url.includes('?') ? '&' : '?') + 'cors=1' : url;
     };
     if (this.leftScreen) draw(this.leftScreen, list[0], title, 'left');
     (this.rightScreens || []).forEach((tex, i) => draw(tex, list[(i + 1) % Math.max(1, list.length)], '', 'right' + i));
