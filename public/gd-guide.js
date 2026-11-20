@@ -68,12 +68,13 @@ export class ProgrammeGuide {
       if (img) pic.style.backgroundImage = `url("${img}")`;
       else pic.append(el('span', 'gd-guide-mono', it.kind === 'gd-intro' ? '导览' : it.title.replace(/[^一-龥A-Za-z0-9]/g, '').slice(0, 2)));
       card.append(el('span', 'gd-guide-no', String(it.no)), pic, el('span', 'gd-guide-name', it.title));
-      if (it.award) card.append(el('span', 'gd-guide-meta', it.award));
+      const meta = it.award || (it.kind === 'app' ? (it.embed === false ? '小D 带您过去' : '在屏幕上直接体验') : '');
+      if (meta) card.append(el('span', 'gd-guide-meta', meta));
       card.onclick = () => this.onPick?.(it);
       grid.append(card);
     });
     root.append(grid);
-    root.append(el('p', 'gd-guide-tip', '说“第几个”或节目名字 · 说“企业频道”“方法频道”换频道 · 也可以点卡片'));
+    root.append(el('p', 'gd-guide-tip', '说“第几个”或节目名字 · 说“企业频道”“互动频道”换频道 · 也可以点卡片'));
     this.st.screen.showNode(root, {label: '小D · 节目单', title: c.name});
     this.visible = true;
     this.onChange?.();

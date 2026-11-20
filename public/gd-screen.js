@@ -49,10 +49,11 @@ export class GdScreen {
     const frame = document.createElement('iframe');
     frame.title = item.title || '好设计馆页面';
     frame.referrerPolicy = 'no-referrer';
-    frame.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+    // 互动应用：允许表单、下载、弹窗，保留鼠标指针
+    frame.setAttribute('sandbox', item.interactive ? 'allow-scripts allow-same-origin allow-forms allow-downloads allow-popups allow-modals' : 'allow-scripts allow-same-origin');
     frame.src = item.safe;
     pane.append(head, frame);
-    const p = {el: pane, frame, title, url: item.url, id: item.id, ready: false, fixedTitle: !!item.title, direct: false, zoom: 1.15};
+    const p = {el: pane, frame, title, url: item.url, id: item.id, ready: false, fixedTitle: !!item.title, direct: false, zoom: item.interactive ? 1 : 1.15, interactive: !!item.interactive};
     frame.addEventListener('load', () => this.adopt(p));
     return p;
   }
@@ -62,7 +63,7 @@ export class GdScreen {
     const list = items.slice(0, 2).map(i => ({...i, safe: this.safeUrl(i.url)}));
     if (!list.length || list.some(i => !i.safe)) throw Error('只能打开好设计馆的页面');
     this.el.replaceChildren();
-    this.panes = list.map((item, k) => this.makePane(item, list.length > 1 ? (k ? '对比 · B' : '对比 · A') : '好设计馆'));
+    this.panes = list.map((item, k) => this.makePane(item, list.length > 1 ? (k ? '对比 · B' : '对比 · A') : item.interactive ? '互动体验' : '好设计馆'));
     for (const p of this.panes) this.el.appendChild(p.el);
     this.el.classList.toggle('split', this.panes.length > 1);
     this.el.hidden = false;
@@ -75,7 +76,7 @@ export class GdScreen {
     let doc;
     try { doc = p.frame.contentDocument; } catch { return; }
     if (!doc?.documentElement) return;
-    try { const sh = new p.frame.contentWindow.CSSStyleSheet(); sh.replaceSync(KIOSK_CSS); doc.adoptedStyleSheets = [...doc.adoptedStyleSheets, sh]; } catch {}
+    try { const sh = new p.frame.contentWindow.CSSStyleSheet(); sh.replaceSync(p.interactive ? KIOSK_CSS.replace('body{cursor:none}', '') : KIOSK_CSS); doc.adoptedStyleSheets = [...doc.adoptedStyleSheets, sh]; } catch {}
     doc.documentElement.style.setProperty('zoom', String(p.zoom));
     p.direct = true; p.ready = true;
     const setTitle = () => { if (!p.fixedTitle && doc.title) p.title.textContent = cleanTitle(doc.title).slice(0, 60); };

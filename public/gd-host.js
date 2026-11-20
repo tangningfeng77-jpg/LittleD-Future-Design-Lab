@@ -27,16 +27,32 @@ export class Host {
 
   setScript(script) { this.conf = script?.host || {}; this.script = script; this.renderActs(); }
 
+  // 左上角：一个小小的进度标签（点开看全部环节）+ 2D/3D 切换；提示卡只在轮到来宾说话时展开，其余时间收成一个小标签
   mount() {
     const vp = document.querySelector('.viewport');
-    this.actsEl = el('ol', 'gd-acts'); this.actsEl.setAttribute('aria-label', '参观流程');
+    this.topEl = el('div', 'gd-top');
+    this.actsEl = el('ol', 'gd-acts'); this.actsEl.setAttribute('aria-label', '参观流程'); this.actsEl.title = '点开看全部环节';
+    this.actsEl.onclick = () => this.actsEl.classList.toggle('open');
+    this.topEl.append(this.actsEl);
     this.cueEl = el('aside', 'gd-cue'); this.cueEl.hidden = true; this.cueEl.setAttribute('aria-live', 'polite');
-    vp?.append(this.actsEl, this.cueEl);
+    this.cueEl.addEventListener('click', e => { if (e.target.closest('.gd-cue-head')) { this.manualCue = {open: this.cueEl.classList.contains('min'), until: Date.now() + 20000}; this.fold(); } });
+    vp?.append(this.topEl, this.cueEl);
+    setInterval(() => this.fold(), 400);
+  }
+
+  // 小D 在说、在播节目、展示屏开着时收起提示卡；来宾点开的，20 秒内不自动收
+  fold() {
+    const t = this.tour, v = t.voice, root = this.cueEl;
+    if (!root || root.hidden) return;
+    const busy = t.isTalking?.() || t.running || !!(t.deck?.deck && t.deck.active && !t.deck.paused) || !!v?.gd?.screen?.isOpen || t.guide?.isShowing;
+    const m = this.manualCue && this.manualCue.until > Date.now() ? this.manualCue : null;
+    const min = m ? !m.open : busy;
+    if (min !== root.classList.contains('min')) root.classList.toggle('min', min);
   }
 
   renderActs() {
     const acts = this.conf.acts || ['开场', '未来设计实验室', '好设计馆', '自由点播', '收尾'];
-    this.actsEl.replaceChildren(...acts.map((a, i) => { const li = el('li', i === this.act ? 'on' : i < this.act ? 'done' : '', a); return li; }));
+    this.actsEl.replaceChildren(...acts.map((a, i) => { const li = el('li', i === this.act ? 'on' : i < this.act ? 'done' : '', a); li.dataset.n = `${i + 1}/${acts.length}`; return li; }));
     this.actsEl.hidden = this.act < 0;
   }
 
@@ -53,7 +69,9 @@ export class Host {
     this.lastCue = key;
     if (!this.cues.length && !this.actions.length) { this.cueEl.hidden = true; return; }
     const root = this.cueEl; root.replaceChildren();
-    root.append(el('h3', null, title));
+    const head = el('button', 'gd-cue-head'); head.type = 'button';
+    head.append(el('h3', null, title), el('span', 'gd-cue-n', this.cues.length ? `${this.cues.length} 个问题` : '下一步'));
+    root.append(head);
     if (this.cues.length) {
       const ul = el('ol', 'gd-cue-q');
       this.cues.forEach((q, i) => { const b = el('button', null); b.type = 'button'; b.append(el('b', null, String(i + 1)), el('span', null, q)); b.onclick = () => this.ask(i); ul.append(el('li')); ul.lastChild.append(b); });

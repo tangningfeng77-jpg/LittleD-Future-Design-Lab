@@ -8,13 +8,14 @@ import * as THREE from 'three';
 const HOME = new THREE.Vector3(0, 0, 1.4);
 const STATION = {left: new THREE.Vector3(-2.7, 0, 1.0), right: new THREE.Vector3(2.7, 0, 1.0)};
 const THEMES = {   // 频道氛围：强调色、穹顶流速、整体亮度
-  idle: {accent: 0x5fb8ff, flow: .35, exposure: .98},
-  lab: {accent: 0x4fa8ff, flow: .5, exposure: .96},
-  gov: {accent: 0x3f6dff, flow: .55, exposure: .94},
-  enterprise: {accent: 0x26bfae, flow: .55, exposure: .94},
-  methods: {accent: 0x8a7dff, flow: .5, exposure: .94},
-  present: {exposure: .8}
+  idle: {accent: 0x5fb8ff, flow: .35, exposure: .9},
+  lab: {accent: 0x4fa8ff, flow: .5, exposure: .89},
+  gov: {accent: 0x3f6dff, flow: .55, exposure: .88},
+  enterprise: {accent: 0x26bfae, flow: .55, exposure: .88},
+  methods: {accent: 0x8a7dff, flow: .5, exposure: .88},
+  present: {exposure: .76}
 };
+const PHOTO_PARTS = ['Photo room · projected depth surfaces', 'Sharp architectural lettering · 未来设计实验室', 'Raised sign edge'];
 const deg = d => d * Math.PI / 180;
 const damp = (a, b, k, dt) => a + (b - a) * (1 - Math.exp(-k * dt));
 const angleTo = (from, to) => Math.atan2(to.x - from.x, to.z - from.z);
@@ -28,6 +29,8 @@ function canvasTex(w, h, draw) {
   return {t, c, g};
 }
 function cover(g, img, x, y, w, h) { const s = Math.max(w / img.width, h / img.height), iw = img.width * s, ih = img.height * s; g.drawImage(img, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih); }
+let trimSoftMat = null;
+const trimSoft = () => trimSoftMat || (trimSoftMat = new THREE.MeshBasicMaterial({color: 0xbfe6ff, toneMapped: false}));
 const glowMat = (color, opacity = 1) => new THREE.MeshBasicMaterial({color, transparent: opacity < 1, opacity, toneMapped: false});
 
 // 穹顶科技屏：径向光线、同心环、流动光点；颜色与流速随氛围变化（片元着色器，无贴图）
@@ -46,6 +49,31 @@ const DOME_VERT = `varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMat
 
 // 墙面渐变贴图：上亮下略灰蓝，让白墙有体积感（一张 4×256 的小图）
 let wallTex = null;
+// 地面：中间亮、四周略冷暗的渐变 + 1.6 米见方的浅色地砖缝（44 米地面 → 一张 1024 贴图）
+let floorTex = null;
+function floorMap() {
+  if (floorTex) return floorTex;
+  floorTex = canvasTex(1024, 1024, (x, w) => {
+    const gr = x.createRadialGradient(w / 2, w * .53, 0, w / 2, w * .53, w * .5);
+    gr.addColorStop(0, '#ffffff'); gr.addColorStop(.16, '#f1f5f9'); gr.addColorStop(.42, '#dbe3ec'); gr.addColorStop(1, '#bccad8');
+    x.fillStyle = gr; x.fillRect(0, 0, w, w);
+    const step = w / (44 / 1.6); x.strokeStyle = 'rgba(130,150,175,.38)'; x.lineWidth = 1.4;
+    for (let p = (w / 2) % step; p < w; p += step) { x.beginPath(); x.moveTo(p, 0); x.lineTo(p, w); x.stroke(); x.beginPath(); x.moveTo(0, p); x.lineTo(w, p); x.stroke(); }
+  }).t;
+  floorTex.anisotropy = 8;
+  return floorTex;
+}
+// 墙面：上亮下暗的渐变 + 竖向分缝（墙板拼缝）
+let seamTex = null;
+function seamMap() {
+  if (seamTex) return seamTex;
+  seamTex = canvasTex(512, 256, (x, w, h) => {
+    const gr = x.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#ffffff'); gr.addColorStop(.5, '#eef2f7'); gr.addColorStop(1, '#cdd7e3'); x.fillStyle = gr; x.fillRect(0, 0, w, h);
+    for (const px of [w * .25, w * .5, w * .75]) { x.fillStyle = 'rgba(140,160,185,.22)'; x.fillRect(px - 1, 0, 2, h); x.fillStyle = 'rgba(255,255,255,.8)'; x.fillRect(px + 1, 0, 1, h); }
+    x.fillStyle = 'rgba(140,160,185,.18)'; x.fillRect(0, h * .965, w, 3);
+  }).t;
+  return seamTex;
+}
 function wallMap() {
   if (wallTex) return wallTex;
   wallTex = canvasTex(4, 256, (x, w, h) => { const gr = x.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#ffffff'); gr.addColorStop(.55, '#f3f6fa'); gr.addColorStop(1, '#dfe6ef'); x.fillStyle = gr; x.fillRect(0, 0, w, h); }).t;
@@ -70,7 +98,7 @@ export class Hall {
     const g = this.group, A = this.arch;
     g.add(A);
     // 地面：半透明亮面，透出下方的镜像建筑，形成倒影
-    const floor = new THREE.Mesh(new THREE.PlaneGeometry(44, 44), new THREE.MeshStandardMaterial({color: 0xeef2f6, roughness: .2, metalness: .04, transparent: true, opacity: .74}));
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(44, 44), new THREE.MeshStandardMaterial({color: 0xffffff, map: floorMap(), roughness: .16, metalness: .05, transparent: true, opacity: .66}));
     floor.rotation.x = -Math.PI / 2; floor.renderOrder = 1; g.add(floor);
     // 地面发光圆环（效果图前景的大圆环）
     const ring = new THREE.Mesh(new THREE.RingGeometry(3.15, 3.27, 160), glowMat(0xe2f5ff)); ring.rotation.x = -Math.PI / 2; ring.position.set(HOME.x, .012, HOME.z); g.add(ring);
@@ -85,6 +113,8 @@ export class Hall {
     this.buildCeiling(g);
     this.buildFurniture(A);
     this.buildSpotlight(g);
+    this.buildAtmosphere(g, A);
+    this.fillBackScreens();
 
     // 地面倒影：建筑镜像放在地面以下
     const mirror = A.clone(true); mirror.scale.y = -1; mirror.position.y = -.02;
@@ -121,7 +151,9 @@ export class Hall {
   buildWings(A) {
     const mk = (side) => {
       const grp = new THREE.Group(); grp.position.set(side * 5.9, 0, -.7); grp.rotation.y = -side * deg(30);
-      const wall = new THREE.Mesh(new THREE.BoxGeometry(6.2, 4.6, .3), new THREE.MeshStandardMaterial({color: 0xffffff, map: wallMap(), roughness: .6})); wall.position.y = 2.3; grp.add(wall);
+      const wall = new THREE.Mesh(new THREE.BoxGeometry(6.2, 4.6, .3), new THREE.MeshStandardMaterial({color: 0xffffff, map: seamMap(), roughness: .6})); wall.position.y = 2.3; grp.add(wall);
+      // 墙脚灯带
+      const skirt = new THREE.Mesh(new THREE.BoxGeometry(6.1, .035, .04), trimSoft()); skirt.position.set(0, .06, .17); grp.add(skirt);
       const trim = glowMat(0x7fc8ff); this.accentMats.push(trim);
       const inner = side < 0 ? 3.05 : -3.05;
       const v = new THREE.Mesh(new THREE.BoxGeometry(.05, 4.5, .05), trim); v.position.set(inner, 2.3, .17); grp.add(v);
@@ -169,7 +201,11 @@ export class Hall {
       const part = new THREE.Mesh(new THREE.BoxGeometry(.25, 3.6, 3.6), white); part.position.set(sx * 3.9, 1.8, -5.2); A.add(part);
       for (let i = 0; i < 3; i++) {
         const sx2 = sx * (3.3 + i * 1.5);
-        const scr = new THREE.Mesh(new THREE.PlaneGeometry(1.1, .7), new THREE.MeshBasicMaterial({color: [0x163b72, 0x1f5aa6, 0x2b72c4][i], toneMapped: false})); scr.position.set(sx2, 2.1, -8.28); A.add(scr);
+        // 展廊屏：先是深蓝底，节目单封面到了以后换成真实获奖项目图片
+        const tex = canvasTex(512, 320, (x, w, h) => { x.fillStyle = ['#163b72', '#1f5aa6', '#2b72c4'][i]; x.fillRect(0, 0, w, h); });
+        const scr = new THREE.Mesh(new THREE.PlaneGeometry(1.1, .7), new THREE.MeshBasicMaterial({map: tex.t, toneMapped: false})); scr.position.set(sx2, 2.1, -8.28); A.add(scr);
+        (this.backScreens ||= []).push(tex);
+        const lip = new THREE.Mesh(new THREE.BoxGeometry(1.18, .78, .03), new THREE.MeshStandardMaterial({color: 0x26303c, roughness: .4})); lip.position.set(sx2, 2.1, -8.3); A.add(lip);
         const cas = new THREE.Mesh(new THREE.BoxGeometry(1.2, .9, .5), white); cas.position.set(sx2, .45, -7.8); A.add(cas);
       }
     }
@@ -208,6 +244,34 @@ export class Hall {
     const sculpt = new THREE.Mesh(new THREE.IcosahedronGeometry(.28, 0), new THREE.MeshStandardMaterial({color: 0xdfe6ee, metalness: .5, roughness: .25, flatShading: true})); sculpt.position.set(4.8, 1.12, 1.3); A.add(sculpt);
   }
 
+  // 展廊屏换上节目单里的项目封面（跨域读 COS 图片，地址加 cors=1 与普通 <img> 缓存分开）
+  async fillBackScreens() {
+    try { await this.guide?.coversReady; } catch {}
+    const urls = [...new Set((this.guide?.items || []).map(it => it.cover).filter(Boolean))].slice(0, (this.backScreens || []).length);
+    urls.forEach((url, i) => {
+      const tex = this.backScreens[i], im = new Image(); im.crossOrigin = 'anonymous';
+      im.onload = () => { cover(tex.g, im, 0, 0, tex.c.width, tex.c.height); tex.g.fillStyle = 'rgba(8,24,48,.12)'; tex.g.fillRect(0, 0, tex.c.width, tex.c.height); tex.t.needsUpdate = true; };
+      im.src = /^https?:/.test(url) && !url.startsWith(location.origin) ? url + (url.includes('?') ? '&' : '?') + 'cors=1' : url;
+    });
+  }
+
+  // 氛围细节（第十一轮）：标识背光、主墙墙脚灯带、后展廊透光、地面光斑、半球光
+  buildAtmosphere(g, A) {
+    const soft = (w, h, color, alpha) => canvasTex(w, h, (x) => { const gr = x.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) / 2); gr.addColorStop(0, `rgba(${color},${alpha})`); gr.addColorStop(1, `rgba(${color},0)`); x.fillStyle = gr; x.fillRect(0, 0, w, h); }).t;
+    const add = (map, w, h, opts = {}) => new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({map, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, ...opts}));
+    // 标识背光：主墙上一团很淡的冷白光，标识像从墙里亮出来
+    const back = add(soft(512, 256, '150,200,255', .42), 6.2, 2.4); back.position.set(0, 2.72, -2.395); A.add(back);
+    // 主墙墙脚灯带 + 地面上的反光
+    const strip = new THREE.Mesh(new THREE.BoxGeometry(6.3, .035, .04), trimSoft()); strip.position.set(0, .06, -2.38); A.add(strip);
+    const wash = add(soft(512, 128, '140,200,255', .5), 7.4, 1.2); wash.rotation.x = -Math.PI / 2; wash.position.set(0, .016, -2.05); g.add(wash);
+    // 后展廊透光：主墙两侧的缝里透出暖白光，空间有纵深
+    for (const sx of [-1, 1]) { const gap = add(soft(256, 512, '255,246,230', .55), 1.6, 4.4); gap.position.set(sx * 3.55, 2.2, -4.2); A.add(gap); }
+    // 两侧展台前的地面光斑（对应顶上的轨道灯）
+    for (const [x, z] of [[-4.6, 1.6], [4.7, 1.4], [-3.4, -0.6], [3.4, -0.6]]) { const pool = add(soft(256, 256, '255,250,240', .35), 2.6, 2.6); pool.rotation.x = -Math.PI / 2; pool.position.set(x, .015, z); g.add(pool); }
+    // 半球光：上方偏冷、地面偏暖，白墙才有明暗层次（只在展厅里，2D 时随展厅一起隐藏）
+    const hemi = new THREE.HemisphereLight(0xe8f2ff, 0xd9d2c8, .35); g.add(hemi);
+  }
+
   // 讲解时小D 头顶的追光（加法混合的锥体，不投影，开销很小）
   buildSpotlight(g) {
     const cone = new THREE.Mesh(new THREE.ConeGeometry(1.25, 5.2, 40, 1, true), new THREE.MeshBasicMaterial({color: 0x9fd6ff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, toneMapped: false}));
@@ -216,8 +280,16 @@ export class Hall {
 
   // ---------- 启用 ----------
   enable() {
-    const {scene, controls, robot} = this.s;
-    for (const name of ['Photo room · projected depth surfaces', 'Sharp architectural lettering · 未来设计实验室', 'Raised sign edge']) { const o = scene.getObjectByName(name); if (o) o.visible = false; }
+    const {scene, controls, robot, renderer} = this.s;
+    if (this.on) return;
+    // 记下 2D（照片背景）时的状态，切回 2D 时原样恢复
+    if (!this.saved) this.saved = {
+      background: scene.background, fog: scene.fog, exposure: renderer?.toneMappingExposure,
+      limits: ['minAzimuthAngle', 'maxAzimuthAngle', 'minPolarAngle', 'maxPolarAngle', 'minDistance', 'maxDistance', 'enablePan'].map(k => [k, controls[k]]),
+      robotPos: robot.position.clone(), robotRot: robot.rotation.y
+    };
+    this.on = true; this.group.visible = true;
+    for (const name of PHOTO_PARTS) { const o = scene.getObjectByName(name); if (o) o.visible = false; }
     scene.background = new THREE.Color(0xeef3f8);
     scene.fog = new THREE.Fog(0xeef3f8, 14, 34);
     controls.minAzimuthAngle = -deg(40); controls.maxAzimuthAngle = deg(40);
@@ -226,8 +298,26 @@ export class Hall {
     controls.enablePan = false;
     robot.position.copy(HOME); robot.rotation.y = 0;
     this.frameRobot(true);
-    this.loop();
+    if (!this.looping) this.loop();
+    document.body.classList.add('gd-3d');
     window.gdHall = this;
+  }
+
+  // 切回 2D：藏起展厅，恢复照片背景、镜头范围与小D 位置
+  disable() {
+    if (!this.on) return;
+    const {scene, controls, robot, renderer, photoStage, play} = this.s, s = this.saved;
+    this.on = false; this.group.visible = false;
+    if (this.walking) { this.walking.resolve(false); this.walking = null; play?.('Idle'); }
+    this.turning = this.follow = null;
+    for (const name of PHOTO_PARTS) { const o = scene.getObjectByName(name); if (o) o.visible = true; }
+    scene.background = s.background; scene.fog = s.fog;
+    if (renderer && s.exposure != null) renderer.toneMappingExposure = s.exposure;
+    for (const [k, v] of s.limits) controls[k] = v;
+    robot.position.copy(s.robotPos); robot.rotation.y = s.robotRot;
+    photoStage?.reset?.();
+    document.body.classList.remove('gd-3d');
+    window.gdHall = null;
   }
 
   // ---------- 氛围 ----------
@@ -235,8 +325,9 @@ export class Hall {
   setPresenting(on) { this.presenting = !!on; }
 
   // 左大屏与右侧三屏显示当前内容（项目封面、图集）
-  showMedia(urls = [], title = '') {
-    const list = urls.filter(Boolean);
+  showMedia(urls = [], title = '', {idle = false} = {}) {
+    if (!idle) this.media = true;
+    const list = idle ? urls : urls.filter(Boolean);
     const draw = (tex, url, label, idle) => {
       if (!url) { this.drawScreenIdle(tex.g, tex.c.width, tex.c.height, idle); tex.t.needsUpdate = true; return; }
       const im = new Image(); im.crossOrigin = 'anonymous';
@@ -248,12 +339,24 @@ export class Hall {
       im.src = /^https?:/.test(url) && !url.startsWith(location.origin) ? url + (url.includes('?') ? '&' : '?') + 'cors=1' : url;
     };
     if (this.leftScreen) draw(this.leftScreen, list[0], title, 'left');
-    (this.rightScreens || []).forEach((tex, i) => draw(tex, list[(i + 1) % Math.max(1, list.length)], '', 'right' + i));
+    (this.rightScreens || []).forEach((tex, i) => draw(tex, idle ? list[i + 1] : list[(i + 1) % Math.max(1, list.length)], '', 'right' + i));
   }
 
   resetMedia() {
     if (this.leftScreen) { this.drawScreenIdle(this.leftScreen.g, 1024, 576, 'left'); this.leftScreen.t.needsUpdate = true; }
     (this.rightScreens || []).forEach((tex, i) => { this.drawScreenIdle(tex.g, 512, 384, 'right' + i); tex.t.needsUpdate = true; });
+    this.idleStep = 0; this.idleAt = 0; this.media = false;
+  }
+
+  // 没在讲节目时，左屏轮播实验室六个场景，右边三屏轮播好设计获奖项目封面（每 8 秒换一组）
+  idleCarousel(now) {
+    if (this.media || !this.on || now < (this.idleAt || 0)) return;
+    this.idleAt = now + 8000;
+    const labs = (this.guide?.items || []).filter(it => it.kind === 'lab-scene'), covers = (this.guide?.items || []).filter(it => it.cover);
+    if (!labs.length && !covers.length) return;
+    const k = this.idleStep = (this.idleStep || 0) + 1, lab = labs[k % Math.max(1, labs.length)];
+    const pick = i => covers.length ? covers[(k * 3 + i) % covers.length].cover : '';
+    this.showMedia([lab ? this.guide.image(lab) : '', pick(0), pick(1), pick(2)], lab ? '未来设计实验室 · ' + lab.title : '', {idle: true});
   }
 
   // ---------- 镜头与行走 ----------
@@ -272,6 +375,7 @@ export class Hall {
 
   walk(to, {face} = {}) {
     const {robot, play} = this.s;
+    if (!this.on) return Promise.resolve(false);
     if (this.walking) this.walking.resolve(false);
     return new Promise(resolve => {
       if (robot.position.distanceTo(to) < .05) { this.turnTo(face); resolve(true); return; }
@@ -293,6 +397,7 @@ export class Hall {
 
   // 点左屏打开实验室频道，点右屏打开当前路线频道
   pick(clientX, clientY) {
+    if (!this.on) return null;
     const {camera, renderer} = this.s, rect = renderer.domElement.getBoundingClientRect();
     const v = new THREE.Vector2(((clientX - rect.left) / rect.width) * 2 - 1, -((clientY - rect.top) / rect.height) * 2 + 1);
     this.raycaster.setFromCamera(v, camera);
@@ -301,9 +406,12 @@ export class Hall {
 
   loop() {
     const target = new THREE.Color();
+    this.looping = true;
     const tick = () => {
+      if (!this.on) { this.looping = false; return; }   // 切到 2D 后停止，切回再启动
       requestAnimationFrame(tick);
       const dt = Math.min(.25, this.clock.getDelta()), {robot, camera, controls, contact, play, renderer} = this.s;
+      this.idleCarousel(performance.now());
       const t = performance.now() / 1000, th = THEMES[this.theme] || THEMES.idle;
       // 氛围渐变：强调色、穹顶流速、整体亮度、追光
       this.accent.lerp(target.set(th.accent ?? THEMES.idle.accent), 1 - Math.exp(-dt * 1.5));

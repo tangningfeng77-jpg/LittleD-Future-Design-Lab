@@ -20,6 +20,14 @@ export const GD_TOOLS = [
     description: '比较好设计馆里的两个项目，讲清它们的关联与差别。访客说“这两个有什么关系”“和刚才那个比”时使用；省略的一方默认是刚才讲过的项目。',
     parameters: {type: 'object', properties: {a: {type: 'string', description: '项目编号；可省略，默认当前项目'}, b: {type: 'string', description: '项目编号；可省略，默认上一个项目'}}}}},
   {type: 'function', function: {
+    name: 'gd_facts',
+    description: '在好设计馆项目档案的原文里查具体事实（材料、技术、论文结论、用途、指标等），返回带出处的原文片段。访客追问细节、问“哪些项目用到了某某”“这个项目的依据是什么”时使用。只覆盖已完成研究版的约百个项目，逐字匹配，所以 query 用一两个关键词（如“碳纤维”“月壤”“节能”）。',
+    parameters: {type: 'object', properties: {query: {type: 'string', description: '一两个关键词'}}, required: ['query']}}},
+  {type: 'function', function: {
+    name: 'open_app',
+    description: '打开好设计的互动应用给来宾体验。interview=小D 企业访谈（整页进入访谈间）；enterprise-agent=企业需求 Agent（输入企业名研究需求）；expo=产业创新 Agent（输入县市或产业出报告）；xray=拆解实验室；lab=极限实验室（调参数做钻取实验）；quest=观展任务（八关闯关）；studio=设计创作室（用项目图片做作品）；transfer=迁移研究所。来宾想体验、想试试、想做访谈或研究企业/产业时使用。',
+    parameters: {type: 'object', properties: {app: {type: 'string', enum: ['interview', 'enterprise-agent', 'expo', 'xray', 'lab', 'quest', 'studio', 'transfer']}}, required: ['app']}}},
+  {type: 'function', function: {
     name: 'open_page',
     description: '在小D 旁边的展示屏打开好设计馆页面。访客说“打开……”“给我看看……”时使用。target 可以是项目编号、方法编号、home（好设计馆首页）、projects（项目库）、methods（方法库）、museum（展馆），或项目名称关键词。打开项目时会一并返回项目要点，可直接讲解。',
     parameters: {type: 'object', properties: {target: {type: 'string'}}, required: ['target']}}},
@@ -35,8 +43,8 @@ export const GD_TOOLS = [
 export const GD_NAMES = new Set(GD_TOOLS.map(t => t.function.name));
 const SCREEN_TOOLS = new Set(['open_page', 'page_control', 'switch_project']);
 
-const BASE_INSTRUCTIONS = '你还能查阅好设计馆：一个收录历届中国好设计获奖项目（数百个）和 64 种设计方法的设计知识平台。访客问到实验室资料以外的设计项目、某个行业的优秀设计、某件事的设计方法，或主动提到“好设计”时，调用 gd_search，再按需 gd_read；问两个项目的关系时调用 gd_relate。讲好设计馆的内容时可以自然说一句“好设计馆里收录了……”，项目要说出名称、获奖年份和奖项，用一两个具体细节讲清它解决什么问题；不要读编号和网址。好设计馆里没找到时照实说，再回到实验室能讲的内容。';
-const SCREEN_INSTRUCTIONS = '你身边有一块展示屏，能播放节目（项目幻灯片）、显示节目单，也能打开好设计馆的页面。节目单分实验室、偏政府领导、偏企业、设计方法四个频道。来宾想知道还能看什么时，告诉他可以说“节目单”或频道名，再说第几个或项目名字；想知道怎么用，可以说“帮助”。访客想看某个项目、方法或好设计馆时调用 open_page；说“往下翻”“放大”“关掉”时调用 page_control；说“换一个”“下一个”“回到刚才那个”“换成某某”时调用 switch_project；比较两个项目时 gd_relate 会自动左右分屏。打开页面后讲内容本身，不描述网页长什么样，也不说“我已经打开了网页”，可以说“请看屏幕”。';
+const BASE_INSTRUCTIONS = '自由交流时，你可以随时用好设计馆的知识库回答：找项目用 gd_search，讲一个项目用 gd_read，追问材料、技术、论文结论、指标等细节用 gd_facts（返回档案原文，回答时说“据项目档案”，没查到就照实说档案里没写到）。来宾想动手体验、做企业访谈、研究一家企业或一个地方的产业时，用 open_app 打开对应的互动应用。你还能查阅好设计馆：一个收录历届中国好设计获奖项目（数百个）和 64 种设计方法的设计知识平台。访客问到实验室资料以外的设计项目、某个行业的优秀设计、某件事的设计方法，或主动提到“好设计”时，调用 gd_search，再按需 gd_read；问两个项目的关系时调用 gd_relate。讲好设计馆的内容时可以自然说一句“好设计馆里收录了……”，项目要说出名称、获奖年份和奖项，用一两个具体细节讲清它解决什么问题；不要读编号和网址。好设计馆里没找到时照实说，再回到实验室能讲的内容。';
+const SCREEN_INSTRUCTIONS = '你身边有一块展示屏，能播放节目（项目幻灯片）、显示节目单，也能打开好设计馆的页面。节目单分实验室、偏政府领导、偏企业、设计方法、互动体验五个频道。来宾想知道还能看什么时，告诉他可以说“节目单”或频道名，再说第几个或项目名字；想知道怎么用，可以说“帮助”。访客想看某个项目、方法或好设计馆时调用 open_page；说“往下翻”“放大”“关掉”时调用 page_control；说“换一个”“下一个”“回到刚才那个”“换成某某”时调用 switch_project；比较两个项目时 gd_relate 会自动左右分屏。打开页面后讲内容本身，不描述网页长什么样，也不说“我已经打开了网页”，可以说“请看屏幕”。';
 
 // 每轮更新：告诉模型展示屏和当前项目的状态（讲解员用翻页笔换了项目，小D 也知道）
 const PERSONA = '你是未来设计实验室展厅里的 AI 讲解员小D，经常接待政府和企业的领导。称呼来宾用“您”；先说结论，再讲一两个依据；不堆术语。来宾打断你后，不重复刚才的话，直接回应新问题。听不清时简短请对方再说一遍。不知道或资料里没有的就说没有，不编造；数字、单位、奖项只依据资料。回答后可以给一个具体的下一步，例如“您可以说节目单，或者说第几个”。';
@@ -138,6 +146,12 @@ export async function gdHandle(name, args, st) {
     const r = await api({op: 'relate', a, b});
     if (r.a?.page && r.b?.page && st.screen) r.screen = openOnScreen(st, [{url: r.a.page, title: r.a.name, id: r.a.id}, {url: r.b.page, title: r.b.name, id: r.b.id}]);
     return r;
+  }
+  if (name === 'gd_facts') return api({op: 'facts', q: clipArg(args.query, 30)});
+  if (name === 'open_app') {
+    const tour = globalThis.gdTour;
+    if (!tour?.appFromTool) return {error: '互动应用暂时打不开，先口头介绍。'};
+    return tour.appFromTool(clipArg(args.app, 30));
   }
   if (!SCREEN_TOOLS.has(name)) throw Error('unknown tool');
   if (!st.screen) return {error: '展示屏不可用，直接讲解即可。'};

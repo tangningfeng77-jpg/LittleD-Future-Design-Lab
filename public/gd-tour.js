@@ -73,20 +73,60 @@ export class GdTour {
   }
 
   // 三维展厅：等机器人加载完成后搭建；网址加 ?space=photo 保留照片背景
+  // 空间：3D 展厅 / 2D 照片背景。左上角可随时切换，选择记在本机；地址 ?space=photo 或 ?space=3d 优先
+  spacePref() {
+    const q = new URLSearchParams(location.search).get('space');
+    if (q) return q === 'photo' || q === '2d' ? '2d' : '3d';
+    try { return localStorage.getItem('littled.space') || '3d'; } catch { return '3d'; }
+  }
+
   initHall() {
-    if (new URLSearchParams(location.search).get('space') === 'photo') return;
+    this.space = this.spacePref();
+    this.mountSpaceSwitch();
+    if (this.space === '3d') this.buildHall();
+  }
+
+  buildHall() {
+    if (this.hallJob) return this.hallJob;
     const tryBuild = async (n = 0) => {
       const studio = window.robotStudio;
-      if (!studio?.scene || !studio.robot) { if (n < 120) setTimeout(() => tryBuild(n + 1), 500); return; }
+      if (!studio?.scene || !studio.robot) { if (n < 120) { await wait(500); return tryBuild(n + 1); } return null; }
       try {
         const {Hall} = await import('./gd-hall.js');
         this.hall = new Hall(studio, this.guide);
-        this.hall.build(); this.hall.enable();
+        this.hall.build();
+        if (this.space === '3d') this.hall.enable();
         this.voice.update?.();
-      } catch (e) { console.warn('三维展厅加载失败', e); }
+        return this.hall;
+      } catch (e) { console.warn('三维展厅加载失败', e); this.hallJob = null; return null; }
     };
-    tryBuild();
+    return (this.hallJob = tryBuild());
   }
+
+  async setSpace(mode) {
+    mode = mode === '2d' ? '2d' : '3d';
+    this.space = mode;
+    try { localStorage.setItem('littled.space', mode); } catch {}
+    this.renderSpaceSwitch();
+    if (mode === '3d') { const h = await this.buildHall(); if (this.space === '3d') h?.enable(); }
+    else this.hall?.disable();
+    this.mediaKey = null;
+    this.voice.update?.();
+  }
+
+  mountSpaceSwitch() {
+    const box = this.spaceEl = document.createElement('div');
+    box.className = 'gd-space'; box.setAttribute('role', 'group'); box.setAttribute('aria-label', '空间');
+    for (const [k, label, tip] of [['2d', '2D', '实验室照片'], ['3d', '3D', '三维展厅']]) {
+      const b = document.createElement('button'); b.type = 'button'; b.dataset.k = k; b.textContent = label; b.title = tip;
+      b.onclick = () => this.setSpace(k); box.append(b);
+    }
+    // 主持人的左上角容器可能稍后才建好
+    const place = (n = 0) => { const top = document.querySelector('.gd-top'); if (top) top.append(box); else if (n < 40) setTimeout(() => place(n + 1), 250); else document.querySelector('.viewport')?.append(box); };
+    place(); this.renderSpaceSwitch();
+  }
+
+  renderSpaceSwitch() { for (const b of this.spaceEl?.children || []) b.setAttribute('aria-pressed', String(b.dataset.k === this.space)); }
 
   get routeConf() { return this.script?.routes?.[this.route] || Object.values(this.script?.routes || {})[0] || {}; }
 
@@ -229,7 +269,50 @@ export class GdTour {
       this.deck.stop(); return this.run();
     } else if (it.kind === 'deck') {
       return this.playDeck(it.deck, it);
+    } else if (it.kind === 'app') {
+      return this.openApp(it);
     }
+  }
+
+  // 模型调用 open_app：嵌入的应用直接打开，由模型自己介绍；企业访谈等小D 说完这句话再整页过去
+  appFromTool(id) {
+    const it = this.guide.items.find(x => x.kind === 'app' && x.app === id);
+    if (!it) return {error: '没有这个应用'};
+    this.deck.stop();
+    if (it.embed === false) {
+      const u = new URL(it.url, this.voice.gd?.base || 'https://haoshejiguan.com'); u.searchParams.set('from', 'littled');
+      this.navAfterSpeech(u.href);
+      return {ok: true, about: it.say, note: '说一两句介绍（比如“我们这就去访谈间”），说完页面会自动进入访谈间，不要再追问问题。'};
+    }
+    try { this.voice.gd?.screen?.open([{url: it.url, title: it.title, interactive: true}]); } catch (e) { return {error: '应用暂时打不开：' + e.message}; }
+    this.controls?.sync();
+    return {ok: true, opened: it.title, about: it.say, note: '已在展示屏打开，来宾可以直接点着用。用一两句话说明怎么用即可。'};
+  }
+
+  navAfterSpeech(href) {
+    const v = this.voice, start = Date.now();
+    clearInterval(this.navTimer);
+    this.navTimer = setInterval(() => {
+      const busy = v.responseId || v.awaitingTools || v.replySpeechActive || v.sources?.size;
+      if ((Date.now() - start > 2500 && !busy) || Date.now() - start > 25000) { clearInterval(this.navTimer); location.href = href; }
+    }, 400);
+  }
+
+  // 互动体验：能嵌入的应用在展示屏里打开，来宾可以直接点着用；企业访谈需要独占麦克风，小D 介绍完带来宾整页过去
+  async openApp(it) {
+    const v = this.voice, token = ++this.token;
+    this.deck.stop();
+    if (it.embed === false) {
+      v.gd?.screen?.close();
+      await this.speak(it.say || `我们去${it.title}。`, token);
+      if (token !== this.token) return;
+      const u = new URL(it.url, this.voice.gd?.base || 'https://haoshejiguan.com'); u.searchParams.set('from', 'littled');
+      location.href = u.href;
+      return;
+    }
+    try { v.gd?.screen?.open([{url: it.url, title: it.title, interactive: true}]); } catch (e) { v.status?.('应用暂时打不开：' + e.message); return; }
+    this.controls?.sync();
+    this.speak((it.say || '') + '想回到节目单，说“节目单”就可以。', token);
   }
 
   async playDeck(id, it) {
@@ -314,7 +397,7 @@ export class GdTour {
 
   // 展厅氛围跟随讲解：节目播放时压暗环境、追光、墙面屏幕显示当前页配图；导览按路线配色
   syncHall() {
-    const h = this.hall; if (!h) return;
+    const h = this.hall; if (!h?.on) return;
     const d = this.deck, v = this.voice;
     if (d.deck && d.active) {
       h.setTheme(this.current?.channel || this.guide.channelForRoute(this.route) || 'gov');
@@ -424,6 +507,8 @@ export class GdTour {
     if (act) { screen.control(act); this.voice.status?.('展示屏：' + {scroll_down: '往下翻', scroll_up: '往上翻', top: '回到顶部', zoom_in: '放大', zoom_out: '缩小'}[act]); return true; }
     if (screen.isOpen && /^(关掉|关闭|收起)(屏幕|展示屏|页面|网页|节目单)?$|^(把)?(屏幕|页面|网页|节目单)(关掉|关了|关闭|收起来)$/.test(c)) { this.deck.stop(); screen.close(); this.guide.visible = false; return true; }
     if (/^(打开|看看|看)(原|原始)?(网页|档案|档案页|项目档案|原网页)$/.test(c) && st.focus?.current) { log(); this.deck.stop(); await gdHandle('open_page', {target: st.focus.current.id}, st); return true; }
+    if (/^(切换?到?|换成|改成|用)?(2d|二维|平面|照片)(版|版本|模式|背景)?$/i.test(c)) { log(); this.setSpace('2d'); return true; }
+    if (/^(切换?到?|换成|改成|用)?(3d|三维|立体|展厅)(版|版本|模式|空间|展厅)?$/i.test(c)) { log(); this.setSpace('3d'); return true; }
     if (/^(回到中间|回来|回到原位|回到大厅中间)$/.test(c)) { log(); this.hall?.walkHome(); return true; }
 
     // 换项目：同频道下一个节目；否则在最近的检索结果里换

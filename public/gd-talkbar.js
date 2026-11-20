@@ -98,6 +98,7 @@ export class TalkBar {
     const wake = document.getElementById('wakePrompt');
     const hide = !!(wake && !wake.hidden && wake.offsetParent && getComputedStyle(wake).visibility !== 'hidden' && getComputedStyle(wake).opacity !== '0');
     if (hide !== this.root.hidden) this.root.hidden = hide;
+    document.body.classList.toggle('gd-talk-on', !hide);
     if (hide) return;
     let state = 'idle', text = '等你说话';
     if (!v.ready) { state = 'off'; text = v.awakened ? '正在连接…' : '说“你好，小D”或点这里开始'; }

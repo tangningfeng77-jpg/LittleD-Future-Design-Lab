@@ -130,3 +130,32 @@
 @keyframes gd-talk-blink{to{opacity:.35}}
 @media (max-width:640px){.gd-talk{left:16px;right:16px;transform:none;max-width:none;flex-wrap:wrap;border-radius:20px}.gd-talk-meter{display:none}.gd-talk-heard.show{max-width:60vw}}
 .gd-talk[hidden]{display:none}
+/* 第十一轮：左上角收起、对话条让开字幕、2D/3D 切换 */
+.gd-top{position:absolute;z-index:13;top:clamp(12px,2vh,24px);left:clamp(16px,2vw,32px);display:flex;align-items:center;gap:8px;pointer-events:none}
+.gd-top>*{pointer-events:auto}
+.gd-top .gd-acts{position:static;cursor:pointer}
+.gd-acts:not(.open) li:not(.on){display:none}
+.gd-acts:not(.open) li.on::before{content:attr(data-n) " · ";opacity:.75}
+.gd-acts li{padding:6px 11px}
+.gd-space{display:flex;gap:2px;padding:3px;border:1px solid #edfbffc9;border-radius:999px;background:linear-gradient(120deg,#e6f6ffb3,#b8dcec80);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.gd-space button{min-width:38px;padding:5px 10px;border:0;border-radius:999px;background:transparent;color:#3f7f9d;font:600 clamp(11px,.8vw,13px)/1 "DIN Alternate",Arial,sans-serif;letter-spacing:.06em;cursor:pointer}
+.gd-space button[aria-pressed=true]{background:#153d58;color:#e8fbff}
+.gd-cue{top:calc(clamp(12px,2vh,24px) + 44px);transition:width .25s,padding .25s}
+.gd-cue-head{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin:0 0 8px;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.gd-cue-head h3{margin:0}
+.gd-cue-n{flex:none;padding:3px 9px;border-radius:999px;background:#153d58;color:#e8fbff;font-size:12px;letter-spacing:.04em}
+.gd-cue:not(.min) .gd-cue-n{background:transparent;color:#6a8fa1}
+.gd-cue:not(.min) .gd-cue-n::after{content:" · 收起"}
+.gd-cue.min{width:auto;min-width:0;max-width:min(60vw,360px);padding:7px 8px 7px 14px;border-radius:999px;animation:none}
+.gd-cue.min .gd-cue-head{margin:0}
+.gd-cue.min h3{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;letter-spacing:.06em}
+.gd-cue.min .gd-cue-q,.gd-cue.min .gd-cue-a,.gd-cue.min .gd-cue-tip{display:none}
+/* 对话条放到左下角，字幕和展示屏往上让一行 */
+.gd-talk{left:clamp(16px,2vw,32px);transform:none;max-width:calc(100% - 2 * clamp(16px,2vw,32px))}
+.gd-talk-heard.show{max-width:min(26vw,260px)}
+.gd-talk-main:has(.gd-talk-heard.show) .gd-talk-meter{display:none}
+body.gd-talk-on .speech-subtitle{bottom:calc(clamp(16px,3vh,44px) + 4px + 62px)}
+body.gd-talk-on .gd-screen{bottom:calc(clamp(16px,3vh,44px) + 92px + 58px)}
+@media (max-width:640px){body.gd-talk-on .speech-subtitle{bottom:calc(3vh + 112px)}.gd-talk-heard.show{max-width:calc(100vw - 120px)}.gd-top{left:12px;top:10px}}
+/* 3D 展厅的暗角：四周略压暗，视线集中到小D 和主墙（不挡点击） */
+body.gd-3d .viewport::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 95% at 50% 46%,transparent 52%,rgba(40,62,88,.2) 84%,rgba(28,44,66,.36) 100%)}
