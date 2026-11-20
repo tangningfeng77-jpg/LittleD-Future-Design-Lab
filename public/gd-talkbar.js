@@ -36,7 +36,12 @@ export class TalkBar {
     document.querySelector('.viewport')?.append(root);
 
     // 小D 在说时点状态条 = 打断
-    main.onclick = () => { if (this.speaking()) this.tour.interruptAll(); else if (!this.v.ready || !this.v.awakened) this.v.respond('你好，小D'); };
+    // 想太久时点一下 = 放弃这一轮，可以重新问
+    main.onclick = () => {
+      if (this.speaking()) this.tour.interruptAll();
+      else if (this.state === 'think' && performance.now() - (this.thinkSince || 0) > 9000) { this.tour.interruptAll(); this.flash('好的，你可以重新问'); }
+      else if (!this.v.ready || !this.v.awakened) this.v.respond('你好，小D');
+    };
     // 按住说话：鼠标、触屏都可以；松开或手指滑出就发送
     const down = e => { e.preventDefault(); this.hold.setPointerCapture?.(e.pointerId); this.hold.classList.add('on'); this.v.begin?.(); };
     const up = () => { if (!this.hold.classList.contains('on')) return; this.hold.classList.remove('on'); this.v.end?.(); };
@@ -100,10 +105,14 @@ export class TalkBar {
     else if (v.ptt) { state = 'listen'; text = '正在听，松开就发送'; }
     else if (this.speaking()) { state = 'speak'; text = '小D 在说 · 点这里打断'; }
     else if (v.autoTalking) { state = 'listen'; text = '在听…'; }
-    else if (v.responseId || v.pendingTurn || v.awaitingTools) { state = 'think'; text = '想一想…'; }
+    else if (v.responseId || v.pendingTurn || v.awaitingTools) {
+      // 想得久时说明在做什么，免得来宾以为卡住了
+      state = 'think'; const waited = now - (this.thinkSince || now);
+      text = v.pendingWeb ? (waited > 7000 ? '资料有点多，再等几秒…' : '在查好设计馆的资料…') : waited > 9000 ? '还在想，点这里可以重新问' : '想一想…';
+    }
     else if (box && !box.checked) { state = 'hold'; text = this.auto.holdOnly ? '现场太吵 · 请按住右边按钮说话' : '按住右边按钮说话'; }
     if (this.flashUntil > now && (state === 'idle' || state === 'hold')) text = this.flashText;
-    if (state !== this.state) { this.root.dataset.state = this.state = state; }
+    if (state !== this.state) { this.root.dataset.state = this.state = state; this.thinkSince = state === 'think' ? now : 0; }
     if (text !== this.text) this.label.textContent = this.text = text;
     this.root.classList.toggle('noisy', !!v.noisyRoom);
     this.hold.classList.toggle('hint', state === 'hold');
