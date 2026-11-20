@@ -15,6 +15,7 @@ import {TalkBar} from './gd-talkbar.js';
 const clean = s => String(s || '').normalize('NFKC').replace(/[\s，。！？、,.!?～~]/g, '');
 const wait = ms => new Promise(r => setTimeout(r, ms));
 const ROUTE_KEY = 'littled.gdRoute';
+const RESUME_KEY = 'littled.resume';   // 去企业访谈等整页应用前记一笔，回来时接着聊，不用再说“你好，小D”
 const ASK_STOP = /^(请|那)?(你)?(带我|给我|带我们|给我们)?(看看|看一看|介绍|介绍一下|介绍下|参观|参观一下|了解|了解一下|了解下|讲讲|讲一讲|讲下|说说|说下)(一下)?好设计馆?(吧|呢|好吗)?$|^好设计馆?(是什么|是干什么的|介绍一下)(呀|呢)?$/;
 const ASK_GUIDE = /^(节目单|看看节目单|打开节目单|节目表|有哪些节目|有什么节目|还有哪些(节目|项目|内容)|还有什么(可以)?(看|讲)的?|都有什么(节目|项目|内容)?|看看有什么|有什么可以看的?|菜单|目录|频道)(呀|呢|吗)?$/;
 const ASK_HELP = /^(帮助|怎么用|怎么玩|怎么操作|你能做什么|你会什么|我可以说什么|我能说什么|可以说什么|有哪些功能|有什么功能|使用说明|说明书)(呀|呢|吗)?$/;
@@ -69,6 +70,7 @@ export class GdTour {
     this.talk = new TalkBar(this);
     this.host.setScript(this.script);
     this.warmLines();
+    this.maybeResume();
     return !!this.script;
   }
 
@@ -281,6 +283,7 @@ export class GdTour {
     this.deck.stop();
     if (it.embed === false) {
       const u = new URL(it.url, this.voice.gd?.base || 'https://haoshejiguan.com'); u.searchParams.set('from', 'littled');
+      this.markResume(it);
       this.navAfterSpeech(u.href);
       return {ok: true, about: it.say, note: '说一两句介绍（比如“我们这就去访谈间”），说完页面会自动进入访谈间，不要再追问问题。'};
     }
@@ -307,12 +310,54 @@ export class GdTour {
       await this.speak(it.say || `我们去${it.title}。`, token);
       if (token !== this.token) return;
       const u = new URL(it.url, this.voice.gd?.base || 'https://haoshejiguan.com'); u.searchParams.set('from', 'littled');
+      this.markResume(it);
       location.href = u.href;
       return;
     }
     try { v.gd?.screen?.open([{url: it.url, title: it.title, interactive: true}]); } catch (e) { v.status?.('应用暂时打不开：' + e.message); return; }
     this.controls?.sync();
     this.speak((it.say || '') + '想回到节目单，说“节目单”就可以。', token);
+  }
+
+  // 本标签页记一笔（sessionStorage 只在这个标签页里，新开页面不受影响）
+  markResume(it) {
+    try { sessionStorage.setItem(RESUME_KEY, JSON.stringify({at: Date.now(), app: it.app, title: it.title, channel: it.channel || 'apps'})); } catch {}
+  }
+
+  // 从企业访谈等应用回来：跳过开场和唤醒，接上语音和麦克风，展示屏回到互动体验频道，说一句“欢迎回来”。
+  // 浏览器不允许自动出声时（没有可沿用的点击），等来宾点一下屏幕或按一个键再接着。
+  async maybeResume() {
+    let r = null;
+    try { r = JSON.parse(sessionStorage.getItem(RESUME_KEY) || 'null'); sessionStorage.removeItem(RESUME_KEY); } catch { return; }
+    if (!r || !(Date.now() - r.at < 3 * 3600e3)) return;
+    const v = this.voice;
+    v.awakened = true;
+    if (v.tour) { v.tour.started = true; v.tour.welcomeDelivered = true; v.tour.guidanceDelivered = true; }
+    v.syncWakePrompt?.();
+    const go = async () => {
+      this.resumeWaiting = false; this.resuming = true;
+      try {
+        // 等页面把知识库、场景目录装好再连，免得这一轮的模型说明缺资料
+        for (const end = Date.now() + 15000; !v.sceneCatalog && Date.now() < end;) await wait(200);
+        try { await v.ensureConnected(); } catch (e) {
+          // 连不上就回到平常的“你好，小D”入口，不让来宾卡在“正在连接”
+          v.status?.('语音暂时未开启：' + e.message);
+          v.awakened = false;
+          if (v.tour) { v.tour.started = false; v.tour.welcomeDelivered = false; v.tour.guidanceDelivered = false; }
+          v.syncWakePrompt?.(); v.update?.();
+          return;
+        }
+        try { await v.capture(); const box = document.getElementById('autoMic'); if (box) box.checked = true; } catch (e) { v.status?.('麦克风暂时未开启：' + e.message); }
+        v.update?.();
+        this.showGuide({say: false, channel: r.channel});
+        await this.speak(`欢迎回来！${String(r.title || '刚才').replace(/^小D\s*/, '')}聊得怎么样？还想看什么，说节目单上的名字就可以。`, ++this.token);
+      } finally { this.resuming = false; }
+    };
+    try { await Promise.race([v.audio(), wait(1500)]); } catch {}
+    if (v.ctx?.state === 'running') return go();
+    this.resumeWaiting = true;
+    const once = () => { removeEventListener('pointerdown', once, true); removeEventListener('keydown', once, true); go(); };
+    addEventListener('pointerdown', once, true); addEventListener('keydown', once, true);
   }
 
   async playDeck(id, it) {

@@ -38,6 +38,7 @@ export class TalkBar {
     // 小D 在说时点状态条 = 打断
     // 想太久时点一下 = 放弃这一轮，可以重新问
     main.onclick = () => {
+      if (this.tour.resumeWaiting || this.tour.resuming) return;   // 从访谈回来，正在接上语音
       if (this.speaking()) this.tour.interruptAll();
       else if (this.state === 'think' && performance.now() - (this.thinkSince || 0) > 9000) { this.tour.interruptAll(); this.flash('好的，你可以重新问'); }
       else if (!this.v.ready || !this.v.awakened) this.v.respond('你好，小D');
@@ -101,7 +102,7 @@ export class TalkBar {
     document.body.classList.toggle('gd-talk-on', !hide);
     if (hide) return;
     let state = 'idle', text = '等你说话';
-    if (!v.ready) { state = 'off'; text = v.awakened ? '正在连接…' : '说“你好，小D”或点这里开始'; }
+    if (!v.ready) { state = 'off'; text = this.tour.resumeWaiting ? '欢迎回来 · 点一下屏幕，小D 接着陪你' : v.awakened ? '正在连接…' : '说“你好，小D”或点这里开始'; }
     else if (v.tour?.busy || v.tour?.state === 'video') { state = 'busy'; text = '正在播放介绍'; }
     else if (v.ptt) { state = 'listen'; text = '正在听，松开就发送'; }
     else if (this.speaking()) { state = 'speak'; text = '小D 在说 · 点这里打断'; }
