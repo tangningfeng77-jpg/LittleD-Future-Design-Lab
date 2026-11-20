@@ -29,12 +29,16 @@ const STOP = new Set(['项目', '好设计', '有哪些', '哪些', '什么', '�
 const FILLER = /好设计馆?|中国好设计|获奖(项目|作品|案例)?|有没有|有哪些|哪些|什么样?的?|怎么样?|如何|是否|能不能|可不可以|介绍(一下|下)?|讲讲|说说|看看|给我|请问|请|关于|方面|领域|相关|一些|一下|项目|案例|作品|里面|里|吗|呢|吧|呀|啊|的/g;
 const GENERIC = new Set(['智慧', '智能', '系统', '平台', '技术', '装备', '创新', '数字', '高效', '新型']);
 export function terms(query) {
-  const q = String(query || '').toLowerCase().replace(FILLER, ' ');
+  // “设计”几乎每个项目都有，夹在词里还会切出“化设”这类碎片，先去掉
+  const q = String(query || '').toLowerCase().replace(FILLER, ' ').replace(/设计/g, ' ');
   const words = q.split(/[\s,，、。；;：:！!？?和与及的]+/).filter(w => w.length >= 2 && !STOP.has(w));
   const out = new Set(words);
   for (const w of words) if (/^[㐀-鿿]{3,}$/.test(w)) for (let i = 0; i < w.length - 1; i++) { const b = w.slice(i, i + 2); if (!STOP.has(b)) out.add(b); }
-  return [...out].slice(0, 12);
+  // 来宾的说法和项目档案的写法常常不同（适老 / 助老、养老），补上常见的同义说法
+  for (const t of [...out]) for (const g of SYN) if (g.includes(t)) for (const s of g) out.add(s);
+  return [...out].slice(0, 14);
 }
+const SYN = [['适老', '老年', '养老', '助老', '老人'], ['儿童', '幼儿', '婴儿', '孩子'], ['残障', '无障碍', '残疾', '康复'], ['医疗', '医用', '医院']];
 function score(p, ts, whole, idf) {
   const name = String(p.name || '').toLowerCase(), unit = String(p.unit || '').toLowerCase(), body = String(p.summary || '').toLowerCase();
   let s = 0, inName = 0, inBody = 0;
