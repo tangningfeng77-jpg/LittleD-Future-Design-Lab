@@ -382,7 +382,7 @@ export class GdTour {
         const ch = it?.channel && this.guide.chan(it.channel), next = ch ? ch.items[(ch.items.indexOf(it) + 1) % ch.items.length] : null;
         this.deckEnded(deck, it, next);
       }});
-    } catch (e) { this.voice.status?.('节目暂时打不开：' + e.message); }
+    } catch (e) { this.voice.status?.('讲解暂时打不开：' + e.message); }
     this.controls?.sync();
   }
 
@@ -432,7 +432,7 @@ export class GdTour {
   // ---------- 讲解员手机遥控与控制条 ----------
   async remote(cmd, arg, fromRemote = false) {
     const v = this.voice, d = this.deck;
-    if (fromRemote) v.log?.('遥控', {stop: '停止', toggle: '暂停/继续', next: '下一页', prev: '上一页', restart: '本页重讲', guide: '全部展项', channel: '换频道', play: '播放节目', tour: '开始导览', welcome: '开场欢迎', idle: '回到待机', say: String(arg || ''), help: '帮助', close: '关闭屏幕', home: '回到中间', nextpart: '下一部分', ask: '替来宾问提示问题', closing: '结束参观', bridge: '去看好设计馆', mic: '收音设置'}[cmd] || cmd);
+    if (fromRemote) v.log?.('遥控', {stop: '停止', toggle: '暂停/继续', next: '下一页', prev: '上一页', restart: '本页重讲', guide: '全部展项', channel: '换频道', play: '播放', tour: '开始导览', welcome: '开场欢迎', idle: '回到待机', say: String(arg || ''), help: '帮助', close: '关闭屏幕', home: '回到中间', nextpart: '下一部分', ask: '替来宾问提示问题', closing: '结束参观', bridge: '去看好设计馆', mic: '收音设置'}[cmd] || cmd);
     this.stopAttract({keepScreen: cmd !== 'idle'});
     switch (cmd) {
       case 'stop': this.interruptAll(); break;
@@ -492,7 +492,7 @@ export class GdTour {
     const st = this.voice.gd;
     if (st && !st.pendingFacts) {
       if (this.host?.facts?.text) st.pendingFacts = `【来宾在问刚才讲的“${this.host.facts.title}”。优先依据这些内容回答，资料里没有的照实说：】\n${this.host.facts.text}`;
-      else if (this.deck.deck && this.deck.active) st.pendingFacts = `【来宾在看节目“${this.deck.deck.name}”。优先依据节目内容回答，资料里没有的照实说：】\n${deckFacts(this.deck.deck)}`;
+      else if (this.deck.deck && this.deck.active) st.pendingFacts = `【来宾在看“${this.deck.deck.name}”的讲解。优先依据讲解内容回答，资料里没有的照实说：】\n${deckFacts(this.deck.deck)}`;
     }
     return false;
   }

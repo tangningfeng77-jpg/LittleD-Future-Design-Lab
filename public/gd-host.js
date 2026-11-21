@@ -137,7 +137,7 @@ export class Host {
       if (d.deck && d.active) {
         this.setAct(t.running ? 2 : 3);
         const qs = (d.deck.questions || []).filter(q => !this.asked.has(q));
-        this.show(d.paused ? '已暂停 · 你可以问' : '关于这个节目，你可以问', qs, [
+        this.show(d.paused ? '已暂停 · 你可以问' : '关于这个项目，你可以问', qs, [
           {label: d.paused ? '继续讲' : '下一页', say: ['继续', '下一页'], run: () => d.paused ? d.resume() : d.next()},
           {label: '看完整档案', say: ['看完整档案', '看原网页'], run: () => t.command('看原网页', '看原网页')},
           {label: '回到全部展项', say: ['回到全部展项', '退出', '回到节目单'], run: () => t.showGuide({say: false})}]);
@@ -234,7 +234,7 @@ export class Host {
       if (token !== t.token) return false;
       if (this.skipSeg) { this.skipSeg = false; screen.clearFocus(); continue; }   // 主动跳过：不停下答疑
       const last = i === segs.length - 1;
-      const ok = await this.pause(seg, last ? (route.closing ? '看看为您推荐的节目' : '') : seg.next, token);
+      const ok = await this.pause(seg, last ? (route.closing ? '看看为您推荐的展项' : '') : seg.next, token);
       screen.clearFocus();
       if (!ok) return false;
     }

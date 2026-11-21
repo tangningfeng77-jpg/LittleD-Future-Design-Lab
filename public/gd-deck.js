@@ -51,7 +51,7 @@ export class DeckPlayer {
     d.slides.forEach((_, i) => dots.append(el('i', i === this.index ? 'on' : '')));
     foot.append(dots, el('span', 'gd-deck-hint', this.paused ? '已暂停 · 说“继续”或按 →' : `${this.index + 1} / ${d.slides.length}`));
     root.append(body, el('div', 'gd-deck-progress'), foot);
-    this.st.screen.showNode(root, {label: '好设计馆 · 节目', title: d.name, deck: d.id});
+    this.st.screen.showNode(root, {label: '好设计馆 · 讲解', title: d.name, deck: d.id});
     this.progress = root.querySelector('.gd-deck-progress');
     this.onState?.();
   }
@@ -88,7 +88,7 @@ export class DeckPlayer {
     this.cancelWaiter();
     const token = ++this.token;
     this.onEnd = onEnd; this.paused = false;
-    this.voice.status?.('正在准备节目…');
+    this.voice.status?.('正在准备讲解…');
     const deck = await this.load(id);
     if (token !== this.token) return;
     this.deck = deck; this.lastDeck = deck; this.index = 0;
@@ -102,7 +102,7 @@ export class DeckPlayer {
     try {
       while (token === this.token && this.index < this.deck.slides.length) {
         this.render();
-        this.voice.status?.(`节目 · ${this.deck.name} · ${this.index + 1}/${this.deck.slides.length}`);
+        this.voice.status?.(`讲解 · ${this.deck.name} · ${this.index + 1}/${this.deck.slides.length}`);
         if (!(await this.speak(this.deck.slides[this.index].narration, token))) return;
         await wait(700);
         if (token !== this.token) return;
@@ -117,7 +117,7 @@ export class DeckPlayer {
     this.token++; this.paused = true; this.playing = false; this.cancelWaiter();
     this.voice.interrupt?.({keepChoices: true});
     if (this.active) this.render();
-    this.voice.status?.('节目已暂停 · 说“继续”或按 →');
+    this.voice.status?.('讲解已暂停 · 说“继续”或按 →');
     this.onState?.();
     return true;
   }
