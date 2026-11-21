@@ -54,6 +54,7 @@ export class GdTour {
       const orig = voice.nextStepGuidance.bind(voice);
       voice.nextStepGuidance = () => (this.host?.waiting || this.running || (this.deck.deck && this.deck.active) || this.guide.isShowing) ? '' : orig();
     }
+    if (st.screen) st.screen.onAppClosed = info => this.afterApp(info);
     this.bindTap();
   }
 
@@ -289,7 +290,7 @@ export class GdTour {
     }
     try { this.voice.gd?.screen?.open([{url: it.url, title: it.title, interactive: true}]); } catch (e) { return {error: '应用暂时打不开：' + e.message}; }
     this.controls?.sync();
-    return {ok: true, opened: it.title, about: it.say, note: '已在展示屏打开，来宾可以直接点着用。用一两句话说明怎么用即可。'};
+    return {ok: true, opened: it.title, about: it.say, note: '已在展示屏打开，来宾可以直接点着用。用一两句话说明怎么用，并提一句用完点右上角的“关闭”。'};
   }
 
   navAfterSpeech(href) {
@@ -316,7 +317,7 @@ export class GdTour {
     }
     try { v.gd?.screen?.open([{url: it.url, title: it.title, interactive: true}]); } catch (e) { v.status?.('应用暂时打不开：' + e.message); return; }
     this.controls?.sync();
-    this.speak((it.say || '') + '想回到节目单，说“节目单”就可以。', token);
+    this.speak((it.say || '') + '用完点右上角的“关闭”，或者说“关掉屏幕”。', token);
   }
 
   // 本标签页记一笔（sessionStorage 只在这个标签页里，新开页面不受影响）
@@ -358,6 +359,21 @@ export class GdTour {
     this.resumeWaiting = true;
     const once = () => { removeEventListener('pointerdown', once, true); removeEventListener('keydown', once, true); go(); };
     addEventListener('pointerdown', once, true); addEventListener('keydown', once, true);
+  }
+
+  // 互动应用关掉后接着聊：稍等一下，确认不是换成了别的节目、节目单或模型自己在说，问一句怎么样
+  afterApp(info) {
+    const v = this.voice, token = this.token;
+    clearTimeout(this.afterAppTimer);
+    this.afterAppTimer = setTimeout(() => {
+      if (token !== this.token || this.attracting || this.running || v.gd?.screen?.isOpen || (this.deck.deck && this.deck.active)) return;
+      if (!v.awakened || v.tour?.busy || v.responseId || v.pendingTurn || v.awaitingTools || v.replySpeechActive || v.sources?.size) return;
+      const name = String(info?.title || '').replace(/^小D\s*/, '').trim();
+      // 来宾刚把屏幕关掉，不再自己打开节目单；节目单频道先切到互动体验，说“节目单”就能接着挑
+      this.guide.channel = 'apps';
+      this.hall?.walkHome();
+      this.speak(`${name ? '刚才的' + name + '，' : '刚才'}用得怎么样？想再试别的，说“节目单”就可以；有什么想问的，也可以直接问我。`, ++this.token);
+    }, 800);
   }
 
   async playDeck(id, it) {

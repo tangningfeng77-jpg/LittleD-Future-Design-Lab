@@ -52,6 +52,14 @@ export class GdScreen {
     // 互动应用：允许表单、下载、弹窗，保留鼠标指针
     frame.setAttribute('sandbox', item.interactive ? 'allow-scripts allow-same-origin allow-forms allow-downloads allow-popups allow-modals' : 'allow-scripts allow-same-origin');
     frame.src = item.safe;
+    // 互动应用：标题栏右侧一个“关闭”按钮。来宾点进应用后键盘落在应用里，遥控器的 Esc 不再管用，触屏也要能关
+    if (item.interactive) {
+      const x = document.createElement('button');
+      x.type = 'button'; x.className = 'gd-pane-close'; x.textContent = '关闭 ✕';
+      x.setAttribute('aria-label', '关闭' + (item.title || '互动体验') + '，回到小D');
+      x.onclick = () => this.close();
+      head.append(x);
+    }
     pane.append(head, frame);
     const p = {el: pane, frame, title, url: item.url, id: item.id, ready: false, fixedTitle: !!item.title, direct: false, zoom: item.interactive ? 1 : 1.15, interactive: !!item.interactive};
     frame.addEventListener('load', () => this.adopt(p));
@@ -142,10 +150,13 @@ export class GdScreen {
   clearFocus() { for (const p of this.panes) { try { p.frame?.contentDocument?.querySelectorAll('.gd-focus').forEach(e => e.classList.remove('gd-focus')); } catch {} } }
 
   close() {
+    const app = this.panes.find(p => p.interactive);
     this.el.hidden = true;
     this.el.replaceChildren();
     this.panes = [];
     document.body.classList.remove('gd-screen-open');
+    // 关掉的是互动应用时告诉小D，由它决定要不要接着聊
+    if (app) try { this.onAppClosed?.({title: app.title.textContent, url: app.url}); } catch (e) { console.warn(e); }
   }
 
   // action: scroll_down | scroll_up | top | zoom_in | zoom_out | close；side: both | left | right

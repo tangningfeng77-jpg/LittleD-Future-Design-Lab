@@ -159,3 +159,7 @@ body.gd-talk-on .gd-screen{bottom:calc(clamp(16px,3vh,44px) + 92px + 58px)}
 @media (max-width:640px){body.gd-talk-on .speech-subtitle{bottom:calc(3vh + 112px)}.gd-talk-heard.show{max-width:calc(100vw - 120px)}.gd-top{left:12px;top:10px}}
 /* 3D 展厅的暗角：四周略压暗，视线集中到小D 和主墙（不挡点击） */
 body.gd-3d .viewport::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 95% at 50% 46%,transparent 52%,rgba(40,62,88,.2) 84%,rgba(28,44,66,.36) 100%)}
+
+/* 互动应用的关闭按钮（标题栏右侧） */
+.gd-pane-close{margin-left:auto;flex:none;align-self:center;border:1px solid rgba(35,76,101,.25);background:rgba(255,255,255,.72);color:#234c65;border-radius:999px;padding:4px 12px;font:inherit;font-size:clamp(12px,.85vw,15px);letter-spacing:.06em;cursor:pointer}
+.gd-pane-close:hover,.gd-pane-close:focus-visible{background:#234c65;color:#fff;outline:none}
