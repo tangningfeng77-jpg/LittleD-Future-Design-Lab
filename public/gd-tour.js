@@ -378,13 +378,33 @@ export class GdTour {
 
   async playDeck(id, it) {
     try {
-      await this.deck.play(id, {onEnd: () => {
+      await this.deck.play(id, {onEnd: deck => {
         const ch = it?.channel && this.guide.chan(it.channel), next = ch ? ch.items[(ch.items.indexOf(it) + 1) % ch.items.length] : null;
-        this.showGuide({say: false, channel: it?.channel, mark: next?.key});
-        this.speak(LINES.after, ++this.token);
+        this.deckEnded(deck, it, next);
       }});
     } catch (e) { this.voice.status?.('节目暂时打不开：' + e.message); }
     this.controls?.sync();
+  }
+
+  // 讲稿播完接着聊：最后一页留在屏幕上，邀请来宾就这个项目提问（提示卡列出讲稿自带的三个问题），
+  // 并点出下一个节目；一分钟没人说话再安静地回到节目单。模型通过“当前讲到的项目”知道来宾问的是哪个。
+  deckEnded(deck, it, next) {
+    const token = ++this.token, v = this.voice;
+    this.afterDeck = {deck, it, next, last: Date.now()};
+    const q = (deck?.questions || [])[0];
+    const name = String(it?.title || deck?.name || '这个项目').slice(0, 24);   // 节目单上的短名字比档案全称好念
+    this.speak(`${name}就讲到这里。` + (q ? `想深入了解，可以直接问我，比如“${q.replace(/[？?]$/, '')}”。` : '有什么想问的，都可以直接问我。')
+      + (next ? `想看下一个“${next.title}”，说“下一个”就可以。` : '想看别的，说“节目单”就可以。'), token);
+    clearInterval(this.afterDeckTimer);
+    this.afterDeckTimer = setInterval(() => {
+      const a = this.afterDeck, d = this.deck;
+      if (!a || d.deck !== a.deck || !d.active || d.playing) { if (this.afterDeck === a) this.afterDeck = null; clearInterval(this.afterDeckTimer); return; }
+      if (this.isTalking() || v.autoTalking || v.ptt || v.responseId || v.pendingTurn || v.awaitingTools) a.last = Date.now();
+      if (Date.now() - a.last > 60000) {
+        this.afterDeck = null; clearInterval(this.afterDeckTimer);
+        this.showGuide({say: false, channel: a.it?.channel, mark: a.next?.key});
+      }
+    }, 2000);
   }
 
   // ---------- 讲解员手机遥控与控制条 ----------
@@ -481,7 +501,7 @@ export class GdTour {
   intentContext() {
     const d = this.deck, h = this.host, v = this.voice, st = v.gd;
     return {
-      mode: d.deck && d.active ? (d.paused ? 'programme_paused' : 'programme_playing') : this.guide.isShowing ? 'guide' : h?.waiting ? 'host_pause_between_parts' : this.running ? 'host_presenting' : v.selectedScene ? 'lab_scene' : v.tour?.started ? 'lab_tour' : 'free',
+      mode: d.deck && d.active ? (this.afterDeck?.deck === d.deck ? 'programme_finished' : d.paused ? 'programme_paused' : 'programme_playing') : this.guide.isShowing ? 'guide' : h?.waiting ? 'host_pause_between_parts' : this.running ? 'host_presenting' : v.selectedScene ? 'lab_scene' : v.tour?.started ? 'lab_tour' : 'free',
       programme: d.deck ? {title: d.deck.name, page: d.index + 1, pages: d.deck.slides.length} : null,
       channel: this.guide.channel,
       programmes: this.guide.channels.map(c => ({channel: c.id, name: c.short || c.name, items: c.items.map(it => `${it.key}=${it.title}`)})),
@@ -546,6 +566,8 @@ export class GdTour {
 
     // 正在播放的节目：继续、暂停、翻页、重讲、跳页、退出
     if (this.deck.deck && this.deck.active) {
+      // 讲完以后说“继续 / 下一页”：去下一个节目，不再把最后一页重讲一遍
+      if (this.afterDeck?.deck === this.deck.deck && /^(继续|接着(讲|说|播)?|继续(讲|说|播放?)|往下讲|然后呢|下一页|下一张|翻页)/.test(c)) { log(); const nx = this.afterDeck.next; if (nx) this.startProgramme(nx); else this.showGuide(); return true; }
       if (/^(继续|接着(讲|说|播)?|继续(讲|说|播放?)|往下讲|然后呢)/.test(c)) { log(); this.deck.resume(); return true; }
       if (/^(下一页|下一张|往下|往下翻|翻页|翻下一页)/.test(c)) { log(); this.deck.next(); return true; }
       if (/^(上一页|上一张|往上|往上翻|回到上一页|返回上一页)/.test(c)) { log(); this.deck.prev(); return true; }

@@ -44,7 +44,9 @@ export class Host {
   fold() {
     const t = this.tour, v = t.voice, root = this.cueEl;
     if (!root || root.hidden) return;
-    const busy = t.isTalking?.() || t.running || !!(t.deck?.deck && t.deck.active && !t.deck.paused) || !!v?.gd?.screen?.isOpen || t.guide?.isShowing;
+    // 讲稿讲完、等来宾提问时展开提示卡（屏幕虽然开着，问题要看得见）
+    const asking = !!(t.afterDeck && t.deck?.deck === t.afterDeck.deck) && !t.isTalking?.();
+    const busy = !asking && (t.isTalking?.() || t.running || !!(t.deck?.deck && t.deck.active && !t.deck.paused) || !!v?.gd?.screen?.isOpen || t.guide?.isShowing);
     const m = this.manualCue && this.manualCue.until > Date.now() ? this.manualCue : null;
     const min = m ? !m.open : busy;
     if (min !== root.classList.contains('min')) root.classList.toggle('min', min);
@@ -121,6 +123,15 @@ export class Host {
       if (t.attracting || (!v.awakened && !d.deck && !t.guide.isShowing && !v.tour?.started && !v.gd?.screen?.isOpen && !v.selectedScene)) {
         this.setAct(-1);
         this.show('欢迎参观', [], [{label: '说“你好，小D”开始参观', say: [], run: () => v.respond('你好，小D')}, {label: '看节目单', say: ['节目单'], run: () => t.showGuide()}]);
+        return;
+      }
+      if (d.deck && d.active && t.afterDeck?.deck === d.deck) {
+        this.setAct(3);
+        const nx = t.afterDeck.next;
+        this.show('讲完了 · 接着问', (d.deck.questions || []).filter(q => !this.asked.has(q)), [
+          ...(nx ? [{label: `下一个：${nx.title}`, say: ['下一个', '看下一个', '下一个节目'], run: () => t.startProgramme(nx)}] : []),
+          {label: '看完整档案', say: ['看完整档案', '看原网页'], run: () => t.command('看原网页', '看原网页')},
+          {label: '回到节目单', say: ['回到节目单', '退出'], run: () => t.showGuide({say: false})}]);
         return;
       }
       if (d.deck && d.active) {
