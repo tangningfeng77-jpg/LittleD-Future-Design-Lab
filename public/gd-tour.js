@@ -17,12 +17,12 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
 const ROUTE_KEY = 'littled.gdRoute';
 const RESUME_KEY = 'littled.resume';   // 去企业访谈等整页应用前记一笔，回来时接着聊，不用再说“你好，小D”
 const ASK_STOP = /^(请|那)?(你)?(带我|给我|带我们|给我们)?(看看|看一看|介绍|介绍一下|介绍下|参观|参观一下|了解|了解一下|了解下|讲讲|讲一讲|讲下|说说|说下)(一下)?好设计馆?(吧|呢|好吗)?$|^好设计馆?(是什么|是干什么的|介绍一下)(呀|呢)?$/;
-const ASK_GUIDE = /^(节目单|看看节目单|打开节目单|节目表|有哪些节目|有什么节目|还有哪些(节目|项目|内容)|还有什么(可以)?(看|讲)的?|都有什么(节目|项目|内容)?|看看有什么|有什么可以看的?|菜单|目录|频道)(呀|呢|吗)?$/;
+const ASK_GUIDE = /^(节目单|看看节目单|打开节目单|节目表|全部展项|看全部展项|看看全部展项|展项|看看展项|有哪些展项|还有哪些展项|还有什么|还有啥|还能看什么|有哪些节目|有什么节目|还有哪些(节目|项目|内容)|还有什么(可以)?(看|讲)的?|都有什么(节目|项目|内容)?|看看有什么|有什么可以看的?|菜单|目录|频道)(呀|呢|吗)?$/;
 const ASK_HELP = /^(帮助|怎么用|怎么玩|怎么操作|你能做什么|你会什么|我可以说什么|我能说什么|可以说什么|有哪些功能|有什么功能|使用说明|说明书)(呀|呢|吗)?$/;
 const ACTIONISH = /看|播|放|讲|打开|换|下一|上一|回到|回去|停|暂停|继续|跳|去|带我|开始|结束|关|第|频道|节目|页|项目|展品|那个|这个|刚才|再|重新|帮我|帮助|算了|别|不要|想听|想了解|介绍/;
 const LINES = {
-  guide: '这是节目单，分实验室、政府、企业和设计方法几个频道。想看哪个，说第几个或者名字就可以。',
-  after: '这个项目就讲到这里。屏幕上是节目单，想接着看哪个，说第几个就可以。',
+  guide: '屏幕上是可以看的展项，分实验室、政府、企业、设计方法和互动体验几个频道。想看哪个，说第几个或者名字就可以；不在这里的，也可以直接问我。',
+  after: '这个项目就讲到这里。屏幕上是全部展项，想接着看哪个，说第几个就可以。',
   help: '屏幕上是可以对我说的话。点一下我就会停下，再点一下接着讲。'
 };
 
@@ -351,7 +351,7 @@ export class GdTour {
         try { await v.capture(); const box = document.getElementById('autoMic'); if (box) box.checked = true; } catch (e) { v.status?.('麦克风暂时未开启：' + e.message); }
         v.update?.();
         this.showGuide({say: false, channel: r.channel});
-        await this.speak(`欢迎回来！${String(r.title || '刚才').replace(/^小D\s*/, '')}聊得怎么样？还想看什么，说节目单上的名字就可以。`, ++this.token);
+        await this.speak(`欢迎回来！${String(r.title || '刚才').replace(/^小D\s*/, '')}聊得怎么样？还想看什么，或者有什么想问的，直接告诉我就可以。`, ++this.token);
       } finally { this.resuming = false; }
     };
     try { await Promise.race([v.audio(), wait(1500)]); } catch {}
@@ -372,7 +372,7 @@ export class GdTour {
       // 来宾刚把屏幕关掉，不再自己打开节目单；节目单频道先切到互动体验，说“节目单”就能接着挑
       this.guide.channel = 'apps';
       this.hall?.walkHome();
-      this.speak(`${name ? '刚才的' + name + '，' : '刚才'}用得怎么样？想再试别的，说“节目单”就可以；有什么想问的，也可以直接问我。`, ++this.token);
+      this.speak(`${name ? '刚才的' + name + '，' : '刚才'}用得怎么样？想再试别的，说“还有什么”就可以；有什么想问的，也可以直接问我。`, ++this.token);
     }, 800);
   }
 
@@ -393,8 +393,8 @@ export class GdTour {
     this.afterDeck = {deck, it, next, last: Date.now()};
     const q = (deck?.questions || [])[0];
     const name = String(it?.title || deck?.name || '这个项目').slice(0, 24);   // 节目单上的短名字比档案全称好念
-    this.speak(`${name}就讲到这里。` + (q ? `想深入了解，可以直接问我，比如“${q.replace(/[？?]$/, '')}”。` : '有什么想问的，都可以直接问我。')
-      + (next ? `想看下一个“${next.title}”，说“下一个”就可以。` : '想看别的，说“节目单”就可以。'), token);
+    this.speak(`${name}就讲到这里。` + (q ? `想深入了解，或者有别的问题，都可以直接问我，比如“${q.replace(/[？?]$/, '')}”。` : '有什么想问的，都可以直接问我。')
+      + (next ? `想看下一个“${next.title}”，说“下一个”就可以。` : '想看别的，说“还有什么”就可以。'), token);
     clearInterval(this.afterDeckTimer);
     this.afterDeckTimer = setInterval(() => {
       const a = this.afterDeck, d = this.deck;
@@ -407,10 +407,32 @@ export class GdTour {
     }, 2000);
   }
 
+  // 实验室场景讲完接着聊：场景介绍本身以一个顺着问的问题结尾（原小D 的引导），这里补两件事：
+  // 记下同组的下一个展项，“下一个”就去那里（提示卡也列出来）；一分钟没人说话，安静地回到全部展项并标出下一个。
+  sceneStarted(scene) {
+    const it = this.guide.items.find(x => x.kind === 'lab-scene' && x.scene === scene.id);
+    const ch = it && this.guide.chan(it.channel);
+    const next = ch ? ch.items[(ch.items.indexOf(it) + 1) % ch.items.length] : null;
+    if (it) this.current = it;   // “下一个 / 换一个”按同组顺序走
+    const a = this.afterScene = {scene, it, next: next && next !== it ? next : null, last: Date.now()};
+    clearInterval(this.afterSceneTimer);
+    this.afterSceneTimer = setInterval(() => {
+      const v = this.voice;
+      const away = this.afterScene !== a || v.selectedScene !== a.scene || this.guide.isShowing || v.gd?.screen?.isOpen
+        || (this.deck.deck && this.deck.active) || this.running || this.attracting || v.projectEntry?.panel?.hidden === false;
+      if (away && Date.now() - a.last > 5000) { if (this.afterScene === a) this.afterScene = null; clearInterval(this.afterSceneTimer); return; }
+      if (away || this.isTalking() || v.autoTalking || v.ptt || v.responseId || v.pendingTurn || v.awaitingTools || v.tour?.busy) a.last = Date.now();
+      if (Date.now() - a.last > 60000) {
+        this.afterScene = null; clearInterval(this.afterSceneTimer);
+        this.showGuide({say: false, channel: a.it?.channel, mark: a.next?.key});
+      }
+    }, 2000);
+  }
+
   // ---------- 讲解员手机遥控与控制条 ----------
   async remote(cmd, arg, fromRemote = false) {
     const v = this.voice, d = this.deck;
-    if (fromRemote) v.log?.('遥控', {stop: '停止', toggle: '暂停/继续', next: '下一页', prev: '上一页', restart: '本页重讲', guide: '节目单', channel: '换频道', play: '播放节目', tour: '开始导览', welcome: '开场欢迎', idle: '回到待机', say: String(arg || ''), help: '帮助', close: '关闭屏幕', home: '回到中间', nextpart: '下一部分', ask: '替来宾问提示问题', closing: '结束参观', bridge: '去看好设计馆', mic: '收音设置'}[cmd] || cmd);
+    if (fromRemote) v.log?.('遥控', {stop: '停止', toggle: '暂停/继续', next: '下一页', prev: '上一页', restart: '本页重讲', guide: '全部展项', channel: '换频道', play: '播放节目', tour: '开始导览', welcome: '开场欢迎', idle: '回到待机', say: String(arg || ''), help: '帮助', close: '关闭屏幕', home: '回到中间', nextpart: '下一部分', ask: '替来宾问提示问题', closing: '结束参观', bridge: '去看好设计馆', mic: '收音设置'}[cmd] || cmd);
     this.stopAttract({keepScreen: cmd !== 'idle'});
     switch (cmd) {
       case 'stop': this.interruptAll(); break;
@@ -446,6 +468,7 @@ export class GdTour {
 
   // voice.respond 开头调用：返回 true 表示已处理（不再交给模型）
   async intercept(text, {sceneEntry} = {}) {
+    if (sceneEntry && this.voice.gdEnabled) this.sceneStarted(sceneEntry);
     if (!this.script || !this.voice.gdEnabled || sceneEntry || this.voice.tour?.state === 'video') { this.stopAttract(); return false; }
     const c = clean(text);
     this.host?.touch();
@@ -588,7 +611,7 @@ export class GdTour {
       : /^(放大|大一点|字大一点|再大一点)/.test(c) ? 'zoom_in'
       : /^(缩小|小一点|再小一点)/.test(c) ? 'zoom_out' : '');
     if (act) { screen.control(act); this.voice.status?.('展示屏：' + {scroll_down: '往下翻', scroll_up: '往上翻', top: '回到顶部', zoom_in: '放大', zoom_out: '缩小'}[act]); return true; }
-    if (screen.isOpen && /^(关掉|关闭|收起)(屏幕|展示屏|页面|网页|节目单)?$|^(把)?(屏幕|页面|网页|节目单)(关掉|关了|关闭|收起来)$/.test(c)) { this.deck.stop(); screen.close(); this.guide.visible = false; return true; }
+    if (screen.isOpen && /^(关掉|关闭|收起)(屏幕|展示屏|页面|网页|节目单|展项)?$|^(把)?(屏幕|页面|网页|节目单|展项)(关掉|关了|关闭|收起来)$/.test(c)) { this.deck.stop(); screen.close(); this.guide.visible = false; return true; }
     if (/^(打开|看看|看)(原|原始)?(网页|档案|档案页|项目档案|原网页)$/.test(c) && st.focus?.current) { log(); this.deck.stop(); await gdHandle('open_page', {target: st.focus.current.id}, st); return true; }
     if (/^(切换?到?|换成|改成|用)?(2d|二维|平面|照片)(版|版本|模式|背景)?$/i.test(c)) { log(); this.setSpace('2d'); return true; }
     if (/^(切换?到?|换成|改成|用)?(3d|三维|立体|展厅)(版|版本|模式|空间|展厅)?$/i.test(c)) { log(); this.setSpace('3d'); return true; }
@@ -615,7 +638,7 @@ export class GdTour {
 
     // “看看/讲讲/打开 + 名字”：节目单里有就播节目，否则在好设计馆里找这个项目或方法做成节目
     const m = c.match(/^(请)?(帮我|给我)?(打开|看看|讲讲|讲一讲|介绍一下|介绍下|播放|我想看|我要看|我想了解)(一下)?(.{2,24}?)(吧|呢|这个项目|项目)?$/);
-    if (m && !/好设计馆?$|^屏幕|^节目单$/.test(m[5])) {
+    if (m && !/好设计馆?$|^屏幕|^节目单$|^(全部)?展项$/.test(m[5])) {
       const it = this.guide.pick(m[5]);
       if (it) { log(); this.startProgramme(it); return true; }
       if (/^(打开|讲讲|讲一讲|介绍一下|介绍下|播放|我想看|我要看)$/.test(m[3])) {

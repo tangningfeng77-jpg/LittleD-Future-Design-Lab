@@ -57,13 +57,13 @@ button.warn{background:#fff3ee;color:var(--warn);border-color:#f2cfc0}
     <button class="pri" data-cmd="nextpart">下一部分</button>
     <button data-cmd="bridge">去看好设计馆</button>
     <button data-cmd="closing">结束参观</button>
-    <button data-cmd="guide">节目单</button>
+    <button data-cmd="guide">全部展项</button>
   </div>
   <p class="muted" style="margin:10px 0 6px">屏幕上的提示问题（点一下替来宾问）</p>
   <div class="list" id="cues"><p class="muted">暂无</p></div>
 </div>
 <div class="card">
-  <div class="row" style="justify-content:space-between;margin-bottom:8px"><strong>节目单</strong><button data-cmd="guide">在大屏打开</button></div>
+  <div class="row" style="justify-content:space-between;margin-bottom:8px"><strong>全部展项</strong><button data-cmd="guide">在大屏打开</button></div>
   <div class="tabs" id="tabs"></div>
   <div class="list" id="list"><p class="muted">连接后显示节目</p></div>
 </div>
@@ -106,13 +106,13 @@ $('sayBtn').onclick=()=>{const t=$('say').value.trim();if(t){cmd('say',t);$('say
 const ACTS=['开场','未来设计实验室','好设计馆','自由点播','收尾'];
 function renderHost(){const s=state;$('act').textContent=s&&s.act>=0?'· 当前：'+ACTS[s.act]+(s.waiting?'（等待提问）':''):'';
  const cs=(s&&s.cues)||[];$('cues').replaceChildren(...(cs.length?cs.map((q,i)=>{const b=document.createElement('button');b.innerHTML='<b></b><span></span>';b.querySelector('b').textContent=i+1;b.querySelector('span').textContent=q;b.onclick=()=>cmd('ask',String(i));return b;}):[Object.assign(document.createElement('p'),{className:'muted',textContent:'暂无'})]));}
-function render(){renderHost();const s=state;if(!s){$('list').innerHTML='<p class="muted">屏幕还没有上报节目单</p>';return;}
+function render(){renderHost();const s=state;if(!s){$('list').innerHTML='<p class="muted">屏幕还没有上报展项</p>';return;}
  const chs=s.channels||[];if(!channel||!chs.some(c=>c.id===channel))channel=s.channel||chs[0]?.id;
  $('tabs').replaceChildren(...chs.map(c=>{const b=document.createElement('button');b.textContent=c.name;b.className=c.id===channel?'on':'';b.onclick=()=>{channel=c.id;render();cmd('channel',c.id);};return b;}));
  const ch=chs.find(c=>c.id===channel);$('list').replaceChildren(...(ch?.items||[]).map(it=>{const b=document.createElement('button');b.innerHTML='<b></b><span></span>';b.querySelector('b').textContent=it.no;b.querySelector('span').textContent=it.title;b.onclick=()=>cmd('play',it.key);return b;}));}
 async function poll(){if(!/^\d{4}$/.test(code)){$('status').textContent='未连接';return;}
  try{const j=await (await fetch('api/remote/state?code='+code)).json();state=j.state;
-  const m={playing:'正在播放',paused:'已暂停',guide:'节目单',tour:'导览中',screen:'展示屏打开',idle:'待机'}[state?.mode]||'—';
+  const m={playing:'正在播放',paused:'已暂停',guide:'全部展项',tour:'导览中',screen:'展示屏打开',idle:'待机'}[state?.mode]||'—';
   $('status').textContent=j.online?`已连接 · ${m}${state?.deck?` · ${String(state.deck.title).slice(0,40)}（${+state.deck.page||0}/${+state.deck.pages||0}）`:''}`:'屏幕不在线：确认小D 页面已打开、遥控码正确';
   render();}catch{$('status').textContent='网络不通';}}
 poll();setInterval(poll,3000);

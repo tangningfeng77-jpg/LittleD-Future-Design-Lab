@@ -122,16 +122,16 @@ export class Host {
       if (this.closingUntil > Date.now()) return;
       if (t.attracting || (!v.awakened && !d.deck && !t.guide.isShowing && !v.tour?.started && !v.gd?.screen?.isOpen && !v.selectedScene)) {
         this.setAct(-1);
-        this.show('欢迎参观', [], [{label: '说“你好，小D”开始参观', say: [], run: () => v.respond('你好，小D')}, {label: '看节目单', say: ['节目单'], run: () => t.showGuide()}]);
+        this.show('欢迎参观', [], [{label: '说“你好，小D”开始参观', say: [], run: () => v.respond('你好，小D')}, {label: '看全部展项', say: ['全部展项', '还有什么', '节目单'], run: () => t.showGuide()}]);
         return;
       }
       if (d.deck && d.active && t.afterDeck?.deck === d.deck) {
         this.setAct(3);
         const nx = t.afterDeck.next;
         this.show('讲完了 · 接着问', (d.deck.questions || []).filter(q => !this.asked.has(q)), [
-          ...(nx ? [{label: `下一个：${nx.title}`, say: ['下一个', '看下一个', '下一个节目'], run: () => t.startProgramme(nx)}] : []),
+          ...(nx ? [{label: `下一个：${nx.title}`, say: ['下一个', '看下一个'], run: () => t.startProgramme(nx)}] : []),
           {label: '看完整档案', say: ['看完整档案', '看原网页'], run: () => t.command('看原网页', '看原网页')},
-          {label: '回到节目单', say: ['回到节目单', '退出'], run: () => t.showGuide({say: false})}]);
+          {label: '回到全部展项', say: ['回到全部展项', '退出', '回到节目单'], run: () => t.showGuide({say: false})}]);
         return;
       }
       if (d.deck && d.active) {
@@ -140,13 +140,13 @@ export class Host {
         this.show(d.paused ? '已暂停 · 你可以问' : '关于这个节目，你可以问', qs, [
           {label: d.paused ? '继续讲' : '下一页', say: ['继续', '下一页'], run: () => d.paused ? d.resume() : d.next()},
           {label: '看完整档案', say: ['看完整档案', '看原网页'], run: () => t.command('看原网页', '看原网页')},
-          {label: '回到节目单', say: ['回到节目单', '退出'], run: () => t.showGuide({say: false})}]);
+          {label: '回到全部展项', say: ['回到全部展项', '退出', '回到节目单'], run: () => t.showGuide({say: false})}]);
         return;
       }
       if (t.guide.isShowing) {
         this.setAct(t.running ? 2 : 3);
-        this.show('选一个节目', [], [
-          {label: '说“第几个”或节目名字', say: [], run: () => {}},
+        this.show('选一个展项', [], [
+          {label: '说“第几个”或名字；别的问题也可以直接问', say: [], run: () => {}},
           {label: '换频道：实验室 · 政府 · 企业 · 方法', say: [], run: () => t.showGuide({say: false})},
           {label: '结束参观', say: ['结束参观'], run: () => this.closing()}]);
         return;
@@ -155,8 +155,11 @@ export class Host {
       if (scene && lab?.questions) {
         this.setAct(1);
         const pool = lab.questions.filter(q => q.scene === scene && !this.asked.has(q.question));
+        const nx = t.afterScene?.scene === v.selectedScene ? t.afterScene.next : null;
         this.show(`关于${scene}，你可以问`, pool.slice(0, 3).map(q => q.question), [
-          {label: '换一个场景', say: ['换一个场景', '换个场景'], run: () => v.sceneChoices?.show()},
+          ...(nx ? [{label: `下一个：${nx.title}`, say: ['下一个', '看下一个', '下一个场景'], run: () => t.startProgramme(nx)}]
+            : [{label: '换一个场景', say: ['换一个场景', '换个场景'], run: () => v.sceneChoices?.show()}]),
+          ...(nx ? [{label: '看全部展项', say: ['全部展项', '看全部展项', '还有什么', '节目单'], run: () => t.showGuide({channel: t.afterScene?.it?.channel})}] : []),
           {label: '去看好设计馆', say: ['去看好设计馆', '看看好设计馆', '好设计馆'], run: () => this.bridge()}]);
         return;
       }
@@ -177,11 +180,11 @@ export class Host {
         const qs = [cur?.name ? `${name(cur)}是怎么做的？` : `${name(found[0])}解决了什么问题？`, '还有类似的项目吗？', prev && cur ? '这两个有什么关系？' : '它用到了哪些设计方法？'];
         this.show('顺着这个话题，你可以', qs.filter(q => !this.asked.has(q)), [
           ...found.map(p => ({label: `播放「${name(p)}」`, say: [`播放${name(p)}`], run: () => t.playDeck(p.id)})),
-          {label: '看节目单', say: ['节目单'], run: () => t.showGuide()}]);
+          {label: '看全部展项', say: ['全部展项', '还有什么', '节目单'], run: () => t.showGuide()}]);
         return;
       }
       this.show('你可以问', ['好设计馆里有没有农业方面的项目？', '这两个有什么关系？'].filter(q => q !== '这两个有什么关系？' || (v.gd?.focus?.previous)), [
-        {label: '看节目单', say: ['节目单'], run: () => t.showGuide()},
+        {label: '看全部展项', say: ['全部展项', '还有什么', '节目单'], run: () => t.showGuide()},
         {label: '结束参观', say: ['结束参观'], run: () => this.closing()}]);
     }, 1000);
   }
@@ -281,7 +284,7 @@ export class Host {
     this.setAct(4);
     const c = this.script?.closing || {};
     this.closingUntil = Date.now() + 25000;
-    this.show('参观即将结束', c.ask || [], [{label: '再看一个节目', say: ['再看一个节目', '节目单'], run: () => { this.closingUntil = 0; t.showGuide(); }}]);
+    this.show('参观即将结束', c.ask || [], [{label: '再看一个', say: ['再看一个', '全部展项', '节目单'], run: () => { this.closingUntil = 0; t.showGuide(); }}]);
     t.hall?.walkHome();
     v.gd?.screen?.close();
     if (c.say) await t.speak(c.say, ++t.token);

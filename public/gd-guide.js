@@ -74,8 +74,8 @@ export class ProgrammeGuide {
       grid.append(card);
     });
     root.append(grid);
-    root.append(el('p', 'gd-guide-tip', '说“第几个”或节目名字 · 说“企业频道”“互动频道”换频道 · 也可以点卡片'));
-    this.st.screen.showNode(root, {label: '小D · 节目单', title: c.name});
+    root.append(el('p', 'gd-guide-tip', '说“第几个”或名字 · 说“企业频道”“互动频道”换频道 · 也可以点卡片 · 不在这里的也可以直接问小D'));
+    this.st.screen.showNode(root, {label: '小D · 全部展项', title: c.name});
     this.visible = true;
     this.onChange?.();
   }

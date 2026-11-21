@@ -170,6 +170,6 @@
   "idle": {
     "intervalSeconds": 25,
     "greetEverySeconds": 240,
-    "greeting": "你好，我是小D。屏幕上是今天的节目单，说一声你好小D，或者直接说第几个，我就开始讲。"
+    "greeting": "你好，我是小D。屏幕上是今天可以看的展项，说一声你好小D，或者直接说第几个，我就开始讲。"
   }
 }
