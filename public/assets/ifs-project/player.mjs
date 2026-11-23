@@ -6,6 +6,7 @@ import {WaitingAudio} from './waiting-audio.mjs?v=video3';
 
 const $=id=>document.getElementById(id);
 const video=$('story-video'),still=$('still'),start=$('start-experience');
+let frozen=null;
 const guide=new GestureGuide($('guide-canvas')),motion=new MotionRecognizer();
 const sound=new WaitingAudio(),canvas=$('hand-canvas'),ctx=canvas.getContext('2d');
 const journey=new GestureJourney(updateStage,playClip);
@@ -67,8 +68,10 @@ function freeze(){
   const frame=document.createElement('canvas');
   frame.width=video.videoWidth;frame.height=video.videoHeight;
   frame.getContext('2d').drawImage(video,0,0);
-  still.src=frame.toDataURL('image/png');
-  still.hidden=false;
+  // 视频放在对象存储（跨域）时，画布不能导出成图片；这时直接把画布本身当定格画面显示，
+  // 不能让这里报错，否则后面的摄像头和手势识别都不会启动。
+  try{still.src=frame.toDataURL('image/png');still.hidden=false;frozen?.remove();frozen=null;}
+  catch{frame.className='scene';frame.setAttribute('aria-hidden','true');frozen?.remove();frozen=frame;still.after(frame);}
 }
 async function playClip(transition){
   if(!started)return;
@@ -109,7 +112,7 @@ async function playClip(transition){
     sound.stop();
     void sound.unlock().then(()=>{if(!resumePlay)start.hidden=true;});
     clearTimeout(loading);clearTimeout(stall);notice('');
-    video.classList.add('active');still.hidden=true;
+    video.classList.add('active');still.hidden=true;frozen?.remove();frozen=null;
   };
   video.onended=()=>{
     if(generation!==playGeneration)return;

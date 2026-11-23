@@ -114,6 +114,7 @@ export class Hall {
     this.buildFurniture(A);
     this.buildSpotlight(g);
     this.buildAtmosphere(g, A);
+    this.buildVeil(g);
     this.fillBackScreens();
 
     // 地面倒影：建筑镜像放在地面以下
@@ -272,6 +273,13 @@ export class Hall {
     const hemi = new THREE.HemisphereLight(0xe8f2ff, 0xd9d2c8, .35); g.add(hemi);
   }
 
+  // 小D 举起资料图片时，身后升起一层浅色薄幕，把墙上的屏幕和照片压淡，图片不再和背景混在一起（同事反馈 #6）。
+  // 薄幕在小D 身后、墙面之前；写深度，挡住它后面的半透明物件；不用时隐藏，免得挡住东西。
+  buildVeil(g) {
+    const veil = new THREE.Mesh(new THREE.PlaneGeometry(40, 9), new THREE.MeshBasicMaterial({color: 0xeef3f8, transparent: true, opacity: 0, toneMapped: false, fog: false}));
+    veil.position.set(0, 4.5, .8); veil.renderOrder = -1; veil.visible = false; this.veil = veil; g.add(veil);
+  }
+
   // 讲解时小D 头顶的追光（加法混合的锥体，不投影，开销很小）
   buildSpotlight(g) {
     const cone = new THREE.Mesh(new THREE.ConeGeometry(1.25, 5.2, 40, 1, true), new THREE.MeshBasicMaterial({color: 0x9fd6ff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, toneMapped: false}));
@@ -350,7 +358,7 @@ export class Hall {
 
   // 没在讲节目时，左屏轮播实验室六个场景，右边三屏轮播好设计获奖项目封面（每 8 秒换一组）
   idleCarousel(now) {
-    if (this.media || !this.on || now < (this.idleAt || 0)) return;
+    if (this.media || !this.on || now < (this.idleAt || 0) || document.body.classList.contains('ld-holding')) return;   // 举图时墙上不换图
     this.idleAt = now + 8000;
     const labs = (this.guide?.items || []).filter(it => it.kind === 'lab-scene'), covers = (this.guide?.items || []).filter(it => it.cover);
     if (!labs.length && !covers.length) return;
@@ -424,6 +432,9 @@ export class Hall {
       this.spot.material.opacity = damp(this.spot.material.opacity, this.presenting ? .16 + .03 * Math.sin(t * 2) : 0, 2, dt);
       this.spot.position.x = robot.position.x; this.spot.position.z = robot.position.z;
       this.ringGlowMat.opacity = .7 + .25 * Math.sin(t * 1.4);
+      const holding = document.body.classList.contains('ld-holding');
+      this.veil.material.opacity = damp(this.veil.material.opacity, holding ? .72 : 0, holding ? 3 : 2, dt);
+      this.veil.visible = this.veil.material.opacity > .01;
       // 行走
       const w = this.walking;
       if (w) {

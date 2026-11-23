@@ -9,6 +9,8 @@ const clean = s => String(s || '').normalize('NFKC').replace(/[\s，。！？、
 const NUM = {一: 1, 二: 2, 两: 2, 三: 3, 四: 4, 1: 1, 2: 2, 3: 3, 4: 4};
 const NEXT = /^(下一部分|下一环节|下一个环节|往下走|接着往下|继续往下|继续下一部分|进入下一部分|我们继续|继续吧|好的继续|好继续|没问题了?|没有问题了?|没有了|就这些|可以了)$/;
 
+import {resolveSceneAnswer, retrieveOutline} from './scene-qa.js';
+
 export const deckFacts = d => !d ? '' : `${d.name}（${d.year || ''}${d.award || ''}，${d.unit || ''}）：` + d.slides.map(s => `${s.title}：${(s.points || []).join('；')}。${s.narration}`).join(' ');
 
 export class Host {
@@ -89,6 +91,43 @@ export class Host {
     this.tour.controls?.publish();
   }
 
+  hideCue() { this.lastCue = 'hidden'; this.cues = []; this.actions = []; this.cueEl.hidden = true; }
+
+  // 同事反馈 #5：提示问题要跟着刚才的对话走。记下来宾真正问过的（说的、打的、点的），
+  // 再按刚才的问题和小D 的回答，从实验室问答库里挑同一话题下还没问过的。
+  followUps(scene) {
+    const v = this.tour.voice, lab = v.sceneCatalog;
+    if (!lab?.questions) return [];
+    const h = v.lastHeard;
+    if (h?.text && h.at !== this.heardAt) {
+      this.heardAt = h.at; this.lastQ = h.text; this.asked.add(h.text);
+      const hit = resolveSceneAnswer(lab, h.text, {scene});
+      this.lastRec = hit && hit.mode === 'question' && (hit.score >= .5 || hit.records[0]) ? hit.records[0] : null;
+      if (this.lastRec && hit.score >= .5) this.asked.add(this.lastRec.question);
+    }
+    const seen = q => this.asked.has(q) || [...this.asked].some(a => clean(a) === clean(q));
+    const out = [];
+    const add = r => { if (r && !seen(r.question) && !out.includes(r.question) && r !== this.lastRec) out.push(r.question); };
+    if (this.lastQ) {
+      const topic = this.lastRec ? this.lastRec.scene : scene;
+      const near = retrieveOutline(lab, this.lastQ + ' ' + (this.lastRec ? this.lastRec.question + ' ' + this.lastRec.points : ''), topic);
+      near.filter(r => !topic || r.scene === topic || r.scene === '跨场景').forEach(add);
+      if (topic) lab.questions.filter(r => r.scene === topic).forEach(add);
+    }
+    if (scene) lab.questions.filter(r => r.scene === scene).forEach(add);
+    return out.slice(0, 3);
+  }
+
+  // 小D 刚问了来宾一个问题（比如“想不想了解……？”）时，不再另列问题，免得两个方向打架（同事反馈 #4）
+  xiaoDAsked() {
+    const v = this.tour.voice, t = this.tour;
+    if (t.isTalking?.()) return false;
+    const r = String(v.replyText || '').trim();
+    if (r) { if (r !== this.replySeen) { this.replySeen = r; this.replyAt = Date.now(); } }
+    const heardAfter = v.lastHeard && (performance.now() - v.lastHeard.at) < (Date.now() - (this.replyAt || 0));
+    return !!this.replySeen && /[？?][”"」]?$/.test(this.replySeen) && !heardAfter && Date.now() - (this.replyAt || 0) < 45000;
+  }
+
   ask(i) {
     const q = this.cues[i];
     if (!q) return false;
@@ -152,11 +191,12 @@ export class Host {
         return;
       }
       const scene = v.selectedScene?.title;
+      if (v.sceneChoices?.visible) { this.setAct(1); this.hideCue(); return; }   // 六个场景图标就是选项，提示卡让开（#4）
+      if (this.xiaoDAsked()) { this.hideCue(); return; }
       if (scene && lab?.questions) {
         this.setAct(1);
-        const pool = lab.questions.filter(q => q.scene === scene && !this.asked.has(q.question));
         const nx = t.afterScene?.scene === v.selectedScene ? t.afterScene.next : null;
-        this.show(`关于${scene}，你可以问`, pool.slice(0, 3).map(q => q.question), [
+        this.show(this.lastQ ? '接着刚才的话题，你可以问' : `关于${scene}，你可以问`, this.followUps(scene), [
           ...(nx ? [{label: `下一个：${nx.title}`, say: ['下一个', '看下一个', '下一个场景'], run: () => t.startProgramme(nx)}]
             : [{label: '换一个场景', say: ['换一个场景', '换个场景'], run: () => v.sceneChoices?.show()}]),
           ...(nx ? [{label: '看全部展项', say: ['全部展项', '看全部展项', '还有什么', '节目单'], run: () => t.showGuide({channel: t.afterScene?.it?.channel})}] : []),
@@ -165,8 +205,9 @@ export class Host {
       }
       if (v.tour?.started || v.sceneChoices?.visible) {
         this.setAct(v.tour?.state === 'video' || v.tour?.state === 'speaking' ? 0 : 1);
-        const pool = (lab?.questions || []).filter(q => q.scene === '实验室概况' && !this.asked.has(q.question));
-        this.show('你可以问', (this.script?.labCues?.welcome || []).concat(pool.map(q => q.question)).filter(q => !this.asked.has(q)).slice(0, 3), [
+        const qs = this.lastQ ? this.followUps('实验室概况')
+          : (this.script?.labCues?.welcome || []).concat(this.followUps('实验室概况')).filter(q => !this.asked.has(q)).slice(0, 3);
+        this.show(this.lastQ ? '接着刚才的话题，你可以问' : '你可以问', qs, [
           {label: '说一个场景名，比如智慧农业', say: [], run: () => v.sceneChoices?.show()},
           {label: '去看好设计馆', say: ['去看好设计馆', '看看好设计馆'], run: () => this.bridge()}]);
         return;
