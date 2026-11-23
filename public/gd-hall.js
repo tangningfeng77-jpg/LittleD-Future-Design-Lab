@@ -112,6 +112,7 @@ export class Hall {
     this.buildBackHall(A);
     this.buildCeiling(g);
     this.buildFurniture(A);
+    this.buildPhotoWall();
     this.buildSpotlight(g);
     this.buildAtmosphere(g, A);
     this.buildVeil(g);
@@ -122,6 +123,34 @@ export class Hall {
     mirror.traverse(o => { if (o.isMesh) { o.material = o.material.clone(); o.material.transparent = true; o.material.opacity = (o.material.opacity ?? 1) * .7; o.material.depthWrite = false; o.material.side = THREE.DoubleSide; } });
     mirror.renderOrder = 0; g.add(mirror);
     this.s.scene.add(g);
+  }
+
+  // 实验室项目实景照片墙（同事反馈 #3：场景简陋）：左右斜墙靠主墙的一侧各挂两张真实照片，带一行说明。
+  // 照片取自实验室资料库（assets/lab-knowledge，资料原图），不是生成图；说明只写照片里能看到的内容。
+  buildPhotoWall() {
+    const PHOTOS = {
+      [-1]: [['I0015', '温室番茄采摘机械臂 · 智慧农业'], ['I0179', 'AI 汉服换装体验 · 集体参观']],
+      [1]: [['I0093', '数字门店货架与采集装置 · 数字商业'], ['I0401', '离子精筛膜产线']]
+    };
+    const frameMat = new THREE.MeshStandardMaterial({color: 0x26303c, roughness: .4});
+    for (const side of [-1, 1]) {
+      const grp = this.wings?.[side]; if (!grp) continue;
+      const w = side < 0 ? 1.7 : 1.3, h = w / 1.42, x = side < 0 ? 1.95 : -2.3;
+      PHOTOS[side].forEach(([id, label], i) => {
+        const y = side < 0 ? (i ? 1.55 : 2.95) : (i ? 1.75 : 2.95);
+        const tex = canvasTex(1024, 720, (g2, cw, ch) => { g2.fillStyle = '#e8eef4'; g2.fillRect(0, 0, cw, ch); });
+        const frame = new THREE.Mesh(new THREE.BoxGeometry(w + .06, h + .06, .03), frameMat); frame.position.set(x, y, .165); grp.add(frame);
+        const pic = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({map: tex.t, toneMapped: false})); pic.position.set(x, y, .185); grp.add(pic);
+        const im = new Image(); im.crossOrigin = 'anonymous';
+        im.onload = () => { const {g: c2, c} = tex; cover(c2, im, 0, 0, c.width, c.height);
+          c2.fillStyle = 'rgba(8,24,48,.62)'; c2.fillRect(0, c.height - 96, c.width, 96);
+          c2.fillStyle = '#eaf6ff'; c2.font = `600 46px ${FONT}`; c2.textAlign = 'left'; c2.fillText(label, 30, c.height - 32);
+          tex.t.needsUpdate = true; };
+        const url = (window.ldAsset || (u => u))(`./assets/lab-knowledge/${id}.jpg`);
+        // COS 不带 Vary: Origin：跨域读图时换个地址，和普通 <img> 的缓存分开（同 showMedia）
+        im.src = /^https?:/.test(url) && !url.startsWith(location.origin) ? url + (url.includes('?') ? '&' : '?') + 'cors=1' : url;
+      });
+    }
   }
 
   // 中央主墙：白色厚墙 + 标识 + 两侧斜向光刃 + 边缘光
@@ -181,7 +210,7 @@ export class Hall {
           this.rightScreens.push(tex);
         });
       }
-      A.add(grp);
+      A.add(grp); (this.wings ||= {})[side] = grp;
     };
     mk(-1); mk(1);
   }
